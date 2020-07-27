@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/nav_intro">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.fund.flio.ui.main.home.HomeFragment"
         android:label="nav_home"
         tools:layout="@layout/fragment_home">
+
         <action
-            android:id="@+id/action_navigation_home_to_navigation_detail"
+            android:id="@+id/action_nav_home_to_nav_detail"
             app:destination="@id/nav_detail" />
     </fragment>
 
@@ -21,26 +22,28 @@
         android:label="nav_detail"
         tools:layout="@layout/fragment_detail" />
 
-    <include app:graph="@navigation/nav_graph_login" />
+    <fragment
+        android:id="@+id/nav_channel"
+        android:name="com.fund.flio.ui.main.channel.ChannelFragment"
+        android:label="nav_detail"
+        tools:layout="@layout/fragment_channel" />
 
     <fragment
-        android:id="@+id/nav_intro"
-        android:name="com.fund.flio.ui.main.intro.IntroFragment"
-        android:label="nav_intro"
-        tools:layout="@layout/fragment_intro">
-        <action
-            android:id="@+id/action_navigation_intro_to_navigation_login"
-            app:destination="@id/nav_login" />
-    </fragment>
+        android:id="@+id/nav_favorite"
+        android:name="com.fund.flio.ui.main.favorte.FavoriteFragment"
+        android:label="nav_detail"
+        tools:layout="@layout/fragment_favorite" />
 
     <fragment
-        android:id="@+id/nav_login"
-        android:name="com.fund.flio.ui.main.login.LoginFragment"
-        android:label="nav_login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_navigation_login_to_navigation_home"
-            app:destination="@id/nav_home" />
-    </fragment>
+        android:id="@+id/nav_write"
+        android:name="com.fund.flio.ui.main.write.WriteFragment"
+        android:label="nav_detail"
+        tools:layout="@layout/fragment_write" />
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.fund.flio.ui.main.search.SearchFragment"
+        android:label="nav_detail"
+        tools:layout="@layout/fragment_search" />
 
 </navigation>

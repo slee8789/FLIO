@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -14,6 +16,7 @@ import com.fund.flio.databinding.FragmentLoginBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.MainActivity;
+import com.fund.flio.ui.main.home.HomeFragmentDirections;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
@@ -80,7 +83,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
         });
 
         getViewDataBinding().btnGoogleLogout.setOnClickListener(v -> {
-            ((MainActivity)getBaseActivity()).getViewModel().googleLogout();
+            ((MainActivity) getBaseActivity()).getViewModel().googleLogout();
         });
 
         getViewDataBinding().btnKakaoLogout.setOnClickListener(v -> {
@@ -91,6 +94,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
                 }
             });
 
+        });
+
+        getViewDataBinding().btnMainGraph.setOnClickListener(v -> {
+            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_login_to_nav_graph_main);
+//            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(LoginFragmentDirections.actionNavLoginToNavGraphMain());
         });
     }
 

@@ -69,7 +69,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Override
     public void goDetail() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(HomeFragmentDirections.actionNavigationHomeToNavigationDetail());
+        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(HomeFragmentDirections.actionNavHomeToNavDetail());
     }
 
     @Override

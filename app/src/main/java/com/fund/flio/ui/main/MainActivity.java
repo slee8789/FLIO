@@ -125,10 +125,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void onBackPressed() {
         Logger.d("onBackPressed " + mNavController.getCurrentDestination().getLabel());
         switch (mNavController.getCurrentDestination().getId()) {
-            case R.id.nav_intro:
-            case R.id.nav_login:
-                mNavController.popBackStack(R.id.nav_home, true);
-                break;
+//            case R.id.nav_intro:
+//            case R.id.nav_login:
+//                mNavController.popBackStack(R.id.nav_home, true);
+//                break;
+//
+//            case R.id.nav_home:
 
             default:
                 super.onBackPressed();

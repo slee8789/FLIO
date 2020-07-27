@@ -5,26 +5,26 @@
     <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_launcher_foreground"
-            android:title="홈" />
+            android:title="@string/nav_home" />
 
     <item
-        android:id="@+id/nav_test"
+        android:id="@+id/nav_search"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="테스" />
+        android:title="@string/nav_search" />
 
     <item
         android:id="@+id/nav_write"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="글쓰" />
+        android:title="@string/nav_write" />
 
     <item
-        android:id="@+id/nav_mypage"
+        android:id="@+id/nav_channel"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="마이페이" />
+        android:title="@string/nav_channel" />
 
     <item
-        android:id="@+id/nav_plus"
+        android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="지플러스" />
+        android:title="@string/nav_favorite" />
 
 </menu>

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Flio</string>
     <string name="kakao_app_key">09b99188fe74123e3d34d124c992695c</string>
+    <string name="nav_home">홈</string>
+    <string name="nav_search">검색</string>
+    <string name="nav_write">글쓰기</string>
+    <string name="nav_channel">채널/알림</string>
+    <string name="nav_favorite">관심상품</string>
 </resources>

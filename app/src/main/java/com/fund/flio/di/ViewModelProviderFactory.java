@@ -10,13 +10,18 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.main.MainViewModel;
+import com.fund.flio.ui.main.channel.ChannelViewModel;
 import com.fund.flio.ui.main.chat.detail.ChatDetailViewModel;
 import com.fund.flio.ui.main.chat.list.ChatListViewModel;
 import com.fund.flio.ui.main.chat.profile.ChatProfileViewModel;
 import com.fund.flio.ui.main.detail.DetailViewModel;
+import com.fund.flio.ui.main.favorte.FavoriteViewModel;
 import com.fund.flio.ui.main.home.HomeViewModel;
 import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
+import com.fund.flio.ui.main.search.SearchViewModel;
+import com.fund.flio.ui.main.write.WriteFragment;
+import com.fund.flio.ui.main.write.WriteViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;
@@ -60,6 +65,14 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new ChatDetailViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChatProfileViewModel.class.isAssignableFrom(modelClass)) {
             return new ChatProfileViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (WriteViewModel.class.isAssignableFrom(modelClass)) {
+            return new WriteViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (FavoriteViewModel.class.isAssignableFrom(modelClass)) {
+            return new FavoriteViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (ChannelViewModel.class.isAssignableFrom(modelClass)) {
+            return new ChannelViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (SearchViewModel.class.isAssignableFrom(modelClass)) {
+            return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name");
     }

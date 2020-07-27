@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.intro;
+package com.fund.flio.ui.main.channel;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,12 +6,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.databinding.FragmentIntroBinding;
-import com.fund.flio.databinding.FragmentLoginBinding;
+import com.fund.flio.databinding.FragmentChannelBinding;
+import com.fund.flio.databinding.FragmentDetailBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.orhanobut.logger.Logger;
@@ -19,7 +18,9 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewModel> implements IntroNavigator {
+public class ChannelFragment extends BaseFragment<FragmentChannelBinding, ChannelViewModel> implements ChannelNavigator {
+
+    public static final String TAG = ChannelFragment.class.getSimpleName();
 
     @Inject
     ViewModelProviderFactory viewModelProviderFactory;
@@ -31,12 +32,12 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_intro;
+        return R.layout.fragment_channel;
     }
 
     @Override
-    public IntroViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(IntroViewModel.class);
+    public ChannelViewModel getViewModel() {
+        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(ChannelViewModel.class);
     }
 
     @Override
@@ -51,16 +52,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
 
-    @Override
-    public void showLogin() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
-    }
-
-    @Override
-    public void showHome() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.nav_home);
     }
 
     @Override

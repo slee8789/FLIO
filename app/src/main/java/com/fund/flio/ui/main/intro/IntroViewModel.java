@@ -20,5 +20,4 @@ public class IntroViewModel extends BaseViewModel<IntroNavigator> {
 //                .subscribe(Void -> getNavigator().showHome()));
     }
 
-
 }
