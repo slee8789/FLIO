@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void initViews() {
         mNavController = Navigation.findNavController(this, R.id.fragment_container);
-        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, mNavController);
+//        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, mNavController);
         NavigationUI.setupWithNavController(getViewDataBinding().navigationBottom, mNavController);
         mNavController.addOnDestinationChangedListener(this);
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
@@ -111,11 +111,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_intro:
             case R.id.nav_login:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
-                getViewDataBinding().toolbar.setVisibility(View.GONE);
+//                getViewDataBinding().toolbar.setVisibility(View.GONE);
                 break;
 
             default:
-                getViewDataBinding().toolbar.setVisibility(View.VISIBLE);
+//                getViewDataBinding().toolbar.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 break;
         }

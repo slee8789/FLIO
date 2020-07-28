@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.model.Banner;
+import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
@@ -31,6 +32,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Inject
     BannerAdapter mBannerAdapter;
+
+    @Inject
+    RecommendAdapter mRecommendAdapter;
 
     @Override
     public int getBindingVariable() {
@@ -59,12 +63,24 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getViewDataBinding().banners.setAdapter(mBannerAdapter);
-        ArrayList<Banner> testBanners = new ArrayList<>();
-        testBanners.add(new Banner("https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        testBanners.add(new Banner("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"));
-        testBanners.add(new Banner("https://homepages.cae.wisc.edu/~ece533/images/baboon.png"));
-        mBannerAdapter.addItems(testBanners);
+        initViews();
+    }
+
+    private void initViews() {
+        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+        ArrayList<Recommend> testRecommends = new ArrayList<>();
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",true,true,true,"오디오 추천합니다.","30만원"));
+        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png",true,true,true,"오디오 추천합니다.","30만원"));
+
+        mRecommendAdapter.addItems(testRecommends);
+
     }
 
     @Override

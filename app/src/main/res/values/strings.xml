@@ -6,4 +6,18 @@
     <string name="nav_write">글쓰기</string>
     <string name="nav_channel">채널/알림</string>
     <string name="nav_favorite">관심상품</string>
+    <string name="category_speaker">스피커</string>
+    <string name="category_mike">마이크</string>
+    <string name="category_cable">케이블</string>
+    <string name="category_amp">앰프</string>
+    <string name="category_source">소스기기</string>
+    <string name="category_headset">이어폰/헤드폰</string>
+    <string name="category_acoustic">음향장비</string>
+    <string name="category_instrument">악기/음반</string>
+    <string name="category_accessory">악세사리</string>
+    <string name="category_diy">DIY</string>
+
+    <string name="header_recommend_product">추천 매물</string>
+
+    <string name="description_item_recommend">recommend</string>
 </resources>
