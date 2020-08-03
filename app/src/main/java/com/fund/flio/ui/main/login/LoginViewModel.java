@@ -1,6 +1,8 @@
 package com.fund.flio.ui.main.login;
 
 
+import androidx.databinding.ObservableField;
+
 import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
@@ -22,6 +24,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISe
     @Inject
     FirebaseAuth mFirebaseAuth;
 
+    public ObservableField<String> token = new ObservableField<>();
+
     public LoginViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
         Session.getCurrentSession().addCallback(this);
@@ -30,6 +34,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISe
     @Override
     public void onSessionOpened() {
         Logger.d("kakao onSessionOpened result " + Session.getCurrentSession().getTokenInfo());
+        token.set(Session.getCurrentSession().getTokenInfo().getAccessToken());
         UserManagement.getInstance().me(new MeV2ResponseCallback() {
             @Override
             public void onSessionClosed(ErrorResult errorResult) {

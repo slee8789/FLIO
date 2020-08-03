@@ -41,6 +41,7 @@
             android:background="@drawable/bottom_navigation_background"
             app:itemIconTint="@drawable/bottom_navigation_color_selector"
             app:labelVisibilityMode="unlabeled"
+            app:elevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom_nav" />
 

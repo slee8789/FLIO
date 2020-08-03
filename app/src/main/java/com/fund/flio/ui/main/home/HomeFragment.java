@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -16,6 +17,7 @@ import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.MainActivity;
+import com.fund.flio.utils.RecyclerDecoration;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -68,6 +70,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     private void initViews() {
         getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+//        getViewDataBinding().recommends.addItemDecoration(new RecyclerDecoration(getBaseActivity()));
         ArrayList<Recommend> testRecommends = new ArrayList<>();
         testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png",true,true,true,"오디오 추천합니다.","30만원"));
         testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",true,true,true,"오디오 추천합니다.","30만원"));
