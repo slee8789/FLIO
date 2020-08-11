@@ -6,23 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.fund.flio.di.ViewModelProviderFactory;
 import com.orhanobut.logger.Logger;
+
+import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.annotations.NonNull;
 
 public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment {
 
+    @Inject
+    public ViewModelProviderFactory viewModelProviderFactory;
+
     private BaseActivity mActivity;
     private View mRootView;
     private T mViewDataBinding;
     private V mViewModel;
+    private ViewModelProvider viewModelProvider;
+
+    public ViewModelProvider getViewModelProvider() {
+        return viewModelProvider;
+    }
 
     /**
      * Override for set binding variable
@@ -51,16 +64,22 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         if (context instanceof BaseActivity) {
             BaseActivity activity = (BaseActivity) context;
             this.mActivity = activity;
-            activity.onFragmentAttached();
         }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         performDependencyInjection();
+        viewModelProvider = new ViewModelProvider(getViewModelStore(), viewModelProviderFactory);
         super.onCreate(savedInstanceState);
         mViewModel = getViewModel();
         setHasOptionsMenu(false);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+            }
+        };
     }
 
     @Override
@@ -97,12 +116,4 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         AndroidSupportInjection.inject(this);
     }
 
-    public interface Callback {
-
-        void onFragmentAttached();
-
-        void onFragmentDetached(String tag);
-
-        void onBackPressed();
-    }
 }

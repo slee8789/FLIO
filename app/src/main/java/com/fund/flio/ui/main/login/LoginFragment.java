@@ -18,6 +18,9 @@ import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.home.HomeFragmentDirections;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.kakao.auth.AuthType;
+import com.kakao.auth.Session;
+import com.kakao.auth.StringSet;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -25,15 +28,15 @@ import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.orhanobut.logger.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewModel> implements LoginNavigator {
-
-    @Inject
-    ViewModelProviderFactory viewModelProviderFactory;
 
     @Inject
     OAuthLogin mOAuthLoginModule;
@@ -55,12 +58,13 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
 
     @Override
     public LoginViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(LoginViewModel.class);
+        return getViewModelProvider().get(LoginViewModel.class);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.d("LoginFragment onCreate");
         getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
@@ -122,6 +126,15 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
         ;
     };
 
+    @Override
+    public void showLogin() {
+
+    }
+
+    @Override
+    public void showHome() {
+
+    }
 
     @Override
     public void showToast(String message) {

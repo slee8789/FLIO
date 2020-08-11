@@ -1,6 +1,8 @@
 package com.fund.flio.data.remote;
 
 
+import com.fund.flio.data.model.body.TokenBody;
+
 import java.util.List;
 
 import io.reactivex.Single;
@@ -16,5 +18,10 @@ public interface ApiHelper {
     @GET(ApiDefine.Body.TEST_SELECT)
     @Headers({ApiDefine.Header.ACCEPT_JSON})
     Single<Response<Void>> getTestSelect();
+
+    // 유저 정보
+    @POST(ApiDefine.Body.AUTH_TOKEN)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Void>> postAuthToken(@Body TokenBody tokenBody);
 
 }

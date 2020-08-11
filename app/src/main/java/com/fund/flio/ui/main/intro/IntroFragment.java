@@ -5,13 +5,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentIntroBinding;
-import com.fund.flio.databinding.FragmentLoginBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.orhanobut.logger.Logger;
@@ -36,7 +34,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
 
     @Override
     public IntroViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(IntroViewModel.class);
+        return getViewModelProvider().get(IntroViewModel.class);
     }
 
     @Override
@@ -45,8 +43,14 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
         Logger.i("onCreate");
         getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
+//        kakaoAutoLogin();
     }
 
+//    private void kakaoAutoLogin() {
+//        Map<String, String> extraParams = new HashMap<>();
+//        extraParams.put(StringSet.auto_login, "true");
+//        Session.getCurrentSession().open(AuthType.KAKAO_TALK_ONLY, this, extraParams); // KAKAO_TALK_ONLY로 실행해야 톡 미설치 시 웹뷰 로그인을 시도하지 않음.
+//    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -55,12 +59,12 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
 
     @Override
     public void showLogin() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
+        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_graph_auth);
     }
 
     @Override
     public void showHome() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.nav_home);
+        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_home);
     }
 
     @Override

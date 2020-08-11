@@ -26,7 +26,6 @@ public abstract class BaseDialog extends DialogFragment {
         if (context instanceof BaseActivity) {
             BaseActivity mActivity = (BaseActivity) context;
             this.mActivity = mActivity;
-            mActivity.onFragmentAttached();
         }
     }
 
@@ -54,21 +53,6 @@ public abstract class BaseDialog extends DialogFragment {
     public void onDetach() {
         mActivity = null;
         super.onDetach();
-    }
-
-    public void show(FragmentManager fragmentManager, String tag) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment prevFragment = fragmentManager.findFragmentByTag(tag);
-        if (prevFragment != null) {
-            transaction.remove(prevFragment);
-        }
-        transaction.addToBackStack(null);
-        show(transaction, tag);
-    }
-
-    public void dismissDialog(String tag) {
-        dismiss();
-        getBaseActivity().onFragmentDetached(tag);
     }
 
     public BaseActivity getBaseActivity() {

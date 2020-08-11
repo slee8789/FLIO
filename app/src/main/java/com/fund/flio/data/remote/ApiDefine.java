@@ -12,6 +12,8 @@ public class ApiDefine {
         String TEST_SELECT = "test/selectTest";
         String TEST_INSERT = "v2/local/geo/coord2address.json";
 
+        String AUTH_TOKEN = "verifyToken";
+
     }
 
 

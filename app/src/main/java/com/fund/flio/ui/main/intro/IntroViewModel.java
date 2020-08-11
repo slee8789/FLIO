@@ -14,9 +14,9 @@ public class IntroViewModel extends BaseViewModel<IntroNavigator> {
 
     public IntroViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
-        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(schedulerProvider.ui())
-                .subscribe(Void -> getNavigator().showLogin()));
+//        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
+//                .observeOn(schedulerProvider.ui())
+//                .subscribe(Void -> getNavigator().showLogin()));
 //                .subscribe(Void -> getNavigator().showHome()));
     }
 

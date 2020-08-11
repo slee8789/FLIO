@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 @Module
@@ -27,6 +28,15 @@ public class NetworkModule {
                 .build();
     }
 
+    @Provides
+    @Singleton
+    @Named("auth")
+    OkHttpClient provideOkHttpAuthClient() {
+        return new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .build();
+    }
+
 
     @Provides
     @Singleton
@@ -34,8 +44,20 @@ public class NetworkModule {
     Retrofit provideService(@Named("flio") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-                .addConverterFactory(JspoonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BuildConfig.REST_BASE_URL)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    @Named("auth")
+    Retrofit provideAuthService(@Named("auth") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BuildConfig.REST_AUTH_URL)
                 .client(okHttpClient)
                 .build();
     }
@@ -45,6 +67,13 @@ public class NetworkModule {
     @Singleton
     @Named("flio")
     ApiHelper provideApiHelper(@Named("flio") Retrofit retrofit) {
+        return retrofit.create(ApiHelper.class);
+    }
+
+    @Provides
+    @Singleton
+    @Named("auth")
+    ApiHelper provideAuthApiHelper(@Named("auth") Retrofit retrofit) {
         return retrofit.create(ApiHelper.class);
     }
 

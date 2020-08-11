@@ -5,19 +5,19 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.DividerItemDecoration;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.data.model.Banner;
+import com.fund.flio.data.DataManager;
+import com.fund.flio.data.enums.AuthType;
+import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.MainActivity;
-import com.fund.flio.utils.RecyclerDecoration;
+import com.fund.flio.ui.main.login.LoginViewModel;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -27,16 +27,16 @@ import javax.inject.Inject;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements HomeNavigator {
 
-    public static final String TAG = HomeFragment.class.getSimpleName();
-
     @Inject
-    ViewModelProviderFactory viewModelProviderFactory;
+    DataManager dataManager;
 
     @Inject
     BannerAdapter mBannerAdapter;
 
     @Inject
     RecommendAdapter mRecommendAdapter;
+
+    private LoginViewModel loginViewModel;
 
     @Override
     public int getBindingVariable() {
@@ -50,17 +50,19 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Override
     public HomeViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(HomeViewModel.class);
+        return getViewModelProvider().get(HomeViewModel.class);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
+//        loginViewModel = getViewModelProvider().get(LoginViewModel.class);
+//        loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
+//        loginViewModel.authenticate(AuthType.valueOf(dataManager.getAuthType()) != AuthType.NONE);
         getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -81,10 +83,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png",true,true,true,"오디오 추천합니다.","30만원"));
         testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",true,true,true,"오디오 추천합니다.","30만원"));
         testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png",true,true,true,"오디오 추천합니다.","30만원"));
-
         mRecommendAdapter.addItems(testRecommends);
-
     }
+
+    private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
+        Logger.d("HomeFragment authenticationObserver " + authenticationState);
+        if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
+            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_home_to_nav_intro);
+
+        }
+    };
 
     @Override
     public void goDetail() {

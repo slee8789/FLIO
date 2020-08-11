@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -14,9 +15,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.DataManager;
+import com.fund.flio.data.enums.AuthType;
+import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseActivity;
+import com.fund.flio.ui.main.home.HomeViewModel;
+import com.fund.flio.ui.main.login.LoginViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -37,12 +43,14 @@ import static com.fund.flio.core.AppConstant.RC_KAKAO_SIGN_IN;
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasAndroidInjector, NavController.OnDestinationChangedListener {
 
     @Inject
-    ViewModelProviderFactory viewModelProviderFactory;
-
-    @Inject
     DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 
+    @Inject
+    DataManager dataManager;
+
     private NavController mNavController;
+
+    private LoginViewModel loginViewModel;
 
     @Override
     public AndroidInjector<Object> androidInjector() {
@@ -61,7 +69,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(MainViewModel.class);
+        return getViewModelProvider().get(MainViewModel.class);
     }
 
     @Override
@@ -69,6 +77,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         super.onCreate(savedInstanceState);
         getViewModel().setNavigator(this);
         initViews();
+        loginViewModel = getViewModelProvider().get(LoginViewModel.class);
+        loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
+        loginViewModel.authenticate(AuthType.valueOf(dataManager.getAuthType()) != AuthType.NONE);
+
     }
 
     private void initViews() {
@@ -81,10 +93,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
     }
 
+    private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
+        Logger.d("MainActivity authenticationObserver " + authenticationState);
+        if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
+            Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+        }
+    };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Logger.d("LoginActivity onActivityResult " + requestCode + ", " + resultCode);
+        Logger.d("MainActivity onActivityResult " + requestCode + ", " + resultCode);
         switch (requestCode) {
             case RC_KAKAO_SIGN_IN:
                 Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data);

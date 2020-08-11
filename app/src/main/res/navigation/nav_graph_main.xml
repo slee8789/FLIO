@@ -5,6 +5,27 @@
     android:id="@+id/nav_graph_main"
     app:startDestination="@id/nav_home">
 
+    <action
+        android:id="@+id/action_global_to_nav_intro"
+        app:destination="@id/nav_intro"
+        app:popUpTo="@id/nav_home"
+        app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/nav_intro"
+        android:name="com.fund.flio.ui.main.intro.IntroFragment"
+        android:label="nav_intro"
+        tools:layout="@layout/fragment_intro">
+        <action
+            android:id="@+id/action_nav_intro_to_nav_graph_auth"
+            app:destination="@id/nav_graph_auth"
+            app:popUpTo="@id/nav_intro"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_intro_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_home"
         android:name="com.fund.flio.ui.main.home.HomeFragment"
@@ -14,6 +35,12 @@
         <action
             android:id="@+id/action_nav_home_to_nav_detail"
             app:destination="@id/nav_detail" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_intro"
+            app:destination="@id/nav_intro"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -45,5 +72,24 @@
         android:name="com.fund.flio.ui.main.search.SearchFragment"
         android:label="nav_detail"
         tools:layout="@layout/fragment_search" />
+
+    <navigation
+        android:id="@+id/nav_graph_auth"
+        app:startDestination="@+id/nav_login">
+
+        <fragment
+            android:id="@+id/nav_login"
+            android:name="com.fund.flio.ui.main.login.LoginFragment"
+            android:label="nav_login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_nav_login_to_nav_graph_main"
+                app:destination="@id/nav_graph_main"
+                app:popUpTo="@id/nav_login"
+                app:popUpToInclusive="true" />
+        </fragment>
+
+
+    </navigation>
 
 </navigation>
