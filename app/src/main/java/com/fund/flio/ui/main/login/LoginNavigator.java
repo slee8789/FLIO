@@ -5,6 +5,4 @@ import com.fund.flio.ui.base.BaseNavigator;
 public interface LoginNavigator extends BaseNavigator {
 
     void showLogin();
-
-    void showHome();
 }

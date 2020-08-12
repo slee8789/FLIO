@@ -23,7 +23,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_intro_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_intro"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

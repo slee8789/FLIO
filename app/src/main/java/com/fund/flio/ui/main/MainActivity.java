@@ -40,7 +40,7 @@ import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 import static com.fund.flio.core.AppConstant.RC_KAKAO_SIGN_IN;
 
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasAndroidInjector, NavController.OnDestinationChangedListener {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements HasAndroidInjector, NavController.OnDestinationChangedListener {
 
     @Inject
     DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         initViews();
         loginViewModel = getViewModelProvider().get(LoginViewModel.class);
         loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     Logger.d("LoginActivity account " + account);
                     getViewModel().firebaseAuthWithGoogle(account);
                 } catch (ApiException e) {
-                    handleError(e);
+//                    handleError(e);
 
                 }
                 break;
@@ -156,13 +156,5 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
-    @Override
-    public void showToast(String message) {
 
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-
-    }
 }

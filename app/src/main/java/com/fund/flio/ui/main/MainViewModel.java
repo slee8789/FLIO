@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.orhanobut.logger.Logger;
 
-public class MainViewModel extends BaseViewModel<MainNavigator> {
+public class MainViewModel extends BaseViewModel {
 
     private FirebaseAuth mFirebaseAuth;
 
@@ -28,7 +28,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                     if (task.isSuccessful()) {
                         Logger.d("firebaseAuthWithGoogle success");
                     } else {
-                        getNavigator().handleError(new Throwable("firebaseAuthWithGoogle failed."));
+//                        getNavigator().handleError(new Throwable("firebaseAuthWithGoogle failed."));
                     }
                 });
     }

@@ -18,7 +18,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> implements SearchNavigator {
+public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel>  {
 
     public static final String TAG = SearchFragment.class.getSimpleName();
 
@@ -44,7 +44,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -55,14 +55,4 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
 
     }
 
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }

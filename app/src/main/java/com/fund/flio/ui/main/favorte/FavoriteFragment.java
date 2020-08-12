@@ -18,9 +18,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class FavoriteFragment extends BaseFragment<FragmentFavoriteBinding, FavoriteViewModel> implements FavoriteNavigator {
-
-    public static final String TAG = FavoriteFragment.class.getSimpleName();
+public class FavoriteFragment extends BaseFragment<FragmentFavoriteBinding, FavoriteViewModel>  {
 
     @Inject
     ViewModelProviderFactory viewModelProviderFactory;
@@ -44,7 +42,7 @@ public class FavoriteFragment extends BaseFragment<FragmentFavoriteBinding, Favo
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -55,14 +53,5 @@ public class FavoriteFragment extends BaseFragment<FragmentFavoriteBinding, Favo
 
     }
 
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }

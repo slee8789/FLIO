@@ -6,6 +6,7 @@
     <string name="nav_write">글쓰기</string>
     <string name="nav_channel">채널/알림</string>
     <string name="nav_favorite">관심상품</string>
+
     <string name="category_speaker">스피커</string>
     <string name="category_mike">마이크</string>
     <string name="category_cable">케이블</string>

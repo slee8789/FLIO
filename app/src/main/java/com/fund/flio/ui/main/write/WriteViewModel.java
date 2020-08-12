@@ -6,7 +6,7 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 
-public class WriteViewModel extends BaseViewModel<WriteNavigator> {
+public class WriteViewModel extends BaseViewModel {
 
     public WriteViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);

@@ -19,7 +19,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewModel> implements WriteNavigator {
+public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewModel> {
 
     public static final String TAG = WriteFragment.class.getSimpleName();
 
@@ -45,7 +45,7 @@ public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewM
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -56,14 +56,5 @@ public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewM
 
     }
 
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }

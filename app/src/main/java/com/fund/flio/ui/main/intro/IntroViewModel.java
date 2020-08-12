@@ -10,14 +10,15 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 
-public class IntroViewModel extends BaseViewModel<IntroNavigator> {
+public class IntroViewModel extends BaseViewModel {
 
     public IntroViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
 //        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
 //                .observeOn(schedulerProvider.ui())
-//                .subscribe(Void -> getNavigator().showLogin()));
-//                .subscribe(Void -> getNavigator().showHome()));
+//                .subscribe(Void -> {
+////                    getNavigator().checkAuth()
+//                }));
     }
 
 }

@@ -18,7 +18,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class ChannelFragment extends BaseFragment<FragmentChannelBinding, ChannelViewModel> implements ChannelNavigator {
+public class ChannelFragment extends BaseFragment<FragmentChannelBinding, ChannelViewModel>  {
 
     public static final String TAG = ChannelFragment.class.getSimpleName();
 
@@ -44,7 +44,7 @@ public class ChannelFragment extends BaseFragment<FragmentChannelBinding, Channe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -53,16 +53,5 @@ public class ChannelFragment extends BaseFragment<FragmentChannelBinding, Channe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
-
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 }

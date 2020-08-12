@@ -17,7 +17,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, ChatDetailViewModel> implements ChatDetailNavigator {
+public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, ChatDetailViewModel> {
 
     @Inject
     ViewModelProviderFactory viewModelProviderFactory;
@@ -40,7 +40,7 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -55,14 +55,5 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
 
     }
 
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }

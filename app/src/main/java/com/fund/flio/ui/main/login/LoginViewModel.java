@@ -23,7 +23,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
-public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISessionCallback {
+public class LoginViewModel extends BaseViewModel implements ISessionCallback {
 
     @Inject
     FirebaseAuth mFirebaseAuth;
@@ -41,7 +41,16 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISe
         Session.getCurrentSession().addCallback(this);
     }
 
+    public void dummyLoading() {
+        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(Void -> {
+                    authenticationState.setValue(AuthenticationState.INVALID_AUTHENTICATION);
+                }));
+    }
+
     public void authenticate(boolean cool) {
+        Logger.d("authenticate " + cool);
         if (cool) {
             authenticationState.setValue(AuthenticationState.AUTHENTICATED);
         } else {
@@ -55,7 +64,9 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISe
         token.set(Session.getCurrentSession().getTokenInfo().getAccessToken());
         getCompositeDisposable().add(getDataManager().postAuthToken(new TokenBody(AuthType.KAKAO.getType(), Session.getCurrentSession().getTokenInfo().getAccessToken())).subscribe(firebaseToken -> {
             getDataManager().setAuthType(AuthType.KAKAO.getType());
-        }, onError -> getNavigator().handleError(onError)));
+        }, onError -> {
+//            getNavigator().handleError(onError);
+        }));
     }
 
     @Override
@@ -63,6 +74,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> implements ISe
         Logger.e("onSessionOpenFailed " + exception);
         getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(Void -> getNavigator().showLogin()));
+                .subscribe(Void -> {
+                    authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
+                }));
     }
 }

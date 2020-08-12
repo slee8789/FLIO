@@ -17,33 +17,6 @@
         android:paddingStart="21dp"
         android:paddingEnd="21dp">
 
-        <!--        <Button-->
-        <!--            android:id="@+id/detail"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:onClick="@{() -> viewModel.testDetail()}"-->
-        <!--            android:text="go detail"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--        <Button-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:onClick="@{() -> viewModel.testSelect()}"-->
-        <!--            android:text="test select"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toEndOf="@id/detail"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--        <androidx.viewpager2.widget.ViewPager2-->
-        <!--            android:id="@+id/banners"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="200dp"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            tools:listitem="@layout/item_banner"/>-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -57,27 +30,110 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/category_speaker"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_mike"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/category_mike"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_cable"
+                    app:layout_constraintStart_toEndOf="@id/category_speaker"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/category_cable"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_amp"
+                    app:layout_constraintStart_toEndOf="@id/category_mike"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/category_amp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_source"
+                    app:layout_constraintStart_toEndOf="@id/category_cable"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/category_source"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/category_amp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/category_headset"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_mike"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
+
+                <ImageView
+                    android:id="@+id/category_acoustic"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_cable"
+                    app:layout_constraintStart_toEndOf="@id/category_headset"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
+
+                <ImageView
+                    android:id="@+id/category_instrument"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_amp"
+                    app:layout_constraintStart_toEndOf="@id/category_acoustic"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
+
+                <ImageView
+                    android:id="@+id/category_accessory"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/category_source"
+                    app:layout_constraintStart_toEndOf="@id/category_instrument"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
+
+                <ImageView
+                    android:id="@+id/category_diy"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kakao_default_profile_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/category_accessory"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
 
                 <TextView
                     android:id="@+id/header_recommends"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
                     android:text="@string/header_recommend_product"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:paddingStart="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/category_headset" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/more_horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recommends"

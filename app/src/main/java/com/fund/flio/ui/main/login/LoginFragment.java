@@ -65,7 +65,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.d("LoginFragment onCreate");
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -128,11 +128,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
 
     @Override
     public void showLogin() {
-
-    }
-
-    @Override
-    public void showHome() {
 
     }
 

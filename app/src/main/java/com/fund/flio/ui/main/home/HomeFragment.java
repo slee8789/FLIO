@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 
-public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements HomeNavigator {
+public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
 
     @Inject
     DataManager dataManager;
@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 //        loginViewModel = getViewModelProvider().get(LoginViewModel.class);
 //        loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
 //        loginViewModel.authenticate(AuthType.valueOf(dataManager.getAuthType()) != AuthType.NONE);
-        getViewModel().setNavigator(this);
+//        getViewModel().setNavigator(this);
         setHasOptionsMenu(true);
     }
 
@@ -94,19 +94,4 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         }
     };
 
-    @Override
-    public void goDetail() {
-        Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(HomeFragmentDirections.actionNavHomeToNavDetail());
-    }
-
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }
