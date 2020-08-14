@@ -11,6 +11,12 @@
         app:popUpTo="@id/nav_home"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/action_global_to_graph_auth"
+        app:destination="@id/nav_graph_auth"
+        app:popUpTo="@id/nav_home"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/nav_intro"
         android:name="com.fund.flio.ui.main.intro.IntroFragment"

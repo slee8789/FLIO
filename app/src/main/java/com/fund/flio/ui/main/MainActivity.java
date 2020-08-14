@@ -97,6 +97,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         Logger.d("MainActivity authenticationObserver " + authenticationState);
         if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
             Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+//            Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_graph_auth);
         }
     };
 
