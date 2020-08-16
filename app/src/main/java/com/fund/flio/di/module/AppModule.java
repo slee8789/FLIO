@@ -20,6 +20,7 @@ import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.di.qualifier.DatabaseInfo;
 import com.fund.flio.di.qualifier.PreferenceInfo;
 import com.fund.flio.ui.main.home.BannerAdapter;
+import com.fund.flio.ui.main.home.CertificatedAdapter;
 import com.fund.flio.ui.main.home.RecommendAdapter;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
@@ -88,6 +89,11 @@ public class AppModule {
     @Provides
     RecommendAdapter provideRecommendAdapter() {
         return new RecommendAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    CertificatedAdapter provideCertificatedAdapter() {
+        return new CertificatedAdapter(new ArrayList<>());
     }
 
 }

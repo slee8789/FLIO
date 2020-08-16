@@ -1,41 +1,50 @@
 package com.fund.flio.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.R;
 import com.nhn.android.idp.common.logger.Logger;
 
-public class RecyclerDecoration extends RecyclerView.ItemDecoration {
-
-    private Drawable mDivider;
-
-    public RecyclerDecoration(Context context) {
-        mDivider = context.getResources().getDrawable(R.drawable.line_divider);
-
+public class RecyclerDecoration extends DividerItemDecoration {
+    public RecyclerDecoration(Context context, int orientation) {
+        super(context, orientation);
     }
 
     @Override
-    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        int top = parent.getPaddingStart() + 50;
-        int bottom = parent.getWidth() - parent.getPaddingEnd() - 50;
+    public void setOrientation(int orientation) {
+        super.setOrientation(orientation);
+    }
 
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
+    @Override
+    public void setDrawable(@NonNull Drawable drawable) {
+        super.setDrawable(drawable);
+    }
 
-            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            int start = child.getRight() + params.rightMargin + 50;
-            int end = start + mDivider.getIntrinsicWidth() + 50;
+    @Nullable
+    @Override
+    public Drawable getDrawable() {
+        return super.getDrawable();
+    }
 
-            mDivider.setBounds(start, top, end, bottom);
-            mDivider.draw(c);
-        }
+    @Override
+    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDraw(c, parent, state);
+    }
 
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
     }
 }

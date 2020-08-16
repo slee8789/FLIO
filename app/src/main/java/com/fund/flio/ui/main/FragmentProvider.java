@@ -1,5 +1,6 @@
 package com.fund.flio.ui.main;
 
+import com.fund.flio.ui.main.alarm.AlarmFragment;
 import com.fund.flio.ui.main.channel.ChannelFragment;
 import com.fund.flio.ui.main.chat.detail.ChatDetailFragment;
 import com.fund.flio.ui.main.chat.list.ChatListFragment;
@@ -9,6 +10,8 @@ import com.fund.flio.ui.main.favorte.FavoriteFragment;
 import com.fund.flio.ui.main.home.HomeFragment;
 import com.fund.flio.ui.main.intro.IntroFragment;
 import com.fund.flio.ui.main.login.LoginFragment;
+import com.fund.flio.ui.main.market.MarketFragment;
+import com.fund.flio.ui.main.more.MoreFragment;
 import com.fund.flio.ui.main.search.SearchFragment;
 import com.fund.flio.ui.main.write.WriteFragment;
 
@@ -50,6 +53,15 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract FavoriteFragment provideFavorite();
+
+    @ContributesAndroidInjector
+    abstract MarketFragment provideMarket();
+
+    @ContributesAndroidInjector
+    abstract AlarmFragment provideAlarm();
+
+    @ContributesAndroidInjector
+    abstract MoreFragment provideMore();
 
 
 }

@@ -77,9 +77,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
     }
 
     private void initViews() {
-        mOAuthLoginButton = (OAuthLoginButton) getViewDataBinding().btnNaver;
+        mOAuthLoginButton = getViewDataBinding().btnNaver;
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
         getViewDataBinding().btnGoogle.setOnClickListener(v -> getBaseActivity().startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_GOOGLE_SIGN_IN));
+        getViewDataBinding().btnNaverCustom.setOnClickListener(view -> getViewDataBinding().btnNaver.performClick());
+        getViewDataBinding().btnKakaoCustom.setOnClickListener(view -> getViewDataBinding().btnKakao.performClick());
 
         //Logout Test
         getViewDataBinding().btnNaverLogout.setOnClickListener(v -> {

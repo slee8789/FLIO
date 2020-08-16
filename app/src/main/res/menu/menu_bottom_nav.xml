@@ -4,27 +4,27 @@
 
     <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_launcher_foreground"
-            android:title="@string/nav_home" />
+            android:icon="@drawable/nav_home"
+            android:title="홈" />
 
     <item
-        android:id="@+id/nav_search"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="@string/nav_search" />
+        android:id="@+id/nav_market"
+        android:icon="@drawable/nav_market"
+        android:title="마켓" />
 
     <item
         android:id="@+id/nav_write"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="@string/nav_write" />
+        android:icon="@drawable/nav_write"
+        android:title="글쓰기" />
 
     <item
-        android:id="@+id/nav_channel"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="@string/nav_channel" />
+        android:id="@+id/nav_alarm"
+        android:icon="@drawable/nav_alarm"
+        android:title="알람" />
 
     <item
-        android:id="@+id/nav_favorite"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="@string/nav_favorite" />
+        android:id="@+id/nav_more"
+        android:icon="@drawable/nav_more"
+        android:title="더보기" />
 
 </menu>

@@ -1,5 +1,8 @@
 package com.fund.flio.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -13,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.fund.flio.R;
 import com.orhanobut.logger.Logger;
 
@@ -32,7 +37,15 @@ public final class BindingUtils {
                 .into(imageView);
     }
 
-
-
+    @BindingAdapter({"setBackground"})
+    public static void setBackground(View view, String imageUrl) {
+        Glide.with(view.getContext()).load(imageUrl)
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+                });
+    }
 
 }

@@ -10,6 +10,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.main.MainViewModel;
+import com.fund.flio.ui.main.alarm.AlarmViewModel;
 import com.fund.flio.ui.main.channel.ChannelViewModel;
 import com.fund.flio.ui.main.chat.detail.ChatDetailViewModel;
 import com.fund.flio.ui.main.chat.list.ChatListViewModel;
@@ -19,6 +20,8 @@ import com.fund.flio.ui.main.favorte.FavoriteViewModel;
 import com.fund.flio.ui.main.home.HomeViewModel;
 import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
+import com.fund.flio.ui.main.market.MarketViewModel;
+import com.fund.flio.ui.main.more.MoreViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.fund.flio.ui.main.write.WriteFragment;
 import com.fund.flio.ui.main.write.WriteViewModel;
@@ -73,6 +76,12 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new ChannelViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (SearchViewModel.class.isAssignableFrom(modelClass)) {
             return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (MarketViewModel.class.isAssignableFrom(modelClass)) {
+            return new MarketViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (AlarmViewModel.class.isAssignableFrom(modelClass)) {
+            return new AlarmViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (MoreViewModel.class.isAssignableFrom(modelClass)) {
+            return new MoreViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name");
     }

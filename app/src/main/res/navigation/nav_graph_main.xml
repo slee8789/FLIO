@@ -41,33 +41,24 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_nav_home_to_nav_detail"
-            app:destination="@id/nav_detail" />
-        <action
             android:id="@+id/action_nav_home_to_nav_intro"
             app:destination="@id/nav_intro"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_graph_auth"
+            app:destination="@id/nav_graph_auth"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/nav_detail"
-        android:name="com.fund.flio.ui.main.detail.DetailFragment"
-        android:label="nav_detail"
-        tools:layout="@layout/fragment_detail" />
+        android:id="@+id/nav_market"
+        android:name="com.fund.flio.ui.main.market.MarketFragment"
+        tools:layout="@layout/fragment_market">
 
-    <fragment
-        android:id="@+id/nav_channel"
-        android:name="com.fund.flio.ui.main.channel.ChannelFragment"
-        android:label="nav_detail"
-        tools:layout="@layout/fragment_channel" />
-
-    <fragment
-        android:id="@+id/nav_favorite"
-        android:name="com.fund.flio.ui.main.favorte.FavoriteFragment"
-        android:label="nav_detail"
-        tools:layout="@layout/fragment_favorite" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_write"
@@ -76,10 +67,18 @@
         tools:layout="@layout/fragment_write" />
 
     <fragment
-        android:id="@+id/nav_search"
-        android:name="com.fund.flio.ui.main.search.SearchFragment"
-        android:label="nav_detail"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/nav_alarm"
+        android:name="com.fund.flio.ui.main.alarm.AlarmFragment"
+        tools:layout="@layout/fragment_alarm">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_more"
+        android:name="com.fund.flio.ui.main.more.MoreFragment"
+        tools:layout="@layout/fragment_more">
+
+    </fragment>
 
     <navigation
         android:id="@+id/nav_graph_auth"

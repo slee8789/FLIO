@@ -2,15 +2,18 @@ package com.fund.flio.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
@@ -19,9 +22,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
-import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseActivity;
-import com.fund.flio.ui.main.home.HomeViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     DataManager dataManager;
 
     private NavController mNavController;
+    private AppBarConfiguration mAppBarConfiguration;
 
     private LoginViewModel loginViewModel;
 
@@ -83,9 +85,28 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_app_bar_default, menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initViews() {
+        setSupportActionBar(getViewDataBinding().toolbar);
         mNavController = Navigation.findNavController(this, R.id.fragment_container);
-//        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, mNavController);
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_market).build();
+//        NavigationUI.setupActionBarWithNavController(this, mNavController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(getViewDataBinding().navigationBottom, mNavController);
         mNavController.addOnDestinationChangedListener(this);
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
@@ -93,10 +114,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+//        return super.onSupportNavigateUp();
+        return NavigationUI.navigateUp(mNavController, mAppBarConfiguration) || super.onSupportNavigateUp();
+    }
+
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
-        Logger.d("MainActivity authenticationObserver " + authenticationState);
+        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
         if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
-            Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+            if (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId() != R.id.nav_intro) {
+                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+            }
+
 //            Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_graph_auth);
         }
     };
@@ -131,11 +161,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_intro:
             case R.id.nav_login:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
-//                getViewDataBinding().toolbar.setVisibility(View.GONE);
+                getViewDataBinding().toolbar.setVisibility(View.GONE);
                 break;
 
             default:
-//                getViewDataBinding().toolbar.setVisibility(View.VISIBLE);
+                getViewDataBinding().toolbar.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 break;
         }

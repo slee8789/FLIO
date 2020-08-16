@@ -12,12 +12,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login">
 
         <com.kakao.usermgmt.LoginButton
             android:id="@+id/btnKakao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnKakao" />
@@ -43,6 +46,7 @@
             android:id="@+id/btnNaver"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
@@ -52,6 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="kakao logout"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnNaver" />
@@ -61,6 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="google logout"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnKakaoLogout" />
@@ -70,6 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="naver logout"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnGoogleLogout" />
@@ -79,6 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="go main graph"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/btnKakao"
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnNaverLogout" />
@@ -87,10 +95,52 @@
             android:id="@+id/token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@null"
             android:text="@={viewModel.token}"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/btnMainGraph" />
+
+        <Button
+            android:id="@+id/btn_kakao_custom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/ic_btn_kakao"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_naver_custom" />
+
+        <Button
+            android:id="@+id/btn_google_custom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/ic_btn_google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_naver_custom"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="172dp"
+            android:layout_height="90dp"
+            android:src="@drawable/login_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_naver_custom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/ic_btn_facebook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_kakao_custom"
+            app:layout_constraintStart_toEndOf="@id/btn_google_custom" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

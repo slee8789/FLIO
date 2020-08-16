@@ -14,6 +14,8 @@ import com.fund.flio.ui.base.BaseViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.util.exception.KakaoException;
 import com.orhanobut.logger.Logger;
 
@@ -77,5 +79,15 @@ public class LoginViewModel extends BaseViewModel implements ISessionCallback {
                 .subscribe(Void -> {
                     authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
                 }));
+    }
+
+    public void testKakaoLogout() {
+        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+            @Override
+            public void onCompleteLogout() {
+                Logger.d("kakao logout success");
+                authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
+            }
+        });
     }
 }

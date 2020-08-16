@@ -14,6 +14,7 @@ public class ItemRecommendViewModel {
     public ObservableField<String> comment = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
 
+
     public ItemRecommendViewModel(Recommend recommend) {
         imageUrl.set(recommend.getImageUrl());
         isLike.set(recommend.isLike());

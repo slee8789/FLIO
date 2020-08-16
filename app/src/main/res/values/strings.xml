@@ -19,6 +19,7 @@
     <string name="category_diy">DIY</string>
 
     <string name="header_recommend_product">추천 매물</string>
+    <string name="header_certificated">플리오 NEWS</string>
 
     <string name="description_item_recommend">recommend</string>
 </resources>

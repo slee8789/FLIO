@@ -52,7 +52,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:elevation="8dp"
-            android:src="@drawable/like"
+            android:src="@drawable/btn_like"
             android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/comment"
             app:layout_constraintEnd_toEndOf="parent"

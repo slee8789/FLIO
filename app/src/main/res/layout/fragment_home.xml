@@ -8,15 +8,18 @@
         <variable
             name="viewModel"
             type="com.fund.flio.ui.main.home.HomeViewModel" />
+
+        <variable
+            name="loginViewModel"
+            type="com.fund.flio.ui.main.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:paddingStart="21dp"
-        android:paddingEnd="21dp">
-
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -32,90 +35,92 @@
 
                 <ImageView
                     android:id="@+id/category_speaker"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toStartOf="@id/category_mike"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/category_mike"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toStartOf="@id/category_cable"
                     app:layout_constraintStart_toEndOf="@id/category_speaker"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/category_cable"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toStartOf="@id/category_amp"
                     app:layout_constraintStart_toEndOf="@id/category_mike"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/category_amp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toStartOf="@id/category_source"
                     app:layout_constraintStart_toEndOf="@id/category_cable"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/category_source"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/category_amp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/category_headset"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
-                    app:layout_constraintEnd_toStartOf="@id/category_mike"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
+                    app:layout_constraintEnd_toStartOf="@id/category_acoustic"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <ImageView
                     android:id="@+id/category_acoustic"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
-                    app:layout_constraintEnd_toStartOf="@id/category_cable"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
+                    app:layout_constraintEnd_toStartOf="@id/category_instrument"
                     app:layout_constraintStart_toEndOf="@id/category_headset"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <ImageView
                     android:id="@+id/category_instrument"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
-                    app:layout_constraintEnd_toStartOf="@id/category_amp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
+                    app:layout_constraintEnd_toStartOf="@id/category_accessory"
                     app:layout_constraintStart_toEndOf="@id/category_acoustic"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <ImageView
                     android:id="@+id/category_accessory"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
-                    app:layout_constraintEnd_toStartOf="@id/category_source"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
+                    app:layout_constraintEnd_toStartOf="@id/category_diy"
                     app:layout_constraintStart_toEndOf="@id/category_instrument"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <ImageView
                     android:id="@+id/category_diy"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/kakao_default_profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/nav_home"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/category_accessory"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
@@ -123,28 +128,80 @@
 
                 <TextView
                     android:id="@+id/header_recommends"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
+                    android:layout_marginTop="34dp"
                     android:text="@string/header_recommend_product"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/category_headset" />
 
+                <ImageView
+                    android:id="@+id/btn_recommands_more"
+                    android:layout_width="92dp"
+                    android:layout_height="9dp"
+                    android:layout_marginStart="13dp"
+                    android:src="@drawable/arrow_right_long"
+                    app:layout_constraintBottom_toBottomOf="@id/header_recommends"
+                    app:layout_constraintStart_toEndOf="@id/header_recommends"
+                    app:layout_constraintTop_toTopOf="@id/header_recommends" />
+
+                <Button
+                    android:id="@+id/kakao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{v -> loginViewModel.testKakaoLogout()"
+                    android:text="카카오 로그아웃"
+                    app:layout_constraintStart_toEndOf="@id/btn_recommands_more"
+                    app:layout_constraintTop_toTopOf="@id/btn_recommands_more" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recommends"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
                     android:background="@color/white"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/header_recommends"
                     tools:listitem="@layout/item_recommend" />
+
+                <TextView
+                    android:id="@+id/header_certificated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="34dp"
+                    android:text="@string/header_certificated"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recommends" />
+
+                <ImageView
+                    android:id="@+id/btn_certificated_more"
+                    android:layout_width="92dp"
+                    android:layout_height="9dp"
+                    android:layout_marginStart="13dp"
+                    android:src="@drawable/arrow_right_long"
+                    app:layout_constraintBottom_toBottomOf="@id/header_certificated"
+                    app:layout_constraintStart_toEndOf="@id/header_certificated"
+                    app:layout_constraintTop_toTopOf="@id/header_certificated" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/certificates"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/header_certificated"
+                    tools:listitem="@layout/item_certificated" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
