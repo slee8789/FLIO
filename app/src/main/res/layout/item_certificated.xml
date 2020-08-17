@@ -24,15 +24,14 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context=".ui.main.MainActivity"
-                app:setBackground="@{viewModel.imageUrl}">
+                app:setBackground="@{viewModel.imageUrl}"
+                tools:context=".ui.main.MainActivity">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline"
@@ -45,19 +44,22 @@
                     android:id="@+id/tag_1"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
-                    android:background="@drawable/bg_certificated_tag"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/messagebox_local"
                     android:text="#ATC 20ASL"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@id/tag_2"
                     app:layout_constraintStart_toStartOf="@id/guideline"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/tag_2"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
-                    android:background="@drawable/bg_certificated_tag"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/messagebox_local"
                     android:text="#Atlas"
                     android:textColor="@color/white"
                     android:textSize="12sp"
@@ -69,7 +71,8 @@
                     android:id="@+id/tag_3"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
-                    android:background="@drawable/bg_certificated_tag"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/messagebox_local"
                     android:text="#U87"
                     android:textColor="@color/white"
                     android:textSize="12sp"

@@ -148,21 +148,11 @@
                     app:layout_constraintStart_toEndOf="@id/header_recommends"
                     app:layout_constraintTop_toTopOf="@id/header_recommends" />
 
-                <Button
-                    android:id="@+id/kakao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{v -> loginViewModel.testKakaoLogout()"
-                    android:text="카카오 로그아웃"
-                    app:layout_constraintStart_toEndOf="@id/btn_recommands_more"
-                    app:layout_constraintTop_toTopOf="@id/btn_recommands_more" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recommends"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="12dp"
-                    android:background="@color/white"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -196,12 +186,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="12dp"
-                    android:background="@color/white"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/header_certificated"
                     tools:listitem="@layout/item_certificated" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

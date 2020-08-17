@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_login">
+        android:background="@color/white">
 
         <com.kakao.usermgmt.LoginButton
             android:id="@+id/btnKakao"
@@ -100,47 +100,96 @@
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/btnMainGraph" />
 
-        <Button
-            android:id="@+id/btn_kakao_custom"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="55dp"
-            android:background="@drawable/ic_btn_kakao"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_naver_custom" />
-
-        <Button
-            android:id="@+id/btn_google_custom"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="55dp"
-            android:background="@drawable/ic_btn_google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_naver_custom"
-            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="102dp"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:text="Pre-owned, Flio Maket"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:layout_width="172dp"
-            android:layout_height="90dp"
-            android:src="@drawable/login_title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@id/message"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="45dp"
+            android:gravity="center_vertical"
+            android:text="모든 사용자가 인증을 받는 것으로\n
+안심하게 중고 거래를 이용하는 플리오마켓"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_kakao_custom" />
+
+        <TextView
+            android:id="@+id/btn_kakao_custom"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_border"
+            android:gravity="center_vertical"
+            android:paddingStart="23dp"
+            android:text="카카오톡으로 시작하기"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_naver_custom" />
+
+        <TextView
             android:id="@+id/btn_naver_custom"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="55dp"
-            android:background="@drawable/ic_btn_facebook"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_kakao_custom"
-            app:layout_constraintStart_toEndOf="@id/btn_google_custom" />
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_border"
+            android:gravity="center_vertical"
+            android:paddingStart="23dp"
+            android:text="NAVER 시작하기"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_google_custom" />
+
+        <TextView
+            android:id="@+id/btn_google_custom"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="150dp"
+            android:background="@drawable/button_border"
+            android:gravity="center_vertical"
+            android:paddingStart="23dp"
+            android:text="GOOGLE 시작하기"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="39dp"
+            android:gravity="center_vertical"
+            android:text="Copyright 2020. Flio. All rights reserved. "
+            android:textColor="#999999"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

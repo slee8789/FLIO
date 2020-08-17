@@ -82,12 +82,13 @@ public class LoginViewModel extends BaseViewModel implements ISessionCallback {
     }
 
     public void testKakaoLogout() {
-        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-            @Override
-            public void onCompleteLogout() {
-                Logger.d("kakao logout success");
-                authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
-            }
-        });
+        Logger.d("kakao logout test");
+//        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+//            @Override
+//            public void onCompleteLogout() {
+//                Logger.d("kakao logout success");
+//                authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
+//            }
+//        });
     }
 }
