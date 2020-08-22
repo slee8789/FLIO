@@ -1,6 +1,7 @@
 package com.fund.flio.data.remote;
 
 
+import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.TokenBody;
 
 import java.util.List;
@@ -15,13 +16,15 @@ import retrofit2.http.POST;
 public interface ApiHelper {
 
     // 유저 정보
-    @GET(ApiDefine.Body.TEST_SELECT)
-    @Headers({ApiDefine.Header.ACCEPT_JSON})
-    Single<Response<Void>> getTestSelect();
-
-    // 유저 정보
     @POST(ApiDefine.Body.AUTH_TOKEN)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<Void>> postAuthToken(@Body TokenBody tokenBody);
+    Single<Response<User>> postAuthToken(@Body TokenBody tokenBody);
+
+    // 유저 정보
+    @POST(ApiDefine.Body.INSERT_USER)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Void>> postInsertUser(@Body User user);
+
+
 
 }

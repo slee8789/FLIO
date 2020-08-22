@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.fund.flio.ui.main.login.LoginViewModel" />
+
+        <variable
+            name="authViewModel"
+            type="com.fund.flio.ui.main.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,15 +28,6 @@
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btnKakao"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="kakao"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btnGoogle"
@@ -51,74 +48,28 @@
             app:layout_constraintStart_toStartOf="@id/btnKakao"
             app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
 
-        <Button
-            android:id="@+id/btnKakaoLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="kakao logout"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/btnKakao"
-            app:layout_constraintStart_toStartOf="@id/btnKakao"
-            app:layout_constraintTop_toBottomOf="@id/btnNaver" />
-
-        <Button
-            android:id="@+id/btnGoogleLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="google logout"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/btnKakao"
-            app:layout_constraintStart_toStartOf="@id/btnKakao"
-            app:layout_constraintTop_toBottomOf="@id/btnKakaoLogout" />
-
-        <Button
-            android:id="@+id/btnNaverLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="naver logout"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/btnKakao"
-            app:layout_constraintStart_toStartOf="@id/btnKakao"
-            app:layout_constraintTop_toBottomOf="@id/btnGoogleLogout" />
-
-        <Button
-            android:id="@+id/btnMainGraph"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="go main graph"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/btnKakao"
-            app:layout_constraintStart_toStartOf="@id/btnKakao"
-            app:layout_constraintTop_toBottomOf="@id/btnNaverLogout" />
-
-        <EditText
-            android:id="@+id/token"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@={viewModel.token}"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/btnMainGraph" />
-
         <TextView
+            android:id="@+id/description_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginTop="102dp"
+            android:text="Pre-owned, Flio Market"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:text="Pre-owned, Flio Maket"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="32dp"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@id/message"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintDimensionRatio="H,10:4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description_top" />
 
         <TextView
             android:id="@+id/message"
@@ -128,8 +79,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="45dp"
             android:gravity="center_vertical"
-            android:text="모든 사용자가 인증을 받는 것으로\n
-안심하게 중고 거래를 이용하는 플리오마켓"
+            android:text="모든 사용자가 인증을 받는 것으로\n안심하게 중고 거래를 이용하는 플리오마켓"
             android:textColor="#333333"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_kakao_custom" />
@@ -142,6 +92,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_border"
+            android:enabled="@{!authViewModel.isLoading}"
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="카카오톡으로 시작하기"
@@ -157,6 +108,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_border"
+            android:enabled="@{!authViewModel.isLoading}"
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="NAVER 시작하기"
@@ -172,6 +124,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="150dp"
             android:background="@drawable/button_border"
+            android:enabled="@{!authViewModel.isLoading}"
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="GOOGLE 시작하기"
@@ -190,6 +143,16 @@
             android:textColor="#999999"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{authViewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

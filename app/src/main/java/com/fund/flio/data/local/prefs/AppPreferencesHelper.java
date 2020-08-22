@@ -25,13 +25,22 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
+    public String getFirebaseToken() {
+        return mPrefs.getString(context.getString(R.string.key_firebase_token), null);
+    }
+
+    @Override
+    public void setFirebaseToken(String fcmToken) {
+        mPrefs.edit().putString(context.getString(R.string.key_firebase_token), fcmToken).apply();
+    }
+
+    @Override
     public String getAuthType() {
         return mPrefs.getString(context.getString(R.string.key_auth_type), AuthType.NONE.getType());
     }
 
     @Override
-    public void setAuthType(String fcmToken) {
-        mPrefs.edit().putString(context.getString(R.string.key_auth_type), fcmToken).apply();
+    public void setAuthType(String authType) {
+        mPrefs.edit().putString(context.getString(R.string.key_auth_type), authType).apply();
     }
-
 }

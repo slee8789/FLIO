@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="key_auth_type">key_auth_type</string>
+    <string name="key_firebase_token">key_firebase_token</string>
+
 
 </resources>

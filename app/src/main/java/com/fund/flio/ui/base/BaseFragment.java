@@ -37,25 +37,12 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         return viewModelProvider;
     }
 
-    /**
-     * Override for set binding variable
-     *
-     * @return variable id
-     */
     public abstract int getBindingVariable();
 
-    /**
-     * @return layout-v24 resource id
-     */
     public abstract
     @LayoutRes
     int getLayoutId();
 
-    /**
-     * Override for set view model
-     *
-     * @return view model instance
-     */
     public abstract V getViewModel();
 
     @Override

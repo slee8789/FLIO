@@ -12,15 +12,20 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.databinding.FragmentLoginBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.home.HomeFragmentDirections;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.kakao.auth.AuthType;
+import com.kakao.auth.AccessTokenCallback;
 import com.kakao.auth.Session;
 import com.kakao.auth.StringSet;
+import com.kakao.auth.authorization.accesstoken.AccessToken;
+import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -28,6 +33,7 @@ import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.orhanobut.logger.Logger;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +42,7 @@ import javax.inject.Inject;
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 
 
-public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewModel> implements LoginNavigator {
+public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewModel> {
 
     @Inject
     OAuthLogin mOAuthLoginModule;
@@ -45,6 +51,8 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
     GoogleSignInClient mGoogleSignInClient;
 
     private OAuthLoginButton mOAuthLoginButton;
+
+    private AuthViewModel authViewModel;
 
     @Override
     public int getBindingVariable() {
@@ -73,44 +81,28 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        authViewModel = ((MainActivity) getBaseActivity()).getAuthViewModel();
+        getViewDataBinding().setAuthViewModel(authViewModel);
         initViews();
     }
 
     private void initViews() {
         mOAuthLoginButton = getViewDataBinding().btnNaver;
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
-        getViewDataBinding().btnKakaoCustom.setOnClickListener(view -> getViewDataBinding().btnKakao.performClick());
-        getViewDataBinding().btnNaverCustom.setOnClickListener(view -> getViewDataBinding().btnNaver.performClick());
+        getViewDataBinding().btnKakaoCustom.setOnClickListener(view -> {
+            authViewModel.setIsLoading(true);
+            getViewDataBinding().btnKakao.performClick();
+        });
+
+        getViewDataBinding().btnNaverCustom.setOnClickListener(view -> {
+            authViewModel.setIsLoading(true);
+            getViewDataBinding().btnNaver.performClick();
+        });
         getViewDataBinding().btnGoogleCustom.setOnClickListener(view -> {
-
-        });
-//        getViewDataBinding().btnGoogle.setOnClickListener(v -> getBaseActivity().startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_GOOGLE_SIGN_IN));
-
-        //Logout Test
-        getViewDataBinding().btnNaverLogout.setOnClickListener(v -> {
-            mOAuthLoginModule.logoutAndDeleteToken(getBaseActivity());
-        });
-
-        getViewDataBinding().btnGoogleLogout.setOnClickListener(v -> {
-            ((MainActivity) getBaseActivity()).getViewModel().googleLogout();
-        });
-
-        getViewDataBinding().btnKakaoLogout.setOnClickListener(v -> {
-            UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-                @Override
-                public void onCompleteLogout() {
-                    Logger.d("kakao logout success");
-                }
-            });
-
-        });
-
-        getViewDataBinding().btnMainGraph.setOnClickListener(v -> {
-            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_login_to_nav_graph_main);
-//            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(LoginFragmentDirections.actionNavLoginToNavGraphMain());
+            authViewModel.setIsLoading(true);
+            getBaseActivity().startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_GOOGLE_SIGN_IN);
         });
     }
-
     @SuppressLint("HandlerLeak")
     private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override
@@ -121,6 +113,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
                 @SuppressLint("HandlerLeak") long expiresAt = mOAuthLoginModule.getExpiresAt(getBaseActivity());
                 String tokenType = mOAuthLoginModule.getTokenType(getBaseActivity());
                 Logger.d("mOAuthLoginHandler " + success + ", accessToken " + accessToken + ", refreshToken " + refreshToken + ", expiresAt " + expiresAt + ", tokenType " + tokenType);
+                ((MainActivity) getBaseActivity()).getAuthViewModel().postAuthToken(AuthType.NAVER, accessToken);
             } else {
                 String errorCode = mOAuthLoginModule.getLastErrorCode(getBaseActivity()).getCode();
                 String errorDesc = mOAuthLoginModule.getLastErrorDesc(getBaseActivity());
@@ -130,20 +123,4 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
 
         ;
     };
-
-    @Override
-    public void showLogin() {
-
-    }
-
-    @Override
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-        Logger.e("handleError " + throwable.getMessage());
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-    }
 }

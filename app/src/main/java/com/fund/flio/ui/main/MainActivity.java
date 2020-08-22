@@ -17,19 +17,28 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
+import com.fund.flio.BuildConfig;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.ui.base.BaseActivity;
-import com.fund.flio.ui.main.login.LoginViewModel;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
+import com.kakao.auth.AccessTokenCallback;
 import com.kakao.auth.Session;
+import com.kakao.auth.authorization.accesstoken.AccessToken;
+import com.kakao.network.ErrorResult;
 import com.orhanobut.logger.Logger;
+
+import java.util.Arrays;
 
 import javax.inject.Inject;
 
@@ -50,9 +59,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     DataManager dataManager;
 
     private NavController mNavController;
-    private AppBarConfiguration mAppBarConfiguration;
+    private GoogleApiClient googleApiClient;
 
-    private LoginViewModel loginViewModel;
+    private AuthViewModel authViewModel;
+
+    public AuthViewModel getAuthViewModel() {
+        return authViewModel;
+    }
 
     @Override
     public AndroidInjector<Object> androidInjector() {
@@ -77,12 +90,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getViewModel().setNavigator(this);
-        initViews();
-        loginViewModel = getViewModelProvider().get(LoginViewModel.class);
-        loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
-        loginViewModel.authenticate(AuthType.valueOf(dataManager.getAuthType()) != AuthType.NONE);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(BuildConfig.GOOGLE_SIGN_URL)
+                .requestEmail()
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, connectionResult -> Logger.e("onConnectionFailed " + connectionResult.getErrorMessage()))
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        initViews();
+        authViewModel = getViewModelProvider().get(AuthViewModel.class);
+        authViewModel.setGoogleApiClient(googleApiClient);
+        authViewModel.getAuthenticationState().observe(this, authenticationObserver);
     }
 
     @Override
@@ -114,21 +136,46 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-//        return super.onSupportNavigateUp();
-        return NavigationUI.navigateUp(mNavController, mAppBarConfiguration) || super.onSupportNavigateUp();
-    }
-
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
         Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
-        if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
-            if (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId() != R.id.nav_intro) {
+        switch (authenticationState) {
+            case NONE:
                 Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
-            }
+                break;
+            case UNAUTHENTICATED:
+                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_more_to_nav_login);
+                break;
+            case AUTHENTICATED:
+                switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {
+                    case R.id.nav_intro:
+                        Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_home);
+                        break;
+                    case R.id.nav_login:
+                        getAuthViewModel().setIsLoading(false);
+                        Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_login_to_nav_home);
+                        break;
+                }
 
-//            Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_graph_auth);
+                break;
+            case INVALID_AUTHENTICATION:
+                break;
+            case KAKAO_EMAIL_NEED_AGREE:
+                Session.getCurrentSession().updateScopes(this, Arrays.asList("account_email"), new AccessTokenCallback() {
+
+                    @Override
+                    public void onAccessTokenReceived(AccessToken accessToken) {
+                        authViewModel.onSessionOpened();
+                    }
+
+                    @Override
+                    public void onAccessTokenFailure(ErrorResult errorResult) {
+                        Logger.e("kakao onAccessTokenFailure " + errorResult);
+                    }
+                });
+                break;
         }
+
+
     };
 
     @Override
@@ -145,7 +192,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 try {
                     GoogleSignInAccount account = task.getResult(ApiException.class);
                     Logger.d("LoginActivity account " + account);
-                    getViewModel().firebaseAuthWithGoogle(account);
+                    authViewModel.firebaseAuthWithGoogle(account);
                 } catch (ApiException e) {
 //                    handleError(e);
 

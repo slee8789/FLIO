@@ -58,6 +58,7 @@ public class FlioApplication extends Application implements HasAndroidInjector, 
     @Override
     public void onCreate() {
         super.onCreate();
+        Logger.d("FLIO Application onCreate");
         DaggerAppComponent.builder()
                 .application(this)
                 .build()
@@ -103,6 +104,7 @@ public class FlioApplication extends Application implements HasAndroidInjector, 
     @Override
     public void onTerminate() {
         super.onTerminate();
+        Logger.d("FLIO Application onTerminate");
     }
 
 }

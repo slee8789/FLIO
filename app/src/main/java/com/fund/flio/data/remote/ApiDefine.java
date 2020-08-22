@@ -16,6 +16,7 @@ public class ApiDefine {
 
 
         String AUTH_TOKEN = "verifyToken";
+        String INSERT_USER = "user/insertUser";
 
     }
 

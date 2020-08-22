@@ -1,32 +1,19 @@
 package com.fund.flio.ui.main.home;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
-import com.fund.flio.data.enums.AuthType;
-import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentHomeBinding;
-import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.login.LoginViewModel;
-import com.fund.flio.utils.RecyclerDecoration;
-import com.fund.flio.utils.ViewUtils;
+import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -49,8 +36,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Inject
     CertificatedAdapter mCertificatedAdapter;
 
-    private LoginViewModel loginViewModel;
-
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -69,43 +54,18 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("onCreate");
-        loginViewModel = getViewModelProvider().get(LoginViewModel.class);
-        loginViewModel.getAuthenticationState().observe(this, authenticationObserver);
-//        loginViewModel.authenticate(AuthType.valueOf(dataManager.getAuthType()) != AuthType.NONE);
-//        getViewModel().setNadvigator(this);
-//        setHasOptionsMenu(true);
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_app_bar_default, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//        Logger.d("onCreateOptionsMenu");
-//    }
-//
-//    @Override
-//    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-//        super.onPrepareOptionsMenu(menu);
-//        Logger.d("onPrepareOptionsMenu");
-////        menuCompleted = menu.findItem(R.id.menu_done);
-////        menuCompleted.setEnabled(false);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-////            case R.id.menu_done:
-////                getViewModel().onComplete();
-////                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+
+        getViewDataBinding().headerRecommends.setOnClickListener(v -> {
+            Logger.d("Firebase Auth " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        });
     }
 
     private void initViews() {
@@ -131,13 +91,4 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mCertificatedAdapter.addItems(testRecommends);
 
     }
-
-    private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
-        Logger.d("HomeFragment authenticationObserver " + authenticationState);
-        if (authenticationState == AuthenticationState.UNAUTHENTICATED) {
-            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_home_to_nav_intro);
-
-        }
-    };
-
 }

@@ -25,70 +25,12 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
-public class LoginViewModel extends BaseViewModel implements ISessionCallback {
-
-    @Inject
-    FirebaseAuth mFirebaseAuth;
+public class LoginViewModel extends BaseViewModel {
 
     public ObservableField<String> token = new ObservableField<>();
-    private MutableLiveData<AuthenticationState> authenticationState = new MutableLiveData<>();
-
-    public MutableLiveData<AuthenticationState> getAuthenticationState() {
-        return authenticationState;
-    }
 
     public LoginViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
         Logger.d("LoginViewModel constructor");
-        Session.getCurrentSession().addCallback(this);
-    }
-
-    public void dummyLoading() {
-        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(Void -> {
-                    authenticationState.setValue(AuthenticationState.INVALID_AUTHENTICATION);
-                }));
-    }
-
-    public void authenticate(boolean cool) {
-        Logger.d("authenticate " + cool);
-        if (cool) {
-            authenticationState.setValue(AuthenticationState.AUTHENTICATED);
-        } else {
-            authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
-        }
-    }
-
-    @Override
-    public void onSessionOpened() {
-        Logger.d("kakao onSessionOpened result " + Session.getCurrentSession().getTokenInfo());
-        token.set(Session.getCurrentSession().getTokenInfo().getAccessToken());
-        getCompositeDisposable().add(getDataManager().postAuthToken(new TokenBody(AuthType.KAKAO.getType(), Session.getCurrentSession().getTokenInfo().getAccessToken())).subscribe(firebaseToken -> {
-            getDataManager().setAuthType(AuthType.KAKAO.getType());
-        }, onError -> {
-//            getNavigator().handleError(onError);
-        }));
-    }
-
-    @Override
-    public void onSessionOpenFailed(KakaoException exception) {
-        Logger.e("onSessionOpenFailed " + exception);
-        getCompositeDisposable().add(Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(Void -> {
-                    authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
-                }));
-    }
-
-    public void testKakaoLogout() {
-        Logger.d("kakao logout test");
-//        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-//            @Override
-//            public void onCompleteLogout() {
-//                Logger.d("kakao logout success");
-//                authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
-//            }
-//        });
     }
 }

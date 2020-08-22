@@ -9,9 +9,6 @@
             name="viewModel"
             type="com.fund.flio.ui.main.home.HomeViewModel" />
 
-        <variable
-            name="loginViewModel"
-            type="com.fund.flio.ui.main.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -191,7 +188,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/header_certificated"
                     tools:listitem="@layout/item_certificated" />
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

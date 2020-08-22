@@ -13,26 +13,18 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class User implements Serializable {
 
-    private int id;
+    private int uid;
 
     private String email;
 
-    @SerializedName("user_name")
-    private String userName;
-
-    private String phone;
+    @SerializedName("name")
+    private String name;
 
     @SerializedName("image_url")
     private String imageUrl;
 
-    @SerializedName("sns_type")
-    private String snsType;
-
-    private int age;
-
-    private String accessToken;
-
-    private String refreshToken;
+    @SerializedName("firebase_token")
+    private String firebaseToken;
 
 
 }

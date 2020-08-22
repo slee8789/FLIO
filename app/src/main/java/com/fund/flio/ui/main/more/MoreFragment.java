@@ -10,6 +10,7 @@ import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.databinding.FragmentMoreBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.orhanobut.logger.Logger;
 
@@ -42,7 +43,9 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding, MoreViewMode
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getViewDataBinding().logout.setOnClickListener(v -> {
+            ((MainActivity)getBaseActivity()).getAuthViewModel().logout();
+        });
     }
 
 

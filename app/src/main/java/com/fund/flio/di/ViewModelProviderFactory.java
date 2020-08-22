@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
+import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainViewModel;
 import com.fund.flio.ui.main.alarm.AlarmViewModel;
 import com.fund.flio.ui.main.channel.ChannelViewModel;
@@ -25,7 +26,9 @@ import com.fund.flio.ui.main.more.MoreViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.fund.flio.ui.main.write.WriteFragment;
 import com.fund.flio.ui.main.write.WriteViewModel;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.nhn.android.naverlogin.OAuthLogin;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -38,14 +41,16 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     private final SchedulerProvider schedulerProvider;
     private final ResourceProvider resourceProvider;
     private final FirebaseAuth firebaseAuth;
+    private final OAuthLogin oAuthLogin;
 
     @Inject
-    public ViewModelProviderFactory(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider, FirebaseAuth firebaseAuth) {
+    public ViewModelProviderFactory(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider, FirebaseAuth firebaseAuth, OAuthLogin oAuthLogin) {
         this.context = context;
         this.dataManager = dataManager;
         this.schedulerProvider = schedulerProvider;
         this.resourceProvider = resourceProvider;
         this.firebaseAuth = firebaseAuth;
+        this.oAuthLogin = oAuthLogin;
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +87,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new AlarmViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (MoreViewModel.class.isAssignableFrom(modelClass)) {
             return new MoreViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (AuthViewModel.class.isAssignableFrom(modelClass)) {
+            return new AuthViewModel(context, dataManager, schedulerProvider, resourceProvider, oAuthLogin);
         } else
             throw new IllegalArgumentException("Unknown class name");
     }

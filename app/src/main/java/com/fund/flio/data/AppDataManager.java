@@ -3,6 +3,7 @@ package com.fund.flio.data;
 
 
 import com.fund.flio.data.local.prefs.PreferencesHelper;
+import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 import com.fund.flio.di.provider.SchedulerProvider;
@@ -34,6 +35,26 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Response<User>> postAuthToken(TokenBody tokenBody) {
+        return mAuthApi.postAuthToken(tokenBody);
+    }
+
+    @Override
+    public Single<Response<Void>> postInsertUser(User user) {
+        return mFlioApi.postInsertUser(user);
+    }
+
+    @Override
+    public String getFirebaseToken() {
+        return mPreferences.getFirebaseToken();
+    }
+
+    @Override
+    public void setFirebaseToken(String firebaseToken) {
+        mPreferences.setFirebaseToken(firebaseToken);
+    }
+
+    @Override
     public String getAuthType() {
         return mPreferences.getAuthType();
     }
@@ -41,15 +62,5 @@ public class AppDataManager implements DataManager {
     @Override
     public void setAuthType(String authType) {
         mPreferences.setAuthType(authType);
-    }
-
-    @Override
-    public Single<Response<Void>> getTestSelect() {
-        return mFlioApi.getTestSelect();
-    }
-
-    @Override
-    public Single<Response<Void>> postAuthToken(TokenBody tokenBody) {
-        return mAuthApi.postAuthToken(tokenBody);
     }
 }
