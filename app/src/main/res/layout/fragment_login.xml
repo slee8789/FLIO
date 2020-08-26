@@ -55,16 +55,15 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="102dp"
             android:text="Pre-owned, Flio Market"
-            android:textColor="#333333"
+            android:textColor="@color/black2"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="32dp"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@id/message"
             app:layout_constraintDimensionRatio="H,10:4"
@@ -80,7 +79,7 @@
             android:layout_marginBottom="45dp"
             android:gravity="center_vertical"
             android:text="모든 사용자가 인증을 받는 것으로\n안심하게 중고 거래를 이용하는 플리오마켓"
-            android:textColor="#333333"
+            android:textColor="@color/black2"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_kakao_custom" />
 
@@ -96,7 +95,7 @@
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="카카오톡으로 시작하기"
-            android:textColor="#333333"
+            android:textColor="@color/black2"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_naver_custom" />
 
@@ -112,7 +111,7 @@
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="NAVER 시작하기"
-            android:textColor="#333333"
+            android:textColor="@color/black2"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_google_custom" />
 
@@ -128,7 +127,7 @@
             android:gravity="center_vertical"
             android:paddingStart="23dp"
             android:text="GOOGLE 시작하기"
-            android:textColor="#333333"
+            android:textColor="@color/black2"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -140,7 +139,7 @@
             android:layout_marginBottom="39dp"
             android:gravity="center_vertical"
             android:text="Copyright 2020. Flio. All rights reserved. "
-            android:textColor="#999999"
+            android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 

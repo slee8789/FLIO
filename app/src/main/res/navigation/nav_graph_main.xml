@@ -26,7 +26,6 @@
     <fragment
         android:id="@+id/nav_intro"
         android:name="com.fund.flio.ui.main.intro.IntroFragment"
-        android:label="nav_intro"
         tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/action_nav_intro_to_nav_login"
@@ -43,7 +42,6 @@
     <fragment
         android:id="@+id/nav_login"
         android:name="com.fund.flio.ui.main.login.LoginFragment"
-        android:label="nav_login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_nav_login_to_nav_home"
@@ -79,10 +77,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_write"
-        android:name="com.fund.flio.ui.main.write.WriteFragment"
-        android:label="nav_detail"
-        tools:layout="@layout/fragment_write" />
+        android:id="@+id/nav_news"
+        android:name="com.fund.flio.ui.main.news.NewsFragment"
+        tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/nav_alarm"

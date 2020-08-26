@@ -115,6 +115,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
                 Logger.d("mOAuthLoginHandler " + success + ", accessToken " + accessToken + ", refreshToken " + refreshToken + ", expiresAt " + expiresAt + ", tokenType " + tokenType);
                 ((MainActivity) getBaseActivity()).getAuthViewModel().postAuthToken(AuthType.NAVER, accessToken);
             } else {
+                authViewModel.setIsLoading(false);
                 String errorCode = mOAuthLoginModule.getLastErrorCode(getBaseActivity()).getCode();
                 String errorDesc = mOAuthLoginModule.getLastErrorDesc(getBaseActivity());
                 Logger.d("mOAuthLoginHandler " + success + ", errorCode " + errorCode + ", errorDesc " + errorDesc);

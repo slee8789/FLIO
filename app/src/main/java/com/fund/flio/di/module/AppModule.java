@@ -22,6 +22,7 @@ import com.fund.flio.di.qualifier.PreferenceInfo;
 import com.fund.flio.ui.main.home.BannerAdapter;
 import com.fund.flio.ui.main.home.CertificatedAdapter;
 import com.fund.flio.ui.main.home.RecommendAdapter;
+import com.fund.flio.ui.main.market.ProductAdapter;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
@@ -89,6 +90,11 @@ public class AppModule {
     @Provides
     RecommendAdapter provideRecommendAdapter() {
         return new RecommendAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ProductAdapter provideProductAdapter() {
+        return new ProductAdapter(new ArrayList<>());
     }
 
     @Provides

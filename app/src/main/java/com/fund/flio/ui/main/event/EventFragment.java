@@ -1,17 +1,15 @@
-package com.fund.flio.ui.main.write;
+package com.fund.flio.ui.main.event;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.FitWindowsFrameLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.databinding.FragmentDetailBinding;
-import com.fund.flio.databinding.FragmentWriteBinding;
+import com.fund.flio.databinding.FragmentEventBinding;
+import com.fund.flio.databinding.FragmentNewsBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.orhanobut.logger.Logger;
@@ -19,9 +17,9 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 
-public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewModel> {
+public class EventFragment extends BaseFragment<FragmentEventBinding, EventViewModel> {
 
-    public static final String TAG = WriteFragment.class.getSimpleName();
+    public static final String TAG = EventFragment.class.getSimpleName();
 
     @Inject
     ViewModelProviderFactory viewModelProviderFactory;
@@ -33,12 +31,12 @@ public class WriteFragment extends BaseFragment<FragmentWriteBinding, WriteViewM
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_write;
+        return R.layout.fragment_event;
     }
 
     @Override
-    public WriteViewModel getViewModel() {
-        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(WriteViewModel.class);
+    public EventViewModel getViewModel() {
+        return new ViewModelProvider(getViewModelStore(), viewModelProviderFactory).get(EventViewModel.class);
     }
 
     @Override

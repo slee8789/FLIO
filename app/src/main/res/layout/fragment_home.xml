@@ -189,7 +189,6 @@
                     app:layout_constraintTop_toBottomOf="@id/header_certificated"
                     tools:listitem="@layout/item_certificated" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -23,10 +23,8 @@ import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.more.MoreViewModel;
+import com.fund.flio.ui.main.news.NewsViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
-import com.fund.flio.ui.main.write.WriteFragment;
-import com.fund.flio.ui.main.write.WriteViewModel;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nhn.android.naverlogin.OAuthLogin;
 
@@ -73,8 +71,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new ChatDetailViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChatProfileViewModel.class.isAssignableFrom(modelClass)) {
             return new ChatProfileViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (WriteViewModel.class.isAssignableFrom(modelClass)) {
-            return new WriteViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (NewsViewModel.class.isAssignableFrom(modelClass)) {
+            return new NewsViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (FavoriteViewModel.class.isAssignableFrom(modelClass)) {
             return new FavoriteViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChannelViewModel.class.isAssignableFrom(modelClass)) {

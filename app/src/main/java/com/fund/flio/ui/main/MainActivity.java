@@ -20,7 +20,6 @@ import com.fund.flio.BR;
 import com.fund.flio.BuildConfig;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
-import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.ui.base.BaseActivity;
@@ -28,7 +27,6 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
@@ -127,8 +125,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private void initViews() {
         setSupportActionBar(getViewDataBinding().toolbar);
         mNavController = Navigation.findNavController(this, R.id.fragment_container);
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_market).build();
-//        NavigationUI.setupActionBarWithNavController(this, mNavController, mAppBarConfiguration);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(mNavController.getGraph()).build();
+        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, mNavController);
         NavigationUI.setupWithNavController(getViewDataBinding().navigationBottom, mNavController);
         mNavController.addOnDestinationChangedListener(this);
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
@@ -194,8 +192,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     Logger.d("LoginActivity account " + account);
                     authViewModel.firebaseAuthWithGoogle(account);
                 } catch (ApiException e) {
-//                    handleError(e);
-
+                    Logger.e("google sign in error " + e.getMessage());
+                    authViewModel.setIsLoading(false);
                 }
                 break;
 

@@ -18,8 +18,12 @@
     <string name="category_accessory">악세사리</string>
     <string name="category_diy">DIY</string>
 
+    <string name="intro_description">모든 사용자가 인증을 받는 것으로\n
+    안심하게 중고 거래를 이용하는 플리오마켓</string>
+
+
     <string name="header_recommend_product">추천 매물</string>
-    <string name="header_certificated">플리오 NEWS</string>
+    <string name="header_certificated">플리오 인증</string>
 
     <string name="description_item_recommend">recommend</string>
 </resources>

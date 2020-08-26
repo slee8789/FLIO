@@ -7,90 +7,40 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.market.MarketViewModel" />
+            type="com.fund.flio.ui.main.certificate.CertificateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="fill"
             app:tabIndicatorColor="@color/purple"
-            app:tabMode="scrollable"
+            app:tabMode="fixed"
             app:tabSelectedTextColor="@color/black2"
             app:tabTextColor="@color/gray">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
-                android:text="전체" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="스피커" />
+                android:text="플리오뉴스" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="마이크" />
+                android:text="플리오 인증" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:text="홍보 / 행사" />
 
-                android:text="케이블" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="앰프" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="소스기기" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="이어폰/헤드셋" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="음향장비" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="음반/악기" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="악세사리" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="DIY" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="헤드폰" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="악기" />
         </com.google.android.material.tabs.TabLayout>
 
         <TextView
@@ -100,7 +50,7 @@
             android:background="@color/gray2"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:text="1인방송 홈레코딩 하이파이 프로장비"
+            android:text="전체 세미나/강좌 청음회 구인구직 기타"
             android:textColor="@color/gray4"
             app:layout_constraintTop_toBottomOf="@id/tabs" />
 
@@ -146,7 +96,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header"
             tools:listitem="@layout/item_product" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

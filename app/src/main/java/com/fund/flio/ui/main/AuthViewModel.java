@@ -17,13 +17,7 @@ import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -67,9 +61,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
         mContext = context;
         Session.getCurrentSession().addCallback(this);
         authenticationState.setValue(AuthenticationState.NONE);
-
-//
-//        googleApi.asGoogleApiClient().maybeSignOut();
+//        Logger.d("test " + mFirebaseAuth.getCurrentUser().getUid() + ", " + mFirebaseAuth.getCurrentUser().getEmail());
     }
 
     public void postAuthToken(AuthType authType, String authToken) {
@@ -78,7 +70,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().io())
                 .subscribe(firebaseToken -> {
-                    Logger.d("postAuthToken result");
+                    Logger.d("postAuthToken result " + firebaseToken.body().getFirebaseToken());
                     firebaseLogin(authType, firebaseToken.body().getFirebaseToken());
                 }, onError -> {
                     Logger.e("postAuthToken error " + onError);
@@ -86,7 +78,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
     }
 
     public void firebaseLogin(AuthType authType, String firebaseToken) {
-        Logger.d("firebaseLogin");
+        Logger.d("firebaseLogin authType " + authType + ", firebaseToken " + firebaseToken);
         mFirebaseAuth.signInWithCustomToken(firebaseToken).addOnCompleteListener(task -> {
             Logger.i("Firebase Auth Success " + mFirebaseAuth.getCurrentUser());
             getDataManager().setAuthType(authType.getType());
@@ -122,13 +114,16 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
     }
 
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+//        Logger.d("firebaseAuthWithGoogle before " + acct.getIdToken() + ", uid " + mFirebaseAuth.getUid());
+//        Logger.d("firebaseAuthWithGoogle uid " + mFirebaseAuth.getCurrentUser().getUid());
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Logger.d("firebaseAuthWithGoogle success");
+                        Logger.d("firebaseAuthWithGoogle success ");
                         //Todo : uid 값 string으로 대체
-                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(123, acct.getEmail(), acct.getPhotoUrl().toString(), acct.getIdToken(), acct.getDisplayName()))
+                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(mFirebaseAuth.getCurrentUser().getUid(), acct.getEmail(), acct.getDisplayName(), acct.getPhotoUrl().toString(), acct.getIdToken()))
                                 .observeOn(getSchedulerProvider().ui())
                                 .subscribeOn(getSchedulerProvider().io())
                                 .subscribe(Void -> {

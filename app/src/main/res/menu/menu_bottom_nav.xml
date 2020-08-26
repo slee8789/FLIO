@@ -10,12 +10,12 @@
     <item
         android:id="@+id/nav_market"
         android:icon="@drawable/nav_market"
-        android:title="마켓" />
+        android:title="장터" />
 
     <item
-        android:id="@+id/nav_write"
+        android:id="@+id/nav_news"
         android:icon="@drawable/nav_write"
-        android:title="글쓰기" />
+        android:title="뉴스" />
 
     <item
         android:id="@+id/nav_alarm"

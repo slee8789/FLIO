@@ -11,13 +11,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class User implements Serializable {
+public class News implements Serializable {
 
-    private String uid;
+    private String id;
 
-    private String email;
+    private String title;
 
-    private String name;
+    private String date;
 
     private String imageUrl;
 

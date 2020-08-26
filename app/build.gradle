@@ -92,6 +92,7 @@ dependencies {
     implementation dependencies.glide
     annotationProcessor dependencies.glideCompiler
     implementation files('libs/naveridlogin_android_sdk_4.2.6.aar')
-
+    implementation 'com.eightbitlab:blurview:1.6.3'
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
 
 }

@@ -1,7 +1,9 @@
 package com.fund.flio.ui.main.intro;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+
+import eightbitlab.com.blurview.RenderScriptBlur;
 
 import static io.reactivex.annotations.SchedulerSupport.NONE;
 
@@ -64,7 +68,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     }
 
     private final Observer<Boolean> introDelayObserver = isIntroFinished -> {
-        Logger.d("IntroDelayObserver " + dataManager.getFirebaseToken());
+        Logger.d("IntroDelayObserver " + dataManager.getFirebaseToken() + ", auth type " + dataManager.getAuthType());
         if (AuthType.valueOf(dataManager.getAuthType()) == AuthType.NONE && dataManager.getFirebaseToken() == null) {
             Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
         } else {
@@ -76,6 +80,23 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        float radius = 25f;
+
+        View decorView = getBaseActivity().getWindow().getDecorView();
+        //ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
+        //Set drawable to draw in the beginning of each blurred frame (Optional).
+        //Can be used in case your layout has a lot of transparent space and your content
+        //gets kinda lost after after blur is applied.
+        Drawable windowBackground = decorView.getBackground();
+
+        getViewDataBinding().blurView.setupWith(getViewDataBinding().root)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurAlgorithm(new RenderScriptBlur(getBaseActivity()))
+                .setBlurRadius(radius)
+                .setHasFixedTransformationMatrix(true);
+
+        getViewModel().progress();
     }
 
 }
