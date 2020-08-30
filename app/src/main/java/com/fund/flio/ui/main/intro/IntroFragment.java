@@ -20,6 +20,7 @@ import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
@@ -69,7 +70,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
 
     private final Observer<Boolean> introDelayObserver = isIntroFinished -> {
         Logger.d("IntroDelayObserver " + dataManager.getFirebaseToken() + ", auth type " + dataManager.getAuthType());
-        if (AuthType.valueOf(dataManager.getAuthType()) == AuthType.NONE && dataManager.getFirebaseToken() == null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
         } else {
             authViewModel.firebaseLogin(AuthType.valueOf(dataManager.getAuthType()), dataManager.getFirebaseToken());

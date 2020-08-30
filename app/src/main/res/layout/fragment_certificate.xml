@@ -22,8 +22,8 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/purple"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/black2"
-            app:tabTextColor="@color/gray">
+            app:tabSelectedTextColor="@color/black3"
+            app:tabTextColor="@color/gray9">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -47,11 +47,11 @@
             android:id="@+id/subTabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/gray2"
+            android:background="@color/grayF0"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="전체 세미나/강좌 청음회 구인구직 기타"
-            android:textColor="@color/gray4"
+            android:textColor="@color/gray6"
             app:layout_constraintTop_toBottomOf="@id/tabs" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="14dp"
             android:text="추천 매물"
-            android:textColor="@color/gray"
+            android:textColor="@color/gray9"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/products"
@@ -77,7 +77,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="14dp"
             android:text="인기순"
-            android:textColor="@color/gray"
+            android:textColor="@color/gray9"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/products"

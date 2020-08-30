@@ -4,18 +4,19 @@ package com.fund.flio.data;
 
 import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.data.model.User;
+import com.fund.flio.data.model.body.ChatDetailBody;
+import com.fund.flio.data.model.body.ChatInsertBody;
+import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
-import com.fund.flio.di.provider.SchedulerProvider;
 
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import io.reactivex.Maybe;
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
+
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Response;
 
 
@@ -42,6 +43,21 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<Response<Void>> postInsertUser(User user) {
         return mFlioApi.postInsertUser(user);
+    }
+
+    @Override
+    public Single<Response<Void>> insertMyChatDetail(ChatInsertBody chatInsertBody) {
+        return mFlioApi.insertMyChatDetail(chatInsertBody);
+    }
+
+    @Override
+    public Single<Response<Void>> selectMyChat(ChatListBody chatListBody) {
+        return mFlioApi.selectMyChat(chatListBody);
+    }
+
+    @Override
+    public Single<Response<Void>> selectMyChatDetail(ChatDetailBody chatDetailBody) {
+        return mFlioApi.selectMyChatDetail(chatDetailBody);
     }
 
     @Override

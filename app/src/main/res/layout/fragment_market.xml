@@ -22,8 +22,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorColor="@color/purple"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/black2"
-            app:tabTextColor="@color/gray">
+            app:tabSelectedTextColor="@color/black3"
+            app:tabTextColor="@color/gray9">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -93,16 +93,29 @@
                 android:text="악기" />
         </com.google.android.material.tabs.TabLayout>
 
+
         <TextView
             android:id="@+id/subTabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/gray2"
+            android:background="@color/grayF0"
             android:gravity="center_vertical"
-            android:paddingStart="20dp"
+            android:paddingHorizontal="20dp"
             android:text="1인방송 홈레코딩 하이파이 프로장비"
-            android:textColor="@color/gray4"
+            android:textColor="@color/gray6"
             app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray9"
+            app:layout_constraintTop_toTopOf="@id/subTabs" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayCB"
+            app:layout_constraintBottom_toBottomOf="@id/subTabs" />
 
         <TextView
             android:id="@+id/header"
@@ -112,7 +125,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="14dp"
             android:text="추천 매물"
-            android:textColor="@color/gray"
+            android:textColor="@color/gray9"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/products"
@@ -127,7 +140,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="14dp"
             android:text="인기순"
-            android:textColor="@color/gray"
+            android:textColor="@color/gray9"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/products"

@@ -18,7 +18,7 @@
         android:title="뉴스" />
 
     <item
-        android:id="@+id/nav_alarm"
+        android:id="@+id/nav_chat_list"
         android:icon="@drawable/nav_alarm"
         android:title="알람" />
 

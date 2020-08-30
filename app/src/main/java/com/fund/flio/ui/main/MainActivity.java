@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -23,6 +24,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.ui.base.BaseActivity;
+import com.fund.flio.utils.BottomNavigationViewBehavior;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -207,6 +209,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_login:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().toolbar.setVisibility(View.GONE);
+                break;
+
+            case R.id.nav_chat_detail:
+            case R.id.nav_market_product:
+                getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 break;
 
             default:

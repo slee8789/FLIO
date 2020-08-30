@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="com.fund.flio.ui.main.chat.list.ItemChatListViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.chat.list.ChatListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="@{v -> viewModel.onItemClick(v, itemViewModel.mMessage)}"
+        >
+
+        <ImageView
+            android:id="@+id/image_user"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            app:imageUrlCircle="@{itemViewModel.imageUserUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="7dp"
+            android:gravity="center"
+            android:text="@{itemViewModel.message}"
+            android:textColor="@color/black3"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/writer"
+            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_item_chat_writer"
+            android:gravity="center"
+            android:minWidth="45dp"
+            android:minHeight="14dp"
+            android:text="블루밍"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintTop_toBottomOf="@id/message" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{itemViewModel.time}"
+            android:textColor="@color/black3"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/writer"
+            app:layout_constraintStart_toEndOf="@id/writer" />
+
+        <ImageView
+            android:id="@+id/image_product"
+            android:layout_width="65dp"
+            android:layout_height="56dp"
+            app:imageUrlRoundCorner="@{itemViewModel.imageProductUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

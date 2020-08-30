@@ -7,9 +7,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 
-import java.lang.ref.WeakReference;
-
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public abstract class BaseViewModel extends ViewModel {
 

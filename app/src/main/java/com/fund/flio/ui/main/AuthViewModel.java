@@ -2,11 +2,8 @@ package com.fund.flio.ui.main;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.fund.flio.BuildConfig;
-import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.data.enums.AuthenticationState;
@@ -32,7 +29,8 @@ import com.kakao.util.exception.KakaoException;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.orhanobut.logger.Logger;
 
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Single;
+
 
 public class AuthViewModel extends BaseViewModel implements ISessionCallback {
 
@@ -61,7 +59,6 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
         mContext = context;
         Session.getCurrentSession().addCallback(this);
         authenticationState.setValue(AuthenticationState.NONE);
-//        Logger.d("test " + mFirebaseAuth.getCurrentUser().getUid() + ", " + mFirebaseAuth.getCurrentUser().getEmail());
     }
 
     public void postAuthToken(AuthType authType, String authToken) {
@@ -158,8 +155,6 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
 
             case GOOGLE:
                 Logger.d("google logout before " + googleApiClient);
-                mFirebaseAuth.signOut();
-
                 Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(status -> {
                     if (status.isSuccess()) {
                         Logger.d("google logout onComplete");
@@ -167,6 +162,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                 });
                 break;
         }
+        mFirebaseAuth.signOut();
         setIsLoading(false);
         getDataManager().setAuthType(AuthType.NONE.getType());
         getDataManager().setFirebaseToken(null);

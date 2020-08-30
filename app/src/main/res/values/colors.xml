@@ -3,15 +3,17 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="white">#ffffff</color>
-    <color name="gray">#999999</color>
-    <color name="gray2">#F0F0F0</color>
-    <color name="gray3">#CBCBCB</color>
-    <color name="gray4">#666666</color>
-    <color name="black">#000000</color>
-    <color name="black2">#333333</color>
-    <color name="grayLight">#cecece</color>
-    <color name="colorOverlay">#78ffffff</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grayF0">#F0F0F0</color>
+    <color name="grayCE">#cecece</color>
+    <color name="grayF1">#F1F1F1</color>
+    <color name="grayCB">#CBCBCB</color>
+    <color name="grayE5">#E5E5E5</color>
+    <color name="gray6">#666666</color>
+    <color name="gray9">#999999</color>
+    <color name="black0">#000000</color>
+    <color name="black3">#333333</color>
+    <color name="colorOverlay">#78FFFFFF</color>
     <color name="purple">#6F5AFF</color>
 
 </resources>

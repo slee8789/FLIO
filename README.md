@@ -7,6 +7,5 @@ FLIO Project 오디오 중고마켓
 디자이너 : 오채윤
 기획 : 이효성
 
-# 사용 라이브러리
-#MVVM, RxJava(version 3), RxKotlin, RxAndroid, RxView, Koin, Retrofit2, OkHttp4, Timber
-#AAC(Navigation, livedata, Databinding, viewpager2, viewModel)
+# 이번 프로젝트를 통해 얻고자 하는 기술 스택 목록
+# Navigation, LiveData, Firebase Auth, DiffUtil, RxJava3, MotionLayout, CoordinatorLayout

@@ -1,25 +1,18 @@
 package com.fund.flio.utils;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.databinding.BindingAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.fund.flio.R;
-import com.orhanobut.logger.Logger;
 
 public final class BindingUtils {
 
@@ -33,7 +26,28 @@ public final class BindingUtils {
                 .load(imageUrl)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(R.color.grayLight)
+                .placeholder(R.color.grayCE)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"imageUrlCircle"})
+    public static void loadImageCircle(ImageView imageView, String imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .circleCrop()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(R.color.grayCE)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"imageUrlRoundCorner"})
+    public static void loadImageRoundCorner(ImageView imageView, String imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .fitCenter()
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(R.color.grayCE)
                 .into(imageView);
     }
 

@@ -66,6 +66,12 @@
             app:destination="@id/nav_login"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_chat_list"
+            app:destination="@id/nav_chat_list" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_market_product"
+            app:destination="@id/nav_market_product" />
 
     </fragment>
 
@@ -74,6 +80,9 @@
         android:name="com.fund.flio.ui.main.market.MarketFragment"
         tools:layout="@layout/fragment_market">
 
+        <action
+            android:id="@+id/action_nav_market_to_nav_market_product"
+            app:destination="@id/nav_market_product" />
     </fragment>
 
     <fragment
@@ -100,5 +109,28 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_chat_list"
+        android:name="com.fund.flio.ui.main.chat.list.ChatListFragment"
+        tools:layout="@layout/fragment_chat_list">
+
+        <action
+            android:id="@+id/action_nav_chat_list_to_nav_chat_detail"
+            app:destination="@id/nav_chat_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_chat_detail"
+        android:name="com.fund.flio.ui.main.chat.detail.ChatDetailFragment"
+        tools:layout="@layout/fragment_chat_detail">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product"
+        android:name="com.fund.flio.ui.main.product.ProductFragment"
+        tools:layout="@layout/fragment_product">
+
+    </fragment>
 
 </navigation>

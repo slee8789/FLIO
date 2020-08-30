@@ -24,6 +24,7 @@ import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.more.MoreViewModel;
 import com.fund.flio.ui.main.news.NewsViewModel;
+import com.fund.flio.ui.main.product.ProductViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -87,6 +88,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new MoreViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (AuthViewModel.class.isAssignableFrom(modelClass)) {
             return new AuthViewModel(context, dataManager, schedulerProvider, resourceProvider, oAuthLogin);
+        } else if (ProductViewModel.class.isAssignableFrom(modelClass)) {
+            return new ProductViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name");
     }

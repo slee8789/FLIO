@@ -19,6 +19,8 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.di.qualifier.DatabaseInfo;
 import com.fund.flio.di.qualifier.PreferenceInfo;
+import com.fund.flio.ui.main.chat.detail.ChatAdapter;
+import com.fund.flio.ui.main.chat.list.ChatListAdapter;
 import com.fund.flio.ui.main.home.BannerAdapter;
 import com.fund.flio.ui.main.home.CertificatedAdapter;
 import com.fund.flio.ui.main.home.RecommendAdapter;
@@ -100,6 +102,16 @@ public class AppModule {
     @Provides
     CertificatedAdapter provideCertificatedAdapter() {
         return new CertificatedAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ChatListAdapter provideChatListAdapter() {
+        return new ChatListAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ChatAdapter provideChatAdapter() {
+        return new ChatAdapter(new ArrayList<>());
     }
 
 }

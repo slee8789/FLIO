@@ -15,7 +15,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.onItemClick(v)}">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
@@ -43,10 +44,13 @@
         </com.google.android.material.card.MaterialCardView>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:elevation="8dp"
-            android:src="@drawable/btn_like"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="13dp"
+            android:elevation="30dp"
+            android:outlineProvider="bounds"
+            android:src="@drawable/fab_like"
             android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/comment"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:text="@{viewModel.comment}"
-            android:textColor="@color/gray"
+            android:textColor="@color/gray9"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card" />
@@ -69,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@{viewModel.price}"
-            android:textColor="@color/black"
+            android:textColor="@color/black0"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

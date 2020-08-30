@@ -2,11 +2,9 @@ package com.fund.flio.ui.main.intro;
 
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.fund.flio.data.DataManager;
-import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
@@ -14,7 +12,8 @@ import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 
 public class IntroViewModel extends BaseViewModel {
 

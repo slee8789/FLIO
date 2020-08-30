@@ -15,6 +15,7 @@ import com.fund.flio.ui.main.login.LoginFragment;
 import com.fund.flio.ui.main.market.MarketFragment;
 import com.fund.flio.ui.main.more.MoreFragment;
 import com.fund.flio.ui.main.news.NewsFragment;
+import com.fund.flio.ui.main.product.ProductFragment;
 import com.fund.flio.ui.main.search.SearchFragment;
 
 import dagger.Module;
@@ -70,6 +71,9 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract CertificateFragment provideCertificate();
+
+    @ContributesAndroidInjector
+    abstract ProductFragment provideProduct();
 
 
 }

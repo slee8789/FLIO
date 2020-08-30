@@ -1,6 +1,7 @@
 package com.fund.flio.di.provider;
 
-import io.reactivex.Scheduler;
+
+import io.reactivex.rxjava3.core.Scheduler;
 
 public interface SchedulerProvider {
 
@@ -8,7 +9,7 @@ public interface SchedulerProvider {
 
     Scheduler io();
 
-    Scheduler newwThread();
+    Scheduler newThread();
 
     Scheduler computation();
 

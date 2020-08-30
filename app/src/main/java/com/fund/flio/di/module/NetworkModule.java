@@ -9,10 +9,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;
-import pl.droidsonroids.retrofit2.JspoonConverterFactory;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -43,7 +42,7 @@ public class NetworkModule {
     @Named("flio")
     Retrofit provideService(@Named("flio") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.createAsync())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BuildConfig.REST_BASE_URL)
                 .client(okHttpClient)
@@ -55,7 +54,7 @@ public class NetworkModule {
     @Named("auth")
     Retrofit provideAuthService(@Named("auth") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.createAsync())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BuildConfig.REST_AUTH_URL)
                 .client(okHttpClient)

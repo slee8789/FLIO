@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.bg_item_chat_local.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation files('libs/naveridlogin_android_sdk_4.2.6.aar')
     Map<String, String> dependencies = rootProject.ext.dependencies
     implementation dependencies.appCompat
     implementation dependencies.design
@@ -91,8 +92,8 @@ dependencies {
     implementation dependencies.firebaseUiAuth
     implementation dependencies.glide
     annotationProcessor dependencies.glideCompiler
-    implementation files('libs/naveridlogin_android_sdk_4.2.6.aar')
-    implementation 'com.eightbitlab:blurview:1.6.3'
-    implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
+    implementation dependencies.blurView
+    implementation dependencies.progressbar
+    implementation dependencies.rxjava3RetrofitAdapter
 
 }
