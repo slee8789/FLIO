@@ -1,6 +1,7 @@
 package com.fund.flio.ui.main.product;
 
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.View;
 
 import androidx.annotation.Nullable;

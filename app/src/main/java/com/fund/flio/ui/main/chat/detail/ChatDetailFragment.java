@@ -19,12 +19,17 @@ import com.fund.flio.databinding.FragmentChatDetailBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.login.LoginViewModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
+
+import static com.fund.flio.utils.ViewUtils.readMovieJson;
 
 
 public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, ChatDetailViewModel> {
@@ -70,6 +75,8 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().chats.addItemDecoration(dividerItemDecoration);
         ArrayList<Message> testRecommends = new ArrayList<>();
+//        ArrayList<Message> testRecommends = new Gson().fromJson(readMovieJson(getContext(),"messages.json"), new TypeToken<List<Message>>() {
+//        }.getType());
         testRecommends.add(new Message("", "H", MessageType.LOCAL.ordinal()));
         testRecommends.add(new Message("", "Hi", MessageType.DATE.ordinal()));
         testRecommends.add(new Message("", "Hello", MessageType.REMOTE.ordinal()));

@@ -1,6 +1,8 @@
 package com.fund.flio.ui.main.home;
 
 
+import android.view.View;
+
 import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
@@ -23,5 +25,8 @@ public class HomeViewModel extends BaseViewModel {
 //        getDataManager().getTestSelect().subscribe();
 //    }
 
+    public void onCategoryClick(View v) {
+
+    }
 
 }

@@ -2,15 +2,33 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <data>
+
+        <variable
+            name="clickEvent"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="categoryIcon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="categoryTitle"
+            type="String" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{clickEvent}">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_foreground"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@{categoryIcon}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -18,8 +36,11 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="스피커"
+            android:text="@{categoryTitle}"
+            android:textColor="@color/gray9"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image" />

@@ -131,6 +131,13 @@
         android:name="com.fund.flio.ui.main.product.ProductFragment"
         tools:layout="@layout/fragment_product">
 
+        <argument
+            android:name="dummy"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_nav_market_product_self"
+            app:destination="@id/nav_market_product" />
+
     </fragment>
 
 </navigation>

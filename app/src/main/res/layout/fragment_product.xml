@@ -27,6 +27,28 @@
                 android:src="@drawable/sampleimage"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/flio"
+                android:layout_width="22dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/btn_mark_flio"
+                app:layout_constraintEnd_toStartOf="@id/faith"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <ImageView
+                android:id="@+id/faith"
+                android:layout_width="22dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/btn_mark_faith"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tag1"
                 android:layout_width="wrap_content"
@@ -163,12 +185,12 @@
 
             <ImageView
                 android:id="@+id/btn_recommands_more"
-                android:layout_width="92dp"
-                android:layout_height="9dp"
-                android:layout_marginStart="13dp"
-                android:src="@drawable/arrow_right_long"
+                android:layout_width="18dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/btn_more_item"
                 app:layout_constraintBottom_toBottomOf="@id/header_recommends"
-                app:layout_constraintStart_toEndOf="@id/header_recommends"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/header_recommends" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -182,6 +204,70 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/header_recommends"
                 tools:listitem="@layout/item_recommend" />
+
+            <TextView
+                android:id="@+id/header_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="34dp"
+                android:text="@string/header_related_news"
+                android:textColor="@color/black0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recommends" />
+
+            <ImageView
+                android:id="@+id/btn_news_more"
+                android:layout_width="18dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/btn_more_item"
+                app:layout_constraintBottom_toBottomOf="@id/header_news"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header_news" />
+
+            <View
+                android:id="@+id/divider_news"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/gray9"
+                app:layout_constraintTop_toBottomOf="@id/header_news" />
+
+            <TextView
+                android:id="@+id/date_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:text="2020.08.04"
+                android:textColor="@color/black3"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/divider_news" />
+
+            <TextView
+                android:id="@+id/description_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
+                android:textColor="@color/gray9"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/date_news" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sampleimage"
+                app:layout_constraintTop_toBottomOf="@id/description_news" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

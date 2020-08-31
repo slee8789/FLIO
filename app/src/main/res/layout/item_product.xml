@@ -40,7 +40,8 @@
                 android:layout_height="164dp"
                 app:imageUrl="@{viewModel.imageUrl}"
                 app:layout_constraintBottom_toTopOf="@id/comment"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <TextView
                 android:id="@+id/comment"

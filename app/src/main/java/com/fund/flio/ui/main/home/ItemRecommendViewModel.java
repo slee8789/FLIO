@@ -28,6 +28,11 @@ public class ItemRecommendViewModel {
     }
 
     public void onItemClick(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_home_to_nav_market_product);
+        if(Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).getCurrentDestination().getId() == R.id.nav_home) {
+            Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_home_to_nav_market_product);
+        } else {
+            Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_market_product_self);
+        }
+
     }
 }

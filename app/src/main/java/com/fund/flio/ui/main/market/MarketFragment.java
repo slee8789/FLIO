@@ -63,15 +63,15 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().products.addItemDecoration(dividerItemDecoration);
         ArrayList<Product> testProducts = new ArrayList<>();
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(1,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(2,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(3,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(4,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(5,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(6,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(7,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(8,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        testProducts.add(new Product(9,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
         mProductAdapter.addItems(testProducts);
 
         getViewDataBinding().products.setAdapter(mProductAdapter);

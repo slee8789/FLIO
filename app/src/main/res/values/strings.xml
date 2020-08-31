@@ -23,6 +23,7 @@
 
 
     <string name="header_recommend_product">추천 매물</string>
+    <string name="header_related_news">관련 뉴스</string>
     <string name="header_certificated">플리오 인증</string>
 
     <string name="description_item_recommend">recommend</string>

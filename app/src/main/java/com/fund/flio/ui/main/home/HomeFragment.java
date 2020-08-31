@@ -2,6 +2,7 @@ package com.fund.flio.ui.main.home;
 
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
@@ -15,12 +16,21 @@ import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
+
+import static com.fund.flio.utils.ViewUtils.readMovieJson;
 
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
@@ -67,22 +77,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         });
     }
 
+
     private void initViews() {
 
         getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Recommend> testRecommends = new ArrayList<>();
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testRecommends.add(new Recommend("https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        ArrayList<Recommend> testRecommends = new Gson().fromJson(readMovieJson(getContext(),"recommands.json"), new TypeToken<List<Recommend>>() {
+        }.getType());
         mRecommendAdapter.addItems(testRecommends);
 
         getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
