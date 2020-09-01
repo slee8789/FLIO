@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:onClick="@{v -> viewModel.onItemClick(v)}">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/card"
             android:layout_width="170dp"
             android:layout_height="170dp"
@@ -41,7 +41,7 @@
                     app:imageUrl="@{viewModel.imageUrl}" />
 
             </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:layout_width="26dp"

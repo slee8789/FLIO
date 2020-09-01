@@ -96,5 +96,6 @@ dependencies {
     implementation dependencies.progressbar
     implementation dependencies.rxjava3RetrofitAdapter
     implementation group: 'jp.wasabeef', name: 'glide-transformations', version: '1.0.1'
+    implementation 'com.google.android.material:material:1.3.0-alpha02'
 
 }
