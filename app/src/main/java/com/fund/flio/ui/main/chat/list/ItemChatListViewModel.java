@@ -19,8 +19,8 @@ public class ItemChatListViewModel {
         this.mMessage = message;
         this.message.set("무슨 역으로 가면 될까요?");
         this.time.set("2020.08.04, 08:30");
-        imageUserUrl.set("https://k.kakaocdn.net/dn/bUomyI/btqDXEY6Ybm/0eJ7kQjwF6qwjztpV7QZGK/img_640x640.jpg");
-        imageProductUrl.set("https://homepages.cae.wisc.edu/~ece533/images/baboon.png");
+        imageUserUrl.set("https://picsum.photos/170/170");
+        imageProductUrl.set("https://picsum.photos/170/170");
     }
 
 

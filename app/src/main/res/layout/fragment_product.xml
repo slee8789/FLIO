@@ -25,6 +25,7 @@
                 android:layout_height="400dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sampleimage"
+                android:transitionName="image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView

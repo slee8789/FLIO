@@ -13,76 +13,61 @@
     </data>
 
 
-    <com.google.android.material.card.MaterialCardView
-
-        android:id="@+id/card"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
+        android:background="@drawable/bg_layout_round_corner"
         android:onClick="@{v -> viewModel.onItemClick(v)}"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/grayCB"
-        app:strokeWidth="1dp">
+        android:orientation="vertical"
+        tools:context=".ui.main.MainActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical"
-            tools:context=".ui.main.MainActivity">
+            android:scaleType="centerCrop"
+            android:layout_height="164dp"
+            android:transitionName="image"
+            app:imageUrlRoundCornerOnlyTop="@{viewModel.imageUrl}"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="164dp"
-                app:imageUrl="@{viewModel.imageUrl}"
-                app:layout_constraintBottom_toTopOf="@id/comment"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{viewModel.comment}"
+            android:textColor="@color/gray9"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image" />
 
-            <TextView
-                android:id="@+id/comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:text="오디오 추천합니다.\n
-1년전에 80만원 주고 샀습니다. 독일로 이민을..."
-                android:textColor="@color/gray9"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@id/price"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image" />
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:text="@{viewModel.price}"
+            android:textColor="@color/black3"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/comment" />
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="14dp"
-                android:text="30만원"
-                android:textColor="@color/black3"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/comment" />
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginTop="151dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/fab_like"
-                android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="151dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/fab_like"
+            android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

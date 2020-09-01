@@ -7,12 +7,17 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.fund.flio.R;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public final class BindingUtils {
 
@@ -44,8 +49,18 @@ public final class BindingUtils {
     public static void loadImageRoundCorner(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .fitCenter()
+                .centerCrop()
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(R.color.grayCE)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"imageUrlRoundCornerOnlyTop"})
+    public static void loadImageRoundCornerOnlyTop(ImageView imageView, String imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .apply(RequestOptions.bitmapTransform(new GranularRoundedCorners(14,14,0,0)))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.grayCE)
                 .into(imageView);

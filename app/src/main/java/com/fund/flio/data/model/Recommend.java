@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Recommend {
 
+    private int pid;
     private String imageUrl;
     private boolean isFlio;
     private boolean isFaith;

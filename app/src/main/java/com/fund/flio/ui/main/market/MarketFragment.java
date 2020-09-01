@@ -11,14 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
+
+import static com.fund.flio.utils.ViewUtils.readMovieJson;
 
 
 public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketViewModel> {
@@ -62,16 +68,8 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().products.addItemDecoration(dividerItemDecoration);
-        ArrayList<Product> testProducts = new ArrayList<>();
-        testProducts.add(new Product(1,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(2,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(3,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(4,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(5,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(6,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(7,"https://homepages.cae.wisc.edu/~ece533/images/airplane.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(8,"https://homepages.cae.wisc.edu/~ece533/images/arctichare.png", true, true, true, "오디오 추천합니다.", "30만원"));
-        testProducts.add(new Product(9,"https://homepages.cae.wisc.edu/~ece533/images/baboon.png", true, true, true, "오디오 추천합니다.", "30만원"));
+        ArrayList<Product> testProducts = new Gson().fromJson(readMovieJson(getContext(),"recommands.json"), new TypeToken<List<Product>>() {
+        }.getType());
         mProductAdapter.addItems(testProducts);
 
         getViewDataBinding().products.setAdapter(mProductAdapter);

@@ -1,6 +1,6 @@
 ext {
     supportLibrary = '28.0.0'
-    constraintLayout = '2.0.0'
+    constraintLayout = '2.0.1'
     architectureComponent = '2.2.0'
     rxJava3 = '3.0.6'
     rxAndroid = '3.0.0'

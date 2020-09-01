@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
@@ -29,6 +30,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import eightbitlab.com.blurview.RenderScriptBlur;
+import lombok.val;
 
 import static io.reactivex.annotations.SchedulerSupport.NONE;
 
@@ -71,7 +73,14 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     private final Observer<Boolean> introDelayObserver = isIntroFinished -> {
         Logger.d("IntroDelayObserver " + dataManager.getFirebaseToken() + ", auth type " + dataManager.getAuthType());
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+//            NavOptions navOptions = new NavOptions.Builder()
+//                    .setEnterAnim(R.anim.slide_in_bottom)
+//                    .setExitAnim(R.anim.fade_out)
+//                    .setPopExitAnim(R.anim.slide_out_bottom)
+//                    .setPopEnterAnim(R.anim.fade_in)
+//                    .build();
             Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
+//            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(IntroFragmentDirections.actionNavIntroToNavLogin(), navOptions);
         } else {
             authViewModel.firebaseLogin(AuthType.valueOf(dataManager.getAuthType()), dataManager.getFirebaseToken());
         }

@@ -8,20 +8,20 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/500/500",
     "isFlio": true,
     "isFaith": true,
-    "isLike": true,
-    "comment": "오디오 추천합니다.",
-    "price": "30만원"
+    "isLike": false,
+    "comment": "가장 정통적인 북쉘프 타입의 디자인으로 설계된 스피커 우든 MDF 인클로저로 클래식한...",
+    "price": "100만원"
   },
   {
     "imageUrl": "https://picsum.photos/170/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
-    "comment": "오디오 추천합니다.",
-    "price": "30만원"
+    "comment": "로맨스 명대사 챌린지는 오디오 클립 앱에서 참여 가능합니다. 음원의 오디오챌린지 참여 용도외 사용을...",
+    "price": "9999999만원"
   },
   {
     "imageUrl": "https://picsum.photos/170/170",

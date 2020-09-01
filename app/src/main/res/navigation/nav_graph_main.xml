@@ -30,11 +30,19 @@
         <action
             android:id="@+id/action_nav_intro_to_nav_login"
             app:destination="@id/nav_login"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom"
             app:popUpTo="@id/nav_intro"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_intro_to_nav_home"
             app:destination="@id/nav_home"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom"
             app:popUpTo="@id/nav_intro"
             app:popUpToInclusive="true" />
     </fragment>
@@ -46,6 +54,10 @@
         <action
             android:id="@+id/action_nav_login_to_nav_home"
             app:destination="@id/nav_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/nav_login"
             app:popUpToInclusive="true" />
     </fragment>
@@ -71,7 +83,11 @@
             app:destination="@id/nav_chat_list" />
         <action
             android:id="@+id/action_nav_home_to_nav_market_product"
-            app:destination="@id/nav_market_product" />
+            app:destination="@id/nav_market_product"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 

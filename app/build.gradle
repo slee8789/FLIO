@@ -95,5 +95,6 @@ dependencies {
     implementation dependencies.blurView
     implementation dependencies.progressbar
     implementation dependencies.rxjava3RetrofitAdapter
+    implementation group: 'jp.wasabeef', name: 'glide-transformations', version: '1.0.1'
 
 }
