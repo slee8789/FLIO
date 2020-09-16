@@ -21,8 +21,11 @@ public class User implements Serializable {
 
     private String imageUrl;
 
-    @SerializedName("token")
-    private String firebaseToken;
+    private String platformToken;
+
+    private String userToken;
+
+    private String messageToken;
 
 
 }

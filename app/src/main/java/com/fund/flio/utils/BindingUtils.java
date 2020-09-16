@@ -5,19 +5,22 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.fund.flio.R;
+import com.fund.flio.data.model.Message;
+import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
+import com.orhanobut.logger.Logger;
 
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+import java.util.List;
+import java.util.Objects;
 
 public final class BindingUtils {
 
@@ -60,7 +63,7 @@ public final class BindingUtils {
     public static void loadImageRoundCornerOnlyTop(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .apply(RequestOptions.bitmapTransform(new GranularRoundedCorners(14,14,0,0)))
+                .apply(RequestOptions.bitmapTransform(new GranularRoundedCorners(14, 14, 0, 0)))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.grayCE)
                 .into(imageView);
@@ -75,6 +78,12 @@ public final class BindingUtils {
                         view.setBackground(resource);
                     }
                 });
+    }
+
+    @BindingAdapter("listData")
+    public static void bindRecyclerView(RecyclerView recyclerView, List<Message> messages) {
+        Logger.d("bindRecyclerView " + messages);
+        ((ChatAdapter) Objects.requireNonNull(recyclerView.getAdapter())).setItems(messages);
     }
 
 }

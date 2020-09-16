@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ChatInsertBody {
+
     private long chatSeq;
     private String chatSourceMessage;
     private String chatTargetMessage;

@@ -23,7 +23,7 @@ ext {
     jspoon = '1.3.2'
     firebaseAnalytics = '17.5.0'
     firebaseCrashlytics = '17.2.1'
-    firebaseAuth = '19.3.2'
+    firebaseAuth = '19.4.0'
     firebaseUiAuth = '6.2.0'
     firebaseMessage = '20.2.4'
     googleAuth = '18.1.0'

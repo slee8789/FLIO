@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.chat.detail.ItemChatViewModel" />
+            type="com.fund.flio.ui.main.message.chat.detail.ItemChatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

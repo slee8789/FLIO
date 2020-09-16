@@ -1,18 +1,18 @@
 package com.fund.flio.ui.main.market;
 
+import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
-import androidx.core.view.ViewCompat;
 import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
 
 import com.fund.flio.R;
-import com.fund.flio.data.model.Banner;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.ui.main.MainActivity;
-import com.fund.flio.ui.main.product.ProductFragmentDirections;
 
 public class ItemProductViewModel {
 
@@ -35,11 +35,18 @@ public class ItemProductViewModel {
 //        FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
 //                .addSharedElement(v, "image" + mProduct.getPid())
 //                .build();
-//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_market_to_nav_market_product,extras);
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_market_to_nav_market_product);
 //        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionNavMarketToNavMarketProduct(false), extras);
 //        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_market_to_nav_market_product, null, null, extras);
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionNavMarketToNavMarketProduct(false));
+//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionNavMarketToNavMarketProduct(false));
 //        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionNavMarketToNavMarketProduct(false),extras);
+
+//        FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+//                .
+//                .build();
+//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionNavMarketToNavMarketProduct(false),extras);
+
+
     }
 
 }

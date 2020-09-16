@@ -13,16 +13,15 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class News implements Serializable {
 
-    private String id;
+    private String newsId;
 
     private String title;
 
     private String date;
 
-    private String imageUrl;
+    private String description;
 
-    @SerializedName("token")
-    private String firebaseToken;
+    private String imageUrl;
 
 
 }

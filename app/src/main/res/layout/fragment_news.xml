@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.news.NewsViewModel" />
+            type="com.fund.flio.ui.main.community.news.NewsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,85 +17,35 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/purple"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/black3"
-            app:tabTextColor="@color/gray9">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="플리오뉴스" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="플리오 인증" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="홍보 / 행사" />
-
-
-        </com.google.android.material.tabs.TabLayout>
-
-        <TextView
-            android:id="@+id/subTabs"
-            android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@color/grayF0"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:text="전체 세미나/강좌 청음회 구인구직 기타"
-            android:textColor="@color/gray6"
-            app:layout_constraintTop_toBottomOf="@id/tabs" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="@null"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/black3"
+            app:tabTextColor="@color/gray9" />
 
-        <TextView
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="14dp"
-            android:text="추천 매물"
-            android:textColor="@color/gray9"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/products"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/subTabs" />
-
-        <TextView
-            android:id="@+id/filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="14dp"
-            android:text="인기순"
-            android:textColor="@color/gray9"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/products"
-            app:layout_constraintEnd_toEndOf="@id/products"
-            app:layout_constraintTop_toBottomOf="@id/subTabs" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/grayCB"
+            app:layout_constraintBottom_toBottomOf="@id/tabs" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/products"
+            android:id="@+id/news"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            tools:listitem="@layout/item_product" />
+            app:layout_constraintTop_toBottomOf="@id/tabs"
+            tools:listitem="@layout/item_news" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

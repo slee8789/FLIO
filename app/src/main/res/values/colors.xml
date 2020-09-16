@@ -8,15 +8,22 @@
     <color name="grayCE">#cecece</color>
     <color name="grayF1">#F1F1F1</color>
     <color name="grayCB">#CBCBCB</color>
+    <color name="grayC7">#C7C7C7</color>
+    <color name="grayD">#DDDDDD</color>
     <color name="grayD2">#D2D2D2</color>
     <color name="grayE5">#E5E5E5</color>
+    <color name="grayF4">#F4F4F4</color>
+    <color name="grayF5">#F5F5F5</color>
+    <color name="grayF8">#F8F8F8</color>
     <color name="gray6">#666666</color>
     <color name="gray9">#999999</color>
+    <color name="grayDBCECE">#DBCECE</color>
     <color name="black0">#000000</color>
     <color name="black3">#333333</color>
     <color name="colorOverlay">#78FFFFFF</color>
     <color name="purple">#6F5AFF</color>
     <color name="purple2">#993ACD</color>
+    <color name="purple3">#A982FF</color>
 
 
 </resources>

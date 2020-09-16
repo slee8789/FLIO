@@ -1,20 +1,21 @@
 package com.fund.flio.ui.main;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.fund.flio.BR;
@@ -22,9 +23,9 @@ import com.fund.flio.BuildConfig;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthenticationState;
+
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.ui.base.BaseActivity;
-import com.fund.flio.utils.BottomNavigationViewBehavior;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -125,10 +126,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void initViews() {
-        setSupportActionBar(getViewDataBinding().toolbar);
         mNavController = Navigation.findNavController(this, R.id.fragment_container);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(mNavController.getGraph()).build();
-        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, mNavController);
         NavigationUI.setupWithNavController(getViewDataBinding().navigationBottom, mNavController);
         mNavController.addOnDestinationChangedListener(this);
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
@@ -137,10 +135,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
-        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
+        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getNavigatorName() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
         switch (authenticationState) {
             case NONE:
-                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+                switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {
+                    case R.id.nav_home:
+                        Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_intro);
+                        break;
+
+                }
+
+
                 break;
             case UNAUTHENTICATED:
                 Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_more_to_nav_login);
@@ -207,18 +212,43 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         switch (destination.getId()) {
             case R.id.nav_intro:
             case R.id.nav_login:
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
-                getViewDataBinding().toolbar.setVisibility(View.GONE);
+                break;
+            case R.id.nav_market_product:
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().navigationBottom.setVisibility(View.GONE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;
 
             case R.id.nav_chat_detail:
-            case R.id.nav_market_product:
+            case R.id.nav_sell_list:
+            case R.id.nav_search:
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                break;
+
+            case R.id.nav_home:
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
                 break;
 
             default:
-                getViewDataBinding().toolbar.setVisibility(View.VISIBLE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;
         }
     }

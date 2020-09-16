@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.chat.detail.ItemChatViewModel" />
+            type="com.fund.flio.ui.main.message.chat.detail.ItemChatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:background="@drawable/bg_item_chat_remote"
-            android:gravity="center"
+            android:gravity="start"
             android:minWidth="30dp"
             android:minHeight="30dp"
             android:paddingHorizontal="15dp"

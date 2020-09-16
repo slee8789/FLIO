@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.fund.flio.ui.main.market.MarketViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="com.fund.flio.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,107 +19,43 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <include
+            layout="@layout/toolbar"
+            app:onBookmarkClick="@{v -> mainViewModel.onBookmarkClick(v)}"
+            app:onSearchClick="@{v -> mainViewModel.onSearchClick(v)}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/grayDBCECE"
+            app:layout_constraintBottom_toBottomOf="@id/tabs" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="@color/purple"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:tabIndicatorColor="@color/purple3"
+            app:tabIndicatorHeight="1dp"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/black3"
-            app:tabTextColor="@color/gray9">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:text="전체" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="스피커" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="마이크" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:text="케이블" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="앰프" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="소스기기" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="이어폰/헤드셋" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="음향장비" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="음반/악기" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="악세사리" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="DIY" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="헤드폰" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="악기" />
-        </com.google.android.material.tabs.TabLayout>
+            app:tabSelectedTextColor="@color/purple3"
+            app:tabTextColor="@color/gray9" />
 
 
-        <TextView
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/subTabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@color/grayF0"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="20dp"
-            android:text="1인방송 홈레코딩 하이파이 프로장비"
-            android:textColor="@color/gray6"
-            app:layout_constraintTop_toBottomOf="@id/tabs" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray9"
-            app:layout_constraintTop_toTopOf="@id/subTabs" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grayCB"
-            app:layout_constraintBottom_toBottomOf="@id/subTabs" />
+            app:layout_constraintTop_toBottomOf="@id/tabs"
+            app:tabIndicatorColor="@null"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/black3"
+            app:tabTextColor="@color/gray9" />
 
         <TextView
             android:id="@+id/header"
@@ -136,7 +76,7 @@
             android:id="@+id/filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="14dp"
             android:text="인기순"
@@ -151,9 +91,8 @@
             android:id="@+id/products"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:clipToPadding="false"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

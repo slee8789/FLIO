@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.chat.profile.ChatProfileViewModel" />
+            type="com.fund.flio.ui.main.message.chat.profile.ChatProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

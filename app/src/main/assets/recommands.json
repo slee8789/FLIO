@@ -1,6 +1,6 @@
 [
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -8,7 +8,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/500/500",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": false,
@@ -16,7 +16,7 @@
     "price": "100만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -24,7 +24,7 @@
     "price": "9999999만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -32,7 +32,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -40,7 +40,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -48,7 +48,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -56,7 +56,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -64,7 +64,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,
@@ -72,7 +72,7 @@
     "price": "30만원"
   },
   {
-    "imageUrl": "https://picsum.photos/170/170",
+    "imageUrl": "https://picsum.photos/150/170",
     "isFlio": true,
     "isFaith": true,
     "isLike": true,

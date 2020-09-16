@@ -1,12 +1,30 @@
 [
   {
-    "imageUrl": "https://picsum.photos/66/66",
-    "isFlio": true,
-    "isFaith": true,
-    "isLike": true,
-    "comment": "오디오 추천합니다.",
-    "price": "30만원",
+    "messageId": 0,
+    "time": 123,
+    "message": "무슨 역으로 가면 될까요?",
+    "messageType": 0,
     "imageUrl": "https://picsum.photos/65/56"
   },
-
+  {
+    "messageId": 1,
+    "time": 123,
+    "message": "안녕하세요.",
+    "messageType": 1,
+    "imageUrl": "https://picsum.photos/65/56"
+  },
+  {
+    "messageId": 2,
+    "time": 123,
+    "message": "안녕하세요~~^^\n바로 구매하실건가요?",
+    "messageType": 2,
+    "imageUrl": "https://picsum.photos/65/56"
+  },
+  {
+    "messageId": 3,
+    "time": 123,
+    "message": "무슨 역으로 가면 될까요?",
+    "messageType": 1,
+    "imageUrl": "https://picsum.photos/65/56"
+  }
 ]

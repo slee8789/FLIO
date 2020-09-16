@@ -63,23 +63,23 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
 
     public void postAuthToken(AuthType authType, String authToken) {
         Logger.d("postAuthToken");
-        getCompositeDisposable().add(getDataManager().postAuthToken(new TokenBody(authType.getType(), authToken))
+        getCompositeDisposable().add(getDataManager().postAuthToken(new TokenBody(authType.getType(), authToken, getDataManager().getMessageToken()))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().io())
-                .subscribe(firebaseToken -> {
-                    Logger.d("postAuthToken result " + firebaseToken.body().getFirebaseToken());
-                    firebaseLogin(authType, firebaseToken.body().getFirebaseToken());
+                .subscribe(userToken -> {
+                    Logger.d("postAuthToken result " + userToken.body().getUserToken());
+                    firebaseLogin(authType, userToken.body().getUserToken());
                 }, onError -> {
                     Logger.e("postAuthToken error " + onError);
                 }));
     }
 
-    public void firebaseLogin(AuthType authType, String firebaseToken) {
-        Logger.d("firebaseLogin authType " + authType + ", firebaseToken " + firebaseToken);
-        mFirebaseAuth.signInWithCustomToken(firebaseToken).addOnCompleteListener(task -> {
+    public void firebaseLogin(AuthType authType, String userToken) {
+        Logger.d("firebaseLogin authType " + authType + ", firebaseToken " + userToken);
+        mFirebaseAuth.signInWithCustomToken(userToken).addOnCompleteListener(task -> {
             Logger.i("Firebase Auth Success " + mFirebaseAuth.getCurrentUser());
             getDataManager().setAuthType(authType.getType());
-            getDataManager().setFirebaseToken(firebaseToken);
+            getDataManager().setUserToken(userToken);
             authenticationState.setValue(AuthenticationState.AUTHENTICATED);
         });
     }
@@ -120,12 +120,12 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                     if (task.isSuccessful()) {
                         Logger.d("firebaseAuthWithGoogle success ");
                         //Todo : uid 값 string으로 대체
-                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(mFirebaseAuth.getCurrentUser().getUid(), acct.getEmail(), acct.getDisplayName(), acct.getPhotoUrl().toString(), acct.getIdToken()))
+                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(mFirebaseAuth.getCurrentUser().getUid(), acct.getEmail(), acct.getDisplayName(), acct.getPhotoUrl().toString(),null, acct.getIdToken(), getDataManager().getMessageToken()))
                                 .observeOn(getSchedulerProvider().ui())
                                 .subscribeOn(getSchedulerProvider().io())
                                 .subscribe(Void -> {
                                     getDataManager().setAuthType(AuthType.GOOGLE.getType());
-                                    getDataManager().setFirebaseToken(acct.getIdToken());
+                                    getDataManager().setUserToken(acct.getIdToken());
                                     authenticationState.setValue(AuthenticationState.AUTHENTICATED);
                                 }));
                     } else {
@@ -165,7 +165,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
         mFirebaseAuth.signOut();
         setIsLoading(false);
         getDataManager().setAuthType(AuthType.NONE.getType());
-        getDataManager().setFirebaseToken(null);
+        getDataManager().setUserToken(null);
         authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
     }
 

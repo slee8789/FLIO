@@ -23,6 +23,10 @@
         app:popUpTo="@id/nav_home"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/action_global_to_nav_search"
+        app:destination="@id/nav_search" />
+
     <fragment
         android:id="@+id/nav_intro"
         android:name="com.fund.flio.ui.main.intro.IntroFragment"
@@ -79,9 +83,6 @@
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_nav_home_to_nav_chat_list"
-            app:destination="@id/nav_chat_list" />
-        <action
             android:id="@+id/action_nav_home_to_nav_market_product"
             app:destination="@id/nav_market_product"
             app:enterAnim="@anim/slide_in_right"
@@ -102,49 +103,53 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_news"
-        android:name="com.fund.flio.ui.main.news.NewsFragment"
-        tools:layout="@layout/fragment_news" />
+        android:id="@+id/nav_community"
+        android:name="com.fund.flio.ui.main.community.CommunityFragment"
+        tools:layout="@layout/fragment_community" />
 
     <fragment
-        android:id="@+id/nav_alarm"
-        android:name="com.fund.flio.ui.main.alarm.AlarmFragment"
-        tools:layout="@layout/fragment_alarm">
+        android:id="@+id/nav_message"
+        android:name="com.fund.flio.ui.main.message.MessageFragment"
+        tools:layout="@layout/fragment_message">
 
+        <action
+            android:id="@+id/action_nav_message_to_nav_chat_detail"
+            app:destination="@id/nav_chat_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_more"
-        android:name="com.fund.flio.ui.main.more.MoreFragment"
-        tools:layout="@layout/fragment_more">
+        android:id="@+id/nav_my_page"
+        android:name="com.fund.flio.ui.main.mypage.MyPageFragment"
+        tools:layout="@layout/fragment_my_page">
 
         <action
             android:id="@+id/action_nav_more_to_nav_login"
             app:destination="@id/nav_login"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_chat_list"
-        android:name="com.fund.flio.ui.main.chat.list.ChatListFragment"
-        tools:layout="@layout/fragment_chat_list">
-
         <action
-            android:id="@+id/action_nav_chat_list_to_nav_chat_detail"
-            app:destination="@id/nav_chat_detail" />
+            android:id="@+id/action_nav_my_page_to_nav_sell_list"
+            app:destination="@id/nav_sell_list" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_chat_detail"
-        android:name="com.fund.flio.ui.main.chat.detail.ChatDetailFragment"
+        android:name="com.fund.flio.ui.main.message.chat.detail.ChatDetailFragment"
         tools:layout="@layout/fragment_chat_detail">
+
+        <argument
+            android:name="chatSeq"
+            app:argType="integer" />
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_market_product"
-        android:name="com.fund.flio.ui.main.product.ProductFragment"
+        android:name="com.fund.flio.ui.main.market.product.ProductFragment"
         tools:layout="@layout/fragment_product">
 
         <argument
@@ -153,6 +158,20 @@
         <action
             android:id="@+id/action_nav_market_product_self"
             app:destination="@id/nav_market_product" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_sell_list"
+        android:name="com.fund.flio.ui.main.mypage.selllist.SellListFragment"
+        tools:layout="@layout/fragment_sell_list">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.fund.flio.ui.main.search.SearchFragment"
+        tools:layout="@layout/fragment_search">
 
     </fragment>
 

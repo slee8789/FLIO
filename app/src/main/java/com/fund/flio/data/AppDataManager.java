@@ -3,6 +3,9 @@ package com.fund.flio.data;
 
 
 import com.fund.flio.data.local.prefs.PreferencesHelper;
+import com.fund.flio.data.model.ChatRoom;
+import com.fund.flio.data.model.ChatRoomWrapper;
+import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.ChatInsertBody;
@@ -10,6 +13,8 @@ import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -51,23 +56,33 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> selectMyChat(ChatListBody chatListBody) {
+    public Single<Response<ChatRoomWrapper>> selectMyChat(ChatListBody chatListBody) {
         return mFlioApi.selectMyChat(chatListBody);
     }
 
     @Override
-    public Single<Response<Void>> selectMyChatDetail(ChatDetailBody chatDetailBody) {
+    public Single<Response<MessageWrapper>> selectMyChatDetail(ChatDetailBody chatDetailBody) {
         return mFlioApi.selectMyChatDetail(chatDetailBody);
     }
 
     @Override
-    public String getFirebaseToken() {
-        return mPreferences.getFirebaseToken();
+    public String getUserToken() {
+        return mPreferences.getUserToken();
     }
 
     @Override
-    public void setFirebaseToken(String firebaseToken) {
-        mPreferences.setFirebaseToken(firebaseToken);
+    public void setUserToken(String firebaseToken) {
+        mPreferences.setUserToken(firebaseToken);
+    }
+
+    @Override
+    public String getMessageToken() {
+        return mPreferences.getMessageToken();
+    }
+
+    @Override
+    public void setMessageToken(String messageToken) {
+        mPreferences.setMessageToken(messageToken);
     }
 
     @Override

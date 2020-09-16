@@ -2,9 +2,13 @@ package com.fund.flio.data.local.prefs;
 
 public interface PreferencesHelper {
 
-    String getFirebaseToken();
+    String getUserToken();
 
-    void setFirebaseToken(String firebaseToken);
+    void setUserToken(String userToken);
+
+    String getMessageToken();
+
+    void setMessageToken(String messageToken);
 
     String getAuthType();
 

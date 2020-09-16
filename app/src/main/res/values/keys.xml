@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="key_auth_type">key_auth_type</string>
-    <string name="key_firebase_token">key_firebase_token</string>
+    <string name="key_user_token">key_user_token</string>
+    <string name="key_message_token">key_message_token</string>
 
 
 </resources>

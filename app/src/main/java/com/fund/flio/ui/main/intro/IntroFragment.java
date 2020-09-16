@@ -3,19 +3,15 @@ package com.fund.flio.ui.main.intro;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthType;
-import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.FragmentIntroBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
@@ -24,15 +20,9 @@ import com.fund.flio.ui.main.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import eightbitlab.com.blurview.RenderScriptBlur;
-import lombok.val;
-
-import static io.reactivex.annotations.SchedulerSupport.NONE;
 
 
 public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewModel> {
@@ -71,7 +61,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     }
 
     private final Observer<Boolean> introDelayObserver = isIntroFinished -> {
-        Logger.d("IntroDelayObserver " + dataManager.getFirebaseToken() + ", auth type " + dataManager.getAuthType());
+        Logger.d("IntroDelayObserver " + dataManager.getUserToken() + ", auth type " + dataManager.getAuthType());
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
 //            NavOptions navOptions = new NavOptions.Builder()
 //                    .setEnterAnim(R.anim.slide_in_bottom)
@@ -82,7 +72,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
             Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_intro_to_nav_login);
 //            Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(IntroFragmentDirections.actionNavIntroToNavLogin(), navOptions);
         } else {
-            authViewModel.firebaseLogin(AuthType.valueOf(dataManager.getAuthType()), dataManager.getFirebaseToken());
+            authViewModel.firebaseLogin(AuthType.valueOf(dataManager.getAuthType()), dataManager.getUserToken());
         }
 
     };

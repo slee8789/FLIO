@@ -1,21 +1,23 @@
 package com.fund.flio.ui.main;
 
-import com.fund.flio.ui.main.alarm.AlarmFragment;
-import com.fund.flio.ui.main.certificate.CertificateFragment;
-import com.fund.flio.ui.main.channel.ChannelFragment;
-import com.fund.flio.ui.main.chat.detail.ChatDetailFragment;
-import com.fund.flio.ui.main.chat.list.ChatListFragment;
-import com.fund.flio.ui.main.chat.profile.ChatProfileFragment;
-import com.fund.flio.ui.main.detail.DetailFragment;
-import com.fund.flio.ui.main.event.EventFragment;
-import com.fund.flio.ui.main.favorte.FavoriteFragment;
+import com.fund.flio.ui.main.message.MessageFragment;
+import com.fund.flio.ui.main.message.alarm.AlarmFragment;
+import com.fund.flio.ui.main.community.certificate.CertificateFragment;
+import com.fund.flio.ui.main.message.chat.detail.ChatDetailFragment;
+import com.fund.flio.ui.main.message.chat.list.ChatListFragment;
+import com.fund.flio.ui.main.message.chat.profile.ChatProfileFragment;
+import com.fund.flio.ui.main.community.news.NewsFragment;
+import com.fund.flio.ui.main.community.event.EventFragment;
 import com.fund.flio.ui.main.home.HomeFragment;
 import com.fund.flio.ui.main.intro.IntroFragment;
 import com.fund.flio.ui.main.login.LoginFragment;
 import com.fund.flio.ui.main.market.MarketFragment;
-import com.fund.flio.ui.main.more.MoreFragment;
-import com.fund.flio.ui.main.news.NewsFragment;
-import com.fund.flio.ui.main.product.ProductFragment;
+import com.fund.flio.ui.main.mypage.MyPageFragment;
+import com.fund.flio.ui.main.community.CommunityFragment;
+import com.fund.flio.ui.main.mypage.selled.SelledFragment;
+import com.fund.flio.ui.main.mypage.selling.SellingFragment;
+import com.fund.flio.ui.main.mypage.selllist.SellListFragment;
+import com.fund.flio.ui.main.market.product.ProductFragment;
 import com.fund.flio.ui.main.search.SearchFragment;
 
 import dagger.Module;
@@ -34,9 +36,6 @@ public abstract class FragmentProvider {
     abstract HomeFragment provideHome();
 
     @ContributesAndroidInjector
-    abstract DetailFragment provideDetail();
-
-    @ContributesAndroidInjector
     abstract ChatListFragment provideChatList();
 
     @ContributesAndroidInjector
@@ -46,16 +45,7 @@ public abstract class FragmentProvider {
     abstract ChatProfileFragment provideChatProfile();
 
     @ContributesAndroidInjector
-    abstract NewsFragment provideNews();
-
-    @ContributesAndroidInjector
-    abstract SearchFragment provideSearch();
-
-    @ContributesAndroidInjector
-    abstract ChannelFragment provideChannel();
-
-    @ContributesAndroidInjector
-    abstract FavoriteFragment provideFavorite();
+    abstract CommunityFragment provideCommunity();
 
     @ContributesAndroidInjector
     abstract MarketFragment provideMarket();
@@ -64,7 +54,7 @@ public abstract class FragmentProvider {
     abstract AlarmFragment provideAlarm();
 
     @ContributesAndroidInjector
-    abstract MoreFragment provideMore();
+    abstract MyPageFragment provideMore();
 
     @ContributesAndroidInjector
     abstract EventFragment provideEvent();
@@ -73,7 +63,25 @@ public abstract class FragmentProvider {
     abstract CertificateFragment provideCertificate();
 
     @ContributesAndroidInjector
+    abstract NewsFragment provideNews();
+
+    @ContributesAndroidInjector
     abstract ProductFragment provideProduct();
+
+    @ContributesAndroidInjector
+    abstract MessageFragment provideMessage();
+
+    @ContributesAndroidInjector
+    abstract SellListFragment provideSellList();
+
+    @ContributesAndroidInjector
+    abstract SellingFragment provideSelling();
+
+    @ContributesAndroidInjector
+    abstract SelledFragment provideSelled();
+
+    @ContributesAndroidInjector
+    abstract SearchFragment provideSearch();
 
 
 }

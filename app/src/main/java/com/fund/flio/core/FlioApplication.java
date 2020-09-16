@@ -13,6 +13,7 @@ import com.fund.flio.BuildConfig;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.di.component.DaggerAppComponent;
+import com.fund.flio.utils.Foreground;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.kakao.auth.IApplicationConfig;
 import com.kakao.auth.KakaoAdapter;
@@ -59,6 +60,7 @@ public class FlioApplication extends Application implements HasAndroidInjector, 
     public void onCreate() {
         super.onCreate();
         Logger.d("FLIO Application onCreate");
+        Foreground.init(this);
         DaggerAppComponent.builder()
                 .application(this)
                 .build()

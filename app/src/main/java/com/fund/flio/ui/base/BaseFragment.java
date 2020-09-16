@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fund.flio.di.ViewModelProviderFactory;
+import com.fund.flio.ui.main.MainViewModel;
 import com.orhanobut.logger.Logger;
 
 import javax.inject.Inject;
@@ -32,6 +33,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     private T mViewDataBinding;
     private V mViewModel;
     private ViewModelProvider viewModelProvider;
+    private MainViewModel mainViewModel;
 
     public ViewModelProvider getViewModelProvider() {
         return viewModelProvider;
@@ -44,6 +46,10 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     int getLayoutId();
 
     public abstract V getViewModel();
+
+    public MainViewModel getMainViewModel() {
+        return mainViewModel;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -58,6 +64,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     public void onCreate(@Nullable Bundle savedInstanceState) {
         performDependencyInjection();
         viewModelProvider = new ViewModelProvider(getViewModelStore(), viewModelProviderFactory);
+        mainViewModel = viewModelProvider.get(MainViewModel.class);
         super.onCreate(savedInstanceState);
         mViewModel = getViewModel();
         setHasOptionsMenu(false);

@@ -14,7 +14,6 @@ public class ApiDefine {
         String TEST_INSERT = "v2/local/geo/coord2address.json";
         String TEST_IMAGE_UPLOAD = "board/insertBoard";
 
-
         String AUTH_TOKEN = "verifyToken";
         String INSERT_USER = "user/insertUser";
 

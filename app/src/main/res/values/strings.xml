@@ -26,4 +26,8 @@
     <string name="header_certificated">플리오 인증</string>
 
     <string name="description_item_recommend">recommend</string>
+
+    <string name="search_popular">인기검색어</string>
+    <string name="search_description">플리오가 추천하는, <font color='#6F5AFF'>오디오</font></string>
+
 </resources>

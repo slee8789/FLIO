@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.alarm.AlarmViewModel" />
+            type="com.fund.flio.ui.main.message.alarm.AlarmViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <include layout="@layout/toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

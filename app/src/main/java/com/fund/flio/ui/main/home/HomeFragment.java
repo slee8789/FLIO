@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -15,22 +14,17 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.google.firebase.auth.FirebaseAuth;
+import com.fund.flio.ui.main.MainViewModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.orhanobut.logger.Logger;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
 
-import static com.fund.flio.utils.ViewUtils.readMovieJson;
+import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
@@ -65,11 +59,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getViewDataBinding().setMainViewModel(getMainViewModel());
         initViews();
 
         getViewDataBinding().headerRecommends.setOnClickListener(v -> {
@@ -84,7 +80,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Recommend> testRecommends = new Gson().fromJson(readMovieJson(getContext(),"recommands.json"), new TypeToken<List<Recommend>>() {
+        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(),"recommands.json"), new TypeToken<List<Recommend>>() {
         }.getType());
         mRecommendAdapter.addItems(testRecommends);
 

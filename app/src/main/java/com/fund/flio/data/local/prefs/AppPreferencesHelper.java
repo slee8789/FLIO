@@ -2,9 +2,6 @@ package com.fund.flio.data.local.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
 
 import com.fund.flio.R;
 import com.fund.flio.data.enums.AuthType;
@@ -25,13 +22,23 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
-    public String getFirebaseToken() {
-        return mPrefs.getString(context.getString(R.string.key_firebase_token), null);
+    public String getUserToken() {
+        return mPrefs.getString(context.getString(R.string.key_user_token), null);
     }
 
     @Override
-    public void setFirebaseToken(String fcmToken) {
-        mPrefs.edit().putString(context.getString(R.string.key_firebase_token), fcmToken).apply();
+    public void setUserToken(String fcmToken) {
+        mPrefs.edit().putString(context.getString(R.string.key_user_token), fcmToken).apply();
+    }
+
+    @Override
+    public String getMessageToken() {
+        return mPrefs.getString(context.getString(R.string.key_message_token), null);
+    }
+
+    @Override
+    public void setMessageToken(String messageToken) {
+        mPrefs.edit().putString(context.getString(R.string.key_message_token), messageToken).apply();
     }
 
     @Override

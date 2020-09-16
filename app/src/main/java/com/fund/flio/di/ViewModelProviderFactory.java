@@ -11,20 +11,22 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainViewModel;
-import com.fund.flio.ui.main.alarm.AlarmViewModel;
-import com.fund.flio.ui.main.channel.ChannelViewModel;
-import com.fund.flio.ui.main.chat.detail.ChatDetailViewModel;
-import com.fund.flio.ui.main.chat.list.ChatListViewModel;
-import com.fund.flio.ui.main.chat.profile.ChatProfileViewModel;
-import com.fund.flio.ui.main.detail.DetailViewModel;
-import com.fund.flio.ui.main.favorte.FavoriteViewModel;
+import com.fund.flio.ui.main.market.product.ProductViewModel;
+import com.fund.flio.ui.main.message.MessageViewModel;
+import com.fund.flio.ui.main.message.alarm.AlarmViewModel;
+import com.fund.flio.ui.main.message.chat.detail.ChatDetailViewModel;
+import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
+import com.fund.flio.ui.main.message.chat.profile.ChatProfileViewModel;
+import com.fund.flio.ui.main.community.CommunityViewModel;
+import com.fund.flio.ui.main.community.certificate.CertificateViewModel;
+import com.fund.flio.ui.main.community.event.EventViewModel;
+import com.fund.flio.ui.main.community.news.NewsViewModel;
 import com.fund.flio.ui.main.home.HomeViewModel;
 import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
-import com.fund.flio.ui.main.more.MoreViewModel;
-import com.fund.flio.ui.main.news.NewsViewModel;
-import com.fund.flio.ui.main.product.ProductViewModel;
+import com.fund.flio.ui.main.mypage.MyPageViewModel;
+import com.fund.flio.ui.main.mypage.selllist.SellListViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -64,33 +66,37 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new LoginViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (HomeViewModel.class.isAssignableFrom(modelClass)) {
             return new HomeViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (DetailViewModel.class.isAssignableFrom(modelClass)) {
-            return new DetailViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChatListViewModel.class.isAssignableFrom(modelClass)) {
             return new ChatListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChatDetailViewModel.class.isAssignableFrom(modelClass)) {
-            return new ChatDetailViewModel(dataManager, schedulerProvider, resourceProvider);
+            return new ChatDetailViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else if (ChatProfileViewModel.class.isAssignableFrom(modelClass)) {
             return new ChatProfileViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (CommunityViewModel.class.isAssignableFrom(modelClass)) {
+            return new CommunityViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (NewsViewModel.class.isAssignableFrom(modelClass)) {
             return new NewsViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (FavoriteViewModel.class.isAssignableFrom(modelClass)) {
-            return new FavoriteViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (ChannelViewModel.class.isAssignableFrom(modelClass)) {
-            return new ChannelViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (SearchViewModel.class.isAssignableFrom(modelClass)) {
-            return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (MarketViewModel.class.isAssignableFrom(modelClass)) {
             return new MarketViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (AlarmViewModel.class.isAssignableFrom(modelClass)) {
             return new AlarmViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (MoreViewModel.class.isAssignableFrom(modelClass)) {
-            return new MoreViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (MyPageViewModel.class.isAssignableFrom(modelClass)) {
+            return new MyPageViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (AuthViewModel.class.isAssignableFrom(modelClass)) {
             return new AuthViewModel(context, dataManager, schedulerProvider, resourceProvider, oAuthLogin);
         } else if (ProductViewModel.class.isAssignableFrom(modelClass)) {
             return new ProductViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (CertificateViewModel.class.isAssignableFrom(modelClass)) {
+            return new CertificateViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (EventViewModel.class.isAssignableFrom(modelClass)) {
+            return new EventViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (MessageViewModel.class.isAssignableFrom(modelClass)) {
+            return new MessageViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (SellListViewModel.class.isAssignableFrom(modelClass)) {
+            return new SellListViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (SearchViewModel.class.isAssignableFrom(modelClass)) {
+            return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
-            throw new IllegalArgumentException("Unknown class name");
+            throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }
 }
