@@ -14,6 +14,6 @@ import lombok.EqualsAndHashCode;
 public class MessageWrapper {
 
     @SerializedName("data")
-    private List<Message> messages;
+    private List<Chat> chats;
 
 }

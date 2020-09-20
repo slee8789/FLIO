@@ -8,55 +8,106 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 
+import com.annimon.stream.Stream;
 import com.fund.flio.R;
+import com.fund.flio.core.FlioApplication;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.enums.MessageType;
-import com.fund.flio.data.model.Message;
+import com.fund.flio.data.model.Chat;
+import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.body.ChatDetailBody;
-import com.fund.flio.data.model.body.ChatInsertBody;
+import com.fund.flio.data.model.body.ChatListBody;
+import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.fund.flio.ui.main.MainActivity;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.fund.flio.utils.CommonUtils;
+import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
 
-import static com.fund.flio.utils.ViewUtils.readAssetJson;
+import lombok.Getter;
 
 public class ChatDetailViewModel extends BaseViewModel {
 
-    private int mChatSeq;
+    private Context mContext;
+
+    public int mChatSeq;
+    public boolean isSource;
+    private ChatRoom mChatRoom;
+    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     public ObservableField<String> inputMessage = new ObservableField<>();
+    public ObservableField<String> remoteUserName = new ObservableField<>();
+    public ObservableField<String> productName = new ObservableField<>();
+    public ObservableField<String> productPrice = new ObservableField<>();
 
-    private MutableLiveData<List<Message>> messages = new MutableLiveData<>();
+    public void setChatRoom(ChatRoom mChatRoom) {
+        this.mChatRoom = mChatRoom;
+        isSource = FirebaseAuth.getInstance().getUid().equals(mChatRoom.getChatSourceUid());
+        remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
+        productName.set(mChatRoom.getProductName());
+        productPrice.set(mChatRoom.getProductPrice());
+        selectMyChatDetail(mChatRoom.getChatSeq());
+    }
 
-    public MutableLiveData<List<Message>> getMessages() {
-        return messages;
+    private MutableLiveData<List<Chat>> chats = new MutableLiveData<>();
+
+    public MutableLiveData<List<Chat>> getChats() {
+        return chats;
     }
 
     public ChatDetailViewModel(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
+        mContext = context;
+        Logger.d("ChatDetailViewModel constructor");
         subscribeEvent();
-
-//        ArrayList<Message> dummyMessages = new Gson().fromJson(readAssetJson(context, "messages.json"), new TypeToken<List<Message>>() {
-//        }.getType());
-//        messages.setValue(dummyMessages);
     }
 
     private void subscribeEvent() {
         getCompositeDisposable().add(MessageBus.getInstance().getMessage()
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(message -> {
-                    messages.getValue().add(message);
-                    messages.setValue(messages.getValue());
+                    chats.getValue().add(message);
+                    chats.setValue(chats.getValue());
                 }));
+    }
+
+    public void selectMyChat(int chatSeq) {
+        mChatSeq = chatSeq;
+        getCompositeDisposable().add(getDataManager().selectMyChat(new ChatListBody(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                .concatMap(chatRooms -> {
+                    if (chatRooms.isSuccessful()) {
+                        setChatRoom(Stream.of(chatRooms.body().getChatRooms()).filter(chatRoom -> chatRoom.getChatSeq() == chatSeq).findFirst().get());
+                    }
+                    return getDataManager().selectMyChatDetail(new ChatDetailBody(chatSeq));
+                })
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(chats -> {
+                    if (chats.isSuccessful()) {
+                        chats.body().getChats().add(0, new Chat(chats.body().getChats().get(0).getChatDate(), MessageType.DATE.ordinal()));
+                        for (int i = 1; i < chats.body().getChats().size(); i++) {
+                            if (CommonUtils.diffOfDate(chats.body().getChats().get(i - 1).getChatDate(), chats.body().getChats().get(i).getChatDate()) != 0) {
+                                chats.body().getChats().add(i, new Chat(chats.body().getChats().get(i).getChatDate(), MessageType.DATE.ordinal()));
+                            } else {
+                                if (isSource) {
+                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.REMOTE.ordinal() : MessageType.LOCAL.ordinal());
+                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatTargetImageUrl());
+                                } else {
+                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.LOCAL.ordinal() : MessageType.REMOTE.ordinal());
+                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatSourceImageUrl());
+                                }
+                            }
+                        }
+                        this.chats.setValue(chats.body().getChats());
+                    }
+                }, onError -> Logger.e("chatRooms error " + onError)));
     }
 
     public void selectMyChatDetail(int chatSeq) {
@@ -64,9 +115,23 @@ public class ChatDetailViewModel extends BaseViewModel {
         getCompositeDisposable().add(getDataManager().selectMyChatDetail(new ChatDetailBody(chatSeq))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(messages -> {
-                    if (messages.isSuccessful()) {
-                        this.messages.setValue(messages.body().getMessages());
+                .subscribe(chats -> {
+                    if (chats.isSuccessful()) {
+                        chats.body().getChats().add(0, new Chat(chats.body().getChats().get(0).getChatDate(), MessageType.DATE.ordinal()));
+                        for (int i = 1; i < chats.body().getChats().size(); i++) {
+                            if (CommonUtils.diffOfDate(chats.body().getChats().get(i - 1).getChatDate(), chats.body().getChats().get(i).getChatDate()) != 0) {
+                                chats.body().getChats().add(i, new Chat(chats.body().getChats().get(i).getChatDate(), MessageType.DATE.ordinal()));
+                            } else {
+                                if (isSource) {
+                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.REMOTE.ordinal() : MessageType.LOCAL.ordinal());
+                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatTargetImageUrl());
+                                } else {
+                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.LOCAL.ordinal() : MessageType.REMOTE.ordinal());
+                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatSourceImageUrl());
+                                }
+                            }
+                        }
+                        this.chats.setValue(chats.body().getChats());
                     }
                 }, onError -> Logger.e("messages error " + onError)));
     }
@@ -75,17 +140,22 @@ public class ChatDetailViewModel extends BaseViewModel {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
     }
 
-
     public void onSend(View v) {
-        getCompositeDisposable().add(getDataManager().insertMyChatDetail(new ChatInsertBody(mChatSeq, inputMessage.get(), null))
+        getCompositeDisposable().add(getDataManager().sendMessage(new SendMessageBody(mChatSeq, isSource, getDataManager().getUserName(), inputMessage.get(), getDataManager().getUserImageUrl(), mChatRoom.getChatSourceMessageToken(), mChatRoom.getChatTargetMessageToken()))
                 .observeOn(getSchedulerProvider().ui())
                 .subscribeOn(getSchedulerProvider().io())
                 .subscribe(Void -> {
-                    messages.getValue().add(new Message(new Random().nextInt(), "123", inputMessage.get(), MessageType.LOCAL.ordinal()));
-                    messages.setValue(messages.getValue());
+                    Logger.d("test " + chatTimeFormat.format(System.currentTimeMillis()));
+                    chats.getValue().add(new Chat(mChatRoom.getChatSeq(), new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), inputMessage.get(), null, MessageType.LOCAL.ordinal()));
+                    chats.setValue(chats.getValue());
                     inputMessage.set("");
                 }));
 
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        Logger.d("ChatDetailViewModel onCleared");
+    }
 }

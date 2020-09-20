@@ -7,4 +7,17 @@
         <item name="colorAccent">@color/purple</item>
     </style>
 
+    <style name="ChipTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray9</item>
+    </style>
+
+    <style name="ChipStyle" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="chipStrokeColor">@color/grayE6</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipSpacing">4dp</item>
+        <item name="singleLine">false</item>
+    </style>
+
 </resources>

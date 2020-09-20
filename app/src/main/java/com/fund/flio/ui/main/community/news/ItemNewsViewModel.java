@@ -3,7 +3,6 @@ package com.fund.flio.ui.main.community.news;
 
 import androidx.databinding.ObservableField;
 
-import com.fund.flio.data.model.Message;
 import com.fund.flio.data.model.News;
 import com.orhanobut.logger.Logger;
 

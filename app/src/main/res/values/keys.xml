@@ -3,6 +3,8 @@
     <string name="key_auth_type">key_auth_type</string>
     <string name="key_user_token">key_user_token</string>
     <string name="key_message_token">key_message_token</string>
-
+    <string name="key_user_id">key_user_id</string>
+    <string name="key_user_name">key_user_name</string>
+    <string name="key_user_image_url">key_user_image_url</string>
 
 </resources>

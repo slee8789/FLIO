@@ -14,4 +14,5 @@ public class Product {
     private boolean isLike;
     private String comment;
     private String price;
+
 }

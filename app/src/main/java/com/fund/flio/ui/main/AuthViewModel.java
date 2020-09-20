@@ -80,6 +80,9 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
             Logger.i("Firebase Auth Success " + mFirebaseAuth.getCurrentUser());
             getDataManager().setAuthType(authType.getType());
             getDataManager().setUserToken(userToken);
+            getDataManager().setUserId(mFirebaseAuth.getUid());
+            getDataManager().setUserName(mFirebaseAuth.getCurrentUser().getDisplayName());
+            getDataManager().setUserImageUrl(mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
             authenticationState.setValue(AuthenticationState.AUTHENTICATED);
         });
     }
@@ -120,12 +123,15 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                     if (task.isSuccessful()) {
                         Logger.d("firebaseAuthWithGoogle success ");
                         //Todo : uid 값 string으로 대체
-                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(mFirebaseAuth.getCurrentUser().getUid(), acct.getEmail(), acct.getDisplayName(), acct.getPhotoUrl().toString(),null, acct.getIdToken(), getDataManager().getMessageToken()))
+                        getCompositeDisposable().add(getDataManager().postInsertUser(new User(mFirebaseAuth.getCurrentUser().getUid(), acct.getEmail(), acct.getDisplayName(), acct.getPhotoUrl().toString(), null, acct.getIdToken(), getDataManager().getMessageToken()))
                                 .observeOn(getSchedulerProvider().ui())
                                 .subscribeOn(getSchedulerProvider().io())
                                 .subscribe(Void -> {
                                     getDataManager().setAuthType(AuthType.GOOGLE.getType());
                                     getDataManager().setUserToken(acct.getIdToken());
+                                    getDataManager().setUserId(mFirebaseAuth.getUid());
+                                    getDataManager().setUserName(acct.getDisplayName());
+                                    getDataManager().setUserImageUrl(acct.getPhotoUrl().toString());
                                     authenticationState.setValue(AuthenticationState.AUTHENTICATED);
                                 }));
                     } else {

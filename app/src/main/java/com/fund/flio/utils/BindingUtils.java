@@ -2,6 +2,7 @@ package com.fund.flio.utils;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -15,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.fund.flio.R;
-import com.fund.flio.data.model.Message;
+import com.fund.flio.data.model.Chat;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -26,6 +27,11 @@ public final class BindingUtils {
 
     private BindingUtils() {
         // This class is not publicly instantiable
+    }
+
+    @BindingAdapter("enabled")
+    public static void enabled(ViewGroup viewGroup, boolean enable) {
+        viewGroup.setEnabled(enable);
     }
 
     @BindingAdapter({"imageUrl"})
@@ -81,9 +87,9 @@ public final class BindingUtils {
     }
 
     @BindingAdapter("listData")
-    public static void bindRecyclerView(RecyclerView recyclerView, List<Message> messages) {
-        Logger.d("bindRecyclerView " + messages);
-        ((ChatAdapter) Objects.requireNonNull(recyclerView.getAdapter())).setItems(messages);
+    public static void bindRecyclerView(RecyclerView recyclerView, List<Chat> chats) {
+        Logger.d("bindRecyclerView " + chats);
+        ((ChatAdapter) Objects.requireNonNull(recyclerView.getAdapter())).setItems(chats);
     }
 
 }

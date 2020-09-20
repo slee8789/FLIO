@@ -21,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.fund.flio.BR;
 import com.fund.flio.BuildConfig;
 import com.fund.flio.R;
+import com.fund.flio.core.FlioApplication;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthenticationState;
 
@@ -209,6 +210,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+        ((FlioApplication) getApplication()).setCurrentDestinationId(destination.getId());
         switch (destination.getId()) {
             case R.id.nav_intro:
             case R.id.nav_login:

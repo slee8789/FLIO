@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="2020년 8월 26일"
+            android:text="@{viewModel.chatDate}"
             android:textColor="@color/gray9"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"

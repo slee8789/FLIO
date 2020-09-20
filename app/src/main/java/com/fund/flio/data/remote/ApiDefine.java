@@ -19,7 +19,7 @@ public class ApiDefine {
 
         String SELECT_MY_CHAT = "chat/selectMyChat";
         String SELECT_MY_CHAT_DETAIL = "chat/selectMyChatDetail";
-        String INSERT_MY_CHAT_DETAIL = "chat/insertMyChatDetail";
+        String SEND_MESSAGE = "message/sendMessage";
 
     }
 

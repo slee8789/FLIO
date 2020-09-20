@@ -9,34 +9,44 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.data.enums.MessageType;
-import com.fund.flio.data.model.Message;
+import com.fund.flio.data.model.Chat;
 import com.fund.flio.databinding.ItemChatDateBinding;
 import com.fund.flio.databinding.ItemChatLocalBinding;
 import com.fund.flio.databinding.ItemChatRemoteBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
+import com.fund.flio.utils.CommonUtils;
 import com.orhanobut.logger.Logger;
 
+import java.util.Date;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<Message> messages;
+    private List<Chat> chats;
 
-    public ChatAdapter(List<Message> messages) {
-        this.messages = messages;
+    private ChatDetailViewModel chatDetailViewModel;
+
+    public void setChatDetailViewModel(ChatDetailViewModel chatDetailViewModel) {
+        Logger.d("ChatAdapter setChatDetailViewModel " + chatDetailViewModel);
+        this.chatDetailViewModel = chatDetailViewModel;
     }
 
-    public void addItems(List<Message> recommends) {
-        Logger.d("ChatAdapter addItems " + recommends.size());
-        this.messages.addAll(recommends);
+    public ChatAdapter(List<Chat> chats) {
+        this.chats = chats;
+    }
+
+    public void addItems(List<Chat> chats) {
+        Logger.d("ChatAdapter addItems " + chats.size());
+        this.chats.addAll(chats);
         notifyDataSetChanged();
     }
 
-    public void setItems(List<Message> messages) {
-        final MessageDiffCallback diffCallback = new MessageDiffCallback(this.messages, messages);
+    public void setItems(List<Chat> chats) {
+        final MessageDiffCallback diffCallback = new MessageDiffCallback(this.chats, chats);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-        this.messages.clear();
-        this.messages.addAll(messages);
+        this.chats.clear();
+        this.chats.addAll(chats);
         diffResult.dispatchUpdatesTo(this);
     }
 
@@ -65,12 +75,12 @@ public class ChatAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return messages.size();
+        return chats.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return messages.get(position).getMessageType();
+        return chats.get(position).getChatType();
     }
 
     public class MessageViewHolder extends BaseViewHolder {
@@ -96,21 +106,23 @@ public class ChatAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final Message message = messages.get(position);
-            Logger.d("onBind " + position + ", " + message);
-            ItemChatViewModel itemChatViewModel = new ItemChatViewModel(message);
-            switch (getItemViewType()) {
-                case 0:
+            final Chat chat = chats.get(position);
+            ItemChatViewModel itemChatViewModel = new ItemChatViewModel(chat);
+            MessageType[] messageTypes = MessageType.values();
+            switch (messageTypes[getItemViewType()]) {
+                case DATE:
                     chatDateBinding.setViewModel(itemChatViewModel);
                     chatDateBinding.executePendingBindings();
 
                     break;
-                case 1:
-                    chatLocalBinding.setViewModel(itemChatViewModel);
+                case LOCAL:
+                    chatLocalBinding.setItemViewModel(itemChatViewModel);
+                    chatLocalBinding.setViewModel(chatDetailViewModel);
                     chatLocalBinding.executePendingBindings();
                     break;
-                case 2:
-                    chatRemoteBinding.setViewModel(itemChatViewModel);
+                case REMOTE:
+                    chatRemoteBinding.setItemViewModel(itemChatViewModel);
+                    chatRemoteBinding.setViewModel(chatDetailViewModel);
                     chatRemoteBinding.executePendingBindings();
                     break;
             }
@@ -119,36 +131,36 @@ public class ChatAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     private static class MessageDiffCallback extends DiffUtil.Callback {
-        private final List<Message> oldMessages;
-        private final List<Message> newMessages;
+        private final List<Chat> oldChats;
+        private final List<Chat> newChats;
 
-        public MessageDiffCallback(List<Message> oldMessages, List<Message> newMessages) {
-            this.oldMessages = oldMessages;
-            this.newMessages = newMessages;
+        public MessageDiffCallback(List<Chat> oldChats, List<Chat> newChats) {
+            this.oldChats = oldChats;
+            this.newChats = newChats;
         }
 
         @Override
         public int getOldListSize() {
-            return oldMessages.size();
+            return oldChats.size();
         }
 
         @Override
         public int getNewListSize() {
-            return newMessages.size();
+            return newChats.size();
         }
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 //            Logger.d("areItemsTheSame " + oldItemPosition + ", " + newItemPosition + ", " + (oldMessages.get(oldItemPosition).getMessageId() == newMessages.get(newItemPosition).getMessageId()));
-            return oldMessages.get(oldItemPosition).getMessageId() == newMessages.get(newItemPosition).getMessageId();
+            return oldChats.get(oldItemPosition).getChatIndex() == newChats.get(newItemPosition).getChatIndex();
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            final Message oldMessage = oldMessages.get(oldItemPosition);
-            final Message newMessage = newMessages.get(newItemPosition);
+            final Chat oldChat = oldChats.get(oldItemPosition);
+            final Chat newChat = newChats.get(newItemPosition);
 //            Logger.d("areContentsTheSame " + oldMessage + ", " + newMessage + ", " + (oldMessage.equals(newMessage)));
-            return oldMessage.equals(newMessage);
+            return oldChat.equals(newChat);
         }
 
         @Nullable

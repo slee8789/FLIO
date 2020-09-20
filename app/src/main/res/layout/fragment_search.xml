@@ -35,8 +35,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="68dp"
             android:text="@string/search_popular"
-            android:textSize="12sp"
             android:textColor="@color/gray9"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -45,25 +45,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:textSize="24sp"
             android:layout_marginTop="9dp"
             android:text="@string/search_description"
             android:textColor="@color/black3"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_popular" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/products"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginHorizontal="20dp"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:clipToPadding="false"-->
-<!--            android:nestedScrollingEnabled="false"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/header_recommends"-->
-<!--            tools:listitem="@layout/item_recommend" />-->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/tag_popular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="17dp"
+            app:chipSpacing="4dp"
+            app:chipSpacingHorizontal="4dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_description"
+            app:singleLine="false">
+
+        </com.google.android.material.chip.ChipGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

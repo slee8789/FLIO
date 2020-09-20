@@ -142,8 +142,8 @@
         tools:layout="@layout/fragment_chat_detail">
 
         <argument
-            android:name="chatSeq"
-            app:argType="integer" />
+            android:name="chatRoom"
+            app:argType="com.fund.flio.data.model.ChatRoom" />
 
     </fragment>
 

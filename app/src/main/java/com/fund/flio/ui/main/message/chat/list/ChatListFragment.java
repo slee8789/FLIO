@@ -56,6 +56,12 @@ public class ChatListFragment extends BaseFragment<FragmentChatListBinding, Chat
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getViewModel().selectMyChat();
+    }
+
     private void initViews() {
         getViewDataBinding().chats.setAdapter(mChatListAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);

@@ -59,7 +59,7 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     @Override
     public ViewModel create(@NonNull Class modelClass) {
         if (MainViewModel.class.isAssignableFrom(modelClass)) {
-            return new MainViewModel(dataManager, schedulerProvider, resourceProvider, firebaseAuth);
+            return new MainViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else if (IntroViewModel.class.isAssignableFrom(modelClass)) {
             return new IntroViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (LoginViewModel.class.isAssignableFrom(modelClass)) {

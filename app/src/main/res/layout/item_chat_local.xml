@@ -5,8 +5,13 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="itemViewModel"
             type="com.fund.flio.ui.main.message.chat.detail.ItemChatViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.message.chat.detail.ChatDetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="오후 5:29"
+            android:text="@{itemViewModel.chatDate}"
             android:textColor="@color/gray9"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/message"
-            app:layout_constraintEnd_toStartOf="@id/message" />
+            app:layout_constraintBottom_toBottomOf="@id/chat"
+            app:layout_constraintEnd_toStartOf="@id/chat" />
 
         <TextView
-            android:id="@+id/message"
+            android:id="@+id/chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_item_chat_local"
@@ -35,7 +40,7 @@
             android:minHeight="30dp"
             android:paddingHorizontal="15dp"
             android:paddingVertical="4dp"
-            android:text="@{viewModel.message}"
+            android:text="@{viewModel.isSource ? itemViewModel.chatSourceMessage : itemViewModel.chatTargetMessage}"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"

@@ -3,27 +3,35 @@ package com.fund.flio.ui.main.message.chat.detail;
 
 import androidx.databinding.ObservableField;
 
-import com.fund.flio.data.model.Message;
+import com.fund.flio.data.enums.MessageType;
+import com.fund.flio.data.model.Chat;
 import com.orhanobut.logger.Logger;
+
+import static com.fund.flio.utils.CommonUtils.getChatDate;
+import static com.fund.flio.utils.CommonUtils.getChatTime;
 
 public class ItemChatViewModel {
 
-    public ObservableField<String> message = new ObservableField<>();
-    public ObservableField<String> time = new ObservableField<>();
+    public ObservableField<String> chat = new ObservableField<>();
+    public ObservableField<String> chatSourceMessage = new ObservableField<>();
+    public ObservableField<String> chatTargetMessage = new ObservableField<>();
+    public ObservableField<String> chatDate = new ObservableField<>();
     public ObservableField<String> imageUrl = new ObservableField<>();
 
-    public ItemChatViewModel(Message message) {
-        Logger.d("ItemChatViewModel " + message);
-        switch (message.getMessageType()) {
-            case 0:
-                this.time.set("2020년 8월 27일");
+    public ItemChatViewModel(Chat chat) {
+        Logger.d("ItemChatViewModel " + chat);
+        MessageType[] messageTypes = MessageType.values();
+
+        chatSourceMessage.set(chat.getChatSourceMessage());
+        chatTargetMessage.set(chat.getChatTargetMessage());
+        switch (messageTypes[chat.getChatType()]) {
+            case DATE:
+                chatDate.set(getChatDate(chat.getChatDate()));
                 break;
-            case 1:
-                this.message.set(message.getMessage());
-                break;
-            case 2:
-                this.message.set(message.getMessage());
-                imageUrl.set("https://k.kakaocdn.net/dn/bUomyI/btqDXEY6Ybm/0eJ7kQjwF6qwjztpV7QZGK/img_640x640.jpg");
+            case LOCAL:
+            case REMOTE:
+                chatDate.set(getChatTime(chat.getChatDate()));
+                imageUrl.set(chat.getImageUrl());
                 break;
         }
 

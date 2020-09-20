@@ -26,6 +26,8 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
+import lombok.Getter;
+import lombok.Setter;
 
 public class FlioApplication extends Application implements HasAndroidInjector, LifecycleObserver {
 
@@ -37,7 +39,10 @@ public class FlioApplication extends Application implements HasAndroidInjector, 
 
     private Thread.UncaughtExceptionHandler mUncaughtExceptionHandler;
 
-
+    //Todo : 임시
+    @Setter
+    @Getter
+    private int currentChatSeq, currentDestinationId;
 
     @Override
     public AndroidInjector<Object> androidInjector() {

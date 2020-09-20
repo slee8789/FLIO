@@ -1,16 +1,13 @@
 package com.fund.flio.data.remote;
 
 
-import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
-import com.fund.flio.data.model.body.ChatInsertBody;
+import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.Response;
@@ -41,9 +38,9 @@ public interface ApiHelper {
     Single<Response<MessageWrapper>> selectMyChatDetail(@Body ChatDetailBody chatDetailBody);
 
     // 채팅 메세지 저장
-    @POST(ApiDefine.Body.INSERT_MY_CHAT_DETAIL)
+    @POST(ApiDefine.Body.SEND_MESSAGE)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<Void>> insertMyChatDetail(@Body ChatInsertBody chatInsertBody);
+    Single<Response<Void>> sendMessage(@Body SendMessageBody sendMessageBody);
 
 
 }

@@ -3,18 +3,15 @@ package com.fund.flio.data;
 
 
 import com.fund.flio.data.local.prefs.PreferencesHelper;
-import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
-import com.fund.flio.data.model.body.ChatInsertBody;
+import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 
-
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,6 +38,36 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public String getUserId() {
+        return mPreferences.getUserId();
+    }
+
+    @Override
+    public void setUserId(String userId) {
+        mPreferences.setUserId(userId);
+    }
+
+    @Override
+    public String getUserName() {
+        return mPreferences.getUserName();
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        mPreferences.setUserName(userName);
+    }
+
+    @Override
+    public String getUserImageUrl() {
+        return mPreferences.getUserImageUrl();
+    }
+
+    @Override
+    public void setUserImageUrl(String userImageUrl) {
+        mPreferences.setUserImageUrl(userImageUrl);
+    }
+
+    @Override
     public Single<Response<User>> postAuthToken(TokenBody tokenBody) {
         return mAuthApi.postAuthToken(tokenBody);
     }
@@ -51,8 +78,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> insertMyChatDetail(ChatInsertBody chatInsertBody) {
-        return mFlioApi.insertMyChatDetail(chatInsertBody);
+    public Single<Response<Void>> sendMessage(SendMessageBody sendMessageBody) {
+        return mFlioApi.sendMessage(sendMessageBody);
     }
 
     @Override

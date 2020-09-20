@@ -22,6 +22,36 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
+    public String getUserId() {
+        return mPrefs.getString(context.getString(R.string.key_user_id), null);
+    }
+
+    @Override
+    public void setUserId(String userId) {
+        mPrefs.edit().putString(context.getString(R.string.key_user_id), userId).apply();
+    }
+
+    @Override
+    public String getUserName() {
+        return mPrefs.getString(context.getString(R.string.key_user_name), null);
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        mPrefs.edit().putString(context.getString(R.string.key_user_name), userName).apply();
+    }
+
+    @Override
+    public String getUserImageUrl() {
+        return mPrefs.getString(context.getString(R.string.key_user_image_url), null);
+    }
+
+    @Override
+    public void setUserImageUrl(String userImageUrl) {
+        mPrefs.edit().putString(context.getString(R.string.key_user_image_url), userImageUrl).apply();
+    }
+
+    @Override
     public String getUserToken() {
         return mPrefs.getString(context.getString(R.string.key_user_token), null);
     }
