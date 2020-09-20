@@ -136,7 +136,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
-        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getNavigatorName() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
+//        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getNavigatorName() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
         switch (authenticationState) {
             case NONE:
                 switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {

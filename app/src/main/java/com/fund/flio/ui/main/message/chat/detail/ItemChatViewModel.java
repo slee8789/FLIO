@@ -19,7 +19,7 @@ public class ItemChatViewModel {
     public ObservableField<String> imageUrl = new ObservableField<>();
 
     public ItemChatViewModel(Chat chat) {
-        Logger.d("ItemChatViewModel " + chat);
+//        Logger.d("ItemChatViewModel " + chat);
         MessageType[] messageTypes = MessageType.values();
 
         chatSourceMessage.set(chat.getChatSourceMessage());

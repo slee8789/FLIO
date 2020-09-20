@@ -87,12 +87,6 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
 
         getViewDataBinding().products.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         getViewDataBinding().products.setAdapter(mProductAdapter);
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
-//        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_15)));
-//        getViewDataBinding().products.addItemDecoration(dividerItemDecoration);
-//        DividerItemDecoration dividerItemDecoration2 = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
-//        dividerItemDecoration2.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal_12)));
-//        getViewDataBinding().products.addItemDecoration(dividerItemDecoration2);
         GridItemOffsetDecoration itemDecoration = new GridItemOffsetDecoration(getBaseActivity(), R.dimen.grid_item_offset);
         getViewDataBinding().products.addItemDecoration(itemDecoration);
         ArrayList<Product> testProducts = new Gson().fromJson(readAssetJson(getBaseActivity(), "recommands.json"), new TypeToken<List<Product>>() {

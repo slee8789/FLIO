@@ -5,7 +5,10 @@ import android.view.Gravity;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -13,6 +16,7 @@ import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentAlarmBinding;
 import com.fund.flio.databinding.FragmentSearchBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.home.RecommendAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.gson.Gson;
@@ -21,11 +25,17 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
 public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> {
+
+    @Inject
+    RecommendAdapter mRecommendAdapter;
 
     @Override
     public int getBindingVariable() {
@@ -45,7 +55,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("onCreate");
+//        Logger.i("onCreate");
         setHasOptionsMenu(true);
     }
 
@@ -63,11 +73,27 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
             Chip chip = new Chip(getContext());
             chip.setGravity(Gravity.CENTER);
             chip.setText(tag);
-            chip.setTextAppearanceResource(R.style.ChipTextStyle);
             chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip));
-
+            chip.setTextAppearanceResource(R.style.ChipTextStyle);
             getViewDataBinding().tagPopular.addView(chip);
         }
+
+        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
+        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
+        getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
+        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "recommands.json"), new TypeToken<List<Recommend>>() {
+        }.getType());
+        mRecommendAdapter.addItems(testRecommends);
+
+        getViewDataBinding().searchView.setOnClickListener(v -> Logger.d("onSearchClick"));
+        getViewDataBinding().searchView.setOnFocusChangeListener((v, hasFocus) -> {
+            Logger.d("onFocus " + hasFocus);
+        });
+        getViewDataBinding().searchView.setOnCloseListener(() -> {
+            Logger.d("onClose ");
+            return false;
+        });
     }
 
 }

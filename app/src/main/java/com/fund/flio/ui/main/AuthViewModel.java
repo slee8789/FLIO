@@ -75,9 +75,9 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
     }
 
     public void firebaseLogin(AuthType authType, String userToken) {
-        Logger.d("firebaseLogin authType " + authType + ", firebaseToken " + userToken);
+//        Logger.d("firebaseLogin authType " + authType + ", firebaseToken " + userToken);
         mFirebaseAuth.signInWithCustomToken(userToken).addOnCompleteListener(task -> {
-            Logger.i("Firebase Auth Success " + mFirebaseAuth.getCurrentUser());
+//            Logger.i("Firebase Auth Success " + mFirebaseAuth.getCurrentUser());
             getDataManager().setAuthType(authType.getType());
             getDataManager().setUserToken(userToken);
             getDataManager().setUserId(mFirebaseAuth.getUid());

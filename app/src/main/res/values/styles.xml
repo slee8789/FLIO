@@ -18,6 +18,11 @@
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipSpacing">4dp</item>
         <item name="singleLine">false</item>
+        <item name="android:textAppearance">@style/ChipTextStyle</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchHintIcon">@null</item>
     </style>
 
 </resources>

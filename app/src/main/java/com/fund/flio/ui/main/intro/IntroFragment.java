@@ -61,7 +61,7 @@ public class IntroFragment extends BaseFragment<FragmentIntroBinding, IntroViewM
     }
 
     private final Observer<Boolean> introDelayObserver = isIntroFinished -> {
-        Logger.d("IntroDelayObserver " + dataManager.getUserToken() + ", auth type " + dataManager.getAuthType());
+//        Logger.d("IntroDelayObserver " + dataManager.getUserToken() + ", auth type " + dataManager.getAuthType());
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
 //            NavOptions navOptions = new NavOptions.Builder()
 //                    .setEnterAnim(R.anim.slide_in_bottom)

@@ -44,7 +44,7 @@ public class IntroViewModel extends BaseViewModel {
                 }, onError -> {
 
                 }, () -> {
-                    Logger.i("progress onCompleted");
+//                    Logger.i("progress onCompleted");
                 }));
     }
 

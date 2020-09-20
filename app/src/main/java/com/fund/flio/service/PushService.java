@@ -80,7 +80,7 @@ public class PushService extends FirebaseMessagingService {
             createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
 
         } else {
-            Logger.d("flio app " + ((FlioApplication) getApplicationContext()).getCurrentChatSeq());
+//            Logger.d("flio app " + ((FlioApplication) getApplicationContext()).getCurrentChatSeq());
             if (((FlioApplication) getApplicationContext()).getCurrentDestinationId() == R.id.nav_chat_detail && ((FlioApplication) getApplicationContext()).getCurrentChatSeq() == chatSeq) {
                 MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
             } else {

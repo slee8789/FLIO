@@ -10,7 +10,7 @@ ext {
     annotation = '10.0-b28'
     stream = '1.2.1'
     multiDex = '2.0.1'
-    dagger = '2.28.3'
+    dagger = '2.29.1'
     tedPermission = '2.2.2'
     logger = '2.2.0'
     niceSpinner = '1.4.4'
