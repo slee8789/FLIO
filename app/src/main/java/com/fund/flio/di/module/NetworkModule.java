@@ -4,6 +4,10 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.fund.flio.BuildConfig;
 import com.fund.flio.data.remote.ApiHelper;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+
+import javax.annotation.Nullable;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -11,6 +15,7 @@ import dagger.Module;
 import dagger.Provides;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;
+import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -36,7 +41,6 @@ public class NetworkModule {
                 .build();
     }
 
-
     @Provides
     @Singleton
     @Named("flio")
@@ -61,7 +65,6 @@ public class NetworkModule {
                 .build();
     }
 
-
     @Provides
     @Singleton
     @Named("flio")
@@ -75,7 +78,5 @@ public class NetworkModule {
     ApiHelper provideAuthApiHelper(@Named("auth") Retrofit retrofit) {
         return retrofit.create(ApiHelper.class);
     }
-
-
 
 }

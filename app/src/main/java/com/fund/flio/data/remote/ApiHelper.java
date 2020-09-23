@@ -7,6 +7,7 @@ import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
+import com.fund.flio.data.model.body.TestBody;
 import com.fund.flio.data.model.body.TokenBody;
 
 import io.reactivex.rxjava3.core.Single;
@@ -41,6 +42,5 @@ public interface ApiHelper {
     @POST(ApiDefine.Body.SEND_MESSAGE)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<Void>> sendMessage(@Body SendMessageBody sendMessageBody);
-
 
 }

@@ -26,6 +26,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.AuthenticationState;
 
 import com.fund.flio.databinding.ActivityMainBinding;
+import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -47,6 +48,11 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
+import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 import static com.fund.flio.core.AppConstant.RC_KAKAO_SIGN_IN;
@@ -59,6 +65,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Inject
     DataManager dataManager;
+
+    @Inject
+    SchedulerProvider schedulerProvider;
 
     private NavController mNavController;
     private GoogleApiClient googleApiClient;
@@ -237,6 +246,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;
 
+
             case R.id.nav_home:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
@@ -264,12 +274,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //                mNavController.popBackStack(R.id.nav_home, true);
 //                break;
 //
-//            case R.id.nav_home:
 
             default:
                 super.onBackPressed();
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

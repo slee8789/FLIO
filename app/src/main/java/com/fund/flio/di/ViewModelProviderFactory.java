@@ -27,6 +27,7 @@ import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.mypage.MyPageViewModel;
 import com.fund.flio.ui.main.mypage.selllist.SellListViewModel;
+import com.fund.flio.ui.main.mypage.setting.SettingViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -59,7 +60,7 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     @Override
     public ViewModel create(@NonNull Class modelClass) {
         if (MainViewModel.class.isAssignableFrom(modelClass)) {
-            return new MainViewModel(context, dataManager, schedulerProvider, resourceProvider);
+            return new MainViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (IntroViewModel.class.isAssignableFrom(modelClass)) {
             return new IntroViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (LoginViewModel.class.isAssignableFrom(modelClass)) {
@@ -96,6 +97,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new SellListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (SearchViewModel.class.isAssignableFrom(modelClass)) {
             return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (SettingViewModel.class.isAssignableFrom(modelClass)) {
+            return new SettingViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

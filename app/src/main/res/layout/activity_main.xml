@@ -29,7 +29,6 @@
 
         </fragment>
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation_bottom"
             style="@style/Widget.Design.BottomNavigationView"

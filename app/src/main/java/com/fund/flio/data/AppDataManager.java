@@ -2,22 +2,27 @@
 package com.fund.flio.data;
 
 
+import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.MessageWrapper;
+import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
+import com.fund.flio.data.model.body.TestBody;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-
+import io.reactivex.Observable;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.Response;
 
@@ -29,12 +34,14 @@ public class AppDataManager implements DataManager {
     private final PreferencesHelper mPreferences;
     private final ApiHelper mFlioApi;
     private final ApiHelper mAuthApi;
+    private final DbHelper mDbHelper;
 
     @Inject
-    public AppDataManager(PreferencesHelper preferences, @Named("flio") ApiHelper flioApi, @Named("auth") ApiHelper authApi) {
+    public AppDataManager(PreferencesHelper preferences, @Named("flio") ApiHelper flioApi, @Named("auth") ApiHelper authApi, DbHelper dbHelper) {
         mPreferences = preferences;
         mFlioApi = flioApi;
         mAuthApi = authApi;
+        mDbHelper = dbHelper;
     }
 
     @Override
@@ -120,5 +127,25 @@ public class AppDataManager implements DataManager {
     @Override
     public void setAuthType(String authType) {
         mPreferences.setAuthType(authType);
+    }
+
+    @Override
+    public Observable<List<SearchResult>> getSearchResults() {
+        return mDbHelper.getSearchResults();
+    }
+
+    @Override
+    public Observable<Boolean> insertSearchResult(SearchResult searchResult) {
+        return mDbHelper.insertSearchResult(searchResult);
+    }
+
+    @Override
+    public Observable<Boolean> deleteSearchResult(SearchResult searchResult) {
+        return mDbHelper.deleteSearchResult(searchResult);
+    }
+
+    @Override
+    public Observable<Boolean> deleteAll() {
+        return mDbHelper.deleteAll();
     }
 }

@@ -20,7 +20,6 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.enums.MessageType;
 import com.fund.flio.data.model.Chat;
-import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.utils.Foreground;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -53,7 +52,7 @@ public class PushService extends FirebaseMessagingService {
     private boolean isSource;
     private int chatSeq;
     private String remoteName, chatMessage, remoteUserImageUrl;
-    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
@@ -74,19 +73,22 @@ public class PushService extends FirebaseMessagingService {
             remoteUserImageUrl = remoteMessage.getData().get("chatTargetImageUrl");
         }
         if (Foreground.get().isBackground()) {
-
             Bundle chatBundle = new Bundle();
             chatBundle.putInt("chatSeq", chatSeq);
             createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
-
         } else {
 //            Logger.d("flio app " + ((FlioApplication) getApplicationContext()).getCurrentChatSeq());
-            if (((FlioApplication) getApplicationContext()).getCurrentDestinationId() == R.id.nav_chat_detail && ((FlioApplication) getApplicationContext()).getCurrentChatSeq() == chatSeq) {
-                MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
+            if (((FlioApplication) getApplicationContext()).getCurrentDestinationId() == R.id.nav_chat_detail) {
+                if(((FlioApplication) getApplicationContext()).getCurrentChatSeq() == chatSeq) {
+                    MessageBus.getInstance().sendDirect(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
+                } else {
+                    MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
+                }
             } else {
                 Bundle chatBundle = new Bundle();
                 chatBundle.putInt("chatSeq", chatSeq);
                 createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+                MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
             }
         }
 
@@ -108,7 +110,7 @@ public class PushService extends FirebaseMessagingService {
         }
     }
 
-    public Bitmap getBitmapfromUrl(String imageUrl) {
+    public Bitmap getBitmapFromUrl(String imageUrl) {
         try {
             URL url = new URL(imageUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -128,7 +130,7 @@ public class PushService extends FirebaseMessagingService {
             //Todo 왜 아이콘이 안될까
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
 //                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.push_icon))
-                    .setLargeIcon(getBitmapfromUrl(remoteUserImageUrl))
+                    .setLargeIcon(getBitmapFromUrl(remoteUserImageUrl))
                     .setSmallIcon(R.mipmap.push_icon)
                     .setContentTitle(title)
                     .setContentText(body)
@@ -137,8 +139,8 @@ public class PushService extends FirebaseMessagingService {
                     .setCategory(category)
                     .setContentIntent(pendingIntent)
                     .setDeleteIntent(deleteIntent)
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setFullScreenIntent(pendingIntent, true);
+                    .setPriority(NotificationCompat.PRIORITY_LOW);
+//                    .setFullScreenIntent(pendingIntent, true);
 
             notificationManager.notify(notificationId, builder.build());
         } else {
@@ -151,8 +153,8 @@ public class PushService extends FirebaseMessagingService {
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
                     .setDeleteIntent(deleteIntent)
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .setFullScreenIntent(pendingIntent, true)
+                    .setPriority(Notification.PRIORITY_LOW)
+//                    .setFullScreenIntent(pendingIntent, true)
                     .setSound(soundUri)
                     .build();
             notification.defaults |= Notification.DEFAULT_VIBRATE;

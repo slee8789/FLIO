@@ -3,17 +3,22 @@ package com.fund.flio.ui.main.search;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.transition.Fade;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.model.Recommend;
-import com.fund.flio.databinding.FragmentAlarmBinding;
+import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.databinding.FragmentSearchBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.home.RecommendAdapter;
@@ -29,6 +34,10 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
+import io.reactivex.disposables.Disposable;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
@@ -36,6 +45,16 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
 
     @Inject
     RecommendAdapter mRecommendAdapter;
+
+    @Inject
+    SearchRecentAdapter mSearchRecentAdapter;
+
+    private Disposable keyboardDisposable;
+
+    private InputMethodManager imm;
+
+    private Fade mFadeIn = new Fade(Fade.IN);
+    private Fade mFadeOut = new Fade(Fade.OUT);
 
     @Override
     public int getBindingVariable() {
@@ -57,13 +76,23 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         super.onCreate(savedInstanceState);
 //        Logger.i("onCreate");
         setHasOptionsMenu(true);
+
+        keyboardDisposable = new TedRxKeyboardObserver(getBaseActivity())
+                .listen()
+                .subscribe(isShow -> {
+                    getViewModel().setIsKeyboardShow(isShow);
+                    TransitionManager.beginDelayedTransition(getViewDataBinding().root, isShow ? mFadeIn : mFadeOut);
+                }, onError -> Logger.e("keyboard observer error " + onError));
+
     }
 
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getViewDataBinding().setMainViewModel(getMainViewModel());
         initViews();
+        imm = (InputMethodManager) getBaseActivity().getSystemService(INPUT_METHOD_SERVICE);
     }
 
     private void initViews() {
@@ -75,6 +104,9 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
             chip.setText(tag);
             chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip));
             chip.setTextAppearanceResource(R.style.ChipTextStyle);
+//            chip.setOnClickListener(v -> {
+//                getViewModel().setIsLoading(!getViewModel().getIsLoading().get());
+//            });
             getViewDataBinding().tagPopular.addView(chip);
         }
 
@@ -86,14 +118,35 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         }.getType());
         mRecommendAdapter.addItems(testRecommends);
 
-        getViewDataBinding().searchView.setOnClickListener(v -> Logger.d("onSearchClick"));
-        getViewDataBinding().searchView.setOnFocusChangeListener((v, hasFocus) -> {
-            Logger.d("onFocus " + hasFocus);
-        });
-        getViewDataBinding().searchView.setOnCloseListener(() -> {
-            Logger.d("onClose ");
+        getViewDataBinding().recents.setAdapter(mSearchRecentAdapter);
+        mSearchRecentAdapter.setSearchViewModel(getViewModel());
+
+        getViewDataBinding().search.setOnEditorActionListener((v, actionId, event) -> {
+            switch (actionId) {
+                case EditorInfo.IME_ACTION_SEARCH:
+                    Logger.d("ACTION SEARCH " + getViewDataBinding().search.getText().toString());
+                    if (getViewDataBinding().search.getText().length() != 0) {
+                        getViewModel().onDataInsert(getViewDataBinding().search.getText().toString());
+                        getViewDataBinding().search.clearFocus();
+                        imm.hideSoftInputFromWindow(getViewDataBinding().search.getWindowToken(), 0);
+                    }
+                    break;
+            }
             return false;
         });
+
+        getViewModel().getSearchResults().observe(getViewLifecycleOwner(), searchResultObserver);
+
     }
 
+    private final Observer<List<SearchResult>> searchResultObserver = searchResults -> {
+        Logger.d("searchResultObserver " + searchResults);
+        mSearchRecentAdapter.setItems(searchResults);
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        keyboardDisposable.dispose();
+    }
 }

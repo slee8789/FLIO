@@ -25,7 +25,11 @@
 
     <action
         android:id="@+id/action_global_to_nav_search"
-        app:destination="@id/nav_search" />
+        app:destination="@id/nav_search"
+        app:enterAnim="@anim/slide_in_bottom"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out_bottom" />
 
     <fragment
         android:id="@+id/nav_intro"
@@ -134,6 +138,9 @@
         <action
             android:id="@+id/action_nav_my_page_to_nav_sell_list"
             app:destination="@id/nav_sell_list" />
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_setting"
+            app:destination="@id/nav_setting" />
     </fragment>
 
     <fragment
@@ -172,6 +179,13 @@
         android:id="@+id/nav_search"
         android:name="com.fund.flio.ui.main.search.SearchFragment"
         tools:layout="@layout/fragment_search">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.fund.flio.ui.main.mypage.setting.SettingFragment"
+        tools:layout="@layout/fragment_setting">
 
     </fragment>
 

@@ -25,4 +25,24 @@ public class AppSchedulerProvider implements SchedulerProvider {
     public Scheduler newThread() {
         return Schedulers.newThread();
     }
+
+    @Override
+    public io.reactivex.Scheduler ui2() {
+        return io.reactivex.android.schedulers.AndroidSchedulers.mainThread();
+    }
+
+    @Override
+    public io.reactivex.Scheduler io2() {
+        return io.reactivex.schedulers.Schedulers.io();
+    }
+
+    @Override
+    public io.reactivex.Scheduler newThread2() {
+        return io.reactivex.schedulers.Schedulers.newThread();
+    }
+
+    @Override
+    public io.reactivex.Scheduler computation2() {
+        return io.reactivex.schedulers.Schedulers.computation();
+    }
 }

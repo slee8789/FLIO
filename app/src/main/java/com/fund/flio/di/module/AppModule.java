@@ -9,16 +9,21 @@ import android.content.SharedPreferences;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.room.Room;
 
 import com.fund.flio.core.AppConstant;
 import com.fund.flio.data.AppDataManager;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.local.db.AppDatabase;
+import com.fund.flio.data.local.db.AppDbHelper;
+import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.AppPreferencesHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.di.provider.AppResourceProvider;
 import com.fund.flio.di.provider.AppSchedulerProvider;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
+import com.fund.flio.di.qualifier.DatabaseInfo;
 import com.fund.flio.di.qualifier.PreferenceInfo;
 import com.fund.flio.ui.main.community.certificate.CertificateAdapter;
 import com.fund.flio.ui.main.community.event.EventAdapter;
@@ -29,6 +34,7 @@ import com.fund.flio.ui.main.home.BannerAdapter;
 import com.fund.flio.ui.main.home.CertificatedAdapter;
 import com.fund.flio.ui.main.home.RecommendAdapter;
 import com.fund.flio.ui.main.market.ProductAdapter;
+import com.fund.flio.ui.main.search.SearchRecentAdapter;
 
 
 import java.util.ArrayList;
@@ -70,6 +76,25 @@ public class AppModule {
 
     @Provides
     @Singleton
+    AppDatabase provideAppDatabase(@DatabaseInfo String dbName, Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, dbName).fallbackToDestructiveMigration()
+                .build();
+    }
+
+    @Provides
+    @DatabaseInfo
+    String provideDatabaseName() {
+        return AppConstant.DB_NAME;
+    }
+
+    @Provides
+    @Singleton
+    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
+        return appDbHelper;
+    }
+
+    @Provides
+    @Singleton
     DataManager provideDataManager(AppDataManager appDataManager) {
         return appDataManager;
     }
@@ -97,8 +122,6 @@ public class AppModule {
         chatChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         return chatChannel;
     }
-
-
 
     @Provides
     BannerAdapter provideBannerAdapter() {
@@ -145,6 +168,9 @@ public class AppModule {
         return new EventAdapter(new ArrayList<>());
     }
 
-
+    @Provides
+    SearchRecentAdapter provideSearchRecentAdapter() {
+        return new SearchRecentAdapter(new ArrayList<>());
+    }
 
 }

@@ -10,7 +10,6 @@ import androidx.navigation.Navigation;
 
 import com.annimon.stream.Stream;
 import com.fund.flio.R;
-import com.fund.flio.core.FlioApplication;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.enums.MessageType;
@@ -31,8 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
 
-import lombok.Getter;
-
 public class ChatDetailViewModel extends BaseViewModel {
 
     private Context mContext;
@@ -40,7 +37,7 @@ public class ChatDetailViewModel extends BaseViewModel {
     public int mChatSeq;
     public boolean isSource;
     private ChatRoom mChatRoom;
-    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 
     public ObservableField<String> inputMessage = new ObservableField<>();
     public ObservableField<String> remoteUserName = new ObservableField<>();
@@ -48,6 +45,7 @@ public class ChatDetailViewModel extends BaseViewModel {
     public ObservableField<String> productPrice = new ObservableField<>();
 
     public void setChatRoom(ChatRoom mChatRoom) {
+        Logger.d("setChatRoom " + mChatRoom);
         this.mChatRoom = mChatRoom;
         isSource = FirebaseAuth.getInstance().getUid().equals(mChatRoom.getChatSourceUid());
         remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
@@ -70,7 +68,7 @@ public class ChatDetailViewModel extends BaseViewModel {
     }
 
     private void subscribeEvent() {
-        getCompositeDisposable().add(MessageBus.getInstance().getMessage()
+        getCompositeDisposable().add(MessageBus.getInstance().getDirect()
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(message -> {
                     chats.getValue().add(message);
@@ -145,7 +143,6 @@ public class ChatDetailViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribeOn(getSchedulerProvider().io())
                 .subscribe(Void -> {
-                    Logger.d("test " + chatTimeFormat.format(System.currentTimeMillis()));
                     chats.getValue().add(new Chat(mChatRoom.getChatSeq(), new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), inputMessage.get(), null, MessageType.LOCAL.ordinal()));
                     chats.setValue(chats.getValue());
                     inputMessage.set("");

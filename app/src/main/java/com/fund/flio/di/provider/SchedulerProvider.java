@@ -13,4 +13,12 @@ public interface SchedulerProvider {
 
     Scheduler computation();
 
+    io.reactivex.Scheduler ui2();
+
+    io.reactivex.Scheduler io2();
+
+    io.reactivex.Scheduler newThread2();
+
+    io.reactivex.Scheduler computation2();
+
 }

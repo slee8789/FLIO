@@ -9,6 +9,7 @@ import com.fund.flio.di.provider.SchedulerProvider;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
+
 public abstract class BaseViewModel extends ViewModel {
 
     private final DataManager mDataManager;
@@ -20,22 +21,29 @@ public abstract class BaseViewModel extends ViewModel {
     private final ResourceProvider mResourceProvider;
 
     private CompositeDisposable mCompositeDisposable;
+    private io.reactivex.disposables.CompositeDisposable mCompositeDisposable2;
 
     public BaseViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         this.mDataManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mResourceProvider = resourceProvider;
         this.mCompositeDisposable = new CompositeDisposable();
+        this.mCompositeDisposable2 = new io.reactivex.disposables.CompositeDisposable();
     }
 
     @Override
     protected void onCleared() {
         mCompositeDisposable.clear();
+        mCompositeDisposable2.clear();
         super.onCleared();
     }
 
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;
+    }
+
+    public io.reactivex.disposables.CompositeDisposable getCompositeDisposable2() {
+        return mCompositeDisposable2;
     }
 
     public DataManager getDataManager() {

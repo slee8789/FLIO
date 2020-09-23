@@ -8,9 +8,11 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 public class MessageBus {
 
     private static MessageBus messageBus;
+    private final PublishSubject<Chat> directSubject;
     private final PublishSubject<Chat> messageSubject;
 
     private MessageBus() {
+        directSubject = PublishSubject.create();
         messageSubject = PublishSubject.create();
     }
 
@@ -21,8 +23,16 @@ public class MessageBus {
         return messageBus;
     }
 
-    public void sendMessage(Chat isOtherViews) {
-        messageSubject.onNext(isOtherViews);
+    public void sendDirect(Chat chat) {
+        directSubject.onNext(chat);
+    }
+
+    public Observable<Chat> getDirect() {
+        return directSubject.ofType(Chat.class);
+    }
+
+    public void sendMessage(Chat chat) {
+        messageSubject.onNext(chat);
     }
 
     public Observable<Chat> getMessage() {

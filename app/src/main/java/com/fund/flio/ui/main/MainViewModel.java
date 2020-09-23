@@ -3,6 +3,7 @@ package com.fund.flio.ui.main;
 import android.content.Context;
 import android.view.View;
 
+import androidx.databinding.ObservableBoolean;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.R;
@@ -19,11 +20,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.orhanobut.logger.Logger;
 
 public class MainViewModel extends BaseViewModel {
-    private Context mContext;
 
-    public MainViewModel(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
+    public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
-        mContext = context;
         subscribeEvent();
     }
 

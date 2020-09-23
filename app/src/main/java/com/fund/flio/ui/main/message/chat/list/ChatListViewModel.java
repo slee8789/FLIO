@@ -14,6 +14,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.body.ChatListBody;
+import com.fund.flio.data.model.body.TestBody;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
@@ -21,6 +22,7 @@ import com.fund.flio.ui.main.message.MessageFragmentDirections;
 import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatListViewModel extends BaseViewModel {
@@ -46,38 +48,29 @@ public class ChatListViewModel extends BaseViewModel {
                         mChatRooms.setValue(chatRooms.body().getChatRooms());
                     }
                 }, onError -> Logger.e("chatRooms error " + onError)));
+
+//        getCompositeDisposable().add(getDataManager().test(new TestBody("Default", "kjmhercules@gmail.com", "1234"))
+//                .subscribeOn(getSchedulerProvider().io())
+//                .observeOn(getSchedulerProvider().ui())
+//                .subscribe());
     }
 
     private void subscribeEvent() {
         getCompositeDisposable().add(MessageBus.getInstance().getMessage()
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(message -> {
-                    //Todo : 안돼네 일단 보류
-                    Logger.d("ChatListVM " + message);
-
-//                    mChatRooms.setValue(Stream.of(mChatRooms.getValue()).map(chatRoom -> {
-//                        if (chatRoom.getChatSeq() == message.getChatSeq()) {
-//                            chatRoom.setChatLastMessage(message.getChatSourceMessage() != null ? message.getChatSourceMessage() : message.getChatTargetMessage());
-//                            chatRoom.setChatLastDate(message.getChatDate());
-//                        }
-//                        return chatRoom;
-//                    }).collect(Collectors.toList()));
-
-//                    for (int i = 0; i < mChatRooms.getValue().size(); i++) {
-//                        if (mChatRooms.getValue().get(i).getChatSeq() == message.getChatSeq()) {
-//                            mChatRooms.getValue().get(i).setChatLastMessage(message.getChatSourceMessage() != null ? message.getChatSourceMessage() : message.getChatTargetMessage());
-//                            mChatRooms.getValue().get(i).setChatLastDate(message.getChatDate());
-//                        }
-//                    }
-//                    mChatRooms.setValue(mChatRooms.getValue());
-
+                    mChatRooms.setValue(Stream.of(mChatRooms.getValue()).map(chatRoom -> chatRoom.clone()).map(chatRoom -> {
+                        if (chatRoom.getChatSeq() == message.getChatSeq()) {
+                            chatRoom.setChatLastMessage(message.getChatSourceMessage() != null ? message.getChatSourceMessage() : message.getChatTargetMessage());
+                            chatRoom.setChatLastDate(message.getChatDate());
+                        }
+                        return chatRoom;
+                    }).collect(Collectors.toList()));
                 }));
     }
 
     public void onItemClick(View view, ChatRoom chatRoom) {
         Logger.d("onItemClick " + chatRoom);
-//        getCompositeDisposable().add(getDataManager().postChatDetail(new ChatDetailBody(((MainActivity) view.getContext()).getAuthViewModel().)).subscribe());
-//        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(R.id.action_nav_chat_list_to_nav_chat_detail);
         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(MessageFragmentDirections.actionNavMessageToNavChatDetail(chatRoom));
 
     }
