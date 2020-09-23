@@ -2,8 +2,11 @@ package com.fund.flio.ui.main.market;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.fund.flio.BR;
@@ -12,6 +15,8 @@ import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.utils.GridItemOffsetDecoration;
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -97,6 +102,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         mProductAdapter.addItems(testProducts);
 
     }
+
 
 
 }

@@ -17,6 +17,7 @@ import com.fund.flio.databinding.FragmentEventBinding;
 import com.fund.flio.databinding.FragmentNewsBinding;
 import com.fund.flio.di.ViewModelProviderFactory;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.community.news.NewsAdapter;
 import com.fund.flio.ui.main.community.news.NewsViewModel;
 import com.google.android.material.tabs.TabLayout;

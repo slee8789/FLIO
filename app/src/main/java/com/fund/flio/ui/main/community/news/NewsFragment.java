@@ -13,6 +13,7 @@ import com.fund.flio.R;
 import com.fund.flio.data.model.News;
 import com.fund.flio.databinding.FragmentNewsBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -60,6 +61,7 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Logger.d("onViewCreated");
         initViews();
     }
 
@@ -75,7 +77,7 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().news.addItemDecoration(dividerItemDecoration);
-        ArrayList<News> dummyNewses = new Gson().fromJson(readAssetJson(getContext(),"news.json"), new TypeToken<List<News>>() {
+        ArrayList<News> dummyNewses = new Gson().fromJson(readAssetJson(getContext(), "news.json"), new TypeToken<List<News>>() {
         }.getType());
         mNewsAdapter.addItems(dummyNewses);
     }

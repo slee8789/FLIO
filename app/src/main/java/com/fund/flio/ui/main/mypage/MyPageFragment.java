@@ -41,9 +41,6 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getViewDataBinding().logout.setOnClickListener(v -> {
-            ((MainActivity)getBaseActivity()).getAuthViewModel().logout();
-        });
     }
 
 

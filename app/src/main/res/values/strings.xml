@@ -52,5 +52,9 @@
     <string name="setting_sign_out">탈퇴하기</string>
     <string name="setting_notice">플리오 공지</string>
 
+    <string name="fab_market">장터글쓰기</string>
+    <string name="fab_certificate">인증글쓰기</string>
+    <string name="fab_event">행사글쓰기</string>
+
 
 </resources>

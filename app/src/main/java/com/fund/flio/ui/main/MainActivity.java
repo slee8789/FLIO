@@ -8,9 +8,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
@@ -73,6 +77,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private GoogleApiClient googleApiClient;
 
     private AuthViewModel authViewModel;
+
+    private boolean FAB_Status = false;
+
+    private Animation show_fab_1;
+    private Animation hide_fab_1;
+    private Animation show_fab_2;
+    private Animation hide_fab_2;
+    private Animation show_fab_3;
+    private Animation hide_fab_3;
 
     public AuthViewModel getAuthViewModel() {
         return authViewModel;
@@ -142,6 +155,81 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
         });
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
+
+        show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_show);
+        hide_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_hide);
+        show_fab_2 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab2_show);
+        hide_fab_2 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab2_hide);
+        show_fab_3 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab3_show);
+        hide_fab_3 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab3_hide);
+
+        getViewDataBinding().fabWrite.setOnClickListener(v -> {
+            if (FAB_Status == false) {
+                //Display FAB menu
+                expandFAB();
+                FAB_Status = true;
+            } else {
+                //Close FAB menu
+                hideFAB();
+                FAB_Status = false;
+            }
+        });
+
+    }
+
+    private void expandFAB() {
+
+        //Floating Action Button 1
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab1.getLayoutParams();
+        layoutParams.rightMargin += (int) (getViewDataBinding().fab1.getWidth() * 0.8);
+        layoutParams.bottomMargin += (int) (getViewDataBinding().fab1.getHeight() * 0.25);
+        getViewDataBinding().fab1.setLayoutParams(layoutParams);
+        getViewDataBinding().fab1.startAnimation(show_fab_1);
+        getViewDataBinding().fab1.setClickable(true);
+
+        //Floating Action Button 2
+        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab2.getLayoutParams();
+        layoutParams2.rightMargin += (int) (getViewDataBinding().fab2.getWidth() * 1.5);
+        layoutParams2.bottomMargin += (int) (getViewDataBinding().fab2.getHeight() * 1.5);
+        getViewDataBinding().fab2.setLayoutParams(layoutParams2);
+        getViewDataBinding().fab2.startAnimation(show_fab_2);
+        getViewDataBinding().fab2.setClickable(true);
+
+        //Floating Action Button 3
+        CoordinatorLayout.LayoutParams layoutParams3 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab3.getLayoutParams();
+        layoutParams3.rightMargin += (int) (getViewDataBinding().fab3.getWidth() * 0.25);
+        layoutParams3.bottomMargin += (int) (getViewDataBinding().fab3.getHeight() * 1.7);
+        getViewDataBinding().fab3.setLayoutParams(layoutParams3);
+        getViewDataBinding().fab3.startAnimation(show_fab_3);
+        getViewDataBinding().fab3.setClickable(true);
+    }
+
+
+    private void hideFAB() {
+
+        //Floating Action Button 1
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab1.getLayoutParams();
+        layoutParams.rightMargin -= (int) (getViewDataBinding().fab1.getWidth() * 0.8);
+        layoutParams.bottomMargin -= (int) (getViewDataBinding().fab1.getHeight() * 0.25);
+        getViewDataBinding().fab1.setLayoutParams(layoutParams);
+        getViewDataBinding().fab1.startAnimation(hide_fab_1);
+        getViewDataBinding().fab1.setClickable(false);
+
+        //Floating Action Button 2
+        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab2.getLayoutParams();
+        layoutParams2.rightMargin -= (int) (getViewDataBinding().fab2.getWidth() * 1.5);
+        layoutParams2.bottomMargin -= (int) (getViewDataBinding().fab2.getHeight() * 1.5);
+        getViewDataBinding().fab2.setLayoutParams(layoutParams2);
+        getViewDataBinding().fab2.startAnimation(hide_fab_2);
+        getViewDataBinding().fab2.setClickable(false);
+
+        //Floating Action Button 3
+        CoordinatorLayout.LayoutParams layoutParams3 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab3.getLayoutParams();
+        layoutParams3.rightMargin -= (int) (getViewDataBinding().fab3.getWidth() * 0.25);
+        layoutParams3.bottomMargin -= (int) (getViewDataBinding().fab3.getHeight() * 1.7);
+        getViewDataBinding().fab3.setLayoutParams(layoutParams3);
+        getViewDataBinding().fab3.startAnimation(hide_fab_3);
+        getViewDataBinding().fab3.setClickable(false);
     }
 
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
@@ -227,11 +315,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
+                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 break;
             case R.id.nav_market_product:
                 getWindow().setStatusBarColor(Color.TRANSPARENT);
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;
@@ -239,11 +329,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_chat_detail:
             case R.id.nav_sell_list:
             case R.id.nav_search:
-            case R.id.nav_my_page:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                break;
+
+            case R.id.nav_my_page:
+            case R.id.nav_market:
+            case R.id.nav_community:
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
+                getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;
 
@@ -252,6 +353,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
                 break;
@@ -260,6 +362,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 break;

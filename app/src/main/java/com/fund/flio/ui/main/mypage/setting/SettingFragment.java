@@ -14,7 +14,7 @@ import com.fund.flio.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 
-public class SettingFragment extends BaseFragment<FragmentSettingBinding, SettingViewModel>  {
+public class SettingFragment extends BaseFragment<FragmentSettingBinding, SettingViewModel> {
 
     @Override
     public int getBindingVariable() {
@@ -42,7 +42,9 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getViewDataBinding().logout.setOnClickListener(v -> {
+            ((MainActivity) getBaseActivity()).getAuthViewModel().logout();
+        });
     }
 
 

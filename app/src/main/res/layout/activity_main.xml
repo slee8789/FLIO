@@ -29,6 +29,76 @@
 
         </fragment>
 
+        <!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+        <!--            android:id="@+id/fab_market"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center|bottom"-->
+        <!--            android:layout_margin="20dp"-->
+        <!--            android:backgroundTint="@color/purple"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="@string/fab_market"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/navigation_bottom"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:src="@drawable/icon_fab_write" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:text="@string/fab_market"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@id/navigation_bottom"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:text="@string/fab_certificate"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@id/navigation_bottom"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:text="@string/fab_event"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@id/navigation_bottom"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation_bottom"
             style="@style/Widget.Design.BottomNavigationView"

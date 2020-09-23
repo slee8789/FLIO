@@ -13,6 +13,7 @@ import com.fund.flio.R;
 import com.fund.flio.data.model.Certificate;
 import com.fund.flio.databinding.FragmentCertificateBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

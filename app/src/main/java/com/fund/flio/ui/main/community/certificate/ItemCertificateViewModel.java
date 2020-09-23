@@ -15,7 +15,7 @@ public class ItemCertificateViewModel {
     public ObservableField<String> imageUrl = new ObservableField<>();
 
     public ItemCertificateViewModel(Certificate certificate) {
-        Logger.d("ItemCertificateViewModel " + certificate);
+//        Logger.d("ItemCertificateViewModel " + certificate);
         title.set(certificate.getTitle());
         date.set(certificate.getDate());
         description.set(certificate.getDescription());
