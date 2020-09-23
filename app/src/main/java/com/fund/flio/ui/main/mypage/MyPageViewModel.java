@@ -16,10 +16,12 @@ import com.fund.flio.ui.main.MainActivity;
 public class MyPageViewModel extends BaseViewModel {
 
     public ObservableField<String> imageUrl = new ObservableField<>();
+    public ObservableField<String> name = new ObservableField<>();
 
     public MyPageViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
-//        imageUrl.set();
+        imageUrl.set(dataManager.getUserImageUrl());
+        name.set(dataManager.getUserName());
     }
 
     public void goBack(View v) {
@@ -30,9 +32,24 @@ public class MyPageViewModel extends BaseViewModel {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_setting);
     }
 
-    public void goSellList(View v) {
+    public void onProductSellClick(View v) {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_sell_list);
     }
 
+    public void onProductBuyClick(View v) {
+
+    }
+
+    public void onProductFavoriteClick(View v) {
+
+    }
+
+    public void onSettingReviewClick(View v) {
+
+    }
+
+    public void onSettingPromotionClick(View v) {
+
+    }
 
 }

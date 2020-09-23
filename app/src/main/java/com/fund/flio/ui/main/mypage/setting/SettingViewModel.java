@@ -22,13 +22,5 @@ public class SettingViewModel extends BaseViewModel {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
     }
 
-    public void goSetting(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
-    }
-
-    public void goSellList(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_sell_list);
-    }
-
 
 }

@@ -26,11 +26,31 @@
     <string name="header_certificated">플리오 인증</string>
 
     <string name="description_item_recommend">recommend</string>
+    <string name="my_page_label_keyword">관심 키워드</string>
+    <string name="my_page_product_sell">판매상품</string>
+    <string name="my_page_product_buy">구매상품</string>
+    <string name="my_page_product_favorite">관심목록</string>
+    <string name="my_page_review">거래후기</string>
+    <string name="my_page_promotion">홍보인증</string>
 
     <string name="search_popular">인기검색어</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
     <string name="search_label_recent">최근검색어</string>
     <string name="search_delete_all">전체삭제</string>
     <string name="search_description">플리오가 추천하는, <font color='#6F5AFF'>오디오</font></string>
+
+    <string name="setting_title">설정</string>
+    <string name="setting_notification_entire">전체 알림</string>
+    <string name="setting_notification_chat">채팅 알림</string>
+    <string name="setting_notification_reply">댓글 알림</string>
+    <string name="setting_notification_keyword">키워드 알림</string>
+    <string name="setting_delete_cache">캐시 데이터 삭제하기</string>
+    <string name="setting_delete_cache_completed">캐시데이터 삭제 완료</string>
+    <string name="setting_version_info">버전정보</string>
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_logout_message">로그아웃 하시겠습니까?</string>
+    <string name="setting_sign_out">탈퇴하기</string>
+    <string name="setting_notice">플리오 공지</string>
+
 
 </resources>

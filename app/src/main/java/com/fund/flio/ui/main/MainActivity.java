@@ -239,6 +239,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_chat_detail:
             case R.id.nav_sell_list:
             case R.id.nav_search:
+            case R.id.nav_my_page:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

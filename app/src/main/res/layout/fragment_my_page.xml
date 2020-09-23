@@ -43,16 +43,150 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
             android:background="@color/grayE5"
             app:layout_constraintBottom_toBottomOf="@id/toolbar" />
-        
+
         <ImageView
+            android:id="@+id/image"
             android:layout_width="66dp"
             android:layout_height="66dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="8dp"
             app:imageUrlCircle="@{viewModel.imageUrl}"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@id/divider_user_info"
+            app:layout_constraintEnd_toStartOf="@id/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:numStars="5"
+            android:progressTint="@color/purple"
+            android:rating="3.5"
+            app:layout_constraintBottom_toTopOf="@id/divider_user_info"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <View
+            android:id="@+id/divider_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayE5"
+            app:layout_constraintTop_toBottomOf="@id/image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/my_page_label_keyword"
+            android:textColor="@color/black3"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/divider_keyword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_user_info" />
+
+        <View
+            android:id="@+id/divider_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="60dp"
+            android:background="@color/grayE5"
+            app:layout_constraintTop_toBottomOf="@id/image" />
+
+        <View
+            android:id="@+id/divider_keyword_registered"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="90dp"
+            android:background="@color/grayE5"
+            app:layout_constraintTop_toBottomOf="@id/divider_keyword" />
+
+        <include
+            android:id="@+id/product_sell"
+            layout="@layout/item_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="24dp"
+            app:categoryIcon="@{@drawable/icon_speaker}"
+            app:categoryTitle="@{@string/my_page_product_sell}"
+            app:clickEvent="@{v -> viewModel.onProductSellClick(v)}"
+            app:layout_constraintEnd_toStartOf="@id/product_buy"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_keyword_registered" />
+
+        <include
+            android:id="@+id/product_buy"
+            layout="@layout/item_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:categoryIcon="@{@drawable/icon_speaker}"
+            app:categoryTitle="@{@string/my_page_product_buy}"
+            app:clickEvent="@{v -> viewModel.onProductBuyClick(v)}"
+            app:layout_constraintEnd_toStartOf="@id/product_favorite"
+            app:layout_constraintStart_toEndOf="@id/product_sell"
+            app:layout_constraintTop_toBottomOf="@id/divider_keyword_registered" />
+
+        <include
+            android:id="@+id/product_favorite"
+            layout="@layout/item_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="42dp"
+            app:categoryIcon="@{@drawable/icon_speaker}"
+            app:categoryTitle="@{@string/my_page_product_favorite}"
+            app:clickEvent="@{v -> viewModel.onProductFavoriteClick(v)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_buy"
+            app:layout_constraintTop_toBottomOf="@id/divider_keyword_registered" />
+
+        <include
+            android:id="@+id/setting_review"
+            layout="@layout/item_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:categoryIcon="@{@drawable/icon_speaker}"
+            app:categoryTitle="@{@string/my_page_review}"
+            app:clickEvent="@{v -> viewModel.onSettingReviewClick(v)}"
+            app:layout_constraintEnd_toEndOf="@id/product_sell"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@id/product_sell"
+            app:layout_constraintTop_toBottomOf="@id/product_sell" />
+
+        <include
+            android:id="@+id/setting_promotion"
+            layout="@layout/item_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:categoryIcon="@{@drawable/icon_speaker}"
+            app:categoryTitle="@{@string/my_page_promotion}"
+            app:clickEvent="@{v -> viewModel.onSettingPromotionClick(v)}"
+            app:layout_constraintEnd_toEndOf="@id/product_buy"
+            app:layout_constraintStart_toStartOf="@id/product_buy"
+            app:layout_constraintTop_toBottomOf="@id/product_buy" />
 
         <Button
             android:id="@+id/logout"
@@ -62,15 +196,6 @@
             android:text="logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="@{v ->  viewModel.goSellList(v)}"
-            android:text="판매내역"
-            app:layout_constraintBottom_toTopOf="@id/logout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
