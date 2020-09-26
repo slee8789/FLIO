@@ -1,5 +1,6 @@
 package com.fund.flio.ui.main.market.register;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,15 +9,19 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.databinding.FragmentProductRegisterBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
 import com.orhanobut.logger.Logger;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -68,15 +73,14 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_done, menu);
         super.onCreateOptionsMenu(menu, inflater);
-        Logger.d("onCreateOptionsMenu");
     }
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        Logger.d("onPrepareOptionsMenu");
         menuCompleted = menu.findItem(R.id.menu_done);
-        menuCompleted.setEnabled(false);
+        //Todo : test
+//        menuCompleted.setEnabled(false);
     }
 
     @Override
@@ -95,10 +99,11 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
 
     private void initViews() {
-        getViewDataBinding().thumbnails.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         getViewDataBinding().thumbnails.setAdapter(mThumbnailAdapter);
-
+        getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
     }
+
+    private final Observer<List<Uri>> thumbnailObserver = thumbnails -> mThumbnailAdapter.setItems(thumbnails);
 
     @Override
     public void onMenuItemSelected(View view, int id) {

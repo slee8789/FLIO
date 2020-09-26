@@ -1,39 +1,43 @@
 package com.fund.flio.ui.main.market.register;
 
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fund.flio.data.model.Product;
-import com.fund.flio.databinding.ItemProductBinding;
+import com.fund.flio.databinding.ItemThumbnailBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
-import com.fund.flio.ui.main.market.ItemProductViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private ArrayList<Product> products;
+    private ArrayList<Uri> uries;
 
 
-    public ThumbnailAdapter(ArrayList<Product> products) {
-        this.products = products;
+    public ThumbnailAdapter(ArrayList<Uri> uries) {
+        this.uries = uries;
     }
 
-    public void addItems(List<Product> banners) {
-        this.products.addAll(banners);
-        notifyDataSetChanged();
+    public void setItems(List<Uri> uries) {
+        final ThumbnailAdapter.UriDiffCallback diffCallback = new ThumbnailAdapter.UriDiffCallback(this.uries, uries);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        this.uries.clear();
+        this.uries.addAll(uries);
+        diffResult.dispatchUpdatesTo(this);
     }
 
 
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemProductBinding productBinding = ItemProductBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemThumbnailBinding productBinding = ItemThumbnailBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ProductViewHolder(productBinding);
     }
 
@@ -44,25 +48,62 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return uries.size();
     }
 
     public class ProductViewHolder extends BaseViewHolder {
 
-        private ItemProductBinding productBinding;
+        private ItemThumbnailBinding thumbnailBinding;
 
-        public ProductViewHolder(ItemProductBinding binding) {
+        public ProductViewHolder(ItemThumbnailBinding binding) {
             super(binding.getRoot());
-            this.productBinding = binding;
+            this.thumbnailBinding = binding;
         }
 
         @Override
         public void onBind(int position) {
-            final Product product = products.get(position);
-            ItemProductViewModel productViewModel = new ItemProductViewModel(product);
-            productBinding.setViewModel(productViewModel);
+            final Uri uri = uries.get(position);
+            ItemThumbnailViewModel thumbnailViewModel = new ItemThumbnailViewModel(uri);
+            thumbnailBinding.setViewModel(thumbnailViewModel);
         }
 
     }
 
+    private static class UriDiffCallback extends DiffUtil.Callback {
+        private final List<Uri> oldUries;
+        private final List<Uri> newUries;
+
+        public UriDiffCallback(List<Uri> oldUries, List<Uri> newUries) {
+            this.oldUries = oldUries;
+            this.newUries = newUries;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldUries.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newUries.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldUries.get(oldItemPosition).getPath() == newUries.get(newItemPosition).getPath();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            final Uri oldUri = oldUries.get(oldItemPosition);
+            final Uri newUri = newUries.get(newItemPosition);
+            return oldUri.equals(newUri);
+        }
+
+        @Nullable
+        @Override
+        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
+            return super.getChangePayload(oldItemPosition, newItemPosition);
+        }
+    }
 }

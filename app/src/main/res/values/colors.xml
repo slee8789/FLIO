@@ -25,6 +25,7 @@
     <color name="purple">#6F5AFF</color>
     <color name="purple2">#993ACD</color>
     <color name="purple3">#A982FF</color>
-
+    <color name="ted_image_picker_primary">#6F5AFF</color>
+    <color name="ted_image_picker_primary_pressed">#6F5AFF</color>
 
 </resources>

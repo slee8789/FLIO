@@ -1,6 +1,7 @@
 package com.fund.flio.utils;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -20,8 +22,11 @@ import com.fund.flio.data.model.Chat;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
+
+import static com.fund.flio.utils.ViewUtils.dpToPx;
 
 public final class BindingUtils {
 
@@ -41,6 +46,16 @@ public final class BindingUtils {
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.grayCE)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"thumbnailUri"})
+    public static void thumbnailUri(ImageView imageView, Uri imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .transform(new CenterCrop(),new RoundedCorners(dpToPx(10,imageView.getContext())))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .thumbnail(0.1f)
                 .into(imageView);
     }
 

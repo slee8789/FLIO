@@ -12,17 +12,31 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_width="72dp"
+        android:layout_height="72dp">
 
         <ImageView
-            android:id="@+id/add_image"
+            android:id="@+id/thumbnail"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="@drawable/thumbnail_border"
+            android:onClick="@{v -> viewModel.onItemClick(v)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbnailUri="@{viewModel.thumbnailUri}" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:backgroundTint="@color/purple"
+            android:onClick="@{v -> viewModel.onItemDeleteClick(v)}"
+            android:src="@drawable/icon_thumbnail_delete"
+            app:layout_constraintBottom_toTopOf="@id/thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/thumbnail"
+            app:layout_constraintStart_toEndOf="@id/thumbnail"
+            app:layout_constraintTop_toTopOf="@id/thumbnail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

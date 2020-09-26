@@ -54,7 +54,7 @@ public interface ApiHelper {
     // 테스트 이미지 업로드
     @Multipart
     @POST(ApiDefine.Body.TEST_IMAGE_UPLOAD)
-    @Headers({ApiDefine.Header.CONTENT_TYPE_MULTIPART})
-    Single<Response<Void>> testImageUpload(@Part("imgList") MultipartBody.Part[] imgList, @Part("boardKind") RequestBody boardKind, @Part("boardTitle") RequestBody boardTitle);
+//    @Headers({ApiDefine.Header.CONTENT_TYPE_MULTIPART})
+    Single<Response<Void>> testImageUpload(@Part MultipartBody.Part[] imgList, @Part("boardKind") RequestBody boardKind, @Part("boardTitle") RequestBody boardTitle);
 
 }
