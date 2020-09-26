@@ -81,9 +81,4 @@ public class SearchViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui2())
                 .subscribe());
     }
-
-    public void goBack(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
-    }
-
 }

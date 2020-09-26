@@ -106,10 +106,28 @@
             app:destination="@id/nav_market_product" />
     </fragment>
 
+
     <fragment
         android:id="@+id/nav_community"
         android:name="com.fund.flio.ui.main.community.CommunityFragment"
-        tools:layout="@layout/fragment_community" />
+        tools:layout="@layout/fragment_community">
+        <action
+            android:id="@+id/action_nav_community_to_nav_event_detail"
+            app:destination="@id/nav_event_detail" />
+        <action
+            android:id="@+id/action_nav_community_to_nav_certificate_detail"
+            app:destination="@id/nav_certificate_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_certificate_detail"
+        android:name="com.fund.flio.ui.main.community.certificate.detail.CertificateDetailFragment"
+        tools:layout="@layout/fragment_event_detail" />
+
+    <fragment
+        android:id="@+id/nav_event_detail"
+        android:name="com.fund.flio.ui.main.community.event.detail.EventDetailFragment"
+        tools:layout="@layout/fragment_event_detail" />
 
     <fragment
         android:id="@+id/nav_message"
@@ -130,11 +148,6 @@
         android:name="com.fund.flio.ui.main.mypage.MyPageFragment"
         tools:layout="@layout/fragment_my_page">
 
-        <action
-            android:id="@+id/action_nav_more_to_nav_login"
-            app:destination="@id/nav_login"
-            app:popUpTo="@id/nav_home"
-            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_my_page_to_nav_sell_list"
             app:destination="@id/nav_sell_list" />
@@ -169,6 +182,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_market_product_register"
+        android:name="com.fund.flio.ui.main.market.register.ProductRegisterFragment"
+        tools:layout="@layout/fragment_product_register">
+
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_sell_list"
         android:name="com.fund.flio.ui.main.mypage.selllist.SellListFragment"
         tools:layout="@layout/fragment_sell_list">
@@ -188,5 +208,28 @@
         tools:layout="@layout/fragment_setting">
 
     </fragment>
+
+    <dialog
+        android:id="@+id/nav_bottom_sheet_write"
+        android:name="com.fund.flio.ui.main.WriteBottomSheetDialog"
+        tools:layout="@layout/bottom_sheet_write">
+
+        <action
+            android:id="@+id/action_nav_bottom_sheet_write_to_nav_market_product_register"
+            app:destination="@id/nav_market_product_register"
+            app:popUpTo="@id/nav_bottom_sheet_write"
+            app:popUpToInclusive="true" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_logout"
+        android:name="com.fund.flio.ui.main.mypage.setting.logout.LogoutDialog"
+        tools:layout="@layout/dialog_logout">
+        <action
+            android:id="@+id/action_nav_logout_to_nav_login"
+            app:destination="@id/nav_login"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+    </dialog>
 
 </navigation>

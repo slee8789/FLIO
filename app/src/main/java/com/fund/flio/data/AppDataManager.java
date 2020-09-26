@@ -16,6 +16,7 @@ import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +25,8 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.rxjava3.core.Single;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 
 
@@ -97,6 +100,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<Response<MessageWrapper>> selectMyChatDetail(ChatDetailBody chatDetailBody) {
         return mFlioApi.selectMyChatDetail(chatDetailBody);
+    }
+
+    @Override
+    public Single<Response<Void>> testImageUpload(MultipartBody.Part[] imgList, RequestBody boardKind, RequestBody boardTitle) {
+        return mFlioApi.testImageUpload(imgList, boardKind, boardTitle);
     }
 
     @Override

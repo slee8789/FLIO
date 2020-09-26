@@ -13,12 +13,27 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.fund.flio.di.ViewModelProviderFactory;
+
+import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.annotations.NonNull;
 
 public abstract class BaseDialog extends DialogFragment {
 
+    @Inject
+    public ViewModelProviderFactory viewModelProviderFactory;
+
     private BaseActivity mActivity;
+    private ViewModelProvider viewModelProvider;
+
+    public ViewModelProvider getViewModelProvider() {
+        return viewModelProvider;
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -45,7 +60,8 @@ public abstract class BaseDialog extends DialogFragment {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
         dialog.setCanceledOnTouchOutside(false);
-
+        performDependencyInjection();
+        viewModelProvider = new ViewModelProvider(getViewModelStore(), viewModelProviderFactory);
         return dialog;
     }
 
@@ -54,6 +70,11 @@ public abstract class BaseDialog extends DialogFragment {
         mActivity = null;
         super.onDetach();
     }
+
+    private void performDependencyInjection() {
+        AndroidSupportInjection.inject(this);
+    }
+
 
     public BaseActivity getBaseActivity() {
         return mActivity;

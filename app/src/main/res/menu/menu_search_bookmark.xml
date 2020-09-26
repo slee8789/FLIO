@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/menu_item_search_title"
+        compat:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_bookmark"
+        android:icon="@drawable/ic_baseline_bookmark_24"
+        android:title="@string/menu_item_bookmark_title"
+        compat:showAsAction="always" />
+</menu>

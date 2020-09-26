@@ -10,12 +10,13 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.community.certificate.ItemCertificateViewModel" />
+            type="com.fund.flio.ui.main.community.certificate.list.ItemCertificateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.onItemClick(v)}"
         android:padding="10dp">
 
         <ImageView
@@ -52,8 +53,8 @@
             android:lineHeight="16dp"
             android:text="@{viewModel.description}"
             android:textColor="@color/gray9"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/title" />
 

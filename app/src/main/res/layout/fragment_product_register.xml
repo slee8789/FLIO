@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.market.register.ProductRegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Cherry"
+                android:textColor="@color/black0"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grayE5"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
+
+        <ImageView
+            android:id="@+id/add_image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/thumbnail_border"
+            android:onClick="@{v -> viewModel.addImage(v)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <ImageView
+            android:layout_width="19.25dp"
+            android:layout_height="16.5dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/icon_thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/add_image"
+            app:layout_constraintStart_toStartOf="@id/add_image"
+            app:layout_constraintTop_toTopOf="@id/add_image" />
+
+        <TextView
+            android:id="@+id/write_thumbnail_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@{viewModel.imageCount}"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/add_image"
+            app:layout_constraintEnd_toStartOf="@id/write_thumbnail_count_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/add_image" />
+
+        <TextView
+            android:id="@+id/write_thumbnail_count_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/write_thumbnail_count_label"
+            android:textColor="@color/gray9"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/add_image"
+            app:layout_constraintEnd_toEndOf="@id/add_image"
+            app:layout_constraintStart_toEndOf="@id/write_thumbnail_count" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/thumbnails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@id/add_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/add_image"
+            app:layout_constraintTop_toTopOf="@id/add_image"
+            tools:listitem="@layout/item_thumbnail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

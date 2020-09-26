@@ -18,8 +18,4 @@ public class ProductViewModel extends BaseViewModel {
         super(dataManager, schedulerProvider, resourceProvider);
     }
 
-    public void goBack(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
-    }
-
 }

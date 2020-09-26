@@ -35,7 +35,7 @@ public class ChatListViewModel extends BaseViewModel {
 
     public ChatListViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
-        selectMyChat();
+//        selectMyChat();
         subscribeEvent();
     }
 

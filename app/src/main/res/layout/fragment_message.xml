@@ -18,9 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/toolbar"
-            app:onBookmarkClick="@{v -> mainViewModel.onBookmarkClick(v)}"
-            app:onSearchClick="@{v -> mainViewModel.onSearchClick(v)}"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
         <View
             android:layout_width="match_parent"

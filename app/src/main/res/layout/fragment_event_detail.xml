@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.community.event.detail.EventDetailViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clActivityDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abActivityMaterialDetail"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/ctlActivityMaterialDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimaryDark"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="24dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/ivActivityMaterialDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/purple"
+                    android:scaleType="centerCrop"
+                    android:transitionName="movieWork"
+                    app:layout_collapseMode="parallax" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/flio"
+                        android:layout_width="22dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/btn_mark_flio"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/faith"
+                        android:layout_width="22dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/btn_mark_faith"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/flio"
+                        app:layout_constraintTop_toBottomOf="parent" />
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/fab_like"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tag1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="110dp"
+                        android:background="@drawable/bg_item_product_tag"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="18dp"
+                        android:text="#태그1"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tag2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="110dp"
+                        android:background="@drawable/bg_item_product_tag"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="18dp"
+                        android:text="#태그2"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tag1" />
+
+                    <TextView
+                        android:id="@+id/tag3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="110dp"
+                        android:background="@drawable/bg_item_product_tag"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="18dp"
+                        android:text="#태그3"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tag2" />
+
+
+                    <TextView
+                        android:id="@+id/model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="7dp"
+                        android:text="SIROCO GS220"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tag1" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="52dp"
+                        android:text="18,900원"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/model" />
+
+                    <TextView
+                        android:id="@+id/price_avg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="6dp"
+                        android:text="평균시세 18,900원"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/price"
+                        app:layout_constraintStart_toEndOf="@id/price" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.5">
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvActivityMaterialDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="모던하고 깔끔한 투톤 스피커"
+                    android:textColor="@color/black3"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:lineHeight="24dp"
+                    android:text="가장 정통적인 북쉘프 타입의 디자인으로 설계된
+스피커 우든 MDF 인클로저로 클래식한 멋스러움을
+자아내며, PC 스피커로의 활용은 물론, 카페 인테리어 아이템으로도 뛰어나게 연출됩니다."
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:lineHeight="24dp"
+                    android:text="제품상태보기"
+                    android:textColor="@color/gray9"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/content" />
+
+                <TextView
+                    android:id="@+id/header_recommends"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="34dp"
+                    android:text="@string/header_recommend_product"
+                    android:textColor="@color/black0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/status" />
+
+                <ImageView
+                    android:id="@+id/btn_recommands_more"
+                    android:layout_width="18dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/btn_more_item"
+                    app:layout_constraintBottom_toBottomOf="@id/header_recommends"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/header_recommends" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommends"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/header_recommends"
+                    tools:listitem="@layout/item_recommend" />
+
+                <TextView
+                    android:id="@+id/header_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="34dp"
+                    android:text="@string/header_related_news"
+                    android:textColor="@color/black0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recommends" />
+
+                <ImageView
+                    android:id="@+id/btn_news_more"
+                    android:layout_width="18dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/btn_more_item"
+                    app:layout_constraintBottom_toBottomOf="@id/header_news"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/header_news" />
+
+                <View
+                    android:id="@+id/divider_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/gray9"
+                    app:layout_constraintTop_toBottomOf="@id/header_news" />
+
+                <TextView
+                    android:id="@+id/date_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="2020.08.04"
+                    android:textColor="@color/black3"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/divider_news" />
+
+                <TextView
+                    android:id="@+id/description_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/date_news" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sampleimage"
+                    app:layout_constraintDimensionRatio="W,2:1"
+                    app:layout_constraintTop_toBottomOf="@id/description_news" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabActivityMaterialDetail"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:src="@drawable/fab_like"
+            app:fabCustomSize="40dp"
+            app:layout_anchor="@id/abActivityMaterialDetail"
+            app:layout_anchorGravity="bottom|right" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

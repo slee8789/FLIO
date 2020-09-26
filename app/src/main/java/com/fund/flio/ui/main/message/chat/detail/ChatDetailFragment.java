@@ -2,11 +2,13 @@ package com.fund.flio.ui.main.message.chat.detail;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -25,6 +27,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, ChatDetailViewModel> {
@@ -65,6 +68,7 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        setupActionBar();
         if (getArguments().getInt("chatSeq") != 0) {
             getViewModel().selectMyChat(getArguments().getInt("chatSeq"));
         }
@@ -87,6 +91,23 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
         getViewModel().getChats().observe(getViewLifecycleOwner(), messageObserver);
         Logger.d("ChatDetailFragment initViews");
 
+    }
+
+    private void setupActionBar() {
+        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private final Observer<List<Chat>> messageObserver = messages -> {

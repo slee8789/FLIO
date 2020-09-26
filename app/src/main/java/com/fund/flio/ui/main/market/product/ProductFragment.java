@@ -2,12 +2,17 @@ package com.fund.flio.ui.main.market.product;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.transition.TransitionInflater;
@@ -28,6 +33,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
@@ -62,11 +68,11 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        setupActionBar();
     }
 
     private void initViews() {
@@ -80,5 +86,21 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
 
     }
 
+    private void setupActionBar() {
+        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.fund.flio.ui.main.message.alarm.AlarmFragment;
+import com.fund.flio.ui.main.message.reply.list.ReplyListFragment;
 import com.fund.flio.ui.main.message.chat.list.ChatListFragment;
 
 public class MessagePagerAdapter extends FragmentStatePagerAdapter {
@@ -23,7 +23,7 @@ public class MessagePagerAdapter extends FragmentStatePagerAdapter {
                 ChatListFragment tab1 = new ChatListFragment();
                 return tab1;
             case 1:
-                AlarmFragment tab2 = new AlarmFragment();
+                ReplyListFragment tab2 = new ReplyListFragment();
                 return tab2;
             default:
                 return null;

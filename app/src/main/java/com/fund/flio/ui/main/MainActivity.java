@@ -8,13 +8,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
@@ -37,8 +35,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
+
+import com.hlab.fabrevealmenu.helper.Direction;
+import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
+import com.hlab.fabrevealmenu.view.FABRevealMenu;
 import com.kakao.auth.AccessTokenCallback;
 import com.kakao.auth.Session;
 import com.kakao.auth.authorization.accesstoken.AccessToken;
@@ -52,11 +55,6 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
-import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 import static com.fund.flio.core.AppConstant.RC_KAKAO_SIGN_IN;
@@ -78,17 +76,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private AuthViewModel authViewModel;
 
-    private boolean FAB_Status = false;
-
-    private Animation show_fab_1;
-    private Animation hide_fab_1;
-    private Animation show_fab_2;
-    private Animation hide_fab_2;
-    private Animation show_fab_3;
-    private Animation hide_fab_3;
-
     public AuthViewModel getAuthViewModel() {
         return authViewModel;
+    }
+
+    public NavController getNavController() {
+        return mNavController;
     }
 
     @Override
@@ -114,38 +107,25 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(BuildConfig.GOOGLE_SIGN_URL)
                 .requestEmail()
                 .build();
 
+
+
         googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, connectionResult -> Logger.e("onConnectionFailed " + connectionResult.getErrorMessage()))
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
+        Logger.d("setGoogleApiClient before " + googleApiClient);
         initViews();
         authViewModel = getViewModelProvider().get(AuthViewModel.class);
         authViewModel.setGoogleApiClient(googleApiClient);
         authViewModel.getAuthenticationState().observe(this, authenticationObserver);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_app_bar_default, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void initViews() {
@@ -156,84 +136,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         });
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
 
-        show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_show);
-        hide_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_hide);
-        show_fab_2 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab2_show);
-        hide_fab_2 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab2_hide);
-        show_fab_3 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab3_show);
-        hide_fab_3 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab3_hide);
-
-        getViewDataBinding().fabWrite.setOnClickListener(v -> {
-            if (FAB_Status == false) {
-                //Display FAB menu
-                expandFAB();
-                FAB_Status = true;
-            } else {
-                //Close FAB menu
-                hideFAB();
-                FAB_Status = false;
-            }
-        });
+        getViewDataBinding().fabWrite.setOnClickListener(v -> mNavController.navigate(R.id.nav_bottom_sheet_write));
 
     }
 
-    private void expandFAB() {
-
-        //Floating Action Button 1
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab1.getLayoutParams();
-        layoutParams.rightMargin += (int) (getViewDataBinding().fab1.getWidth() * 0.8);
-        layoutParams.bottomMargin += (int) (getViewDataBinding().fab1.getHeight() * 0.25);
-        getViewDataBinding().fab1.setLayoutParams(layoutParams);
-        getViewDataBinding().fab1.startAnimation(show_fab_1);
-        getViewDataBinding().fab1.setClickable(true);
-
-        //Floating Action Button 2
-        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab2.getLayoutParams();
-        layoutParams2.rightMargin += (int) (getViewDataBinding().fab2.getWidth() * 1.5);
-        layoutParams2.bottomMargin += (int) (getViewDataBinding().fab2.getHeight() * 1.5);
-        getViewDataBinding().fab2.setLayoutParams(layoutParams2);
-        getViewDataBinding().fab2.startAnimation(show_fab_2);
-        getViewDataBinding().fab2.setClickable(true);
-
-        //Floating Action Button 3
-        CoordinatorLayout.LayoutParams layoutParams3 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab3.getLayoutParams();
-        layoutParams3.rightMargin += (int) (getViewDataBinding().fab3.getWidth() * 0.25);
-        layoutParams3.bottomMargin += (int) (getViewDataBinding().fab3.getHeight() * 1.7);
-        getViewDataBinding().fab3.setLayoutParams(layoutParams3);
-        getViewDataBinding().fab3.startAnimation(show_fab_3);
-        getViewDataBinding().fab3.setClickable(true);
-    }
 
 
-    private void hideFAB() {
-
-        //Floating Action Button 1
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab1.getLayoutParams();
-        layoutParams.rightMargin -= (int) (getViewDataBinding().fab1.getWidth() * 0.8);
-        layoutParams.bottomMargin -= (int) (getViewDataBinding().fab1.getHeight() * 0.25);
-        getViewDataBinding().fab1.setLayoutParams(layoutParams);
-        getViewDataBinding().fab1.startAnimation(hide_fab_1);
-        getViewDataBinding().fab1.setClickable(false);
-
-        //Floating Action Button 2
-        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab2.getLayoutParams();
-        layoutParams2.rightMargin -= (int) (getViewDataBinding().fab2.getWidth() * 1.5);
-        layoutParams2.bottomMargin -= (int) (getViewDataBinding().fab2.getHeight() * 1.5);
-        getViewDataBinding().fab2.setLayoutParams(layoutParams2);
-        getViewDataBinding().fab2.startAnimation(hide_fab_2);
-        getViewDataBinding().fab2.setClickable(false);
-
-        //Floating Action Button 3
-        CoordinatorLayout.LayoutParams layoutParams3 = (CoordinatorLayout.LayoutParams) getViewDataBinding().fab3.getLayoutParams();
-        layoutParams3.rightMargin -= (int) (getViewDataBinding().fab3.getWidth() * 0.25);
-        layoutParams3.bottomMargin -= (int) (getViewDataBinding().fab3.getHeight() * 1.7);
-        getViewDataBinding().fab3.setLayoutParams(layoutParams3);
-        getViewDataBinding().fab3.startAnimation(hide_fab_3);
-        getViewDataBinding().fab3.setClickable(false);
-    }
 
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
-//        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getNavigatorName() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
+        Logger.d("MainActivity authenticationObserver " + authenticationState + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getNavigatorName() + ", " + Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getLabel());
         switch (authenticationState) {
             case NONE:
                 switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {
@@ -246,7 +157,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
                 break;
             case UNAUTHENTICATED:
-                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_more_to_nav_login);
+                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_logout_to_nav_login);
                 break;
             case AUTHENTICATED:
                 switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {
@@ -309,62 +220,57 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
         ((FlioApplication) getApplication()).setCurrentDestinationId(destination.getId());
         switch (destination.getId()) {
-            case R.id.nav_intro:
-            case R.id.nav_login:
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().navigationBottom.setVisibility(View.GONE);
-                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
-                break;
             case R.id.nav_market_product:
+            case R.id.nav_certificate_detail:
+            case R.id.nav_event_detail:
+            case R.id.nav_market_product_register:
                 getWindow().setStatusBarColor(Color.TRANSPARENT);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                getViewDataBinding().fabWrite.setVisibility(View.GONE);
                 break;
 
             case R.id.nav_chat_detail:
             case R.id.nav_sell_list:
             case R.id.nav_search:
+            case R.id.nav_setting:
+            case R.id.nav_intro:
+            case R.id.nav_login:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                getViewDataBinding().fabWrite.setVisibility(View.GONE);
                 break;
 
-            case R.id.nav_my_page:
             case R.id.nav_market:
             case R.id.nav_community:
+            case R.id.nav_my_page:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
                 break;
-
 
             case R.id.nav_home:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
+                getViewDataBinding().fabWrite.setVisibility(View.GONE);
                 break;
 
             default:
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getViewDataBinding().fabWrite.setVisibility(View.INVISIBLE);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                getViewDataBinding().fabWrite.setVisibility(View.GONE);
                 break;
         }
     }
@@ -384,8 +290,4 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

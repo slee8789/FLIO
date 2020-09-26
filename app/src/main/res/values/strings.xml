@@ -20,7 +20,6 @@
 
     <string name="intro_description">‘ 영화를 더 생생하게 ’ 감상하고 싶은데\n어떤 스피커가 좋을까?</string>
 
-
     <string name="header_recommend_product">추천 매물</string>
     <string name="header_related_news">관련 뉴스</string>
     <string name="header_certificated">플리오 인증</string>
@@ -52,9 +51,17 @@
     <string name="setting_sign_out">탈퇴하기</string>
     <string name="setting_notice">플리오 공지</string>
 
-    <string name="fab_market">장터글쓰기</string>
-    <string name="fab_certificate">인증글쓰기</string>
-    <string name="fab_event">행사글쓰기</string>
+    <string name="bottom_sheet_write_market">장터글쓰기</string>
+    <string name="bottom_sheet_write_certificate">인증글쓰기</string>
+    <string name="bottom_sheet_write_event">행사글쓰기</string>
+
+    <string name="write_thumbnail_count_label">/10</string>
+
+    <string name="menu_item_done_title">완료</string>
+    <string name="menu_item_setting_title">설정</string>
+    <string name="menu_item_search_title">검색</string>
+    <string name="menu_item_bookmark_title">즐겨찾기</string>
+
 
 
 </resources>

@@ -18,8 +18,8 @@ public class SettingViewModel extends BaseViewModel {
         super(dataManager, schedulerProvider, resourceProvider);
     }
 
-    public void goBack(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
+    public void showLogout(View v) {
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.nav_logout);
     }
 
 

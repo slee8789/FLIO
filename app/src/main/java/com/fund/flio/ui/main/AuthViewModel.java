@@ -31,7 +31,6 @@ import com.orhanobut.logger.Logger;
 
 import io.reactivex.rxjava3.core.Single;
 
-
 public class AuthViewModel extends BaseViewModel implements ISessionCallback {
 
     private OAuthLogin mOAuthLoginModule;
@@ -168,11 +167,14 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                 });
                 break;
         }
+        Logger.d("logout after 1 " + Thread.currentThread().getName());
         mFirebaseAuth.signOut();
+        Logger.d("logout after 2 " + Thread.currentThread().getName());
         setIsLoading(false);
         getDataManager().setAuthType(AuthType.NONE.getType());
         getDataManager().setUserToken(null);
         authenticationState.setValue(AuthenticationState.UNAUTHENTICATED);
+        Logger.d("logout after 3 " + Thread.currentThread().getName());
     }
 
     @Override

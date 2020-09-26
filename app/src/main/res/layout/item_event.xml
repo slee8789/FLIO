@@ -10,12 +10,13 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.community.event.ItemEventViewModel" />
+            type="com.fund.flio.ui.main.community.event.list.ItemEventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.onItemClick(v)}"
         android:padding="10dp">
 
         <ImageView

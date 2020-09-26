@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.fund.flio.ui.main.community.certificate.CertificateFragment;
-import com.fund.flio.ui.main.community.event.EventFragment;
+import com.fund.flio.ui.main.community.certificate.list.CertificateListFragment;
+import com.fund.flio.ui.main.community.event.list.EventListFragment;
 import com.fund.flio.ui.main.community.news.NewsFragment;
 
 public class CommunityPagerAdapter extends FragmentStatePagerAdapter {
@@ -24,10 +24,10 @@ public class CommunityPagerAdapter extends FragmentStatePagerAdapter {
                 NewsFragment tab1 = new NewsFragment();
                 return tab1;
             case 1:
-                CertificateFragment tab2 = new CertificateFragment();
+                CertificateListFragment tab2 = new CertificateListFragment();
                 return tab2;
             case 2:
-                EventFragment tab3 = new EventFragment();
+                EventListFragment tab3 = new EventListFragment();
                 return tab3;
             default:
                 return null;

@@ -36,12 +36,6 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:onClick="@{v -> viewModel.goBack(v)}"
-                android:src="@drawable/ic_back" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:onClick="@{v -> viewModel.onSearchClear(v) }"

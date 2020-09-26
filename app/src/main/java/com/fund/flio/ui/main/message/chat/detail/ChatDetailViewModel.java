@@ -134,10 +134,6 @@ public class ChatDetailViewModel extends BaseViewModel {
                 }, onError -> Logger.e("messages error " + onError)));
     }
 
-    public void goBack(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
-    }
-
     public void onSend(View v) {
         getCompositeDisposable().add(getDataManager().sendMessage(new SendMessageBody(mChatSeq, isSource, getDataManager().getUserName(), inputMessage.get(), getDataManager().getUserImageUrl(), mChatRoom.getChatSourceMessageToken(), mChatRoom.getChatTargetMessageToken()))
                 .observeOn(getSchedulerProvider().ui())

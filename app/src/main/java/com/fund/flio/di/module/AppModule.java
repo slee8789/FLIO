@@ -25,15 +25,17 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.di.qualifier.DatabaseInfo;
 import com.fund.flio.di.qualifier.PreferenceInfo;
-import com.fund.flio.ui.main.community.certificate.CertificateAdapter;
-import com.fund.flio.ui.main.community.event.EventAdapter;
+import com.fund.flio.ui.main.community.certificate.list.CertificateAdapter;
+import com.fund.flio.ui.main.community.event.list.EventAdapter;
 import com.fund.flio.ui.main.community.news.NewsAdapter;
+import com.fund.flio.ui.main.market.register.ThumbnailAdapter;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
 import com.fund.flio.ui.main.home.BannerAdapter;
 import com.fund.flio.ui.main.home.CertificatedAdapter;
 import com.fund.flio.ui.main.home.RecommendAdapter;
 import com.fund.flio.ui.main.market.ProductAdapter;
+import com.fund.flio.ui.main.message.reply.list.ReplyListAdapter;
 import com.fund.flio.ui.main.search.SearchRecentAdapter;
 
 
@@ -154,6 +156,11 @@ public class AppModule {
     }
 
     @Provides
+    ReplyListAdapter provideReplyListAdapter() {
+        return new ReplyListAdapter(new ArrayList<>());
+    }
+
+    @Provides
     NewsAdapter provideNewsAdapter() {
         return new NewsAdapter(new ArrayList<>());
     }
@@ -171,6 +178,11 @@ public class AppModule {
     @Provides
     SearchRecentAdapter provideSearchRecentAdapter() {
         return new SearchRecentAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ThumbnailAdapter provideThumbnailAdapter() {
+        return new ThumbnailAdapter(new ArrayList<>());
     }
 
 }

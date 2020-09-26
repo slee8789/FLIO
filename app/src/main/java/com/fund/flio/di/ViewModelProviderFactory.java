@@ -11,15 +11,17 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainViewModel;
+import com.fund.flio.ui.main.community.certificate.detail.CertificateDetailViewModel;
+import com.fund.flio.ui.main.community.certificate.list.CertificateListViewModel;
+import com.fund.flio.ui.main.community.event.detail.EventDetailViewModel;
 import com.fund.flio.ui.main.market.product.ProductViewModel;
+import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
 import com.fund.flio.ui.main.message.MessageViewModel;
-import com.fund.flio.ui.main.message.alarm.AlarmViewModel;
+import com.fund.flio.ui.main.message.reply.list.ReplyListViewModel;
 import com.fund.flio.ui.main.message.chat.detail.ChatDetailViewModel;
 import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
-import com.fund.flio.ui.main.message.chat.profile.ChatProfileViewModel;
 import com.fund.flio.ui.main.community.CommunityViewModel;
-import com.fund.flio.ui.main.community.certificate.CertificateViewModel;
-import com.fund.flio.ui.main.community.event.EventViewModel;
+import com.fund.flio.ui.main.community.event.list.EventViewModel;
 import com.fund.flio.ui.main.community.news.NewsViewModel;
 import com.fund.flio.ui.main.home.HomeViewModel;
 import com.fund.flio.ui.main.intro.IntroViewModel;
@@ -71,24 +73,22 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new ChatListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (ChatDetailViewModel.class.isAssignableFrom(modelClass)) {
             return new ChatDetailViewModel(context, dataManager, schedulerProvider, resourceProvider);
-        } else if (ChatProfileViewModel.class.isAssignableFrom(modelClass)) {
-            return new ChatProfileViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (CommunityViewModel.class.isAssignableFrom(modelClass)) {
             return new CommunityViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (NewsViewModel.class.isAssignableFrom(modelClass)) {
             return new NewsViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (MarketViewModel.class.isAssignableFrom(modelClass)) {
             return new MarketViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (AlarmViewModel.class.isAssignableFrom(modelClass)) {
-            return new AlarmViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (ReplyListViewModel.class.isAssignableFrom(modelClass)) {
+            return new ReplyListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (MyPageViewModel.class.isAssignableFrom(modelClass)) {
             return new MyPageViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (AuthViewModel.class.isAssignableFrom(modelClass)) {
             return new AuthViewModel(context, dataManager, schedulerProvider, resourceProvider, oAuthLogin);
         } else if (ProductViewModel.class.isAssignableFrom(modelClass)) {
             return new ProductViewModel(dataManager, schedulerProvider, resourceProvider);
-        } else if (CertificateViewModel.class.isAssignableFrom(modelClass)) {
-            return new CertificateViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (CertificateListViewModel.class.isAssignableFrom(modelClass)) {
+            return new CertificateListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (EventViewModel.class.isAssignableFrom(modelClass)) {
             return new EventViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (MessageViewModel.class.isAssignableFrom(modelClass)) {
@@ -99,6 +99,12 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new SearchViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (SettingViewModel.class.isAssignableFrom(modelClass)) {
             return new SettingViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (EventDetailViewModel.class.isAssignableFrom(modelClass)) {
+            return new EventDetailViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (CertificateDetailViewModel.class.isAssignableFrom(modelClass)) {
+            return new CertificateDetailViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (ProductRegisterViewModel.class.isAssignableFrom(modelClass)) {
+            return new ProductRegisterViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

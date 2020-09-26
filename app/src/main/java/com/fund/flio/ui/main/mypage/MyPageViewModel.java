@@ -24,14 +24,6 @@ public class MyPageViewModel extends BaseViewModel {
         name.set(dataManager.getUserName());
     }
 
-    public void goBack(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
-    }
-
-    public void goSetting(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_setting);
-    }
-
     public void onProductSellClick(View v) {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_sell_list);
     }

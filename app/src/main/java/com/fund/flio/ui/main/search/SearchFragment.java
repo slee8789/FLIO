@@ -2,6 +2,7 @@ package com.fund.flio.ui.main.search;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -9,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.transition.Fade;
@@ -38,6 +40,7 @@ import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
 import io.reactivex.disposables.Disposable;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
+import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
@@ -92,6 +95,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         super.onViewCreated(view, savedInstanceState);
         getViewDataBinding().setMainViewModel(getMainViewModel());
         initViews();
+        setupActionBar();
         imm = (InputMethodManager) getBaseActivity().getSystemService(INPUT_METHOD_SERVICE);
     }
 
@@ -137,6 +141,26 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
 
         getViewModel().getSearchResults().observe(getViewLifecycleOwner(), searchResultObserver);
 
+    }
+
+    private void setupActionBar() {
+        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getBaseActivity().getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private final Observer<List<SearchResult>> searchResultObserver = searchResults -> {

@@ -19,9 +19,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            app:onBookmarkClick="@{v -> mainViewModel.onBookmarkClick(v)}"
-            app:onSearchClick="@{v -> mainViewModel.onSearchClick(v)}"/>
+            layout="@layout/toolbar" />
 
         <View
             android:layout_width="match_parent"
@@ -38,7 +36,6 @@
             android:layout_marginHorizontal="20dp"
             android:background="@color/gray9"
             app:layout_constraintBottom_toBottomOf="@id/tabs" />
-
 
 
         <com.google.android.material.tabs.TabLayout

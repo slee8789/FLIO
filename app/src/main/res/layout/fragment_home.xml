@@ -21,9 +21,8 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/toolbar"
-            app:onBookmarkClick="@{v -> mainViewModel.onBookmarkClick(v)}"
-            app:onSearchClick="@{v -> mainViewModel.onSearchClick(v)}" />
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
