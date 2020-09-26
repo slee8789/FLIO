@@ -100,6 +100,7 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
     private void initViews() {
         getViewDataBinding().thumbnails.setAdapter(mThumbnailAdapter);
+        mThumbnailAdapter.setProductRegisterViewModel(getViewModel());
         getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
     }
 

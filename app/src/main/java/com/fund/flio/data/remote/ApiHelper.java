@@ -54,7 +54,32 @@ public interface ApiHelper {
     // 테스트 이미지 업로드
     @Multipart
     @POST(ApiDefine.Body.TEST_IMAGE_UPLOAD)
-//    @Headers({ApiDefine.Header.CONTENT_TYPE_MULTIPART})
     Single<Response<Void>> testImageUpload(@Part MultipartBody.Part[] imgList, @Part("boardKind") RequestBody boardKind, @Part("boardTitle") RequestBody boardTitle);
+
+    // 테스트 이미지 업로드
+    @Multipart
+    @POST(ApiDefine.Body.INSERT_PRODUCT)
+    Single<Response<Void>> insertProduct(
+            @Part("productName") RequestBody productName,
+            @Part("title") RequestBody title,
+            @Part("content") RequestBody content,
+            @Part("status") RequestBody status,
+            @Part("saleYn") RequestBody saleYn,
+            @Part("classification") RequestBody classification,
+            @Part("tag") RequestBody tag,
+            @Part MultipartBody.Part[] imgList,
+            @Part("displayYn") RequestBody displayYn,
+            @Part("useDate") RequestBody useDate,
+            @Part("purchaseKind") RequestBody purchaseKind,
+            @Part("purchasePrice") RequestBody purchasePrice,
+            @Part("boxYn") RequestBody boxYn,
+            @Part("brand") RequestBody brand,
+            @Part("purpose") RequestBody purpose,
+            @Part("modelNo") RequestBody modelNo,
+            @Part("serialNo") RequestBody serialNo,
+            @Part("repairYn") RequestBody repairYn,
+            @Part("productRelatedUrl") RequestBody productRelatedUrl,
+            @Part("uid") RequestBody uid
+    );
 
 }

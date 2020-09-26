@@ -21,6 +21,8 @@ public class ApiDefine {
         String SELECT_MY_CHAT_DETAIL = "chat/selectMyChatDetail";
         String SEND_MESSAGE = "message/sendMessage";
 
+        String INSERT_PRODUCT = "board/insertProduct";
+
     }
 
 

@@ -16,13 +16,13 @@ import io.reactivex.Observable;
 public interface SearchResultDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(SearchResult option);
+    void insert(SearchResult searchResult);
 
     @Query("SELECT * FROM SearchResult ORDER BY id DESC LIMIT 5")
     Observable<List<SearchResult>> loadAll();
 
     @Delete
-    void delete(SearchResult option);
+    void delete(SearchResult searchResult);
 
     @Query("DELETE FROM SearchResult")
     void deleteAll();

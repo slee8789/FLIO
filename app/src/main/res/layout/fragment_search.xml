@@ -17,10 +17,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:id="@+id/root"
         android:background="@color/grayF8">
 
         <androidx.appcompat.widget.Toolbar
@@ -53,8 +53,8 @@
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:text="@={viewModel.searchText}" />
+                android:text="@={viewModel.searchText}"
+                android:textCursorDrawable="@drawable/cursor_purple" />
 
         </androidx.appcompat.widget.Toolbar>
 

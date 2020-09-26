@@ -1,28 +1,43 @@
 package com.fund.flio.ui.main.mypage;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.model.Keyword;
+import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.databinding.FragmentMyPageBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.MainActivity;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
 public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageViewModel> {
 
-    private MenuItem menuSetting;
+
 
     @Override
     public int getBindingVariable() {
@@ -50,6 +65,37 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupActionBar();
+        initViews();
+    }
+
+    private void initViews() {
+//        ArrayList<String> dummyPopularTag = new Gson().fromJson(readAssetJson(getContext(), "tag_popular.json"), new TypeToken<List<String>>() {
+//        }.getType());
+//        for (String tag : dummyPopularTag) {
+//            Chip chip = new Chip(getContext());
+//            chip.setGravity(Gravity.CENTER);
+//            chip.setText(tag);
+//            chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip_entry));
+//            chip.setTextAppearanceResource(R.style.ChipTextStyle);
+//            chip.setCheckable(false);
+//            chip.setOnCloseIconClickListener(null);
+//            getViewDataBinding().tagKeyword.addView(chip);
+//        }
+
+        getViewDataBinding().keyword.setOnEditorActionListener((v, actionId, event) -> {
+            switch (actionId) {
+                case EditorInfo.IME_ACTION_DONE:
+//                    getViewModel().onDataInsert(getViewDataBinding().search.getText().toString());
+//                    getViewDataBinding().search.clearFocus();
+//                    imm.hideSoftInputFromWindow(getViewDataBinding().search.getWindowToken(), 0);
+                    getViewModel().onKeywordRegisterClick(v);
+
+                    return true;
+            }
+            return false;
+        });
+        getViewModel().getKeyword().observe(getViewLifecycleOwner(), keywordObserver);
+        getViewModel().getKeywords().observe(getViewLifecycleOwner(), keywordsObserver);
     }
 
     private void setupActionBar() {
@@ -67,16 +113,8 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     }
 
     @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        Logger.d("onPrepareOptionsMenu");
-        menuSetting = menu.findItem(R.id.menu_setting);
-    }
-
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.d("onOptionsItemSelected "+ item.getItemId());
+        Logger.d("onOptionsItemSelected " + item.getItemId());
         switch (item.getItemId()) {
             case android.R.id.home:
                 Logger.d("onOptionsItemSelected home");
@@ -90,5 +128,26 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private final Observer<String> keywordObserver = keyword -> {
+//        if (keyword.length() == 0)
+//            imm.hideSoftInputFromWindow(getViewDataBinding().keyword.getWindowToken(), 0);
+    };
+
+    private final Observer<List<Keyword>> keywordsObserver = keywords -> {
+        getViewDataBinding().tagKeyword.removeAllViews();
+        for (Keyword keyword : keywords) {
+            Chip chip = new Chip(getContext());
+            chip.setGravity(Gravity.CENTER);
+            chip.setText(keyword.getKeyword());
+            chip.setEllipsize(TextUtils.TruncateAt.END);
+            chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip_entry));
+            chip.setTextAppearanceResource(R.style.ChipTextStyle);
+            chip.setCheckable(false);
+            chip.setOnCloseIconClickListener(v -> getViewModel().onKeywordDelete(keyword));
+            getViewDataBinding().tagKeyword.addView(chip);
+        }
+
+    };
 
 }

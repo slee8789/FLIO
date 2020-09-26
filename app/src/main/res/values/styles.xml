@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/purple</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
     </style>
 
     <style name="ChipTextStyle">
@@ -12,12 +13,22 @@
         <item name="android:textColor">@color/gray9</item>
     </style>
 
-    <style name="ChipStyle" parent="@style/Widget.MaterialComponents.Chip.Action">
+    <style name="ChipActionStyle" parent="@style/Widget.MaterialComponents.Chip.Action">
         <item name="chipBackgroundColor">@color/white</item>
         <item name="chipStrokeColor">@color/grayE6</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipSpacing">4dp</item>
         <item name="singleLine">false</item>
+        <item name="android:textAppearance">@style/ChipTextStyle</item>
+    </style>
+
+    <style name="ChipEntryStyle" parent="@style/Widget.MaterialComponents.Chip.Entry">
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="chipStrokeColor">@color/grayE6</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipSpacing">4dp</item>
+        <item name="singleLine">false</item>
+        <item name="closeIconTint">@color/purple</item>
         <item name="android:textAppearance">@style/ChipTextStyle</item>
     </style>
 
@@ -47,6 +58,20 @@
         <item name="android:textSize">@dimen/sheet_item_textsize</item>
         <item name="android:textColor">@color/black0</item>
         <item name="android:drawablePadding">@dimen/sheet_item_image_spacing</item>
+    </style>
+
+    <style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar.FullWidth">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:paddingEnd">30dp</item>
+        <item name="android:paddingStart">30dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingBottom">30dp</item>
+
+
     </style>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.fund.flio.data.local.db;
 
+import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.SearchResult;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -44,6 +46,33 @@ public class AppDbHelper implements DbHelper {
     public Observable<Boolean> deleteAll() {
         return Observable.fromCallable(() -> {
             mAppDatabase.searchResultDao().deleteAll();
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Keyword> isExist(String keyword) {
+        return mAppDatabase.keywordDao().isExist(keyword);
+    }
+
+    @Override
+    public Observable<List<Keyword>> getKeywords() {
+        return mAppDatabase.keywordDao().loadAll();
+    }
+
+    @Override
+    public Observable<Boolean> insertKeyword(Keyword keyword) {
+        return Observable.fromCallable(() -> {
+            long result = mAppDatabase.keywordDao().insert(keyword);
+            Logger.i("insertKeyword " + result);
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Boolean> deleteKeyword(Keyword keyword) {
+        return Observable.fromCallable(() -> {
+            mAppDatabase.keywordDao().delete(keyword);
             return true;
         });
     }

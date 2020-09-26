@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.databinding.ItemThumbnailBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,11 @@ import java.util.List;
 public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<Uri> uries;
+    private ProductRegisterViewModel productRegisterViewModel;
 
+    public void setProductRegisterViewModel(ProductRegisterViewModel productRegisterViewModel) {
+        this.productRegisterViewModel = productRegisterViewModel;
+    }
 
     public ThumbnailAdapter(ArrayList<Uri> uries) {
         this.uries = uries;
@@ -64,7 +69,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             final Uri uri = uries.get(position);
             ItemThumbnailViewModel thumbnailViewModel = new ItemThumbnailViewModel(uri);
-            thumbnailBinding.setViewModel(thumbnailViewModel);
+            thumbnailBinding.setItemViewModel(thumbnailViewModel);
+            thumbnailBinding.setViewModel(productRegisterViewModel);
         }
 
     }

@@ -5,18 +5,17 @@ package com.fund.flio.data;
 import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.data.model.ChatRoomWrapper;
+import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
-import com.fund.flio.data.model.body.TestBody;
 import com.fund.flio.data.model.body.TokenBody;
 import com.fund.flio.data.remote.ApiHelper;
 
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -103,6 +102,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Response<Void>> insertProduct(RequestBody productName, RequestBody title, RequestBody content, RequestBody status, RequestBody saleYn, RequestBody classification, RequestBody tag, MultipartBody.Part[] imgList, RequestBody displayYn, RequestBody useDate, RequestBody purchaseKind, RequestBody purchasePrice, RequestBody boxYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
+        return mFlioApi.insertProduct(productName, title, content, status, saleYn, classification, tag, imgList, displayYn, useDate, purchaseKind, purchasePrice, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
+    }
+
+    @Override
     public Single<Response<Void>> testImageUpload(MultipartBody.Part[] imgList, RequestBody boardKind, RequestBody boardTitle) {
         return mFlioApi.testImageUpload(imgList, boardKind, boardTitle);
     }
@@ -155,5 +159,25 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<Boolean> deleteAll() {
         return mDbHelper.deleteAll();
+    }
+
+    @Override
+    public Observable<Keyword> isExist(String keyword) {
+        return mDbHelper.isExist(keyword);
+    }
+
+    @Override
+    public Observable<List<Keyword>> getKeywords() {
+        return mDbHelper.getKeywords();
+    }
+
+    @Override
+    public Observable<Boolean> insertKeyword(Keyword keyword) {
+        return mDbHelper.insertKeyword(keyword);
+    }
+
+    @Override
+    public Observable<Boolean> deleteKeyword(Keyword keyword) {
+        return mDbHelper.deleteKeyword(keyword);
     }
 }

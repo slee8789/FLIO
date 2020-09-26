@@ -14,7 +14,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.transition.Fade;
-import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
 import com.fund.flio.BR;
@@ -106,9 +105,9 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
             Chip chip = new Chip(getContext());
             chip.setGravity(Gravity.CENTER);
             chip.setText(tag);
-            chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip));
+            chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip_action));
             chip.setTextAppearanceResource(R.style.ChipTextStyle);
-//            chip.setOnClickListener(v -> {
+//            chipAction.setOnClickListener(v -> {
 //                getViewModel().setIsLoading(!getViewModel().getIsLoading().get());
 //            });
             getViewDataBinding().tagPopular.addView(chip);

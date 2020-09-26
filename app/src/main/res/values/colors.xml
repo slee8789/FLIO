@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
+    <color name="whiteHover">#CED3FF</color>
     <color name="grayF0">#F0F0F0</color>
     <color name="grayCE">#cecece</color>
     <color name="grayF1">#F1F1F1</color>
@@ -23,9 +24,11 @@
     <color name="black3">#333333</color>
     <color name="colorOverlay">#78FFFFFF</color>
     <color name="purple">#6F5AFF</color>
+    <color name="purpleHover">#4D35ED</color>
     <color name="purple2">#993ACD</color>
     <color name="purple3">#A982FF</color>
     <color name="ted_image_picker_primary">#6F5AFF</color>
     <color name="ted_image_picker_primary_pressed">#6F5AFF</color>
+    <color name="disabled">#E5E5E5</color>
 
 </resources>
