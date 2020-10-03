@@ -28,7 +28,7 @@ import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.mypage.MyPageViewModel;
-import com.fund.flio.ui.main.mypage.selllist.SellListViewModel;
+import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
 import com.fund.flio.ui.main.mypage.setting.SettingViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;

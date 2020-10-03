@@ -1,6 +1,7 @@
 package com.fund.flio.ui.main.market;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.transition.TransitionSet;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -64,8 +66,22 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
         setHasOptionsMenu(true);
+
+
+
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        sharedElementEnterTransition = ChangeBounds().apply {
+//            duration = 750
+//        }
+//        sharedElementReturnTransition= ChangeBounds().apply {
+//            duration = 750
+//        }
+//        setSharedElementEnterTransition();
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

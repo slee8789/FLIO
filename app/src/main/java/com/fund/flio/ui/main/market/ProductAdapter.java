@@ -58,7 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             final Product product = products.get(position);
-            ItemProductViewModel productViewModel = new ItemProductViewModel(product);
+            ItemProductViewModel productViewModel = new ItemProductViewModel(productBinding, product);
             productBinding.setViewModel(productViewModel);
         }
 

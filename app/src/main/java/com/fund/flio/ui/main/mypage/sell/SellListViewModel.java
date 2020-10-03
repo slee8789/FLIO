@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.mypage.selllist;
+package com.fund.flio.ui.main.mypage.sell;
 
 import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;

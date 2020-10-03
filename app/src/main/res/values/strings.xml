@@ -67,6 +67,8 @@
     <string name="message_max_count">10개까지 선택 가능합니다.</string>
     <string name="message_already_registered">이미 추가된 키워드입니다.</string>
 
+    <string name="title_sell_list">판매내역</string>
+
 
 
 </resources>

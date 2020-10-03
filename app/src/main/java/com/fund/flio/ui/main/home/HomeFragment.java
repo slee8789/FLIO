@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.transition.TransitionManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -125,7 +126,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "recommands.json"), new TypeToken<List<Recommend>>() {
         }.getType());
         mRecommendAdapter.addItems(testRecommends);
-
         getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
         getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
         mCertificatedAdapter.addItems(testRecommends);

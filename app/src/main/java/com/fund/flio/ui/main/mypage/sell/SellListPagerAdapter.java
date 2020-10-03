@@ -1,11 +1,11 @@
-package com.fund.flio.ui.main.mypage.selllist;
+package com.fund.flio.ui.main.mypage.sell;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.fund.flio.ui.main.mypage.selled.SelledFragment;
-import com.fund.flio.ui.main.mypage.selling.SellingFragment;
+import com.fund.flio.ui.main.mypage.sell.selled.SelledFragment;
+import com.fund.flio.ui.main.mypage.sell.selling.SellingFragment;
 
 public class SellListPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

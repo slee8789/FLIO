@@ -190,7 +190,7 @@
 
     <fragment
         android:id="@+id/nav_sell_list"
-        android:name="com.fund.flio.ui.main.mypage.selllist.SellListFragment"
+        android:name="com.fund.flio.ui.main.mypage.sell.SellListFragment"
         tools:layout="@layout/fragment_sell_list">
 
     </fragment>

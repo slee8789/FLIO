@@ -1,23 +1,19 @@
-package com.fund.flio.ui.main.mypage.selled;
+package com.fund.flio.ui.main.mypage.sell.selling;
 
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.databinding.FragmentSellListBinding;
-import com.fund.flio.databinding.FragmentSelledBinding;
+import com.fund.flio.databinding.FragmentSellingBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.message.MessagePagerAdapter;
-import com.fund.flio.ui.main.mypage.selllist.SellListViewModel;
-import com.google.android.material.tabs.TabLayout;
+import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
 import com.orhanobut.logger.Logger;
 
 
-public class SelledFragment extends BaseFragment<FragmentSelledBinding, SellListViewModel> {
+public class SellingFragment extends BaseFragment<FragmentSellingBinding, SellListViewModel> {
 
 
     @Override
@@ -27,7 +23,7 @@ public class SelledFragment extends BaseFragment<FragmentSelledBinding, SellList
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_selled;
+        return R.layout.fragment_selling;
     }
 
     @Override

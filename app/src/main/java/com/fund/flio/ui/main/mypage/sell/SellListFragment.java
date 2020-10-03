@@ -1,18 +1,21 @@
-package com.fund.flio.ui.main.mypage.selllist;
+package com.fund.flio.ui.main.mypage.sell;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentSellListBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.message.MessagePagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.logger.Logger;
+
+import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 
 public class SellListFragment extends BaseFragment<FragmentSellListBinding, SellListViewModel> {
@@ -47,6 +50,7 @@ public class SellListFragment extends BaseFragment<FragmentSellListBinding, Sell
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        setupActionBar();
     }
 
     private void initViews() {
@@ -74,5 +78,25 @@ public class SellListFragment extends BaseFragment<FragmentSellListBinding, Sell
             }
         });
     }
+
+    private void setupActionBar() {
+        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Logger.d("onOptionsItemSelected " + item.getItemId());
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Logger.d("onOptionsItemSelected home");
+                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
