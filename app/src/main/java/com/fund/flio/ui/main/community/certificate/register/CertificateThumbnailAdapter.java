@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.market.register;
+package com.fund.flio.ui.main.community.certificate.register;
 
 
 import android.net.Uri;
@@ -12,26 +12,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.databinding.ItemThumbnailBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
-import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class CertificateThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<Uri> uries;
-    private ProductRegisterViewModel productRegisterViewModel;
+    private CertificateRegisterViewModel certificateRegisterViewModel;
 
-    public void setProductRegisterViewModel(ProductRegisterViewModel productRegisterViewModel) {
-        this.productRegisterViewModel = productRegisterViewModel;
+    public void setCertificateRegisterViewModel(CertificateRegisterViewModel certificateRegisterViewModel) {
+        this.certificateRegisterViewModel = certificateRegisterViewModel;
     }
 
-    public ThumbnailAdapter(ArrayList<Uri> uries) {
+    public CertificateThumbnailAdapter(ArrayList<Uri> uries) {
         this.uries = uries;
     }
 
     public void setItems(List<Uri> uries) {
-        final ThumbnailAdapter.UriDiffCallback diffCallback = new ThumbnailAdapter.UriDiffCallback(this.uries, uries);
+        final CertificateThumbnailAdapter.UriDiffCallback diffCallback = new CertificateThumbnailAdapter.UriDiffCallback(this.uries, uries);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         this.uries.clear();
         this.uries.addAll(uries);
@@ -69,8 +68,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             final Uri uri = uries.get(position);
             ItemThumbnailViewModel thumbnailViewModel = new ItemThumbnailViewModel(uri);
-            thumbnailBinding.setItemViewModel(thumbnailViewModel);
-            thumbnailBinding.setViewModel(productRegisterViewModel);
+//            thumbnailBinding.setItemViewModel(thumbnailViewModel);
+//            thumbnailBinding.setViewModel(certificateRegisterViewModel);
         }
 
     }

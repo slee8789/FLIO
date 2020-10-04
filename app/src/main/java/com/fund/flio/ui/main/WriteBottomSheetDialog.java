@@ -26,7 +26,9 @@ public class WriteBottomSheetDialog extends BaseBottomSheetDialog {
         AndroidSupportInjection.inject(this);
         BottomSheetWriteBinding binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_write, container, false);
         View view = binding.getRoot();
-        binding.market.setOnClickListener(v -> ((MainActivity)getBaseActivity()).getNavController().navigate(R.id.action_nav_bottom_sheet_write_to_nav_market_product_register));
+        binding.market.item.setOnClickListener(v -> ((MainActivity) getBaseActivity()).getNavController().navigate(R.id.action_nav_bottom_sheet_write_to_nav_market_product_register));
+        binding.certificate.item.setOnClickListener(v -> ((MainActivity) getBaseActivity()).getNavController().navigate(R.id.action_nav_bottom_sheet_write_to_nav_community_certificate_register));
+        binding.event.item.setOnClickListener(v -> ((MainActivity) getBaseActivity()).getNavController().navigate(R.id.action_nav_bottom_sheet_write_to_nav_community_event_register));
         return view;
     }
 

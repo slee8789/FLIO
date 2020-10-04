@@ -1,7 +1,9 @@
 package com.fund.flio.ui.main;
 
 import com.fund.flio.ui.main.community.certificate.detail.CertificateDetailFragment;
+import com.fund.flio.ui.main.community.certificate.register.CertificateRegisterFragment;
 import com.fund.flio.ui.main.community.event.detail.EventDetailFragment;
+import com.fund.flio.ui.main.community.event.register.EventRegisterFragment;
 import com.fund.flio.ui.main.market.register.ProductRegisterFragment;
 import com.fund.flio.ui.main.message.MessageFragment;
 import com.fund.flio.ui.main.message.reply.list.ReplyListFragment;
@@ -101,6 +103,12 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract ProductRegisterFragment provideProductRegister();
+
+    @ContributesAndroidInjector
+    abstract EventRegisterFragment provideEventRegister();
+
+    @ContributesAndroidInjector
+    abstract CertificateRegisterFragment provideCertificateRegister();
 
 
 }

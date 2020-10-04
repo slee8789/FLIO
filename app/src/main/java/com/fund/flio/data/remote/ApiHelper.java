@@ -18,11 +18,13 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public interface ApiHelper {
 
@@ -82,4 +84,8 @@ public interface ApiHelper {
             @Part("uid") RequestBody uid
     );
 
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.SELECT_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Void>> selectProduct(@Query("uid") String uid);
 }

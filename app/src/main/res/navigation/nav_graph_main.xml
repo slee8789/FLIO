@@ -189,6 +189,20 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_community_event_register"
+        android:name="com.fund.flio.ui.main.community.event.register.EventRegisterFragment"
+        tools:layout="@layout/fragment_event_register">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_community_certificate_register"
+        android:name="com.fund.flio.ui.main.community.certificate.register.CertificateRegisterFragment"
+        tools:layout="@layout/fragment_certificate_register">
+
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_sell_list"
         android:name="com.fund.flio.ui.main.mypage.sell.SellListFragment"
         tools:layout="@layout/fragment_sell_list">
@@ -219,6 +233,18 @@
             app:destination="@id/nav_market_product_register"
             app:popUpTo="@id/nav_bottom_sheet_write"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_bottom_sheet_write_to_nav_community_certificate_register"
+            app:destination="@id/nav_community_certificate_register"
+            app:popUpTo="@id/nav_bottom_sheet_write"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_bottom_sheet_write_to_nav_community_event_register"
+            app:destination="@id/nav_community_event_register"
+            app:popUpTo="@id/nav_bottom_sheet_write"
+            app:popUpToInclusive="true" />
+
+
     </dialog>
 
     <dialog

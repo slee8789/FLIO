@@ -22,6 +22,7 @@ public class ApiDefine {
         String SEND_MESSAGE = "message/sendMessage";
 
         String INSERT_PRODUCT = "board/insertProduct";
+        String SELECT_PRODUCT = "board/selectProduct";
 
     }
 

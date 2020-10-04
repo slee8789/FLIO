@@ -10,9 +10,10 @@
             type="com.fund.flio.ui.main.market.register.ProductRegisterViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,88 +31,348 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Cherry"
+                android:text="@string/product_register"
                 android:textColor="@color/black0"
                 android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
-        <View
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/grayE5"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/add_image"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/thumbnail_border"
-            android:onClick="@{v -> viewModel.addImage(v)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="19.25dp"
-            android:layout_height="16.5dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/icon_thumbnail"
-            app:layout_constraintEnd_toEndOf="@id/add_image"
-            app:layout_constraintStart_toStartOf="@id/add_image"
-            app:layout_constraintTop_toTopOf="@id/add_image" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/write_thumbnail_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@{viewModel.imageCount}"
-            android:textColor="@color/purple"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/add_image"
-            app:layout_constraintEnd_toStartOf="@id/write_thumbnail_count_label"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@id/add_image" />
+                <ImageView
+                    android:id="@+id/add_image"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/thumbnail_border"
+                    android:onClick="@{v -> viewModel.addImage(v)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/write_thumbnail_count_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/write_thumbnail_count_label"
-            android:textColor="@color/gray9"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/add_image"
-            app:layout_constraintEnd_toEndOf="@id/add_image"
-            app:layout_constraintStart_toEndOf="@id/write_thumbnail_count" />
+                <ImageView
+                    android:layout_width="19.25dp"
+                    android:layout_height="16.5dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/icon_thumbnail"
+                    app:layout_constraintEnd_toEndOf="@id/add_image"
+                    app:layout_constraintStart_toStartOf="@id/add_image"
+                    app:layout_constraintTop_toTopOf="@id/add_image" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/thumbnails"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/divider_thumbnail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/add_image"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            tools:listitem="@layout/item_thumbnail" />
+                <TextView
+                    android:id="@+id/write_thumbnail_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{viewModel.imageCount}"
+                    android:textColor="@color/purple"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/add_image"
+                    app:layout_constraintEnd_toStartOf="@id/write_thumbnail_count_label"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/add_image" />
 
-        <View
-            android:id="@+id/divider_thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/grayE5"
-            app:layout_constraintTop_toBottomOf="@id/add_image" />
+                <TextView
+                    android:id="@+id/write_thumbnail_count_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/write_thumbnail_count_label"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/add_image"
+                    app:layout_constraintEnd_toEndOf="@id/add_image"
+                    app:layout_constraintStart_toEndOf="@id/write_thumbnail_count" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/thumbnails"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/divider_thumbnail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/add_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_thumbnail" />
+
+                <View
+                    android:id="@+id/divider_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/add_image" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_register_title_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_title"
+                    app:layout_constraintTop_toBottomOf="@id/divider_thumbnail" />
+
+                <View
+                    android:id="@+id/divider_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/divider_thumbnail" />
+
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:drawableEnd="@drawable/icon_arrow"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/product_register_category"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_select" />
+
+                <TextView
+                    android:id="@+id/porpose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:drawableEnd="@drawable/icon_arrow"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/product_register_purpose"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_title"
+                    app:layout_constraintStart_toEndOf="@id/category"
+                    app:layout_constraintTop_toBottomOf="@id/divider_select" />
+
+                <View
+                    android:id="@+id/divider_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/divider_title" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_register_price"
+                    android:maxLines="1"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_price"
+                    app:layout_constraintEnd_toStartOf="@id/state"
+                    app:layout_constraintTop_toBottomOf="@id/divider_select" />
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:drawableStart="@drawable/check_purple"
+                    android:drawablePadding="2dp"
+                    android:text="@string/product_register_state"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_select" />
+
+                <View
+                    android:id="@+id/divider_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/divider_select" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/product_register_way"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_way"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_price" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/way"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    app:checkedButton="@id/direct"
+                    app:layout_constraintBottom_toTopOf="@id/divider_way"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_price"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/direct"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product_register_way_direct" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/delivery"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product_register_way_delivery" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <View
+                    android:id="@+id/divider_way"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/divider_price" />
+
+                <EditText
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@null"
+                    android:gravity="top|start"
+                    android:hint="@string/product_register_message_hint"
+                    android:minHeight="80dp"
+                    android:inputType="text"
+                    android:paddingVertical="20dp"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_message"
+                    app:layout_constraintTop_toBottomOf="@id/divider_way" />
+
+                <View
+                    android:id="@+id/divider_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintTop_toBottomOf="@id/message" />
+
+                <EditText
+                    android:id="@+id/tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:background="@drawable/border_keyword"
+                    android:imeActionLabel="@string/menu_item_done_title"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:minHeight="24dp"
+                    android:paddingHorizontal="12dp"
+                    android:text="@={viewModel.tag}"
+                    android:textCursorDrawable="@drawable/cursor_purple"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_keyword"
+                    app:layout_constraintEnd_toStartOf="@id/btn_register_keyword"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_message" />
+
+                <Button
+                    android:id="@+id/btn_register_keyword"
+                    android:layout_width="44dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/button_purple"
+                    android:enabled="@{viewModel.tag.length() != 0}"
+                    android:onClick="@{v -> viewModel.onKeywordRegisterClick(v)}"
+                    android:text="@string/setting_register_keyword"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/divider_keyword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_message"
+                    />
+
+                <View
+                    android:id="@+id/divider_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@null"
+                    app:layout_constraintTop_toBottomOf="@id/divider_message" />
+
+                <TextView
+                    android:id="@+id/label_keyword_registered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/setting_register_keyword_registered"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tag_keyword"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_keyword" />
+
+                <TextView
+                    android:id="@+id/count_keyword_registered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{viewModel.tagCount}"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tag_keyword"
+                    app:layout_constraintStart_toEndOf="@id/label_keyword_registered"
+                    app:layout_constraintTop_toBottomOf="@id/divider_keyword" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tag_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_keyword_registered">
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </LinearLayout>
 
 
 </layout>

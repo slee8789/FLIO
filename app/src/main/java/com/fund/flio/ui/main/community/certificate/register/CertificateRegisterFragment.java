@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.market.register;
+package com.fund.flio.ui.main.community.certificate.register;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.databinding.FragmentCertificateRegisterBinding;
 import com.fund.flio.databinding.FragmentProductRegisterBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
@@ -25,10 +26,10 @@ import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class ProductRegisterFragment extends BaseFragment<FragmentProductRegisterBinding, ProductRegisterViewModel> implements OnFABMenuSelectedListener {
+public class CertificateRegisterFragment extends BaseFragment<FragmentCertificateRegisterBinding, CertificateRegisterViewModel> implements OnFABMenuSelectedListener {
 
     @Inject
-    ProductThumbnailAdapter mProductThumbnailAdapter;
+    CertificateThumbnailAdapter mCertificateThumbnailAdapter;
 
     private MenuItem menuCompleted;
 
@@ -39,12 +40,12 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_product_register;
+        return R.layout.fragment_certificate_register;
     }
 
     @Override
-    public ProductRegisterViewModel getViewModel() {
-        return getViewModelProvider().get(ProductRegisterViewModel.class);
+    public CertificateRegisterViewModel getViewModel() {
+        return getViewModelProvider().get(CertificateRegisterViewModel.class);
     }
 
     @Override
@@ -62,9 +63,9 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
     }
 
     private void setupActionBar() {
-        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
-        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+//        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+//        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -97,12 +98,12 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
 
     private void initViews() {
-        getViewDataBinding().thumbnails.setAdapter(mProductThumbnailAdapter);
-        mProductThumbnailAdapter.setProductRegisterViewModel(getViewModel());
-        getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
+//        getViewDataBinding().thumbnails.setAdapter(mCertificateThumbnailAdapter);
+//        mCertificateThumbnailAdapter.setCertificateRegisterViewModel(getViewModel());
+//        getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
     }
 
-    private final Observer<List<Uri>> thumbnailObserver = thumbnails -> mProductThumbnailAdapter.setItems(thumbnails);
+    private final Observer<List<Uri>> thumbnailObserver = thumbnails -> mCertificateThumbnailAdapter.setItems(thumbnails);
 
     @Override
     public void onMenuItemSelected(View view, int id) {

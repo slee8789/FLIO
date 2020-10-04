@@ -49,18 +49,16 @@ public class PushService extends FirebaseMessagingService {
     @Inject
     NotificationChannel notificationChannel;
 
-    private boolean isSource;
-    private int chatSeq;
-    private String remoteName, chatMessage, remoteUserImageUrl;
-    private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+    private void logoutMessage(RemoteMessage remoteMessage) {
 
-    @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        Logger.d("PushService onMessageReceived remoteMessage " + remoteMessage.getData());
-//        Logger.d("PushService onMessageReceived remoteMessage type " + remoteMessage.getData().get("chatSeq") + ", " + remoteMessage.getData().get("chatSourceMessage") + ", " + remoteMessage.getData().get("chatTargetMessage") + ", " + remoteMessage.getData().get("chatDate") + ", " + Foreground.get().isBackground());
-        //Todo : chatSeq로 현재 채팅방을 확인하여 백그라운드이거나 다른방 채팅일 경우에 노티
-        //Todo : 푸쉬 클릭해서 채팅상세화면까지 온 후 뒤로가기 클릭시 어느화면? 정의 필요
+    }
+
+    private void chatMessage(RemoteMessage remoteMessage) {
+        boolean isSource;
+        int chatSeq;
+        String remoteName, chatMessage, remoteUserImageUrl;
+        SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+
         isSource = remoteMessage.getData().get("chatSourceMessage") != null;
         chatSeq = Integer.parseInt(remoteMessage.getData().get("chatSeq"));
         if (isSource) {
@@ -79,7 +77,7 @@ public class PushService extends FirebaseMessagingService {
         } else {
 //            Logger.d("flio app " + ((FlioApplication) getApplicationContext()).getCurrentChatSeq());
             if (((FlioApplication) getApplicationContext()).getCurrentDestinationId() == R.id.nav_chat_detail) {
-                if(((FlioApplication) getApplicationContext()).getCurrentChatSeq() == chatSeq) {
+                if (((FlioApplication) getApplicationContext()).getCurrentChatSeq() == chatSeq) {
                     MessageBus.getInstance().sendDirect(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
                 } else {
                     MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
@@ -91,6 +89,19 @@ public class PushService extends FirebaseMessagingService {
                 MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
             }
         }
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        Logger.d("PushService onMessageReceived remoteMessage " + remoteMessage.getData());
+
+        if (remoteMessage.getData().get("chatSourceMessage") != null) {
+            chatMessage(remoteMessage);
+        } else if (remoteMessage.getData().get("logoutForce") != null) {
+            logoutMessage(remoteMessage);
+        }
+
 
     }
 

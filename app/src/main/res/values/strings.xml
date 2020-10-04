@@ -56,6 +56,7 @@
     <string name="bottom_sheet_write_market">장터글쓰기</string>
     <string name="bottom_sheet_write_certificate">인증글쓰기</string>
     <string name="bottom_sheet_write_event">행사글쓰기</string>
+    <string name="bottom_sheet_write_hint">게시글을 작성할 수 있어요.</string>
 
     <string name="write_thumbnail_count_label">/10</string>
 
@@ -69,6 +70,15 @@
 
     <string name="title_sell_list">판매내역</string>
 
-
+    <string name="product_register">장터글쓰기</string>
+    <string name="product_register_title_hint">제목</string>
+    <string name="product_register_category">카테고리 분류</string>
+    <string name="product_register_purpose">용도선택</string>
+    <string name="product_register_price">₩ 가격 입력(선택사항)</string>
+    <string name="product_register_state">상태 체크표</string>
+    <string name="product_register_way">거래방법</string>
+    <string name="product_register_way_direct">직거래</string>
+    <string name="product_register_way_delivery">택배거래</string>
+    <string name="product_register_message_hint">게시글 내용을 작성해주세요.</string>
 
 </resources>

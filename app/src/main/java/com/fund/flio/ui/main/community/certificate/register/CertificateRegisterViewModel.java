@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.market.register;
+package com.fund.flio.ui.main.community.certificate.register;
 
 import android.content.Context;
 import android.net.Uri;
@@ -26,7 +26,7 @@ import okhttp3.RequestBody;
 
 import static com.fund.flio.utils.CommonUtils.getRealPathFromUri;
 
-public class ProductRegisterViewModel extends BaseViewModel {
+public class CertificateRegisterViewModel extends BaseViewModel {
 
     private Context mContext;
 
@@ -40,7 +40,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
     public ObservableField<String> tagCount = new ObservableField<>();
     public ObservableField<String> imageCount = new ObservableField<>(String.valueOf(0));
 
-    public ProductRegisterViewModel(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
+    public CertificateRegisterViewModel(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
         mContext = context;
     }

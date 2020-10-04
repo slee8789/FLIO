@@ -20,15 +20,7 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_gravity="bottom"
-            android:layout_marginHorizontal="20dp"
-            android:background="@color/black3"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
-
+        
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

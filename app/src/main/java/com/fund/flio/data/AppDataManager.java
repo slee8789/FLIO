@@ -107,6 +107,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Response<Void>> selectProduct(String uid) {
+        return mFlioApi.selectProduct(uid);
+    }
+
+    @Override
     public Single<Response<Void>> testImageUpload(MultipartBody.Part[] imgList, RequestBody boardKind, RequestBody boardTitle) {
         return mFlioApi.testImageUpload(imgList, boardKind, boardTitle);
     }

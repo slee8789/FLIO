@@ -1,4 +1,4 @@
-package com.fund.flio.ui.main.market.register;
+package com.fund.flio.ui.main.community.event.register;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.databinding.FragmentEventRegisterBinding;
 import com.fund.flio.databinding.FragmentProductRegisterBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
@@ -25,10 +26,10 @@ import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class ProductRegisterFragment extends BaseFragment<FragmentProductRegisterBinding, ProductRegisterViewModel> implements OnFABMenuSelectedListener {
+public class EventRegisterFragment extends BaseFragment<FragmentEventRegisterBinding, EventRegisterViewModel> implements OnFABMenuSelectedListener {
 
     @Inject
-    ProductThumbnailAdapter mProductThumbnailAdapter;
+    EventThumbnailAdapter mEventThumbnailAdapter;
 
     private MenuItem menuCompleted;
 
@@ -39,12 +40,12 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_product_register;
+        return R.layout.fragment_event_register;
     }
 
     @Override
-    public ProductRegisterViewModel getViewModel() {
-        return getViewModelProvider().get(ProductRegisterViewModel.class);
+    public EventRegisterViewModel getViewModel() {
+        return getViewModelProvider().get(EventRegisterViewModel.class);
     }
 
     @Override
@@ -97,12 +98,12 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
 
     private void initViews() {
-        getViewDataBinding().thumbnails.setAdapter(mProductThumbnailAdapter);
-        mProductThumbnailAdapter.setProductRegisterViewModel(getViewModel());
-        getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
+//        getViewDataBinding().thumbnails.setAdapter(mEventThumbnailAdapter);
+//        mEventThumbnailAdapter.setEventRegisterViewModel(getViewModel());
+//        getViewModel().getThumbnailUris().observe(getViewLifecycleOwner(), thumbnailObserver);
     }
 
-    private final Observer<List<Uri>> thumbnailObserver = thumbnails -> mProductThumbnailAdapter.setItems(thumbnails);
+    private final Observer<List<Uri>> thumbnailObserver = thumbnails -> mEventThumbnailAdapter.setItems(thumbnails);
 
     @Override
     public void onMenuItemSelected(View view, int id) {

@@ -7,39 +7,26 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingHorizontal="32dp"
         android:paddingTop="24dp"
         android:paddingBottom="40dp"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <TextView
+        <include
             android:id="@+id/market"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/bottom_sheet_write_market"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            layout="@layout/item_write"
+            app:title="@{@string/bottom_sheet_write_market}" />
 
-        <TextView
+        <include
             android:id="@+id/certificate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/bottom_sheet_write_certificate"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            layout="@layout/item_write"
+            app:title="@{@string/bottom_sheet_write_certificate}" />
 
-        <TextView
+        <include
             android:id="@+id/event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/bottom_sheet_write_event"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            layout="@layout/item_write"
+            app:title="@{@string/bottom_sheet_write_event}" />
 
     </LinearLayout>
 </layout>
