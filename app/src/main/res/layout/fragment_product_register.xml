@@ -237,18 +237,20 @@
                     app:layout_constraintBottom_toTopOf="@id/divider_way"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_price"
+
+                    app:selectionRequired="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/direct"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        style="@style/ButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/product_register_way_direct" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/delivery"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        style="@style/ButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/product_register_way_delivery" />
@@ -271,8 +273,8 @@
                     android:background="@null"
                     android:gravity="top|start"
                     android:hint="@string/product_register_message_hint"
-                    android:minHeight="80dp"
                     android:inputType="text"
+                    android:minHeight="80dp"
                     android:paddingVertical="20dp"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
@@ -322,8 +324,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/divider_keyword"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divider_message"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/divider_message" />
 
                 <View
                     android:id="@+id/divider_keyword"

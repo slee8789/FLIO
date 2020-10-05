@@ -66,13 +66,6 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
     }
 
     private void initViews() {
-        mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("전체"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("세미나/강좌"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("청음회"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("구인구직"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("기타"));
-
         getViewDataBinding().news.setAdapter(mNewsAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));

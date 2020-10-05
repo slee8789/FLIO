@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fund.flio.data.model.Recommend;
-import com.fund.flio.databinding.ItemCertificatedBinding;
-import com.fund.flio.databinding.ItemRecommendBinding;
+import com.fund.flio.data.model.Certificate;
+import com.fund.flio.data.model.Product;
+import com.fund.flio.databinding.ItemCertificateBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.community.certificate.list.ItemCertificateViewModel;
 
 import java.util.List;
 
@@ -20,13 +21,13 @@ import static com.fund.flio.ui.base.BaseViewHolder.VIEW_TYPE_NORMAL;
 public class CertificatedAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private Context context;
-    private List<Recommend> recommends;
+    private List<Certificate> recommends;
 
-    public CertificatedAdapter(List<Recommend> recommends) {
+    public CertificatedAdapter(List<Certificate> recommends) {
         this.recommends = recommends;
     }
 
-    public void addItems(List<Recommend> recommends) {
+    public void addItems(List<Certificate> recommends) {
         this.recommends.addAll(recommends);
         notifyDataSetChanged();
     }
@@ -39,7 +40,7 @@ public class CertificatedAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        ItemCertificatedBinding certificatedBinding = ItemCertificatedBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemCertificateBinding certificatedBinding = ItemCertificateBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new CertificatedViewHolder(certificatedBinding);
     }
 
@@ -68,17 +69,17 @@ public class CertificatedAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class CertificatedViewHolder extends BaseViewHolder {
 
-        private ItemCertificatedBinding binding;
+        private ItemCertificateBinding binding;
 
-        public CertificatedViewHolder(ItemCertificatedBinding binding) {
+        public CertificatedViewHolder(ItemCertificateBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
         @Override
         public void onBind(int position) {
-            final Recommend recommend = recommends.get(position);
-            ItemRecommendViewModel recommendViewModel = new ItemRecommendViewModel(recommend);
+            final Certificate recommend = recommends.get(position);
+            ItemCertificateViewModel recommendViewModel = new ItemCertificateViewModel(recommend);
             binding.setViewModel(recommendViewModel);
 //            binding.image.setZ(0);
 //            binding.tag1.setZ(10);

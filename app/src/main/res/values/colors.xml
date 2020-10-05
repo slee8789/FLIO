@@ -30,5 +30,10 @@
     <color name="ted_image_picker_primary">#6F5AFF</color>
     <color name="ted_image_picker_primary_pressed">#6F5AFF</color>
     <color name="disabled">#E5E5E5</color>
-
+    <color name="dark_scrim">#66333333</color>
+    <color name="primary">#008577</color>
+    <color name="primary_variant">#00574B</color>
+    <color name="secondary">#D81B60</color>
+    <color name="card_background">#e0e0e0</color>
+    <color name="navigationBarColor">@color/dark_scrim</color>
 </resources>

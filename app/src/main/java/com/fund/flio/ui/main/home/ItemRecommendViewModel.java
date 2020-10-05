@@ -6,10 +6,8 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 import androidx.navigation.Navigation;
 
-import com.bumptech.glide.request.RequestCoordinator;
 import com.fund.flio.R;
-import com.fund.flio.data.model.Banner;
-import com.fund.flio.data.model.Recommend;
+import com.fund.flio.data.model.Product;
 import com.fund.flio.ui.main.MainActivity;
 
 public class ItemRecommendViewModel {
@@ -20,7 +18,7 @@ public class ItemRecommendViewModel {
     public ObservableField<String> price = new ObservableField<>();
 
 
-    public ItemRecommendViewModel(Recommend recommend) {
+    public ItemRecommendViewModel(Product recommend) {
         imageUrl.set(recommend.getImageUrl());
         isLike.set(recommend.isLike());
         comment.set(recommend.getComment());

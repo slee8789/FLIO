@@ -7,16 +7,85 @@
     <string name="nav_channel">채널/알림</string>
     <string name="nav_favorite">관심상품</string>
 
+    <string name="category_entire">전체</string>
     <string name="category_speaker">스피커</string>
     <string name="category_mike">마이크</string>
     <string name="category_cable">케이블</string>
     <string name="category_amp">앰프</string>
     <string name="category_source">소스기기</string>
-    <string name="category_headset">이어폰\n헤드폰</string>
+    <string name="category_headset">이어폰/헤드폰</string>
+    <string name="category_headset_home">이어폰\n헤드폰</string>
     <string name="category_acoustic">음향장비</string>
     <string name="category_instrument">악기/음반</string>
     <string name="category_accessory">악세사리</string>
     <string name="category_diy">DIY</string>
+
+    <string name="category_speaker_pc_fi">PC-FI</string>
+    <string name="category_speaker_head_fi">Head-Fi</string>
+    <string name="category_speaker_hi_fi">HiFi</string>
+    <string name="category_speaker_pro">Pro</string>
+    <string name="category_speaker_bluetooth">Bluetooth</string>
+    <string name="category_speaker_ai">AI</string>
+
+    <string name="category_mike_wire">유선마이크</string>
+    <string name="category_mike_wireless">무선마이크</string>
+    <string name="category_mike_pin">핀마이크</string>
+
+    <string name="category_cable_speaker">스피커케이블</string>
+    <string name="category_cable_inter">인터케이블</string>
+    <string name="category_cable_digital">디지털케이블</string>
+    <string name="category_cable_power">파워케이블</string>
+
+    <string name="category_apm_power">파워앰프</string>
+    <string name="category_apm_pre">프리앰프</string>
+    <string name="category_apm_phono">포노앰프</string>
+    <string name="category_apm_dap">DAP</string>
+    <string name="category_apm_etc">기타앰프</string>
+    <string name="category_apm_portable">휴대용앰프</string>
+
+    <string name="category_source_lp">LP</string>
+    <string name="category_source_cdp">CDP</string>
+    <string name="category_source_tuner">튜너</string>
+    <string name="category_source_cartridge">카트리지</string>
+    <string name="category_source_earphone">이어폰</string>
+
+    <string name="category_headset_earphone_wire">유선이어폰</string>
+    <string name="category_headset_earphone_bluetooth">블루투스 이어폰</string>
+    <string name="category_headset_headphone_wire">유선헤드폰</string>
+    <string name="category_headset_headphone_bluetooth">블루투스 헤드폰</string>
+    <string name="category_headset_headphone_monitoring">모니터링 헤드폰</string>
+
+    <string name="category_acoustic_mixer">믹서</string>
+    <string name="category_acoustic_effector">이펙터</string>
+    <string name="category_acoustic_dac">DAC</string>
+    <string name="category_acoustic_word_clock">워드클락</string>
+
+    <string name="category_instrument_lp">LP</string>
+    <string name="category_instrument_cd">CD</string>
+
+    <string name="category_accessory_spike">스파이크</string>
+    <string name="category_accessory_stand">스탠드</string>
+    <string name="category_accessory_rack">랙장</string>
+    <string name="category_accessory_plate">음향판</string>
+
+    <string name="category_diy_instrument">악기</string>
+    <string name="category_diy_unit">유닛</string>
+    <string name="category_diy_terminal">단자</string>
+
+    <string name="category_news">플리오 뉴스</string>
+    <string name="category_certificate">플리오 인증</string>
+    <string name="category_event">홍보/행사</string>
+
+    <string name="category_certificate_entire">전체</string>
+    <string name="category_certificate_my_flio">MY플리오</string>
+    <string name="category_certificate_review">오디오리뷰</string>
+    <string name="category_certificate_deal">거래인증</string>
+
+    <string name="category_event_entire">전체</string>
+    <string name="category_event_seminar">세미나/강좌</string>
+    <string name="category_event_session">청음회</string>
+    <string name="category_event_job">구인구직</string>
+    <string name="category_event_etc">기타</string>
 
     <string name="intro_description">‘ 영화를 더 생생하게 ’ 감상하고 싶은데\n어떤 스피커가 좋을까?</string>
 
@@ -80,5 +149,9 @@
     <string name="product_register_way_direct">직거래</string>
     <string name="product_register_way_delivery">택배거래</string>
     <string name="product_register_message_hint">게시글 내용을 작성해주세요.</string>
+
+    <string name="transition_product_image">transition_product_image_%d</string>
+    <string name="transition_product_flio">transition_product_flio_%d</string>
+    <string name="transition_product_faith">transition_product_faith_%d</string>
 
 </resources>

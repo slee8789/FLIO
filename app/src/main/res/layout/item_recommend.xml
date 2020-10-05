@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.home.ItemRecommendViewModel" />
+            type="com.fund.flio.ui.main.market.ItemProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +42,29 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/flio"
+            android:layout_width="22dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/btn_mark_flio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/faith"
+            android:layout_width="22dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/btn_mark_faith"
+            app:layout_constraintStart_toEndOf="@id/flio"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:layout_width="26dp"

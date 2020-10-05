@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -58,6 +60,8 @@ import dagger.android.HasAndroidInjector;
 
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 import static com.fund.flio.core.AppConstant.RC_KAKAO_SIGN_IN;
+import static com.fund.flio.utils.ViewUtils.getNavigationBarHeight;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements HasAndroidInjector, NavController.OnDestinationChangedListener {
@@ -107,14 +111,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(BuildConfig.GOOGLE_SIGN_URL)
                 .requestEmail()
                 .build();
-
 
 
         googleApiClient = new GoogleApiClient.Builder(this)
@@ -137,10 +137,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
 
         getViewDataBinding().fabWrite.setOnClickListener(v -> mNavController.navigate(R.id.nav_bottom_sheet_write));
+//        Logger.d("test 1 " + getViewDataBinding().navigationBottom.getPaddingBottom());
+//        getViewDataBinding().navigationBottom.setPadding(0, 0, 0, getNavigationBarHeight(this));
+//        Logger.d("test 2 " + getViewDataBinding().navigationBottom.getPaddingBottom());
+
 
     }
-
-
 
 
     private final Observer<AuthenticationState> authenticationObserver = authenticationState -> {
@@ -157,7 +159,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
                 break;
             case UNAUTHENTICATED:
-                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_nav_logout_to_nav_login);
+                Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.action_global_to_nav_login);
                 break;
             case AUTHENTICATED:
                 switch (Navigation.findNavController(this, R.id.fragment_container).getCurrentDestination().getId()) {
@@ -224,7 +226,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_certificate_detail:
             case R.id.nav_event_detail:
             case R.id.nav_market_product_register:
-                getWindow().setStatusBarColor(Color.TRANSPARENT);
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
@@ -236,9 +237,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_setting:
             case R.id.nav_intro:
             case R.id.nav_login:
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
@@ -247,27 +246,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_market:
             case R.id.nav_community:
             case R.id.nav_my_page:
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.nav_home:
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
                 break;
 
             default:
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);

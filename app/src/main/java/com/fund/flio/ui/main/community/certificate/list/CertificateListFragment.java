@@ -65,11 +65,9 @@ public class CertificateListFragment extends BaseFragment<FragmentCertificateLis
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("전체"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("My플리오"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("오디오리뷰"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("거래인증"));
-
+        for (String category : getResources().getStringArray(R.array.array_community_certificate)) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(category));
+        }
         getViewDataBinding().certificates.setAdapter(mCertificateAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));

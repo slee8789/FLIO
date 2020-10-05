@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.bus.AuthBus;
 import com.fund.flio.data.enums.AuthType;
 import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.data.model.User;
@@ -58,13 +59,20 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
         mContext = context;
         Session.getCurrentSession().addCallback(this);
         authenticationState.setValue(AuthenticationState.NONE);
+        subscribeEvent();
+    }
+
+    private void subscribeEvent() {
+        getCompositeDisposable().add(AuthBus.getInstance().getLogout()
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(result -> logout()));
     }
 
     public void postAuthToken(AuthType authType, String authToken) {
         Logger.d("postAuthToken");
         getCompositeDisposable().add(getDataManager().postAuthToken(new TokenBody(authType.getType(), authToken, getDataManager().getMessageToken()))
                 .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
                 .subscribe(userToken -> {
                     Logger.d("postAuthToken result " + userToken.body().getUserToken());
                     firebaseLogin(authType, userToken.body().getUserToken());

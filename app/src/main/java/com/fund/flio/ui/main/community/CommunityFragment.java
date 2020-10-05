@@ -21,6 +21,7 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 public class CommunityFragment extends BaseFragment<FragmentCommunityBinding, CommunityViewModel> {
 
@@ -65,9 +66,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding, Co
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("플리오 뉴스"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("플리오 인증"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("홍보/행사"));
+        for (String category : getResources().getStringArray(R.array.array_community)) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(category));
+        }
         mViewPager = getViewDataBinding().pager;
         final CommunityPagerAdapter adapter = new CommunityPagerAdapter(getChildFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(adapter);

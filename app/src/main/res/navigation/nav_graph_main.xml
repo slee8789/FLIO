@@ -31,6 +31,10 @@
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out_bottom" />
 
+    <action
+        android:id="@+id/action_global_to_nav_market_product"
+        app:destination="@id/nav_market_product" />
+
     <fragment
         android:id="@+id/nav_intro"
         android:name="com.fund.flio.ui.main.intro.IntroFragment"
@@ -101,9 +105,6 @@
         android:name="com.fund.flio.ui.main.market.MarketFragment"
         tools:layout="@layout/fragment_market">
 
-        <action
-            android:id="@+id/action_nav_market_to_nav_market_product"
-            app:destination="@id/nav_market_product" />
     </fragment>
 
 
@@ -173,8 +174,8 @@
         tools:layout="@layout/fragment_product">
 
         <argument
-            android:name="dummy"
-            app:argType="boolean" />
+            android:name="product"
+            app:argType="com.fund.flio.data.model.Product" />
         <action
             android:id="@+id/action_nav_market_product_self"
             app:destination="@id/nav_market_product" />

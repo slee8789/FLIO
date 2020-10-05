@@ -18,7 +18,6 @@ import androidx.transition.TransitionManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.data.model.Recommend;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.databinding.FragmentSearchBinding;
 import com.fund.flio.ui.base.BaseFragment;
@@ -117,9 +116,9 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "recommands.json"), new TypeToken<List<Recommend>>() {
-        }.getType());
-        mRecommendAdapter.addItems(testRecommends);
+//        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Recommend>>() {
+//        }.getType());
+//        mRecommendAdapter.addItems(testRecommends);
 
         getViewDataBinding().recents.setAdapter(mSearchRecentAdapter);
         mSearchRecentAdapter.setSearchViewModel(getViewModel());

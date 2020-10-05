@@ -1,40 +1,25 @@
 package com.fund.flio.ui.main.market.product;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.transition.TransitionInflater;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.data.model.Recommend;
 import com.fund.flio.databinding.FragmentProductBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.home.RecommendAdapter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
-import static com.fund.flio.utils.ViewUtils.readAssetJson;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 
 public class ProductFragment extends BaseFragment<FragmentProductBinding, ProductViewModel> {
@@ -61,35 +46,53 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
+        setSharedElementEnterTransition(TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move));
         setHasOptionsMenu(true);
-//        getBaseActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getBaseActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        getBaseActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+//        getBaseActivity().hideSystemUI();
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        postponeEnterTransition();
+//        getViewDataBinding().flio.getViewTreeObserver().addOnPreDrawListener(() -> {
+//            startPostponedEnterTransition();
+//            return true;
+//        });
+//        getViewDataBinding().faith.getViewTreeObserver().addOnPreDrawListener(() -> {
+//            startPostponedEnterTransition();
+//            return true;
+//        });
         initViews();
         setupActionBar();
     }
 
     private void initViews() {
-        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
-        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
-        getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "recommands.json"), new TypeToken<List<Recommend>>() {
-        }.getType());
-        mRecommendAdapter.addItems(testRecommends);
+//        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
+//        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
+//        getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
+//        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Recommend>>() {
+//        }.getType());
+//        mRecommendAdapter.addItems(testRecommends);
 
+        Logger.d("test 1 " + ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPid());
+        Logger.d("test 2 " + requireContext().getResources().getString(R.string.transition_product_image, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPid()));
+
+        getViewDataBinding().image.setTransitionName(requireContext().getResources().getString(R.string.transition_product_image, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPid()));
+        getViewDataBinding().flio.setTransitionName(requireContext().getResources().getString(R.string.transition_product_flio, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPid()));
+        getViewDataBinding().faith.setTransitionName(requireContext().getResources().getString(R.string.transition_product_faith, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPid()));
+        Logger.d("test image " + getViewDataBinding().image.getTransitionName());
+        Logger.d("test flio " + getViewDataBinding().flio.getTransitionName());
     }
 
     private void setupActionBar() {
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
         getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getViewDataBinding().toolbar.setPadding(0, getStatusBarHeight(getContext()), 0, 0);
+        getBaseActivity().hideSystemUI();
     }
 
     @Override

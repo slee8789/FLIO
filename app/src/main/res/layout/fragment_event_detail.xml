@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/abActivityMaterialDetail"
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:fitsSystemWindows="true"
@@ -340,7 +340,7 @@
             android:gravity="center"
             android:src="@drawable/fab_like"
             app:fabCustomSize="40dp"
-            app:layout_anchor="@id/abActivityMaterialDetail"
+            app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

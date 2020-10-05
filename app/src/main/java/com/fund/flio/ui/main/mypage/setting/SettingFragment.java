@@ -19,6 +19,7 @@ import com.fund.flio.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 
 public class SettingFragment extends BaseFragment<FragmentSettingBinding, SettingViewModel> {
@@ -55,6 +56,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
         getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getViewDataBinding().toolbar.setPadding(0, getStatusBarHeight(getContext()), 0, 0);
     }
 
     @Override

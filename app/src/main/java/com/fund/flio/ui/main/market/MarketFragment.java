@@ -1,19 +1,15 @@
 package com.fund.flio.ui.main.market;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.transition.TransitionSet;
+import androidx.transition.TransitionInflater;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -21,13 +17,10 @@ import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.utils.GridItemOffsetDecoration;
-import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
-import com.hlab.fabrevealmenu.view.FABRevealMenu;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -67,21 +60,10 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         Logger.i("onCreate");
         setHasOptionsMenu(true);
 
-
+        setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        sharedElementEnterTransition = ChangeBounds().apply {
-//            duration = 750
-//        }
-//        sharedElementReturnTransition= ChangeBounds().apply {
-//            duration = 750
-//        }
-//        setSharedElementEnterTransition();
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -93,32 +75,108 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("전체"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("스피커"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("마이크"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("케이블"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("앰프"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("소스기기"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("이어폰/헤드셋"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("음향장비"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("음반/악기"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("악세사리"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("DIY"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("헤드폰"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("악기"));
-
+        for (String category : getResources().getStringArray(R.array.array_category)) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(category));
+        }
         mSubTabLayout = getViewDataBinding().subTabs;
-        mSubTabLayout.addTab(mSubTabLayout.newTab().setText("1인방송"));
-        mSubTabLayout.addTab(mSubTabLayout.newTab().setText("홈레코딩"));
-        mSubTabLayout.addTab(mSubTabLayout.newTab().setText("하이파이"));
-        mSubTabLayout.addTab(mSubTabLayout.newTab().setText("프로장비"));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        mSubTabLayout.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_speaker)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 2:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_mike)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 3:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_cable)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 4:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_amp)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 5:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_source)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 6:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_headset)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 7:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_acoustic)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 8:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_instrument)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 9:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_accessory)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
+                    case 10:
+                        mSubTabLayout.setVisibility(View.VISIBLE);
+                        mSubTabLayout.removeAllTabs();
+                        for (String category : getResources().getStringArray(R.array.array_category_diy)) {
+                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                        }
+                        break;
 
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         getViewDataBinding().products.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         getViewDataBinding().products.setAdapter(mProductAdapter);
         GridItemOffsetDecoration itemDecoration = new GridItemOffsetDecoration(getBaseActivity(), R.dimen.grid_item_offset);
         getViewDataBinding().products.addItemDecoration(itemDecoration);
-        ArrayList<Product> testProducts = new Gson().fromJson(readAssetJson(getBaseActivity(), "recommands.json"), new TypeToken<List<Product>>() {
+        ArrayList<Product> testProducts = new Gson().fromJson(readAssetJson(getBaseActivity(), "products.json"), new TypeToken<List<Product>>() {
         }.getType());
         mProductAdapter.addItems(testProducts);
 

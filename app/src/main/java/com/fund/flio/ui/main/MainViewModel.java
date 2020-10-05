@@ -27,6 +27,7 @@ public class MainViewModel extends BaseViewModel {
     }
 
     private void subscribeEvent() {
+
     }
 
     public void onSearchClick(View v) {

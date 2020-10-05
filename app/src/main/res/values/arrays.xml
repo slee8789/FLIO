@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="array_category">
+        <item>@string/category_entire</item>
+        <item>@string/category_speaker</item>
+        <item>@string/category_mike</item>
+        <item>@string/category_cable</item>
+        <item>@string/category_amp</item>
+        <item>@string/category_source</item>
+        <item>@string/category_headset</item>
+        <item>@string/category_acoustic</item>
+        <item>@string/category_instrument</item>
+        <item>@string/category_accessory</item>
+        <item>@string/category_diy</item>
+    </string-array>
+
+    <string-array name="array_category_speaker">
+        <item>@string/category_speaker_pc_fi</item>
+        <item>@string/category_speaker_head_fi</item>
+        <item>@string/category_speaker_hi_fi</item>
+        <item>@string/category_speaker_pro</item>
+        <item>@string/category_speaker_bluetooth</item>
+        <item>@string/category_speaker_ai</item>
+    </string-array>
+
+    <string-array name="array_category_mike">
+        <item>@string/category_mike_wire</item>
+        <item>@string/category_mike_wireless</item>
+        <item>@string/category_mike_pin</item>
+    </string-array>
+    <string-array name="array_category_cable">
+        <item>@string/category_cable_speaker</item>
+        <item>@string/category_cable_inter</item>
+        <item>@string/category_cable_digital</item>
+        <item>@string/category_cable_power</item>
+
+    </string-array>
+    <string-array name="array_category_amp">
+        <item>@string/category_apm_power</item>
+        <item>@string/category_apm_pre</item>
+        <item>@string/category_apm_phono</item>
+        <item>@string/category_apm_dap</item>
+        <item>@string/category_apm_etc</item>
+        <item>@string/category_apm_portable</item>
+    </string-array>
+    <string-array name="array_category_source">
+        <item>@string/category_source_lp</item>
+        <item>@string/category_source_cdp</item>
+        <item>@string/category_source_tuner</item>
+        <item>@string/category_source_cartridge</item>
+        <item>@string/category_source_earphone</item>
+    </string-array>
+    <string-array name="array_category_headset">
+        <item>@string/category_headset_earphone_wire</item>
+        <item>@string/category_headset_earphone_bluetooth</item>
+        <item>@string/category_headset_headphone_wire</item>
+        <item>@string/category_headset_headphone_bluetooth</item>
+        <item>@string/category_headset_headphone_monitoring</item>
+    </string-array>
+    <string-array name="array_category_acoustic">
+        <item>@string/category_acoustic_mixer</item>
+        <item>@string/category_acoustic_effector</item>
+        <item>@string/category_acoustic_dac</item>
+        <item>@string/category_acoustic_word_clock</item>
+    </string-array>
+    <string-array name="array_category_instrument">
+        <item>@string/category_instrument_lp</item>
+        <item>@string/category_instrument_cd</item>
+
+    </string-array>
+    <string-array name="array_category_accessory">
+        <item>@string/category_accessory_spike</item>
+        <item>@string/category_accessory_stand</item>
+        <item>@string/category_accessory_rack</item>
+        <item>@string/category_accessory_plate</item>
+
+    </string-array>
+    <string-array name="array_category_diy">
+        <item>@string/category_diy_instrument</item>
+        <item>@string/category_diy_unit</item>
+        <item>@string/category_diy_terminal</item>
+    </string-array>
+
+    <string-array name="array_community">
+        <item>@string/category_news</item>
+        <item>@string/category_certificate</item>
+        <item>@string/category_event</item>
+    </string-array>
+
+    <string-array name="array_community_certificate">
+        <item>@string/category_certificate_entire</item>
+        <item>@string/category_certificate_my_flio</item>
+        <item>@string/category_certificate_review</item>
+        <item>@string/category_certificate_deal</item>
+    </string-array>
+
+    <string-array name="array_community_event">
+        <item>@string/category_event_entire</item>
+        <item>@string/category_event_seminar</item>
+        <item>@string/category_event_session</item>
+        <item>@string/category_event_job</item>
+        <item>@string/category_event_etc</item>
+    </string-array>
+
+
+</resources>

@@ -65,11 +65,9 @@ public class EventListFragment extends BaseFragment<FragmentEventListBinding, Ev
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("전체"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("세미나/강좌"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("청음회"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("구인구직"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("기타"));
+        for (String category : getResources().getStringArray(R.array.array_community_event)) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(category));
+        }
 
         getViewDataBinding().news.setAdapter(mEventAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);

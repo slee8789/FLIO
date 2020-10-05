@@ -32,6 +32,7 @@ import java.util.List;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 

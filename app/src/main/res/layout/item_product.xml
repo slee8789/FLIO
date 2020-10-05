@@ -25,9 +25,29 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:transitionName="image"
             app:imageUrlRoundCorner="@{viewModel.imageUrl}"
             app:layout_constraintDimensionRatio="H,15:17"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/flio"
+            android:layout_width="22dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/btn_mark_flio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/faith"
+            android:layout_width="22dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/btn_mark_faith"
+            app:layout_constraintStart_toEndOf="@id/flio"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

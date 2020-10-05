@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.logger.Logger;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 
 public class MessageFragment extends BaseFragment<FragmentMessageBinding, MessageViewModel> {

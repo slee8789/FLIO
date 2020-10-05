@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fund.flio.data.model.Recommend;
+import com.fund.flio.data.model.Product;
+import com.fund.flio.databinding.ItemProductBinding;
 import com.fund.flio.databinding.ItemRecommendBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.market.ItemProductViewModel;
 
 import java.util.List;
 
@@ -19,13 +21,13 @@ import static com.fund.flio.ui.base.BaseViewHolder.VIEW_TYPE_NORMAL;
 public class RecommendAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private Context context;
-    private List<Recommend> recommends;
+    private List<Product> recommends;
 
-    public RecommendAdapter(List<Recommend> recommends) {
+    public RecommendAdapter(List<Product> recommends) {
         this.recommends = recommends;
     }
 
-    public void addItems(List<Recommend> recommends) {
+    public void addItems(List<Product> recommends) {
         this.recommends.addAll(recommends);
         notifyDataSetChanged();
     }
@@ -76,8 +78,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final Recommend recommend = recommends.get(position);
-            ItemRecommendViewModel recommendViewModel = new ItemRecommendViewModel(recommend);
+            final Product recommend = recommends.get(position);
+            ItemProductViewModel recommendViewModel = new ItemProductViewModel(itemView, binding, recommend);
             binding.setViewModel(recommendViewModel);
         }
     }

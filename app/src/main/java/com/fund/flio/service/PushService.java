@@ -17,6 +17,7 @@ import androidx.navigation.NavDeepLinkBuilder;
 import com.fund.flio.R;
 import com.fund.flio.core.FlioApplication;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.bus.AuthBus;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.enums.MessageType;
 import com.fund.flio.data.model.Chat;
@@ -50,6 +51,12 @@ public class PushService extends FirebaseMessagingService {
     NotificationChannel notificationChannel;
 
     private void logoutMessage(RemoteMessage remoteMessage) {
+        //todo 기능동작 안함
+        if (Foreground.get().isBackground()) {
+
+        } else {
+            AuthBus.getInstance().sendLogout();
+        }
 
     }
 

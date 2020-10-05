@@ -6,22 +6,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.transition.TransitionManager;
+import androidx.transition.TransitionInflater;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
-import com.fund.flio.data.model.Recommend;
+import com.fund.flio.data.model.Product;
+
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.MainActivity;
-import com.fund.flio.ui.main.MainViewModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
@@ -69,6 +67,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        setSharedElementEnterTransition(TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move));
     }
 
     @Override
@@ -80,7 +79,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         getViewDataBinding().headerRecommends.setOnClickListener(v -> {
 //            Logger.d("Firebase Auth " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         });
-
+        postponeEnterTransition();
+        getViewDataBinding().recommends.getViewTreeObserver().addOnPreDrawListener(() -> {
+            startPostponedEnterTransition();
+            return true;
+        });
     }
 
     private void setupActionBar() {
@@ -123,12 +126,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "recommands.json"), new TypeToken<List<Recommend>>() {
+        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
         }.getType());
         mRecommendAdapter.addItems(testRecommends);
-        getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
-        getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
-        mCertificatedAdapter.addItems(testRecommends);
+//        getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
+//        getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
+//        mCertificatedAdapter.addItems(testRecommends);
 
     }
 }

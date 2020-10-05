@@ -1,11 +1,13 @@
 package com.fund.flio.data.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Product {
+public class Product implements Serializable {
 
     private int pid;
     private String imageUrl;

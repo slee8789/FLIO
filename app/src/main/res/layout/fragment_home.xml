@@ -109,7 +109,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_headset}"
-                    app:categoryTitle="@{@string/category_headset}"
+                    app:categoryTitle="@{@string/category_headset_home}"
                     app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
                     app:layout_constraintEnd_toStartOf="@id/category_acoustic"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -248,7 +248,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/header_certificated"
-                    tools:listitem="@layout/item_certificated" />
+                    tools:listitem="@layout/item_certificate" />
 
                 <TextView
                     android:id="@+id/header_news"
