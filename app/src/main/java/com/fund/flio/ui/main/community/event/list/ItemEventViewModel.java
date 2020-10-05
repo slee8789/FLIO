@@ -24,6 +24,7 @@ public class ItemEventViewModel {
         title.set(event.getTitle());
         date.set(event.getDate());
         description.set(event.getDescription());
+        imageUrl.set(event.getImageUrl());
 
     }
 

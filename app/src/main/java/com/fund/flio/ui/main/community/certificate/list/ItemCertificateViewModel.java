@@ -24,6 +24,7 @@ public class ItemCertificateViewModel {
         title.set(certificate.getTitle());
         date.set(certificate.getDate());
         description.set(certificate.getDescription());
+        imageUrl.set(certificate.getImageUrl());
 
     }
 

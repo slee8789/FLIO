@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.data.model.Product;
-import com.fund.flio.databinding.ItemProductBinding;
-import com.fund.flio.databinding.ItemRecommendBinding;
+import com.fund.flio.databinding.ItemProductHomeBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
 import com.fund.flio.ui.main.market.ItemProductViewModel;
 
@@ -40,7 +39,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        ItemRecommendBinding recommendBinding = ItemRecommendBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemProductHomeBinding recommendBinding = ItemProductHomeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RecommendViewHolder(recommendBinding);
     }
 
@@ -69,9 +68,9 @@ public class RecommendAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class RecommendViewHolder extends BaseViewHolder {
 
-        private ItemRecommendBinding binding;
+        private ItemProductHomeBinding binding;
 
-        public RecommendViewHolder(ItemRecommendBinding binding) {
+        public RecommendViewHolder(ItemProductHomeBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

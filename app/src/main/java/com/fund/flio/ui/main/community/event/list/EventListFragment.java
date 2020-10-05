@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.annimon.stream.Stream;
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.EventType;
 import com.fund.flio.data.model.Event;
 import com.fund.flio.databinding.FragmentEventListBinding;
 import com.fund.flio.ui.base.BaseFragment;
@@ -65,17 +67,41 @@ public class EventListFragment extends BaseFragment<FragmentEventListBinding, Ev
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
+
         for (String category : getResources().getStringArray(R.array.array_community_event)) {
             mTabLayout.addTab(mTabLayout.newTab().setText(category));
         }
+
+        ArrayList<Event> dummyEvents = new Gson().fromJson(readAssetJson(getContext(), "events.json"), new TypeToken<List<Event>>() {
+        }.getType());
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Logger.d("TabSelected " + tab.getPosition());
+                if(tab.getPosition() == 0) {
+                    mEventAdapter.setItems(dummyEvents);
+                } else {
+                    mEventAdapter.setItems(Stream.of(dummyEvents).filter(event -> tab.getPosition() == EventType.valueOf(event.getCategory()).ordinal()).toList());
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         getViewDataBinding().news.setAdapter(mEventAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().news.addItemDecoration(dividerItemDecoration);
-        ArrayList<Event> dummyEvents = new Gson().fromJson(readAssetJson(getContext(), "events.json"), new TypeToken<List<Event>>() {
-        }.getType());
-        mEventAdapter.addItems(dummyEvents);
+        mEventAdapter.setItems(dummyEvents);
     }
 
 }

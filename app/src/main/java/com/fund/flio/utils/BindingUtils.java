@@ -49,11 +49,21 @@ public final class BindingUtils {
                 .into(imageView);
     }
 
-    @BindingAdapter({"thumbnailUri"})
-    public static void thumbnailUri(ImageView imageView, Uri imageUrl) {
+    @BindingAdapter({"thumbnailUriCircle"})
+    public static void thumbnailUriCircle(ImageView imageView, Uri imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
                 .transform(new CenterCrop(),new RoundedCorners(dpToPx(10,imageView.getContext())))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .thumbnail(0.1f)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"thumbnailUri"})
+    public static void thumbnailUri(ImageView imageView, String imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .transform(new CenterCrop())
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .thumbnail(0.1f)
                 .into(imageView);
@@ -73,8 +83,7 @@ public final class BindingUtils {
     public static void loadImageRoundCorner(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .centerCrop()
-                .apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
+                .transform(new CenterCrop(),new RoundedCorners(dpToPx(10,imageView.getContext())))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.grayCE)
                 .into(imageView);

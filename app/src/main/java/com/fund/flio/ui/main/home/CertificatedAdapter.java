@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fund.flio.data.model.Certificate;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemCertificateBinding;
+import com.fund.flio.databinding.ItemCertificateHomeBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
 import com.fund.flio.ui.main.community.certificate.list.ItemCertificateViewModel;
 
@@ -40,7 +41,7 @@ public class CertificatedAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        ItemCertificateBinding certificatedBinding = ItemCertificateBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemCertificateHomeBinding certificatedBinding = ItemCertificateHomeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new CertificatedViewHolder(certificatedBinding);
     }
 
@@ -69,9 +70,9 @@ public class CertificatedAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class CertificatedViewHolder extends BaseViewHolder {
 
-        private ItemCertificateBinding binding;
+        private ItemCertificateHomeBinding binding;
 
-        public CertificatedViewHolder(ItemCertificateBinding binding) {
+        public CertificatedViewHolder(ItemCertificateHomeBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

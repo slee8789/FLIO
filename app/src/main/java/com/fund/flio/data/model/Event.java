@@ -17,9 +17,13 @@ public class Event implements Serializable {
 
     private String date;
 
-    private String description;
+    private String category;
+
+    private String tag;
 
     private String imageUrl;
+
+    private String description;
 
 
 }

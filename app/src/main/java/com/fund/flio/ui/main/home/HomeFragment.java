@@ -16,6 +16,7 @@ import androidx.transition.TransitionInflater;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.model.Certificate;
 import com.fund.flio.data.model.Product;
 
 import com.fund.flio.databinding.FragmentHomeBinding;
@@ -76,11 +77,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         getViewDataBinding().setMainViewModel(getMainViewModel());
         initViews();
         setupActionBar();
-        getViewDataBinding().headerRecommends.setOnClickListener(v -> {
+        getViewDataBinding().headerProducts.setOnClickListener(v -> {
 //            Logger.d("Firebase Auth " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         });
         postponeEnterTransition();
-        getViewDataBinding().recommends.getViewTreeObserver().addOnPreDrawListener(() -> {
+        getViewDataBinding().products.getViewTreeObserver().addOnPreDrawListener(() -> {
             startPostponedEnterTransition();
             return true;
         });
@@ -122,16 +123,18 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     private void initViews() {
 
-        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+        getViewDataBinding().products.setAdapter(mRecommendAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
-        getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
+        getViewDataBinding().products.addItemDecoration(dividerItemDecoration);
+        ArrayList<Product> products = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
         }.getType());
-        mRecommendAdapter.addItems(testRecommends);
-//        getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
-//        getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
-//        mCertificatedAdapter.addItems(testRecommends);
+        mRecommendAdapter.addItems(products);
+        getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
+        getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
+        ArrayList<Certificate> certificates = new Gson().fromJson(readAssetJson(getContext(), "certificates.json"), new TypeToken<List<Certificate>>() {
+        }.getType());
+        mCertificatedAdapter.addItems(certificates);
 
     }
 }

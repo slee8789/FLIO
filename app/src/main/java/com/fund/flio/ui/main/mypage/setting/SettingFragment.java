@@ -56,7 +56,6 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
         getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getViewDataBinding().toolbar.setPadding(0, getStatusBarHeight(getContext()), 0, 0);
     }
 
     @Override
