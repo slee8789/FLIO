@@ -55,8 +55,8 @@ public class SellListFragment extends BaseFragment<FragmentSellListBinding, Sell
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText("판매중"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("판매완료"));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.product_sell)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.product_sell_closed)));
         mViewPager = getViewDataBinding().pager;
         final SellListPagerAdapter adapter = new SellListPagerAdapter(getChildFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(adapter);

@@ -1,10 +1,12 @@
 package com.fund.flio.ui.main.market;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
@@ -13,9 +15,22 @@ import androidx.transition.TransitionInflater;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.AccessoryType;
+import com.fund.flio.data.enums.AcousticType;
+import com.fund.flio.data.enums.AmpType;
+import com.fund.flio.data.enums.CableType;
+import com.fund.flio.data.enums.DiyType;
+import com.fund.flio.data.enums.EventType;
+import com.fund.flio.data.enums.HeadSetType;
+import com.fund.flio.data.enums.InstrumentType;
+import com.fund.flio.data.enums.MikeType;
+import com.fund.flio.data.enums.ProductCategory;
+import com.fund.flio.data.enums.SourceType;
+import com.fund.flio.data.enums.SpeakerType;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.market.product.ProductFragmentArgs;
 import com.fund.flio.utils.GridItemOffsetDecoration;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -39,6 +54,170 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
     @Inject
     ProductAdapter mProductAdapter;
 
+    private ProductCategory productCategory;
+
+    private TabLayout.OnTabSelectedListener mainCategory = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            Logger.d("onTabSelected " + tab.getPosition());
+
+            switch (tab.getPosition()) {
+                case 0:
+                    productCategory = ProductCategory.ENTIRE;
+                    mSubTabLayout.setVisibility(View.GONE);
+                    break;
+                case 1:
+                    productCategory = ProductCategory.SPEAKER;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_speaker)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 2:
+                    productCategory = ProductCategory.MIKE;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_mike)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 3:
+                    productCategory = ProductCategory.CABLE;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_cable)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 4:
+                    productCategory = ProductCategory.AMP;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_amp)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 5:
+                    productCategory = ProductCategory.SOURCE;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_source)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 6:
+                    productCategory = ProductCategory.HEADSET;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_headset)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 7:
+                    productCategory = ProductCategory.ACOUSTIC;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_acoustic)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 8:
+                    productCategory = ProductCategory.INSTRUMENT;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_instrument)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 9:
+                    productCategory = ProductCategory.ACCESSORY;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_accessory)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+                    }
+                    break;
+                case 10:
+                    productCategory = ProductCategory.DIY;
+                    mSubTabLayout.setVisibility(View.VISIBLE);
+                    mSubTabLayout.removeAllTabs();
+                    for (String category : getResources().getStringArray(R.array.array_category_diy)) {
+                        mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
+
+                    }
+                    break;
+
+            }
+//            getViewModel().recommandProducts(productCategory.name(), SpeakerType.PRO.name());
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
+
+    private TabLayout.OnTabSelectedListener subCategory = new TabLayout.OnTabSelectedListener() {
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            String secondCategory = null;
+            switch (productCategory) {
+                case ENTIRE:
+                    secondCategory = SpeakerType.values()[tab.getPosition()].name();
+                    break;
+                case SPEAKER:
+                    secondCategory = SpeakerType.values()[tab.getPosition()].name();
+                    break;
+                case MIKE:
+                    secondCategory = MikeType.values()[tab.getPosition()].name();
+                    break;
+                case CABLE:
+                    secondCategory = CableType.values()[tab.getPosition()].name();
+                    break;
+                case AMP:
+                    secondCategory = AmpType.values()[tab.getPosition()].name();
+                    break;
+                case SOURCE:
+                    secondCategory = SourceType.values()[tab.getPosition()].name();
+                    break;
+                case HEADSET:
+                    secondCategory = HeadSetType.values()[tab.getPosition()].name();
+                    break;
+                case ACOUSTIC:
+                    secondCategory = AcousticType.values()[tab.getPosition()].name();
+                    break;
+                case INSTRUMENT:
+                    secondCategory = InstrumentType.values()[tab.getPosition()].name();
+                    break;
+                case ACCESSORY:
+                    secondCategory = AccessoryType.values()[tab.getPosition()].name();
+                    break;
+                case DIY:
+                    secondCategory = DiyType.values()[tab.getPosition()].name();
+                    break;
+
+            }
+            getViewModel().recommandProducts(productCategory.name(), secondCategory);
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
+
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -59,7 +238,6 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
         setHasOptionsMenu(true);
-
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
 
     }
@@ -78,110 +256,21 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         for (String category : getResources().getStringArray(R.array.array_category)) {
             mTabLayout.addTab(mTabLayout.newTab().setText(category));
         }
+        mTabLayout.addOnTabSelectedListener(mainCategory);
         mSubTabLayout = getViewDataBinding().subTabs;
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        mSubTabLayout.setVisibility(View.GONE);
-                        break;
-                    case 1:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_speaker)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 2:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_mike)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 3:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_cable)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 4:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_amp)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 5:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_source)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 6:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_headset)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 7:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_acoustic)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 8:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_instrument)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 9:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_accessory)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
-                    case 10:
-                        mSubTabLayout.setVisibility(View.VISIBLE);
-                        mSubTabLayout.removeAllTabs();
-                        for (String category : getResources().getStringArray(R.array.array_category_diy)) {
-                            mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
-                        }
-                        break;
+        mSubTabLayout.addOnTabSelectedListener(subCategory);
+        productCategory = MarketFragmentArgs.fromBundle(getArguments()).getProductCategory();
 
-                }
 
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        new Handler().postDelayed(() -> {
+            mTabLayout.getTabAt(productCategory.ordinal()).select();
+        }, 100);
 
         getViewDataBinding().products.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         getViewDataBinding().products.setAdapter(mProductAdapter);
         GridItemOffsetDecoration itemDecoration = new GridItemOffsetDecoration(getBaseActivity(), R.dimen.grid_item_offset);
         getViewDataBinding().products.addItemDecoration(itemDecoration);
-        ArrayList<Product> testProducts = new Gson().fromJson(readAssetJson(getBaseActivity(), "products.json"), new TypeToken<List<Product>>() {
-        }.getType());
-        mProductAdapter.addItems(testProducts);
-
-        getViewDataBinding().products.setAdapter(mProductAdapter);
-        mProductAdapter.addItems(testProducts);
+        getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductAdapter.setItems(products));
     }
 
     private void setupActionBar() {
@@ -222,4 +311,5 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
     public void onMenuItemSelected(View view, int id) {
 
     }
+
 }

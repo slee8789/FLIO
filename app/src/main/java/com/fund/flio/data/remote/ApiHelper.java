@@ -3,6 +3,8 @@ package com.fund.flio.data.remote;
 
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.MessageWrapper;
+import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.SendMessageBody;
@@ -37,6 +39,11 @@ public interface ApiHelper {
     @POST(ApiDefine.Body.INSERT_USER)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<Void>> postInsertUser(@Body User user);
+
+    // 유저 등록
+    @POST(ApiDefine.Body.LOGOUT_USER)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Void>> postLogoutUser(@Query("uid") String uid);
 
     // 채팅내역 불러오기
     @POST(ApiDefine.Body.SELECT_MY_CHAT)
@@ -87,5 +94,35 @@ public interface ApiHelper {
     // 상품 글가져오기
     @GET(ApiDefine.Body.SELECT_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<Void>> selectProduct(@Query("uid") String uid);
+    Single<Response<ProductWrapper>> selectProduct(@Query("uid") String uid);
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.DETAIL_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> detailProduct(@Query("productId") String productId);
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.MAIN_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> mainProduct();
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.MY_PAGE_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> myPageProduct(@Query("uid") String uid);
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.PURPOSE_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> purposeProduct(@Query("purpose") String purpose);
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.RECOMMAND_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> recommandProduct(@Query("categoryDepth1") String categoryDepth1, @Query("categoryDepth2") String categoryDepth2);
+
+    // 상품 글가져오기
+    @GET(ApiDefine.Body.SEARCH_PRODUCT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> searchProduct(@Query("keyword") String keyword);
 }

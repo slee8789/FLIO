@@ -18,10 +18,11 @@ import androidx.transition.TransitionManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.model.Product;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.databinding.FragmentSearchBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.home.RecommendAdapter;
+import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.gson.Gson;
@@ -45,7 +46,7 @@ import static com.fund.flio.utils.ViewUtils.readAssetJson;
 public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> {
 
     @Inject
-    RecommendAdapter mRecommendAdapter;
+    ProductSmallAdapter mProductSmallAdapter;
 
     @Inject
     SearchRecentAdapter mSearchRecentAdapter;
@@ -112,13 +113,13 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
             getViewDataBinding().tagPopular.addView(chip);
         }
 
-        getViewDataBinding().recommends.setAdapter(mRecommendAdapter);
+        getViewDataBinding().recommends.setAdapter(mProductSmallAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-//        ArrayList<Recommend> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Recommend>>() {
-//        }.getType());
-//        mRecommendAdapter.addItems(testRecommends);
+        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
+        }.getType());
+        mProductSmallAdapter.addItems(testRecommends);
 
         getViewDataBinding().recents.setAdapter(mSearchRecentAdapter);
         mSearchRecentAdapter.setSearchViewModel(getViewModel());

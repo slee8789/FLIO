@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.fund.flio.ui.main.market.product.ProductViewModel" />
@@ -38,8 +40,15 @@
                     android:layout_height="400dp"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/sampleimage"
-                    app:layout_scrollFlags="scroll" />
+                    app:layout_collapseMode="parallax"
+                    app:layout_scrollFlags="scroll"
+                    app:thumbnailUri="@{viewModel.image}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gradient_dim_bottom" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -66,15 +75,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginEnd="20dp"
-                        android:src="@drawable/fab_like"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent" />
-
                     <TextView
                         android:id="@+id/tag1"
                         android:layout_width="wrap_content"
@@ -85,9 +85,11 @@
                         android:gravity="center"
                         android:minWidth="40dp"
                         android:minHeight="18dp"
-                        android:text="#태그1"
+                        android:paddingHorizontal="6dp"
+                        android:text="@{viewModel.tag1}"
                         android:textSize="10sp"
                         android:textStyle="bold"
+                        android:visibility="@{viewModel.tag_visible_1 ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -101,9 +103,11 @@
                         android:gravity="center"
                         android:minWidth="40dp"
                         android:minHeight="18dp"
-                        android:text="#태그2"
+                        android:paddingHorizontal="6dp"
+                        android:text="@{viewModel.tag2}"
                         android:textSize="10sp"
                         android:textStyle="bold"
+                        android:visibility="@{viewModel.tag_visible_2 ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tag1" />
 
@@ -117,11 +121,29 @@
                         android:gravity="center"
                         android:minWidth="40dp"
                         android:minHeight="18dp"
-                        android:text="#태그3"
+                        android:paddingHorizontal="6dp"
+                        android:text="@{viewModel.tag3}"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.tag_visible_3 ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tag2" />
+
+                    <TextView
+                        android:id="@+id/purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="110dp"
+                        android:background="@drawable/bg_item_product_purpose"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="18dp"
+                        android:text="@{viewModel.purpose}"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tag2" />
+                        app:layout_constraintStart_toEndOf="@id/tag3" />
 
 
                     <TextView
@@ -130,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="7dp"
-                        android:text="SIROCO GS220"
+                        android:text="@{viewModel.productName}"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tag1" />
@@ -142,7 +164,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="52dp"
-                        android:text="18,900원"
+                        android:text="@{viewModel.price}"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -193,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="40dp"
-                    android:text="모던하고 깔끔한 투톤 스피커"
+                    android:text="@{viewModel.title}"
                     android:textColor="@color/black3"
                     android:textSize="16sp"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -205,24 +227,106 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
                     android:lineHeight="24dp"
-                    android:text="가장 정통적인 북쉘프 타입의 디자인으로 설계된
-스피커 우든 MDF 인클로저로 클래식한 멋스러움을
-자아내며, PC 스피커로의 활용은 물론, 카페 인테리어 아이템으로도 뛰어나게 연출됩니다."
+                    android:text="@{viewModel.content}"
                     android:textColor="@color/gray9"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_item_product_status"
+                    android:gravity="center"
                     android:lineHeight="24dp"
-                    android:text="제품상태보기"
+                    android:minHeight="26dp"
+                    android:paddingHorizontal="6dp"
+                    android:text="@string/product_status"
                     android:textColor="@color/gray9"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_status"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/content" />
+
+                <View
+                    android:id="@+id/divider_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/sellerImage"
+                    app:layout_constraintTop_toBottomOf="@id/status" />
+
+                <ImageView
+                    android:id="@+id/sellerImage"
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="20dp"
+                    app:imageUrlCircle="@{viewModel.sellerImage}"
+                    app:layout_constraintBottom_toTopOf="@id/divider_seller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_status" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{viewModel.sellerName}"
+                    android:textColor="@color/purple"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/rating"
+                    app:layout_constraintStart_toEndOf="@id/sellerImage"
+                    app:layout_constraintTop_toBottomOf="@id/divider_status"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:numStars="5"
+                    android:progressTint="@color/purple"
+                    android:rating="@{Float.parseFloat(viewModel.rating)}"
+                    app:layout_constraintBottom_toTopOf="@id/divider_seller"
+                    app:layout_constraintStart_toEndOf="@id/sellerImage"
+                    app:layout_constraintTop_toBottomOf="@id/name" />
+
+                <TextView
+                    android:id="@+id/chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_item_product_status"
+                    android:gravity="center"
+                    android:lineHeight="24dp"
+                    android:minHeight="26dp"
+                    android:paddingHorizontal="6dp"
+                    android:text="@string/product_chat"
+                    android:textColor="@color/gray9"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_seller"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_status" />
+
+                <View
+                    android:id="@+id/divider_seller"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/header_products"
+                    app:layout_constraintTop_toBottomOf="@id/status" />
 
                 <TextView
                     android:id="@+id/header_products"
@@ -235,7 +339,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/status" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_seller" />
 
                 <ImageView
                     android:id="@+id/btn_products_more"
@@ -289,7 +393,7 @@
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
-                    android:background="@color/gray9"
+                    android:background="@color/grayD"
                     app:layout_constraintTop_toBottomOf="@id/header_news" />
 
                 <TextView
@@ -316,18 +420,31 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="56dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/sampleimage"
-                    app:layout_constraintDimensionRatio="W,2:1"
+                    app:imageUrlRoundCorner="@{viewModel.newsUrl}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="W,2:3"
                     app:layout_constraintTop_toBottomOf="@id/description_news" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/purple"
+            android:gravity="center"
+            android:src="@drawable/fab_like"
+            app:fabCustomSize="40dp"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|right" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

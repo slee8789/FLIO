@@ -44,10 +44,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     BannerAdapter mBannerAdapter;
 
     @Inject
-    RecommendAdapter mRecommendAdapter;
+    ProductSmallAdapter mProductSmallAdapter;
 
     @Inject
-    CertificatedAdapter mCertificatedAdapter;
+    CertificateSmallAdapter mCertificateSmallAdapter;
 
     @Override
     public int getBindingVariable() {
@@ -123,18 +123,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     private void initViews() {
 
-        getViewDataBinding().products.setAdapter(mRecommendAdapter);
+        getViewDataBinding().products.setAdapter(mProductSmallAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().products.addItemDecoration(dividerItemDecoration);
-        ArrayList<Product> products = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
-        }.getType());
-        mRecommendAdapter.addItems(products);
-        getViewDataBinding().certificates.setAdapter(mCertificatedAdapter);
+        getViewDataBinding().certificates.setAdapter(mCertificateSmallAdapter);
         getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
         ArrayList<Certificate> certificates = new Gson().fromJson(readAssetJson(getContext(), "certificates.json"), new TypeToken<List<Certificate>>() {
         }.getType());
-        mCertificatedAdapter.addItems(certificates);
+        mCertificateSmallAdapter.addItems(certificates);
 
+        getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
     }
 }

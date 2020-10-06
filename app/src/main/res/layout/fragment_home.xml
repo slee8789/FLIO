@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="productCategory"
+            type="com.fund.flio.data.enums.ProductCategory" />
+
+        <variable
             name="viewModel"
             type="com.fund.flio.ui.main.home.HomeViewModel" />
 
@@ -42,7 +46,7 @@
                     android:layout_marginTop="24dp"
                     app:categoryIcon="@{@drawable/icon_speaker}"
                     app:categoryTitle="@{@string/category_speaker}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v, productCategory.SPEAKER)}"
                     app:layout_constraintEnd_toStartOf="@id/category_mike"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +60,7 @@
                     android:layout_marginTop="24dp"
                     app:categoryIcon="@{@drawable/icon_mike}"
                     app:categoryTitle="@{@string/category_mike}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.MIKE)}"
                     app:layout_constraintEnd_toStartOf="@id/category_cable"
                     app:layout_constraintStart_toEndOf="@id/category_speaker"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +73,7 @@
                     android:layout_marginTop="24dp"
                     app:categoryIcon="@{@drawable/icon_cable}"
                     app:categoryTitle="@{@string/category_cable}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.CABLE)}"
                     app:layout_constraintEnd_toStartOf="@id/category_amp"
                     app:layout_constraintStart_toEndOf="@id/category_mike"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +86,7 @@
                     android:layout_marginTop="24dp"
                     app:categoryIcon="@{@drawable/icon_amp}"
                     app:categoryTitle="@{@string/category_amp}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.AMP)}"
                     app:layout_constraintEnd_toStartOf="@id/category_source"
                     app:layout_constraintStart_toEndOf="@id/category_cable"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +100,7 @@
                     android:layout_marginEnd="20dp"
                     app:categoryIcon="@{@drawable/icon_source}"
                     app:categoryTitle="@{@string/category_source}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.SOURCE)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/category_amp"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -110,7 +114,7 @@
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_headset}"
                     app:categoryTitle="@{@string/category_headset_home}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.HEADSET)}"
                     app:layout_constraintEnd_toStartOf="@id/category_acoustic"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +128,7 @@
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_acoustic}"
                     app:categoryTitle="@{@string/category_acoustic}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACOUSTIC)}"
                     app:layout_constraintEnd_toStartOf="@id/category_instrument"
                     app:layout_constraintStart_toEndOf="@id/category_headset"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
@@ -137,7 +141,7 @@
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_instrument}"
                     app:categoryTitle="@{@string/category_instrument}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.INSTRUMENT)}"
                     app:layout_constraintEnd_toStartOf="@id/category_accessory"
                     app:layout_constraintStart_toEndOf="@id/category_acoustic"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
@@ -150,7 +154,7 @@
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_accessory}"
                     app:categoryTitle="@{@string/category_accessory}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACCESSORY)}"
                     app:layout_constraintEnd_toStartOf="@id/category_diy"
                     app:layout_constraintStart_toEndOf="@id/category_instrument"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
@@ -164,7 +168,7 @@
                     android:layout_marginEnd="20dp"
                     app:categoryIcon="@{@drawable/icon_diy}"
                     app:categoryTitle="@{@string/category_diy}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v)}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.DIY)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/category_accessory"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
@@ -343,9 +347,9 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
                     app:imageUrlRoundCorner="@{viewModel.newsUrl}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="W,3:2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/writer_news"
                     app:layout_constraintTop_toBottomOf="@id/content_news" />
 

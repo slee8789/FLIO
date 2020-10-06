@@ -32,6 +32,7 @@ import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.mypage.MyPageViewModel;
 import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
 import com.fund.flio.ui.main.mypage.setting.SettingViewModel;
+import com.fund.flio.ui.main.profile.ProfileViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -111,6 +112,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new EventRegisterViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else if (CertificateRegisterViewModel.class.isAssignableFrom(modelClass)) {
             return new CertificateRegisterViewModel(context, dataManager, schedulerProvider, resourceProvider);
+        } else if (ProfileViewModel.class.isAssignableFrom(modelClass)) {
+            return new ProfileViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

@@ -8,8 +8,11 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.annimon.stream.Stream;
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.CertificateType;
+import com.fund.flio.data.enums.EventType;
 import com.fund.flio.data.model.Certificate;
 import com.fund.flio.databinding.FragmentCertificateListBinding;
 import com.fund.flio.ui.base.BaseFragment;
@@ -65,15 +68,41 @@ public class CertificateListFragment extends BaseFragment<FragmentCertificateLis
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
+
         for (String category : getResources().getStringArray(R.array.array_community_certificate)) {
             mTabLayout.addTab(mTabLayout.newTab().setText(category));
         }
+
+        ArrayList<Certificate> dummyCertificates = new Gson().fromJson(readAssetJson(getContext(), "certificates.json"), new TypeToken<List<Certificate>>() {
+        }.getType());
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Logger.d("TabSelected " + tab.getPosition());
+                if (tab.getPosition() == 0) {
+                    mCertificateAdapter.setItems(dummyCertificates);
+                } else {
+                    mCertificateAdapter.setItems(Stream.of(dummyCertificates).filter(certificate -> tab.getPosition() == CertificateType.valueOf(certificate.getCategory()).ordinal()).toList());
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
         getViewDataBinding().certificates.setAdapter(mCertificateAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().certificates.addItemDecoration(dividerItemDecoration);
-        ArrayList<Certificate> dummyCertificates = new Gson().fromJson(readAssetJson(getContext(), "certificates.json"), new TypeToken<List<Certificate>>() {
-        }.getType());
+
         mCertificateAdapter.addItems(dummyCertificates);
     }
 

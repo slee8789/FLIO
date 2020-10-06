@@ -1,0 +1,5 @@
+package com.fund.flio.data.enums;
+
+public enum HeadSetType {
+    WIRE_EARPHONE, BLUETOOTH_EARPHONE, WIRE_HEADPHONE, BLUETOOTH_HEADPHONE, MONITORING_HEADPHONE
+}

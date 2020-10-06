@@ -88,6 +88,14 @@
         <item>@string/category_event</item>
     </string-array>
 
+    <string-array name="array_community_news">
+        <item>@string/category_news_entire</item>
+        <item>@string/category_news_professional</item>
+        <item>@string/category_news_hi_fi</item>
+        <item>@string/category_news_head_fi</item>
+        <item>@string/category_news_ar_vr</item>
+    </string-array>
+
     <string-array name="array_community_certificate">
         <item>@string/category_certificate_entire</item>
         <item>@string/category_certificate_my_flio</item>

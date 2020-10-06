@@ -10,10 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 
 import com.fund.flio.R;
+import com.fund.flio.data.DataManager;
 import com.fund.flio.databinding.DialogLogoutBinding;
+import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseDialog;
 import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainActivity;
+
+import javax.inject.Inject;
 
 public class LogoutDialog extends BaseDialog {
 
@@ -27,7 +31,7 @@ public class LogoutDialog extends BaseDialog {
 //        authViewModel = getViewModelProvider().get(AuthViewModel.class);
         authViewModel = ((MainActivity) getBaseActivity()).getAuthViewModel();
         binding.setAuthViewModel(authViewModel);
-        binding.cancel.setOnClickListener(v -> ((MainActivity)getBaseActivity()).getNavController().navigateUp());
+        binding.cancel.setOnClickListener(v -> ((MainActivity) getBaseActivity()).getNavController().navigateUp());
         return view;
     }
 }

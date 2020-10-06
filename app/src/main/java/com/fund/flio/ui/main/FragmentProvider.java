@@ -26,6 +26,7 @@ import com.fund.flio.ui.main.mypage.sell.SellListFragment;
 import com.fund.flio.ui.main.market.product.ProductFragment;
 import com.fund.flio.ui.main.mypage.setting.SettingFragment;
 import com.fund.flio.ui.main.mypage.setting.logout.LogoutDialog;
+import com.fund.flio.ui.main.profile.ProfileFragment;
 import com.fund.flio.ui.main.search.SearchFragment;
 
 import dagger.Module;
@@ -117,6 +118,9 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract EventReplyFragment provideEventReply();
+
+    @ContributesAndroidInjector
+    abstract ProfileFragment provideProfile();
 
 
 }

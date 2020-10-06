@@ -102,12 +102,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
             final ChatRoom oldChatRoom = oldChatRooms.get(oldItemPosition);
             final ChatRoom newChatRoom = newChatRooms.get(newItemPosition);
-            if(oldChatRoom.getChatSeq() == 6) {
-                Logger.d("areContentsTheSame " + oldChatRoom);
-                Logger.d("areContentsTheSame " + newChatRoom);
-                Logger.d("areContentsTheSame " + (oldChatRoom.equals(newChatRoom)));
-            }
-
             return oldChatRoom.equals(newChatRoom);
         }
 

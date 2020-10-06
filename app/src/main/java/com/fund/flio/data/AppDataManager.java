@@ -7,6 +7,8 @@ import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
+import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
@@ -87,6 +89,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Response<Void>> postLogoutUser(String uid) {
+        return mFlioApi.postLogoutUser(uid);
+    }
+
+    @Override
     public Single<Response<Void>> sendMessage(SendMessageBody sendMessageBody) {
         return mFlioApi.sendMessage(sendMessageBody);
     }
@@ -107,8 +114,38 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> selectProduct(String uid) {
+    public Single<Response<ProductWrapper>> selectProduct(String uid) {
         return mFlioApi.selectProduct(uid);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> detailProduct(String productId) {
+        return mFlioApi.detailProduct(productId);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> mainProduct() {
+        return mFlioApi.mainProduct();
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> myPageProduct(String uid) {
+        return mFlioApi.myPageProduct(uid);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> purposeProduct(String purpose) {
+        return mFlioApi.purposeProduct(purpose);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> recommandProduct(String categoryDepth1, String categoryDepth2) {
+        return mFlioApi.recommandProduct(categoryDepth1, categoryDepth2);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> searchProduct(String keyword) {
+        return mFlioApi.searchProduct(keyword);
     }
 
     @Override

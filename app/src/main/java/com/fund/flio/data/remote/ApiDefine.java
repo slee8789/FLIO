@@ -16,6 +16,7 @@ public class ApiDefine {
 
         String AUTH_TOKEN = "verifyToken";
         String INSERT_USER = "user/insertUser";
+        String LOGOUT_USER = "user/updateLogoutUser";
 
         String SELECT_MY_CHAT = "chat/selectMyChat";
         String SELECT_MY_CHAT_DETAIL = "chat/selectMyChatDetail";
@@ -23,6 +24,12 @@ public class ApiDefine {
 
         String INSERT_PRODUCT = "board/insertProduct";
         String SELECT_PRODUCT = "board/selectProduct";
+        String DETAIL_PRODUCT = "board/detailProduct";
+        String MAIN_PRODUCT = "board/mainProduct";
+        String MY_PAGE_PRODUCT = "board/mypageProduct";
+        String PURPOSE_PRODUCT = "board/purposeProduct";
+        String RECOMMAND_PRODUCT = "board/recommendProduct";
+        String SEARCH_PRODUCT = "board/searchProduct";
 
     }
 

@@ -59,6 +59,11 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Logger.d("onOptionsItemSelected " + item.getItemId());
         switch (item.getItemId()) {

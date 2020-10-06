@@ -65,7 +65,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
     private void subscribeEvent() {
         getCompositeDisposable().add(AuthBus.getInstance().getLogout()
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(result -> logout()));
+                .subscribe(result -> logout(true)));
     }
 
     public void postAuthToken(AuthType authType, String authToken) {
@@ -147,7 +147,16 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                 });
     }
 
-    public void logout() {
+
+    public void logout(boolean isForce) {
+
+        if (!isForce) {
+            getCompositeDisposable().add(getDataManager().postLogoutUser(getDataManager().getUserId())
+                    .subscribeOn(getSchedulerProvider().io())
+                    .observeOn(getSchedulerProvider().ui())
+                    .subscribe());
+        }
+
         Logger.d("logout " + getDataManager().getAuthType() + ", mOAuthLoginModule " + mOAuthLoginModule);
         switch (AuthType.valueOf(getDataManager().getAuthType())) {
             case KAKAO:

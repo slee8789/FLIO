@@ -66,6 +66,13 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
     }
 
     private void initViews() {
+        mTabLayout = getViewDataBinding().tabs;
+
+        for (String category : getResources().getStringArray(R.array.array_community_news)) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(category));
+        }
+
+
         getViewDataBinding().news.setAdapter(mNewsAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));

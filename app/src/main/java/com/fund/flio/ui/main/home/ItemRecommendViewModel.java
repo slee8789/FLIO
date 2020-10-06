@@ -21,8 +21,8 @@ public class ItemRecommendViewModel {
     public ItemRecommendViewModel(Product recommend) {
         imageUrl.set(recommend.getImageUrl());
         isLike.set(recommend.isLike());
-        comment.set(recommend.getComment());
-        price.set(recommend.getPrice());
+        comment.set(recommend.getContent());
+        price.set(recommend.getPurchasePrice());
     }
 
     public void onItemClick(View v) {

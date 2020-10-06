@@ -11,7 +11,10 @@ import com.fund.flio.R;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemProductBinding;
 import com.fund.flio.databinding.ItemProductHomeBinding;
+import com.fund.flio.databinding.ItemProductSelledBinding;
+import com.fund.flio.databinding.ItemProductSellingBinding;
 import com.fund.flio.ui.main.MainActivity;
+import com.orhanobut.logger.Logger;
 
 public class ItemProductViewModel {
 
@@ -21,6 +24,8 @@ public class ItemProductViewModel {
     public ObservableField<String> price = new ObservableField<>();
     private ItemProductBinding itemProductBinding;
     private ItemProductHomeBinding itemRecommendBinding;
+    private ItemProductSellingBinding itemProductSellingBinding;
+    private ItemProductSelledBinding itemProductSelledBinding;
     private Product mProduct;
 
     public ItemProductViewModel(View v, ItemProductBinding binding, Product product) {
@@ -28,23 +33,42 @@ public class ItemProductViewModel {
         mProduct = product;
         imageUrl.set(product.getImageUrl());
         isLike.set(product.isLike());
-        comment.set(product.getComment());
-        price.set(product.getPrice());
-        binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getPid()));
-        binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getPid()));
-        binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getPid()));
+        comment.set(product.getContent());
+        price.set(product.getPurchasePrice());
+        binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
+        binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getProductId()));
+        binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getProductId()));
     }
 
     public ItemProductViewModel(View v, ItemProductHomeBinding binding, Product product) {
         this.itemRecommendBinding = binding;
+        Logger.d("ItemProductViewModel  " + product);
         mProduct = product;
         imageUrl.set(product.getImageUrl());
         isLike.set(product.isLike());
-        comment.set(product.getComment());
-        price.set(product.getPrice());
-        binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getPid()));
-        binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getPid()));
-        binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getPid()));
+        comment.set(product.getContent());
+        price.set(product.getPurchasePrice());
+        binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
+        binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getProductId()));
+        binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getProductId()));
+    }
+
+    public ItemProductViewModel(View v, ItemProductSellingBinding binding, Product product) {
+        this.itemProductSellingBinding = binding;
+        mProduct = product;
+        imageUrl.set(product.getImageUrl());
+        isLike.set(product.isLike());
+        comment.set(product.getContent());
+        price.set(product.getPurchasePrice());
+    }
+
+    public ItemProductViewModel(View v, ItemProductSelledBinding binding, Product product) {
+        this.itemProductSelledBinding = binding;
+        mProduct = product;
+        imageUrl.set(product.getImageUrl());
+        isLike.set(product.isLike());
+        comment.set(product.getContent());
+        price.set(product.getPurchasePrice());
     }
 
     public void onItemClick(View v) {

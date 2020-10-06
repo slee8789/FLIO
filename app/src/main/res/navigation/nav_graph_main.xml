@@ -97,6 +97,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_market"
+            app:destination="@id/nav_market" />
 
     </fragment>
 
@@ -104,6 +107,12 @@
         android:id="@+id/nav_market"
         android:name="com.fund.flio.ui.main.market.MarketFragment"
         tools:layout="@layout/fragment_market">
+
+        <argument
+            android:name="productCategory"
+            app:argType="com.fund.flio.data.enums.ProductCategory"
+            app:nullable="false"
+            android:defaultValue="ENTIRE"/>
 
     </fragment>
 

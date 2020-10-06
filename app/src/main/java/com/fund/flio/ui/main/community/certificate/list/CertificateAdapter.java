@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fund.flio.data.model.Certificate;
@@ -27,6 +28,13 @@ public class CertificateAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void setItems(List<Certificate> certificates) {
+        final CertificateAdapter.CertificateDiffCallback diffCallback = new CertificateAdapter.CertificateDiffCallback(this.certificates, certificates);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        this.certificates.clear();
+        this.certificates.addAll(certificates);
+        diffResult.dispatchUpdatesTo(this);
+    }
 
     @NonNull
     @Override
@@ -59,6 +67,39 @@ public class CertificateAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final Certificate certificate = certificates.get(position);
             ItemCertificateViewModel certificateViewModel = new ItemCertificateViewModel(certificate);
             certificateBinding.setViewModel(certificateViewModel);
+        }
+
+    }
+
+    private static class CertificateDiffCallback extends DiffUtil.Callback {
+        private final List<Certificate> oldCertificates;
+        private final List<Certificate> newCertificates;
+
+        public CertificateDiffCallback(List<Certificate> oldCertificates, List<Certificate> newCertificates) {
+            this.oldCertificates = oldCertificates;
+            this.newCertificates = newCertificates;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldCertificates.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newCertificates.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldCertificates.get(oldItemPosition).getCertificateId() == newCertificates.get(newItemPosition).getCertificateId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            final Certificate oldChat = oldCertificates.get(oldItemPosition);
+            final Certificate newChat = newCertificates.get(newItemPosition);
+            return oldChat.equals(newChat);
         }
 
     }

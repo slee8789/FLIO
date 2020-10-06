@@ -76,6 +76,12 @@
     <string name="category_certificate">플리오 인증</string>
     <string name="category_event">홍보/행사</string>
 
+    <string name="category_news_entire">전체</string>
+    <string name="category_news_professional">Professional</string>
+    <string name="category_news_hi_fi">HiFi</string>
+    <string name="category_news_head_fi">HeadFi</string>
+    <string name="category_news_ar_vr">AR/VR</string>
+
     <string name="category_certificate_entire">전체</string>
     <string name="category_certificate_my_flio">MY플리오</string>
     <string name="category_certificate_review">오디오리뷰</string>
@@ -95,11 +101,18 @@
 
     <string name="description_item_recommend">recommend</string>
     <string name="my_page_label_keyword">관심 키워드</string>
-    <string name="my_page_product_sell">판매상품</string>
-    <string name="my_page_product_buy">구매상품</string>
+    <string name="my_page_product_sell">판매내역</string>
+    <string name="my_page_product_buy">구매내역</string>
     <string name="my_page_product_favorite">관심목록</string>
     <string name="my_page_review">거래후기</string>
     <string name="my_page_promotion">홍보인증</string>
+
+    <string name="product_sell">거래중</string>
+    <string name="product_sell_closed">거래완료</string>
+
+    <string name="product_sell_change_reserve">예약중으로 변경</string>
+    <string name="product_sell_change_close">거래완료로 변경</string>
+    <string name="product_sell_change_cancel">거래취소로 변경</string>
 
     <string name="search_popular">인기검색어</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
@@ -139,6 +152,9 @@
 
     <string name="title_sell_list">판매내역</string>
 
+    <string name="product_status">+제품상태보기</string>
+    <string name="product_chat">1:1채팅하기</string>
+
     <string name="product_register">장터글쓰기</string>
     <string name="product_register_title_hint">제목</string>
     <string name="product_register_category">카테고리 분류</string>
@@ -153,5 +169,7 @@
     <string name="transition_product_image">transition_product_image_%d</string>
     <string name="transition_product_flio">transition_product_flio_%d</string>
     <string name="transition_product_faith">transition_product_faith_%d</string>
+
+    <string name="title_my_page">마이페이지</string>
 
 </resources>

@@ -30,14 +30,16 @@ import com.fund.flio.ui.main.community.certificate.register.CertificateThumbnail
 import com.fund.flio.ui.main.community.event.list.EventAdapter;
 import com.fund.flio.ui.main.community.event.register.EventThumbnailAdapter;
 import com.fund.flio.ui.main.community.news.NewsAdapter;
+import com.fund.flio.ui.main.home.CertificateSmallAdapter;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
 import com.fund.flio.ui.main.home.BannerAdapter;
-import com.fund.flio.ui.main.home.CertificatedAdapter;
-import com.fund.flio.ui.main.home.RecommendAdapter;
+import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.fund.flio.ui.main.market.ProductAdapter;
 import com.fund.flio.ui.main.message.reply.list.ReplyListAdapter;
+import com.fund.flio.ui.main.mypage.sell.selled.ProductSelledAdapter;
+import com.fund.flio.ui.main.mypage.sell.selling.ProductSellingAdapter;
 import com.fund.flio.ui.main.search.SearchRecentAdapter;
 
 
@@ -133,8 +135,8 @@ public class AppModule {
     }
 
     @Provides
-    RecommendAdapter provideRecommendAdapter() {
-        return new RecommendAdapter(new ArrayList<>());
+    ProductSmallAdapter provideRecommendAdapter() {
+        return new ProductSmallAdapter(new ArrayList<>());
     }
 
     @Provides
@@ -143,8 +145,8 @@ public class AppModule {
     }
 
     @Provides
-    CertificatedAdapter provideCertificatedAdapter() {
-        return new CertificatedAdapter(new ArrayList<>());
+    CertificateSmallAdapter provideCertificatedAdapter() {
+        return new CertificateSmallAdapter(new ArrayList<>());
     }
 
     @Provides
@@ -195,6 +197,16 @@ public class AppModule {
     @Provides
     EventThumbnailAdapter provideEventThumbnailAdapter() {
         return new EventThumbnailAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ProductSellingAdapter provideProductSellingAdapter() {
+        return new ProductSellingAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ProductSelledAdapter provideProductSelledAdapter() {
+        return new ProductSelledAdapter(new ArrayList<>());
     }
 
 }
