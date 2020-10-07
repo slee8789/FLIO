@@ -31,6 +31,7 @@ import com.fund.flio.ui.main.community.event.list.EventAdapter;
 import com.fund.flio.ui.main.community.event.register.EventThumbnailAdapter;
 import com.fund.flio.ui.main.community.news.NewsAdapter;
 import com.fund.flio.ui.main.home.CertificateSmallAdapter;
+import com.fund.flio.ui.main.market.product.ProductImageAdapter;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
@@ -207,6 +208,11 @@ public class AppModule {
     @Provides
     ProductSelledAdapter provideProductSelledAdapter() {
         return new ProductSelledAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ProductImageAdapter provideProductImageAdapter() {
+        return new ProductImageAdapter(new ArrayList<>());
     }
 
 }

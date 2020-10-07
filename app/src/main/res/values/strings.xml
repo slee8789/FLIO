@@ -16,7 +16,7 @@
     <string name="category_headset">이어폰/헤드폰</string>
     <string name="category_headset_home">이어폰\n헤드폰</string>
     <string name="category_acoustic">음향장비</string>
-    <string name="category_instrument">악기/음반</string>
+    <string name="category_record">음반</string>
     <string name="category_accessory">악세사리</string>
     <string name="category_diy">DIY</string>
 
@@ -155,6 +155,16 @@
     <string name="product_status">+제품상태보기</string>
     <string name="product_chat">1:1채팅하기</string>
 
+    <string name="product_detail_title">제품 상태보기</string>
+    <string name="product_detail_use_date">사용기간</string>
+    <string name="product_detail_box_yn">박스유무</string>
+    <string name="product_detail_purchase_kind">구매방법</string>
+    <string name="product_detail_repair_yn">수리이력</string>
+    <string name="product_detail_basic_info">기본정보</string>
+    <string name="product_detail_brand">브랜드</string>
+    <string name="product_detail_model">모델명</string>
+    <string name="product_detail_serial">시리얼</string>
+
     <string name="product_register">장터글쓰기</string>
     <string name="product_register_title_hint">제목</string>
     <string name="product_register_category">카테고리 분류</string>
@@ -165,6 +175,12 @@
     <string name="product_register_way_direct">직거래</string>
     <string name="product_register_way_delivery">택배거래</string>
     <string name="product_register_message_hint">게시글 내용을 작성해주세요.</string>
+
+    <string name="product_register_detail_title">제품 상세 체크표</string>
+<!--    <string name="product_register_detail_title">분류 선택</string>-->
+<!--    <string name="product_register_detail_title">제품 상세 체크표</string>-->
+<!--    <string name="product_register_detail_title">제품 상세 체크표</string>-->
+<!--    <string name="product_register_detail_title">제품 상세 체크표</string>-->
 
     <string name="transition_product_image">transition_product_image_%d</string>
     <string name="transition_product_flio">transition_product_flio_%d</string>

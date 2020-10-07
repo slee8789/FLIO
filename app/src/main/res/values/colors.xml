@@ -27,6 +27,7 @@
     <color name="purpleHover">#4D35ED</color>
     <color name="purple2">#993ACD</color>
     <color name="purple3">#A982FF</color>
+    <color name="purple4">#A89BFF</color>
     <color name="ted_image_picker_primary">#6F5AFF</color>
     <color name="ted_image_picker_primary_pressed">#6F5AFF</color>
     <color name="disabled">#E5E5E5</color>
@@ -36,4 +37,7 @@
     <color name="secondary">#D81B60</color>
     <color name="card_background">#e0e0e0</color>
     <color name="navigationBarColor">@color/dark_scrim</color>
+
+    <color name="dot_light_screen4">@color/purple3</color>
+    <color name="dot_dark_screen4">@color/purple</color>
 </resources>

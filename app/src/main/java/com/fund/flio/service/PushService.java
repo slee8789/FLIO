@@ -103,7 +103,7 @@ public class PushService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         Logger.d("PushService onMessageReceived remoteMessage " + remoteMessage.getData());
 
-        if (remoteMessage.getData().get("chatSourceMessage") != null) {
+        if (remoteMessage.getData().get("chatSourceMessage") != null || remoteMessage.getData().get("chatTargetMessage") != null) {
             chatMessage(remoteMessage);
         } else if (remoteMessage.getData().get("logoutForce") != null) {
             logoutMessage(remoteMessage);

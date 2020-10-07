@@ -18,6 +18,7 @@ public class ApiDefine {
         String INSERT_USER = "user/insertUser";
         String LOGOUT_USER = "user/updateLogoutUser";
 
+        String INSERT_MY_CHAT = "chat/insertMyChat";
         String SELECT_MY_CHAT = "chat/selectMyChat";
         String SELECT_MY_CHAT_DETAIL = "chat/selectMyChatDetail";
         String SEND_MESSAGE = "message/sendMessage";

@@ -1,6 +1,7 @@
 package com.fund.flio.ui.main.market.product;
 
 
+import android.app.Activity;
 import android.view.View;
 
 import androidx.databinding.ObservableBoolean;
@@ -8,13 +9,17 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 
+import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.body.InsertMyChatBody;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.fund.flio.ui.main.MainActivity;
+import com.fund.flio.ui.main.message.MessageFragmentDirections;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -37,11 +42,18 @@ public class ProductViewModel extends BaseViewModel {
     public ObservableField<String> sellerName = new ObservableField<>();
     public ObservableField<String> rating = new ObservableField<>("0");
     public ObservableField<String> newsUrl = new ObservableField<>("http://flio.iptime.org:8080/image/dummy/event/event_1.png");
+    public ObservableBoolean isSeller = new ObservableBoolean();
 
     private MutableLiveData<List<Product>> mProducts = new MutableLiveData<>();
+    private MutableLiveData<List<String>> mProductImages = new MutableLiveData<>();
+    private Product product;
 
     public MutableLiveData<List<Product>> getProducts() {
         return mProducts;
+    }
+
+    public MutableLiveData<List<String>> getProductImages() {
+        return mProductImages;
     }
 
     public ProductViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
@@ -53,17 +65,22 @@ public class ProductViewModel extends BaseViewModel {
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(product -> {
-                    title.set(product.body().getProducts().get(0).getTitle());
-                    content.set(product.body().getProducts().get(0).getContent());
-                    price.set(product.body().getProducts().get(0).getPurchasePrice());
-                    productName.set(product.body().getProducts().get(0).getProductName());
+                    if (product.isSuccessful()) {
+                        this.product = product.body().getProducts().get(0);
+                        title.set(this.product.getTitle());
+                        content.set(this.product.getContent());
+                        price.set(this.product.getPurchasePrice());
+                        productName.set(this.product.getProductName());
 
-                    setImage(product.body().getProducts().get(0));
-                    purpose.set(product.body().getProducts().get(0).getPurpose());
-                    sellerImage.set(image.get());
-                    sellerName.set("홍길동");
-                    rating.set("3.5");
-                    setTag(product.body().getProducts().get(0).getTag().split(","));
+                        setImage(this.product);
+                        purpose.set(this.product.getPurpose());
+                        sellerImage.set(this.product.getUserImageUrl());
+                        sellerName.set(this.product.getUserName());
+                        rating.set("3.5");
+                        setTag(product.body().getProducts().get(0).getTag().split(","));
+                        isSeller.set(getDataManager().getUserImageUrl().equals(this.product.getUid()));
+                    }
+
 
                 }));
     }
@@ -73,7 +90,7 @@ public class ProductViewModel extends BaseViewModel {
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {
-                    if(products.isSuccessful()) {
+                    if (products.isSuccessful()) {
                         mProducts.setValue(products.body().getProducts());
                     }
                 }));
@@ -104,7 +121,34 @@ public class ProductViewModel extends BaseViewModel {
     }
 
     private void setImage(Product product) {
-        image.set("http://flio.iptime.org:8080/image/" + product.getBaseUrl() + "/" + product.getImageUrl());
+        String[] images = product.getImageUrl().split(",");
+        mProductImages.setValue(Stream.of(images).map(image -> "http://flio.iptime.org:8080/image/" + product.getBaseUrl() + "/" + image).toList());
+    }
+
+    public void goChat(View view) {
+        getCompositeDisposable().add(getDataManager().insertMyChat(new InsertMyChatBody(product.getUid(), getDataManager().getUserId(), product.getProductId()))
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(chatSeq -> {
+                    if (chatSeq.isSuccessful()) {
+                        ChatRoom mChatRoom = new ChatRoom();
+                        mChatRoom.setChatSeq(chatSeq.body().getData());
+                        mChatRoom.setChatSourceUid(product.getUid());
+                        mChatRoom.setChatSourceName(product.getUserName());
+                        mChatRoom.setChatSourceImageUrl(product.getUserImageUrl());
+                        //Todo : 판매자 토큰
+                        mChatRoom.setChatSourceMessageToken(getDataManager().getMessageToken());
+                        mChatRoom.setProductTitle(product.getTitle());
+                        mChatRoom.setProductPrice(product.getProductPrice());
+                        mChatRoom.setProductId(product.getProductId());
+                        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavChatDetail(mChatRoom));
+                    }
+                }));
+
+    }
+
+    public void showDetail(View v) {
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavMarketProductDetail(product));
     }
 
 }

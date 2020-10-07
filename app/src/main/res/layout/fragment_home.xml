@@ -140,8 +140,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_instrument}"
-                    app:categoryTitle="@{@string/category_instrument}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.INSTRUMENT)}"
+                    app:categoryTitle="@{@string/category_record}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.RECORD)}"
                     app:layout_constraintEnd_toStartOf="@id/category_accessory"
                     app:layout_constraintStart_toEndOf="@id/category_acoustic"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />

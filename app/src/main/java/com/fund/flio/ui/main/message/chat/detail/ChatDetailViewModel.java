@@ -6,10 +6,8 @@ import android.view.View;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
-import androidx.navigation.Navigation;
 
 import com.annimon.stream.Stream;
-import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.bus.MessageBus;
 import com.fund.flio.data.enums.MessageType;
@@ -21,7 +19,6 @@ import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
-import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.utils.CommonUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
@@ -41,7 +38,7 @@ public class ChatDetailViewModel extends BaseViewModel {
 
     public ObservableField<String> inputMessage = new ObservableField<>();
     public ObservableField<String> remoteUserName = new ObservableField<>();
-    public ObservableField<String> productName = new ObservableField<>();
+    public ObservableField<String> productTitle = new ObservableField<>();
     public ObservableField<String> productPrice = new ObservableField<>();
 
     public void setChatRoom(ChatRoom mChatRoom) {
@@ -49,8 +46,8 @@ public class ChatDetailViewModel extends BaseViewModel {
         this.mChatRoom = mChatRoom;
         isSource = FirebaseAuth.getInstance().getUid().equals(mChatRoom.getChatSourceUid());
         remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
-        productName.set(mChatRoom.getProductName());
-        productPrice.set(mChatRoom.getProductPrice());
+        productTitle.set(mChatRoom.getProductTitle());
+        productPrice.set((mChatRoom.getProductPrice() + "원"));
         selectMyChatDetail(mChatRoom.getChatSeq());
     }
 

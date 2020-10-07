@@ -123,7 +123,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                     }
                     break;
                 case 8:
-                    productCategory = ProductCategory.INSTRUMENT;
+                    productCategory = ProductCategory.RECORD;
                     mSubTabLayout.setVisibility(View.VISIBLE);
                     mSubTabLayout.removeAllTabs();
                     for (String category : getResources().getStringArray(R.array.array_category_instrument)) {
@@ -193,7 +193,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                 case ACOUSTIC:
                     secondCategory = AcousticType.values()[tab.getPosition()].name();
                     break;
-                case INSTRUMENT:
+                case RECORD:
                     secondCategory = InstrumentType.values()[tab.getPosition()].name();
                     break;
                 case ACCESSORY:

@@ -53,7 +53,7 @@ public final class BindingUtils {
     public static void thumbnailUriCircle(ImageView imageView, Uri imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .transform(new CenterCrop(),new RoundedCorners(dpToPx(10,imageView.getContext())))
+                .transform(new CenterCrop(), new RoundedCorners(dpToPx(10, imageView.getContext())))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .thumbnail(0.1f)
                 .into(imageView);
@@ -71,19 +71,19 @@ public final class BindingUtils {
 
     @BindingAdapter({"imageUrlCircle"})
     public static void loadImageCircle(ImageView imageView, String imageUrl) {
-        Glide.with(imageView.getContext())
-                .load(imageUrl)
-                .circleCrop()
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(R.color.grayCE)
-                .into(imageView);
+            Glide.with(imageView.getContext())
+                    .load(imageUrl)
+                    .circleCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .placeholder(R.color.grayCE)
+                    .into(imageView);
     }
 
     @BindingAdapter({"imageUrlRoundCorner"})
     public static void loadImageRoundCorner(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .transform(new CenterCrop(),new RoundedCorners(dpToPx(10,imageView.getContext())))
+                .transform(new CenterCrop(), new RoundedCorners(dpToPx(10, imageView.getContext())))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.grayCE)
                 .into(imageView);
@@ -101,13 +101,15 @@ public final class BindingUtils {
 
     @BindingAdapter({"setBackground"})
     public static void setBackground(View view, String imageUrl) {
-        Glide.with(view.getContext()).load(imageUrl)
-                .into(new SimpleTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-                        view.setBackground(resource);
-                    }
-                });
+
+            Glide.with(view.getContext()).load(imageUrl)
+                    .into(new SimpleTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                            view.setBackground(resource);
+                        }
+                    });
+
     }
 
     @BindingAdapter("listData")

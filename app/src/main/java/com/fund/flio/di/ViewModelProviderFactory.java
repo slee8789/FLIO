@@ -18,6 +18,7 @@ import com.fund.flio.ui.main.community.event.detail.EventDetailViewModel;
 import com.fund.flio.ui.main.community.event.register.EventRegisterViewModel;
 import com.fund.flio.ui.main.market.product.ProductViewModel;
 import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
+import com.fund.flio.ui.main.market.register.detail.ProductRegisterDetailViewModel;
 import com.fund.flio.ui.main.message.MessageViewModel;
 import com.fund.flio.ui.main.message.reply.list.ReplyListViewModel;
 import com.fund.flio.ui.main.message.chat.detail.ChatDetailViewModel;
@@ -114,6 +115,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new CertificateRegisterViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else if (ProfileViewModel.class.isAssignableFrom(modelClass)) {
             return new ProfileViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (ProductRegisterDetailViewModel.class.isAssignableFrom(modelClass)) {
+            return new ProductRegisterDetailViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

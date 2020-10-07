@@ -5,6 +5,7 @@ package com.fund.flio.data;
 import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
 import com.fund.flio.data.model.ChatRoomWrapper;
+import com.fund.flio.data.model.Data;
 import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.Product;
@@ -12,6 +13,7 @@ import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
+import com.fund.flio.data.model.body.InsertMyChatBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
@@ -96,6 +98,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<Response<Void>> sendMessage(SendMessageBody sendMessageBody) {
         return mFlioApi.sendMessage(sendMessageBody);
+    }
+
+    @Override
+    public Single<Response<Data>> insertMyChat(InsertMyChatBody insertMyChatBody) {
+        return mFlioApi.insertMyChat(insertMyChatBody);
     }
 
     @Override

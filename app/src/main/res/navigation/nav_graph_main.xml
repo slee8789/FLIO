@@ -110,9 +110,9 @@
 
         <argument
             android:name="productCategory"
+            android:defaultValue="ENTIRE"
             app:argType="com.fund.flio.data.enums.ProductCategory"
-            app:nullable="false"
-            android:defaultValue="ENTIRE"/>
+            app:nullable="false" />
 
     </fragment>
 
@@ -188,13 +188,40 @@
         <action
             android:id="@+id/action_nav_market_product_self"
             app:destination="@id/nav_market_product" />
+        <action
+            android:id="@+id/action_nav_market_product_to_nav_chat_detail"
+            app:destination="@id/nav_chat_detail" />
+        <action
+            android:id="@+id/action_nav_market_product_to_nav_market_product_detail"
+            app:destination="@id/nav_market_product_detail" />
 
     </fragment>
+
+    <dialog
+        android:id="@+id/nav_market_product_detail"
+        android:name="com.fund.flio.ui.main.market.product.detail.ProductDetailDialog"
+        tools:layout="@layout/dialog_product_detail">
+
+        <argument
+            android:name="product"
+            app:argType="com.fund.flio.data.model.Product" />
+
+    </dialog>
 
     <fragment
         android:id="@+id/nav_market_product_register"
         android:name="com.fund.flio.ui.main.market.register.ProductRegisterFragment"
         tools:layout="@layout/fragment_product_register">
+
+        <action
+            android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_detail"
+            app:destination="@id/nav_market_product_register_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product_register_detail"
+        android:name="com.fund.flio.ui.main.market.register.detail.ProductRegisterDetailFragment"
+        tools:layout="@layout/fragment_product_register_detail">
 
     </fragment>
 
@@ -232,6 +259,7 @@
         tools:layout="@layout/fragment_setting">
 
     </fragment>
+
 
     <dialog
         android:id="@+id/nav_bottom_sheet_write"

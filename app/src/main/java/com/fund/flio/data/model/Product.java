@@ -22,6 +22,8 @@ public class Product implements Serializable {
     private String tag;
     private String title;
     private String uid;
+    private String userImageUrl;
+    private String userName;
     private String useDate;
     private String status;
     private String serialNo;
@@ -39,4 +41,5 @@ public class Product implements Serializable {
     private boolean isLike;
     private int recommendCnt;
     private int selectCnt;
+    private int productPrice;
 }

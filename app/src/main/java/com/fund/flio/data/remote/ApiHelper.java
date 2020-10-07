@@ -2,11 +2,13 @@ package com.fund.flio.data.remote;
 
 
 import com.fund.flio.data.model.ChatRoomWrapper;
+import com.fund.flio.data.model.Data;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
+import com.fund.flio.data.model.body.InsertMyChatBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TestBody;
@@ -59,6 +61,11 @@ public interface ApiHelper {
     @POST(ApiDefine.Body.SEND_MESSAGE)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<Void>> sendMessage(@Body SendMessageBody sendMessageBody);
+
+    // 채팅 메세지 저장
+    @POST(ApiDefine.Body.INSERT_MY_CHAT)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Data>> insertMyChat(@Body InsertMyChatBody insertMyChatBody);
 
     // 테스트 이미지 업로드
     @Multipart

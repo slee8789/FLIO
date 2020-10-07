@@ -7,6 +7,7 @@ import androidx.databinding.ObservableField;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
 
+import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemProductBinding;
@@ -28,10 +29,19 @@ public class ItemProductViewModel {
     private ItemProductSelledBinding itemProductSelledBinding;
     private Product mProduct;
 
+    private void setImage(Product product) {
+        if (product.getImageUrl() != null) {
+            String[] images = product.getImageUrl().split(",");
+            imageUrl.set("http://flio.iptime.org:8080/image/" + product.getBaseUrl() + "/" + images[0]);
+        } else {
+            imageUrl.set(null);
+        }
+    }
+
     public ItemProductViewModel(View v, ItemProductBinding binding, Product product) {
         this.itemProductBinding = binding;
         mProduct = product;
-        imageUrl.set(product.getImageUrl());
+        setImage(product);
         isLike.set(product.isLike());
         comment.set(product.getContent());
         price.set(product.getPurchasePrice());
@@ -44,7 +54,8 @@ public class ItemProductViewModel {
         this.itemRecommendBinding = binding;
         Logger.d("ItemProductViewModel  " + product);
         mProduct = product;
-        imageUrl.set(product.getImageUrl());
+        setImage(product);
+
         isLike.set(product.isLike());
         comment.set(product.getContent());
         price.set(product.getPurchasePrice());
@@ -56,7 +67,7 @@ public class ItemProductViewModel {
     public ItemProductViewModel(View v, ItemProductSellingBinding binding, Product product) {
         this.itemProductSellingBinding = binding;
         mProduct = product;
-        imageUrl.set(product.getImageUrl());
+        setImage(product);
         isLike.set(product.isLike());
         comment.set(product.getContent());
         price.set(product.getPurchasePrice());

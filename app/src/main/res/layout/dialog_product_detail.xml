@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_product_detail"
+            tools:mContext=".ui.setting.SettingActivity">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/product_detail_title"
+                android:textColor="@color/black3"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:layout_marginHorizontal="56dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_product_detail_container"
+                app:layout_constraintBottom_toTopOf="@id/basic_info"
+                app:layout_constraintTop_toBottomOf="@id/title">
+
+                <TextView
+                    android:id="@+id/label_use_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_use_date"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/label_box_yn"
+                    app:layout_constraintEnd_toStartOf="@id/use_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/use_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_use_date"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/label_use_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_use_date"
+                    app:layout_constraintTop_toTopOf="@id/label_use_date" />
+
+                <TextView
+                    android:id="@+id/label_box_yn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_box_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/label_purchase_kind"
+                    app:layout_constraintEnd_toStartOf="@id/box_yn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_use_date" />
+
+                <TextView
+                    android:id="@+id/box_yn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_box_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/label_box_yn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_box_yn"
+                    app:layout_constraintTop_toTopOf="@id/label_box_yn" />
+
+                <TextView
+                    android:id="@+id/label_purchase_kind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_purchase_kind"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/label_repair_yn"
+                    app:layout_constraintEnd_toStartOf="@id/purchase_kind"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_box_yn" />
+
+                <TextView
+                    android:id="@+id/purchase_kind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_purchase_kind"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/label_purchase_kind"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_purchase_kind"
+                    app:layout_constraintTop_toTopOf="@id/label_purchase_kind" />
+
+                <TextView
+                    android:id="@+id/label_repair_yn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/product_detail_repair_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/purchase_kind"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_purchase_kind" />
+
+                <TextView
+                    android:id="@+id/repair_yn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_detail_purchase_kind"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/label_repair_yn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_purchase_kind"
+                    app:layout_constraintTop_toTopOf="@id/label_repair_yn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/basic_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/product_detail_basic_info"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toBottomOf="@id/container" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/purple4"
+                app:layout_constraintBottom_toBottomOf="@id/basic_info"
+                app:layout_constraintEnd_toEndOf="@id/basic_info"
+                app:layout_constraintStart_toStartOf="@id/basic_info" />
+
+            <TextView
+                android:id="@+id/label_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/product_detail_brand"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toBottomOf="@id/basic_info" />
+
+            <TextView
+                android:id="@+id/brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="160dp"
+                android:text="@string/product_detail_brand"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/label_brand"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toTopOf="@id/label_brand" />
+
+            <TextView
+                android:id="@+id/label_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/product_detail_model"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toBottomOf="@id/label_brand" />
+
+            <TextView
+                android:id="@+id/model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="160dp"
+                android:text="@string/product_detail_model"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/label_model"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toTopOf="@id/label_model" />
+
+            <TextView
+                android:id="@+id/label_serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/product_detail_serial"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toBottomOf="@id/label_model" />
+
+            <TextView
+                android:id="@+id/serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="160dp"
+                android:text="@string/product_detail_model"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/label_serial"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toTopOf="@id/label_serial" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

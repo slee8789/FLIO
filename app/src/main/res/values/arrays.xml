@@ -10,7 +10,7 @@
         <item>@string/category_source</item>
         <item>@string/category_headset</item>
         <item>@string/category_acoustic</item>
-        <item>@string/category_instrument</item>
+        <item>@string/category_record</item>
         <item>@string/category_accessory</item>
         <item>@string/category_diy</item>
     </string-array>

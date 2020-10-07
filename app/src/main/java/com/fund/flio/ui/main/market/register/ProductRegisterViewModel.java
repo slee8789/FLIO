@@ -1,11 +1,14 @@
 package com.fund.flio.ui.main.market.register;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
 
+import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -14,6 +17,7 @@ import com.fund.flio.data.DataManager;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
+import com.fund.flio.ui.main.message.MessageFragmentDirections;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -56,6 +60,19 @@ public class ProductRegisterViewModel extends BaseViewModel {
                     mThumbnailUris.setValue(uriList);
                 }));
 
+    }
+
+    public ObservableBoolean wayDelivery = new ObservableBoolean(true);
+
+    public void waySelect(View v) {
+        switch (v.getId()) {
+            case R.id.way_direct:
+                wayDelivery.set(true);
+                break;
+            case R.id.way_delivery:
+                wayDelivery.set(false);
+                break;
+        }
     }
 
 
@@ -122,5 +139,8 @@ public class ProductRegisterViewModel extends BaseViewModel {
         imageCount.set(String.valueOf(mThumbnailUris.getValue().size()));
     }
 
+    public void goDetail(View view) {
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterDetail());
+    }
 
 }

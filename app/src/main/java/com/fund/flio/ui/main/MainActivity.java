@@ -226,6 +226,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_certificate_detail:
             case R.id.nav_event_detail:
             case R.id.nav_market_product_register:
+            case R.id.nav_market_product_register_detail:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
