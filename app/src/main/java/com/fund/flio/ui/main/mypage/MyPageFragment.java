@@ -70,25 +70,9 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     }
 
     private void initViews() {
-//        ArrayList<String> dummyPopularTag = new Gson().fromJson(readAssetJson(getContext(), "tag_popular.json"), new TypeToken<List<String>>() {
-//        }.getType());
-//        for (String tag : dummyPopularTag) {
-//            Chip chip = new Chip(getContext());
-//            chip.setGravity(Gravity.CENTER);
-//            chip.setText(tag);
-//            chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip_entry));
-//            chip.setTextAppearanceResource(R.style.ChipTextStyle);
-//            chip.setCheckable(false);
-//            chip.setOnCloseIconClickListener(null);
-//            getViewDataBinding().tagKeyword.addView(chip);
-//        }
-
         getViewDataBinding().keyword.setOnEditorActionListener((v, actionId, event) -> {
             switch (actionId) {
                 case EditorInfo.IME_ACTION_DONE:
-//                    getViewModel().onDataInsert(getViewDataBinding().search.getText().toString());
-//                    getViewDataBinding().search.clearFocus();
-//                    imm.hideSoftInputFromWindow(getViewDataBinding().search.getWindowToken(), 0);
                     getViewModel().onKeywordRegisterClick(v);
 
                     return true;
@@ -102,7 +86,6 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     private void setupActionBar() {
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-//        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -117,11 +100,6 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding, MyPageVi
     public boolean onOptionsItemSelected(MenuItem item) {
         Logger.d("onOptionsItemSelected " + item.getItemId());
         switch (item.getItemId()) {
-//            case android.R.id.home:
-//                Logger.d("onOptionsItemSelected home");
-//                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-//                break;
-
             case R.id.menu_setting:
                 Logger.d("onOptionsItemSelected menu_setting");
                 Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_setting);

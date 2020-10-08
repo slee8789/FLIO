@@ -21,21 +21,23 @@
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:gravity="end"
             android:text="@{itemViewModel.chatDate}"
             android:textColor="@color/gray9"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/chat"
-            app:layout_constraintEnd_toStartOf="@id/chat" />
+            app:layout_constraintEnd_toStartOf="@id/chat"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_item_chat_local"
-            android:gravity="center"
+            android:gravity="start"
             android:minWidth="30dp"
             android:minHeight="30dp"
             android:paddingHorizontal="15dp"

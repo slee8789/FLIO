@@ -257,20 +257,6 @@
             app:layout_constraintStart_toStartOf="@id/product_sell"
             app:layout_constraintTop_toBottomOf="@id/product_sell" />
 
-        <include
-            android:id="@+id/setting_promotion"
-            layout="@layout/item_mypage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:categoryIcon="@{@drawable/icon_speaker}"
-            app:categoryTitle="@{@string/my_page_promotion}"
-            app:clickEvent="@{v -> viewModel.onSettingPromotionClick(v)}"
-            app:layout_constraintEnd_toEndOf="@id/product_buy"
-            app:layout_constraintStart_toStartOf="@id/product_buy"
-            app:layout_constraintTop_toBottomOf="@id/product_buy" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

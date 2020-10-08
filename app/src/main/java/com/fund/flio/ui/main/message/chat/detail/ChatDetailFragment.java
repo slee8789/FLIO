@@ -58,6 +58,7 @@ public class ChatDetailFragment extends BaseFragment<FragmentChatDetailBinding, 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (getArguments().getSerializable("chatRoom") != null) {
+            Logger.d("onCreate chatRoom " + getArguments().getSerializable("chatRoom"));
             getViewModel().setChatRoom((ChatRoom) getArguments().getSerializable("chatRoom"));
         }
 

@@ -4,8 +4,10 @@ package com.fund.flio.data;
 
 import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
+import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.Data;
+import com.fund.flio.data.model.InsertMyChatWrapper;
 import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.Product;
@@ -101,7 +103,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Data>> insertMyChat(InsertMyChatBody insertMyChatBody) {
+    public Single<Response<InsertMyChatWrapper>> insertMyChat(InsertMyChatBody insertMyChatBody) {
         return mFlioApi.insertMyChat(insertMyChatBody);
     }
 

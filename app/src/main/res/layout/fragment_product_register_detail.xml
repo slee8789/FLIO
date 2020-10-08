@@ -6,14 +6,30 @@
     <data>
 
         <variable
+            name="useDate"
+            type="com.fund.flio.data.enums.UseDate" />
+
+        <variable
+            name="purchaseKind"
+            type="com.fund.flio.data.enums.PurchaseKind" />
+
+        <variable
+            name="boxYn"
+            type="com.fund.flio.data.enums.BoxYn" />
+
+        <variable
+            name="repairYn"
+            type="com.fund.flio.data.enums.RepairYn" />
+
+        <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.market.register.detail.ProductRegisterDetailViewModel" />
+            type="com.fund.flio.ui.main.market.register.ProductRegisterViewModel" />
     </data>
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -37,30 +53,530 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayD"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/grayE5"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
+                    android:id="@+id/use_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    />
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/product_detail_use_date"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/radio_use_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/use_date">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.A}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.A)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.A.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.B}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.B)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.B.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.C}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.C)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.C.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.D}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.D)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.D.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.E}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.E)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.E.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_purple"
+                            android:checked="@{viewModel.useDate == useDate.F}"
+                            android:onClick="@{v -> viewModel.onUseDateClick(useDate.F)}"
+                            android:padding="8dp"
+                            android:text="@{useDate.F.type}"
+                            android:textColor="@color/gray9"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.useDate == useDate.G}"
+                        android:onClick="@{v -> viewModel.onUseDateClick(useDate.G)}"
+                        android:padding="8dp"
+                        android:text="@{useDate.G.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/divider_use_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/box_yn"
+                    app:layout_constraintTop_toBottomOf="@id/radio_use_date" />
+
+                <TextView
+                    android:id="@+id/box_yn"
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center|start"
+                    android:text="@string/product_detail_box_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_box_yn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_use_date" />
+
+                <RadioGroup
+                    android:id="@+id/radio_box_yn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/box_yn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/box_yn"
+                    app:layout_constraintTop_toTopOf="@id/box_yn">
+
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.boxYn == boxYn.YES}"
+                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.YES)}"
+                        android:padding="8dp"
+                        android:text="@{boxYn.YES.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.boxYn == boxYn.NO}"
+                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.NO)}"
+                        android:padding="8dp"
+                        android:text="@{boxYn.NO.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/divider_box_yn"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintTop_toBottomOf="@id/radio_box_yn" />
+
+                <TextView
+                    android:id="@+id/purchase_kind"
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center|start"
+                    android:text="@string/product_detail_purchase_kind"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_purchase_kind"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_box_yn" />
+
+                <RadioGroup
+                    android:id="@+id/radio_purchase_kind"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/purchase_kind"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/purchase_kind"
+                    app:layout_constraintTop_toTopOf="@id/purchase_kind">
+
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.purchaseKind == purchaseKind.Y}"
+
+                        android:onClick="@{v -> viewModel.onPurchaseKindClick(purchaseKind.Y)}"
+                        android:padding="8dp"
+                        android:text="@{purchaseKind.Y.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.purchaseKind == purchaseKind.R}"
+                        android:onClick="@{v -> viewModel.onPurchaseKindClick(purchaseKind.R)}"
+                        android:padding="8dp"
+                        android:text="@{purchaseKind.R.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.purchaseKind == purchaseKind.S}"
+                        android:onClick="@{v -> viewModel.onPurchaseKindClick(purchaseKind.S)}"
+                        android:padding="8dp"
+                        android:text="@{purchaseKind.S.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/divider_purchase_kind"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintTop_toBottomOf="@id/radio_purchase_kind" />
+
+                <TextView
+                    android:id="@+id/repair_yn"
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center|start"
+                    android:text="@string/product_detail_repair_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_repair_yn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_purchase_kind" />
+
+                <RadioGroup
+                    android:id="@+id/radio_repair_yn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/repair_yn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/repair_yn"
+                    app:layout_constraintTop_toTopOf="@id/repair_yn">
+
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.repairYn == repairYn.YES}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.YES)}"
+                        android:padding="8dp"
+                        android:text="@{repairYn.YES.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.repairYn == repairYn.NO}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.NO)}"
+                        android:padding="8dp"
+                        android:text="@{repairYn.NO.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/divider_repair_yn"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/flio"
+                    app:layout_constraintTop_toBottomOf="@id/radio_repair_yn" />
+
+                <ImageView
+                    android:id="@+id/flio"
+                    android:layout_width="80dp"
+                    android:layout_height="26dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:src="@drawable/btn_mark_flio"
+                    android:text="@string/product_detail_repair_yn"
+                    android:textColor="@color/black3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_flio"
+                    app:layout_constraintEnd_toEndOf="@id/repair_yn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_repair_yn" />
+
+                <RadioGroup
+                    android:id="@+id/radio_flio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/flio"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/flio"
+                    app:layout_constraintTop_toTopOf="@id/flio">
+
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.repairYn == repairYn.YES}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.YES)}"
+                        android:padding="8dp"
+                        android:text="@{repairYn.YES.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_purple"
+                        android:checked="@{viewModel.repairYn == repairYn.NO}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.NO)}"
+                        android:padding="8dp"
+                        android:text="@{repairYn.NO.type}"
+                        android:textColor="@color/gray9"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/divider_flio"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/url"
+                    app:layout_constraintTop_toBottomOf="@id/radio_flio" />
+
+
+                <EditText
+                    android:id="@+id/url"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_detail_url_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_url"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_flio" />
+
+                <View
+                    android:id="@+id/divider_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/brand"
+                    app:layout_constraintTop_toBottomOf="@id/url" />
+
+                <EditText
+                    android:id="@+id/brand"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_detail_brand_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider_brand"
+                    app:layout_constraintEnd_toStartOf="@id/model"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_url" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toBottomOf="@id/brand"
+                    app:layout_constraintEnd_toEndOf="@id/brand"
+                    app:layout_constraintTop_toTopOf="@id/brand" />
+
+                <EditText
+                    android:id="@+id/model"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_detail_model_hint"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/brand"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/brand"
+                    app:layout_constraintTop_toTopOf="@id/brand" />
+
+                <View
+                    android:id="@+id/divider_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayD"
+                    app:layout_constraintBottom_toTopOf="@id/model"
+                    app:layout_constraintTop_toBottomOf="@id/brand" />
+
+                <EditText
+                    android:id="@+id/serial"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@null"
+                    android:hint="@string/product_detail_serial_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_brand" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </ScrollView>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/complement"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/bg_product_detail_complement_btn"
+            android:text="@string/product_detail_btn_complement"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

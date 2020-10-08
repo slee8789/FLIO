@@ -100,4 +100,8 @@ public class ItemProductViewModel {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionGlobalToNavMarketProduct(mProduct), extras);
     }
 
+    public void showSelectBuyer(View v) {
+
+    }
+
 }

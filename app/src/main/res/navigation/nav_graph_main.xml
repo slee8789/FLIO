@@ -194,6 +194,9 @@
         <action
             android:id="@+id/action_nav_market_product_to_nav_market_product_detail"
             app:destination="@id/nav_market_product_detail" />
+        <action
+            android:id="@+id/action_nav_market_product_to_nav_profile"
+            app:destination="@id/nav_profile" />
 
     </fragment>
 
@@ -216,6 +219,19 @@
         <action
             android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_detail"
             app:destination="@id/nav_market_product_register_detail" />
+        <action
+            android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_purpose"
+            app:destination="@id/nav_market_product_register_purpose" />
+        <action
+            android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_tag"
+            app:destination="@id/nav_market_product_register_tag" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product_register_tag"
+        android:name="com.fund.flio.ui.main.market.register.tag.ProductRegisterTagFragment"
+        tools:layout="@layout/fragment_product_register_tag">
+
     </fragment>
 
     <fragment
@@ -224,6 +240,14 @@
         tools:layout="@layout/fragment_product_register_detail">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product_register_purpose"
+        android:name="com.fund.flio.ui.main.market.register.purpose.ProductRegisterPurposeFragment"
+        tools:layout="@layout/fragment_product_register_purpose">
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_community_event_register"
@@ -257,6 +281,13 @@
         android:id="@+id/nav_setting"
         android:name="com.fund.flio.ui.main.mypage.setting.SettingFragment"
         tools:layout="@layout/fragment_setting">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.fund.flio.ui.main.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
 
     </fragment>
 

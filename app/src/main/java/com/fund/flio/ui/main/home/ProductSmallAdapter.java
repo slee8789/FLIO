@@ -13,6 +13,7 @@ import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemProductHomeBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
 import com.fund.flio.ui.main.market.ItemProductViewModel;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -26,15 +27,6 @@ public class ProductSmallAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public ProductSmallAdapter(List<Product> products) {
         this.products = products;
-    }
-
-    public void addItems(List<Product> recommends) {
-        this.products.addAll(recommends);
-        notifyDataSetChanged();
-    }
-
-    public void clearItems() {
-        products.clear();
     }
 
     public void setItems(List<Product> products) {

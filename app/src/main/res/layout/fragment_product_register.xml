@@ -147,6 +147,7 @@
                     android:drawableEnd="@drawable/icon_arrow"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:onClick="@{v -> viewModel.showCategory(v)}"
                     android:text="@string/product_register_category"
                     android:textColor="@color/black3"
                     android:textSize="14sp"
@@ -162,6 +163,7 @@
                     android:drawableEnd="@drawable/icon_arrow"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:onClick="@{v -> viewModel.showPurpose(v)}"
                     android:text="@string/product_register_purpose"
                     android:textColor="@color/black3"
                     android:textSize="14sp"
@@ -198,10 +200,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:drawableStart="@drawable/check_purple"
-                    android:drawablePadding="2dp"
+                    android:drawablePadding="8dp"
+                    android:onClick="@{v -> viewModel.goDetail(v)}"
                     android:text="@string/product_register_state"
                     android:textColor="@color/black3"
-                    android:onClick="@{v -> viewModel.goDetail(v)}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_price"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +266,70 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="64dp"
                     android:background="@color/grayE5"
+                    app:layout_constraintBottom_toTopOf="@id/tag"
                     app:layout_constraintTop_toBottomOf="@id/divider_price" />
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{v -> viewModel.showTagWrite(v)}"
+                    android:text="@string/product_register_tag"
+                    app:layout_constraintBottom_toTopOf="@id/tag_selected"
+                    app:layout_constraintTop_toBottomOf="@id/divider_way" />
+
+                <LinearLayout
+                    android:id="@+id/tag_selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/divider_tag"
+                    app:layout_constraintTop_toBottomOf="@id/tag">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="test" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="test" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="test" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="test" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="test" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grayE5"
+                    app:layout_constraintBottom_toTopOf="@id/message"
+                    app:layout_constraintTop_toBottomOf="@id/tag_selected" />
 
                 <EditText
                     android:id="@+id/message"
@@ -280,16 +345,7 @@
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/divider_message"
-                    app:layout_constraintTop_toBottomOf="@id/divider_way" />
-
-                <View
-                    android:id="@+id/divider_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@color/grayE5"
-                    app:layout_constraintTop_toBottomOf="@id/message" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_tag" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

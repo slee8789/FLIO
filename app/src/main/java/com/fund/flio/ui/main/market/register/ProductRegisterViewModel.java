@@ -14,6 +14,10 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.enums.BoxYn;
+import com.fund.flio.data.enums.PurchaseKind;
+import com.fund.flio.data.enums.RepairYn;
+import com.fund.flio.data.enums.UseDate;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
@@ -40,12 +44,18 @@ public class ProductRegisterViewModel extends BaseViewModel {
         return mThumbnailUris;
     }
 
+    public ObservableField<UseDate> useDate = new ObservableField<>(UseDate.A);
+    public ObservableField<BoxYn> boxYn = new ObservableField<>(BoxYn.YES);
+    public ObservableField<PurchaseKind> purchaseKind = new ObservableField<>(PurchaseKind.Y);
+    public ObservableField<RepairYn> repairYn = new ObservableField<>(RepairYn.YES);
+
     public MutableLiveData<String> tag = new MutableLiveData<>();
     public ObservableField<String> tagCount = new ObservableField<>();
     public ObservableField<String> imageCount = new ObservableField<>(String.valueOf(0));
 
     public ProductRegisterViewModel(Context context, DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
+        Logger.d("ProductRegisterViewModel constructor");
         mContext = context;
     }
 
@@ -142,5 +152,34 @@ public class ProductRegisterViewModel extends BaseViewModel {
     public void goDetail(View view) {
         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterDetail());
     }
+
+    public void showPurpose(View view) {
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterPurpose());
+    }
+
+    public void showCategory(View view) {
+//        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterDetail());
+    }
+
+    public void showTagWrite(View view) {
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterTag());
+    }
+
+    public void onUseDateClick(UseDate useDate) {
+        this.useDate.set(useDate);
+    }
+
+    public void onBoxYnClick(BoxYn boxYn) {
+        this.boxYn.set(boxYn);
+    }
+
+    public void onPurchaseKindClick(PurchaseKind purchaseKind) {
+        this.purchaseKind.set(purchaseKind);
+    }
+
+    public void onRepairYnClick(RepairYn repairYn) {
+        this.repairYn.set(repairYn);
+    }
+
 
 }

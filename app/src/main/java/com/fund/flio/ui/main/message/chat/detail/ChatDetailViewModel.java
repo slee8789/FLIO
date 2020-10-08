@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -112,21 +113,23 @@ public class ChatDetailViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(chats -> {
                     if (chats.isSuccessful()) {
-                        chats.body().getChats().add(0, new Chat(chats.body().getChats().get(0).getChatDate(), MessageType.DATE.ordinal()));
-                        for (int i = 1; i < chats.body().getChats().size(); i++) {
-                            if (CommonUtils.diffOfDate(chats.body().getChats().get(i - 1).getChatDate(), chats.body().getChats().get(i).getChatDate()) != 0) {
-                                chats.body().getChats().add(i, new Chat(chats.body().getChats().get(i).getChatDate(), MessageType.DATE.ordinal()));
-                            } else {
-                                if (isSource) {
-                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.REMOTE.ordinal() : MessageType.LOCAL.ordinal());
-                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatTargetImageUrl());
+                        if (chats.body().getChats().size() != 0) {
+                            chats.body().getChats().add(0, new Chat(chats.body().getChats().get(0).getChatDate(), MessageType.DATE.ordinal()));
+                            for (int i = 1; i < chats.body().getChats().size(); i++) {
+                                if (CommonUtils.diffOfDate(chats.body().getChats().get(i - 1).getChatDate(), chats.body().getChats().get(i).getChatDate()) != 0) {
+                                    chats.body().getChats().add(i, new Chat(chats.body().getChats().get(i).getChatDate(), MessageType.DATE.ordinal()));
                                 } else {
-                                    chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.LOCAL.ordinal() : MessageType.REMOTE.ordinal());
-                                    chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatSourceImageUrl());
+                                    if (isSource) {
+                                        chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.REMOTE.ordinal() : MessageType.LOCAL.ordinal());
+                                        chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatTargetImageUrl());
+                                    } else {
+                                        chats.body().getChats().get(i).setChatType(chats.body().getChats().get(i).getChatSourceMessage() == null ? MessageType.LOCAL.ordinal() : MessageType.REMOTE.ordinal());
+                                        chats.body().getChats().get(i).setImageUrl(mChatRoom.getChatSourceImageUrl());
+                                    }
                                 }
                             }
+                            this.chats.setValue(chats.body().getChats());
                         }
-                        this.chats.setValue(chats.body().getChats());
                     }
                 }, onError -> Logger.e("messages error " + onError)));
     }
@@ -136,8 +139,17 @@ public class ChatDetailViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribeOn(getSchedulerProvider().io())
                 .subscribe(Void -> {
-                    chats.getValue().add(new Chat(mChatRoom.getChatSeq(), new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), inputMessage.get(), null, MessageType.LOCAL.ordinal()));
-                    chats.setValue(chats.getValue());
+                    if (chats.getValue() == null) {
+                        ArrayList<Chat> firstChat = new ArrayList<>();
+                        //Todo : chatIndex로 변경 현재는 200만 옴.
+                        firstChat.add(new Chat(chatTimeFormat.format(System.currentTimeMillis()), MessageType.DATE.ordinal()));
+                        firstChat.add(new Chat(mChatRoom.getChatSeq(), new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), inputMessage.get(), null, MessageType.LOCAL.ordinal()));
+                        chats.setValue(firstChat);
+                    } else {
+                        chats.getValue().add(new Chat(mChatRoom.getChatSeq(), new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), inputMessage.get(), null, MessageType.LOCAL.ordinal()));
+                        chats.setValue(chats.getValue());
+                    }
+
                     inputMessage.set("");
                 }));
 

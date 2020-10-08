@@ -1,34 +1,23 @@
-package com.fund.flio.ui.main.market.register.detail;
+package com.fund.flio.ui.main.market.register.tag;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.databinding.FragmentProductRegisterBinding;
-import com.fund.flio.databinding.FragmentProductRegisterDetailBinding;
+import com.fund.flio.databinding.FragmentProductRegisterPurposeBinding;
+import com.fund.flio.databinding.FragmentProductRegisterTagBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
-import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
-import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
 import com.orhanobut.logger.Logger;
-
-import java.util.List;
-
-import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductRegisterDetailBinding, ProductRegisterViewModel> implements OnFABMenuSelectedListener {
+public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegisterTagBinding, ProductRegisterViewModel>{
 
     @Override
     public int getBindingVariable() {
@@ -37,7 +26,7 @@ public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductR
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_product_register_detail;
+        return R.layout.fragment_product_register_tag;
     }
 
     @Override
@@ -75,13 +64,8 @@ public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductR
         return super.onOptionsItemSelected(item);
     }
 
-
     private void initViews() {
 
     }
 
-    @Override
-    public void onMenuItemSelected(View view, int id) {
-
-    }
 }

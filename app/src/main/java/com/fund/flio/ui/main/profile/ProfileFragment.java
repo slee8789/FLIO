@@ -22,6 +22,7 @@ import com.orhanobut.logger.Logger;
 
 import javax.inject.Inject;
 
+import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.fund.flio.core.AppConstant.RC_GOOGLE_SIGN_IN;
 
 
@@ -51,11 +52,17 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
         setHasOptionsMenu(true);
     }
 
+    private void setupActionBar() {
+        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
+        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        setupActionBar();
     }
 
     private void initViews() {

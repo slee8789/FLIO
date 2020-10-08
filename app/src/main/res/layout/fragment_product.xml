@@ -296,6 +296,7 @@
                     android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     app:imageUrlCircle="@{viewModel.sellerImage}"
+                    android:onClick="@{v -> viewModel.showProfile(v)}"
                     app:layout_constraintBottom_toTopOf="@id/divider_seller"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_status" />

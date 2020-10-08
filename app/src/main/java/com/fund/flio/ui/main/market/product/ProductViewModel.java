@@ -78,7 +78,7 @@ public class ProductViewModel extends BaseViewModel {
                         sellerName.set(this.product.getUserName());
                         rating.set("3.5");
                         setTag(product.body().getProducts().get(0).getTag().split(","));
-                        isSeller.set(getDataManager().getUserImageUrl().equals(this.product.getUid()));
+                        isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                     }
 
 
@@ -129,15 +129,15 @@ public class ProductViewModel extends BaseViewModel {
         getCompositeDisposable().add(getDataManager().insertMyChat(new InsertMyChatBody(product.getUid(), getDataManager().getUserId(), product.getProductId()))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(chatSeq -> {
-                    if (chatSeq.isSuccessful()) {
+                .subscribe(chatRoom -> {
+                    if (chatRoom.isSuccessful()) {
+                        Logger.d("goChat " + chatRoom.body());
                         ChatRoom mChatRoom = new ChatRoom();
-                        mChatRoom.setChatSeq(chatSeq.body().getData());
+                        mChatRoom.setChatSeq(chatRoom.body().getChatRoom().getChatSeq());
                         mChatRoom.setChatSourceUid(product.getUid());
                         mChatRoom.setChatSourceName(product.getUserName());
                         mChatRoom.setChatSourceImageUrl(product.getUserImageUrl());
-                        //Todo : 판매자 토큰
-                        mChatRoom.setChatSourceMessageToken(getDataManager().getMessageToken());
+                        mChatRoom.setChatSourceMessageToken(chatRoom.body().getChatRoom().getChatSourceMessageToken());
                         mChatRoom.setProductTitle(product.getTitle());
                         mChatRoom.setProductPrice(product.getProductPrice());
                         mChatRoom.setProductId(product.getProductId());
@@ -149,6 +149,10 @@ public class ProductViewModel extends BaseViewModel {
 
     public void showDetail(View v) {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavMarketProductDetail(product));
+    }
+
+    public void showProfile(View v) {
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavProfile());
     }
 
 }

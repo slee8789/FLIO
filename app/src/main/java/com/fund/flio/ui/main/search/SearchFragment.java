@@ -117,9 +117,9 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
-        }.getType());
-        mProductSmallAdapter.addItems(testRecommends);
+//        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
+//        }.getType());
+//        mProductSmallAdapter.addItems(testRecommends);
 
         getViewDataBinding().recents.setAdapter(mSearchRecentAdapter);
         mSearchRecentAdapter.setSearchViewModel(getViewModel());

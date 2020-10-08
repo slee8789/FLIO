@@ -249,6 +249,8 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         getViewDataBinding().setMainViewModel(getMainViewModel());
         initViews();
         setupActionBar();
+        getViewModel().mainProduct();
+        Logger.i("onViewCreated");
     }
 
     private void initViews() {

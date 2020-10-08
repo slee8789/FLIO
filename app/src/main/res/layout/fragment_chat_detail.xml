@@ -62,9 +62,12 @@
             android:text="@{viewModel.productTitle}"
             android:textColor="@color/black3"
             android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/price"
             app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/review"
             app:layout_constraintTop_toTopOf="@id/image" />
 
         <TextView
@@ -81,6 +84,7 @@
             app:layout_constraintTop_toBottomOf="@id/label_model" />
 
         <TextView
+            android:id="@+id/review"
             android:layout_width="80dp"
             android:layout_height="56dp"
             android:layout_marginEnd="20dp"
@@ -106,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:paddingTop="8dp"
+            android:paddingTop="24dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/panel_input"
             app:layout_constraintTop_toBottomOf="@id/divider"
@@ -156,6 +160,7 @@
                     android:backgroundTint="@color/fui_transparent"
                     android:hint="메세지를 입력하세요."
                     android:minHeight="40dp"
+                    android:paddingEnd="80dp"
                     android:paddingHorizontal="16dp"
                     android:text="@={viewModel.inputMessage}"
                     android:textColor="@color/black0"

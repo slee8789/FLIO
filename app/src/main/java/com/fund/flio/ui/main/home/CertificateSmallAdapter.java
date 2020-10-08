@@ -13,6 +13,7 @@ import com.fund.flio.databinding.ItemCertificateBinding;
 import com.fund.flio.databinding.ItemCertificateHomeBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
 import com.fund.flio.ui.main.community.certificate.list.ItemCertificateViewModel;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
