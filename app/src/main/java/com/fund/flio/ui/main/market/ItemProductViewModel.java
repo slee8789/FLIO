@@ -29,6 +29,10 @@ public class ItemProductViewModel {
     private ItemProductSelledBinding itemProductSelledBinding;
     private Product mProduct;
 
+    public Product getProduct() {
+        return mProduct;
+    }
+
     private void setImage(Product product) {
         if (product.getImageUrl() != null) {
             String[] images = product.getImageUrl().split(",");
@@ -42,9 +46,9 @@ public class ItemProductViewModel {
         this.itemProductBinding = binding;
         mProduct = product;
         setImage(product);
-        isLike.set(product.isLike());
+//        isLike.set(product.getFavoriteYn());
         comment.set(product.getContent());
-        price.set(product.getPurchasePrice());
+        price.set(product.getProductPrice() + "원");
         binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
         binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getProductId()));
         binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getProductId()));
@@ -56,9 +60,9 @@ public class ItemProductViewModel {
         mProduct = product;
         setImage(product);
 
-        isLike.set(product.isLike());
+//        isLike.set(product.isLike());
         comment.set(product.getContent());
-        price.set(product.getPurchasePrice());
+        price.set(product.getProductPrice() + "원");
         binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
         binding.flio.setTransitionName(v.getResources().getString(R.string.transition_product_flio, product.getProductId()));
         binding.faith.setTransitionName(v.getResources().getString(R.string.transition_product_faith, product.getProductId()));
@@ -68,18 +72,18 @@ public class ItemProductViewModel {
         this.itemProductSellingBinding = binding;
         mProduct = product;
         setImage(product);
-        isLike.set(product.isLike());
+//        isLike.set(product.isLike());
         comment.set(product.getContent());
-        price.set(product.getPurchasePrice());
+        price.set(product.getProductPrice() + "원");
     }
 
     public ItemProductViewModel(View v, ItemProductSelledBinding binding, Product product) {
         this.itemProductSelledBinding = binding;
         mProduct = product;
         imageUrl.set(product.getImageUrl());
-        isLike.set(product.isLike());
+//        isLike.set(product.isLike());
         comment.set(product.getContent());
-        price.set(product.getPurchasePrice());
+        price.set(product.getProductPrice() + "원");
     }
 
     public void onItemClick(View v) {
@@ -100,8 +104,9 @@ public class ItemProductViewModel {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(MarketFragmentDirections.actionGlobalToNavMarketProduct(mProduct), extras);
     }
 
-    public void showSelectBuyer(View v) {
-
+    public void showBuyerGuide(View v) {
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_buyer_guide);
     }
+
 
 }

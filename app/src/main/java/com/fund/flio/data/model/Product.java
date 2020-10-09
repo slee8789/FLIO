@@ -36,9 +36,10 @@ public class Product implements Serializable {
     private String purpose;
     private String purchasePrice;
     private String content;
-    private boolean isFlio;
-    private boolean isFaith;
-    private boolean isLike;
+    private String flioYn;
+    private String faithYn;
+    private String favoriteYn;
+
     private int recommendCnt;
     private int selectCnt;
     private int productPrice;

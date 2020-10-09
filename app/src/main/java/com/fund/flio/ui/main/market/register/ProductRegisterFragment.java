@@ -16,6 +16,8 @@ import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentProductRegisterBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.AuthViewModel;
+import com.fund.flio.ui.main.MainActivity;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
 import com.orhanobut.logger.Logger;
 
@@ -30,8 +32,6 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
     @Inject
     ProductThumbnailAdapter mProductThumbnailAdapter;
 
-    private MenuItem menuCompleted;
-
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -44,7 +44,7 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
 
     @Override
     public ProductRegisterViewModel getViewModel() {
-        return getViewModelProvider().get(ProductRegisterViewModel.class);
+        return ((MainActivity) getBaseActivity()).getProductRegisterViewModel();
     }
 
     @Override
@@ -68,28 +68,10 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_done, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menuCompleted = menu.findItem(R.id.menu_done);
-        //Todo : test
-//        menuCompleted.setEnabled(false);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-                break;
-
-            case R.id.menu_done:
-                getViewModel().registerProduct();
                 break;
         }
         return super.onOptionsItemSelected(item);

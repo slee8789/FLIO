@@ -68,33 +68,33 @@ public class CertificateRegisterViewModel extends BaseViewModel {
             imgUrls[i] = MultipartBody.Part.createFormData("imgList", file.getName(), imgBody);
         }
 
-        RequestBody productName = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody title = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody content = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody status = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody saleYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
-        RequestBody classification = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody tag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-
-        RequestBody displayYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
-        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody purchaseKind = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody purchasePrice = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody boxYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
-        RequestBody brand = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody purpose = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody modelNo = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody serialNo = RequestBody.create(MediaType.parse("text/plain"), "Y");
-        RequestBody repairYn = RequestBody.create(MediaType.parse("text/plain"), "N");
-        RequestBody productRelatedUrl = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
-        RequestBody uid = RequestBody.create(MediaType.parse("text/plain"), getDataManager().getUserId());
-
-        getCompositeDisposable().add(getDataManager().insertProduct(productName, title, content, status, saleYn, classification, tag, imgUrls, displayYn, useDate, purchaseKind, purchasePrice, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(Void -> {
-                    Logger.i("multipart success");
-                }, onError -> Logger.e("multipart error " + onError.getMessage())));
+//        RequestBody productName = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody title = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody content = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody status = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody saleYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
+//        RequestBody classification = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody tag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//
+//        RequestBody displayYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
+//        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody purchaseKind = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody purchasePrice = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody boxYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
+//        RequestBody brand = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody purpose = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody modelNo = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody serialNo = RequestBody.create(MediaType.parse("text/plain"), "Y");
+//        RequestBody repairYn = RequestBody.create(MediaType.parse("text/plain"), "N");
+//        RequestBody productRelatedUrl = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        RequestBody uid = RequestBody.create(MediaType.parse("text/plain"), getDataManager().getUserId());
+//
+//        getCompositeDisposable().add(getDataManager().insertProduct(productName, title, content, status, saleYn, classification, tag, imgUrls, displayYn, useDate, purchaseKind, purchasePrice, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid)
+//                .subscribeOn(getSchedulerProvider().io())
+//                .observeOn(getSchedulerProvider().ui())
+//                .subscribe(Void -> {
+//                    Logger.i("multipart success");
+//                }, onError -> Logger.e("multipart error " + onError.getMessage())));
 
     }
 

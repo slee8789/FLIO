@@ -17,6 +17,8 @@ import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentProductRegisterBinding;
 import com.fund.flio.databinding.FragmentProductRegisterDetailBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.base.BaseViewModel;
+import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
@@ -28,7 +30,7 @@ import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductRegisterDetailBinding, ProductRegisterViewModel> implements OnFABMenuSelectedListener {
+public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductRegisterDetailBinding, ProductRegisterViewModel>  {
 
     @Override
     public int getBindingVariable() {
@@ -42,7 +44,7 @@ public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductR
 
     @Override
     public ProductRegisterViewModel getViewModel() {
-        return getViewModelProvider().get(ProductRegisterViewModel.class);
+        return ((MainActivity) getBaseActivity()).getProductRegisterViewModel();
     }
 
     @Override
@@ -80,8 +82,4 @@ public class ProductRegisterDetailFragment extends BaseFragment<FragmentProductR
 
     }
 
-    @Override
-    public void onMenuItemSelected(View view, int id) {
-
-    }
 }

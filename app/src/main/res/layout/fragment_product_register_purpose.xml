@@ -74,26 +74,14 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/selected_purpose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
             android:layout_marginHorizontal="20dp"
+
             android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description2">
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.chip.ChipGroup>
+            app:layout_constraintTop_toBottomOf="@id/description2" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,18 +97,22 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/purposeA"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.A)}"
                     android:padding="8dp"
                     android:text="@{purpose.A.type}" />
 
                 <CheckBox
+                    android:id="@+id/purposeB"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.B)}"
                     android:padding="8dp"
                     android:text="@{purpose.B.type}" />
             </LinearLayout>
@@ -132,18 +124,22 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/purposeC"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.C)}"
                     android:padding="8dp"
                     android:text="@{purpose.C.type}" />
 
                 <CheckBox
+                    android:id="@+id/purposeD"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.D)}"
                     android:padding="8dp"
                     android:text="@{purpose.D.type}" />
             </LinearLayout>
@@ -155,18 +151,22 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/purposeE"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.E)}"
                     android:padding="8dp"
                     android:text="@{purpose.E.type}" />
 
                 <CheckBox
+                    android:id="@+id/purposeF"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.F)}"
                     android:padding="8dp"
                     android:text="@{purpose.F.type}" />
             </LinearLayout>
@@ -178,18 +178,22 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/purposeG"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.G)}"
                     android:padding="8dp"
                     android:text="@{purpose.G.type}" />
 
                 <CheckBox
+                    android:id="@+id/purposeH"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.H)}"
                     android:padding="8dp"
                     android:text="@{purpose.H.type}" />
             </LinearLayout>
@@ -201,18 +205,22 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/purposeI"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.A)}"
                     android:padding="8dp"
                     android:text="@{purpose.I.type}" />
 
                 <CheckBox
+                    android:id="@+id/purposeJ"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/check_purple"
+                    android:onClick="@{v -> viewModel.onPurposeClick(v, purpose.A)}"
                     android:padding="8dp"
                     android:text="@{purpose.J.type}" />
             </LinearLayout>

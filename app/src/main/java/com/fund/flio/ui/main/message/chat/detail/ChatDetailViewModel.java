@@ -47,7 +47,7 @@ public class ChatDetailViewModel extends BaseViewModel {
         this.mChatRoom = mChatRoom;
         isSource = FirebaseAuth.getInstance().getUid().equals(mChatRoom.getChatSourceUid());
         remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
-        productTitle.set(mChatRoom.getProductTitle());
+        productTitle.set(mChatRoom.getTitle());
         productPrice.set((mChatRoom.getProductPrice() + "원"));
         selectMyChatDetail(mChatRoom.getChatSeq());
     }

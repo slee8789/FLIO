@@ -118,8 +118,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> insertProduct(RequestBody productName, RequestBody title, RequestBody content, RequestBody status, RequestBody saleYn, RequestBody classification, RequestBody tag, MultipartBody.Part[] imgList, RequestBody displayYn, RequestBody useDate, RequestBody purchaseKind, RequestBody purchasePrice, RequestBody boxYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
-        return mFlioApi.insertProduct(productName, title, content, status, saleYn, classification, tag, imgList, displayYn, useDate, purchaseKind, purchasePrice, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
+    public Single<Response<Void>> insertProduct(RequestBody title, RequestBody content, RequestBody saleYn, RequestBody tag, MultipartBody.Part[] imgList, RequestBody useDate, RequestBody purchaseKind, RequestBody productPrice, RequestBody tradeKind, RequestBody boxYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
+        return mFlioApi.insertProduct(title, content, saleYn, tag, imgList, useDate, purchaseKind, productPrice, tradeKind, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
     }
 
     @Override
@@ -158,8 +158,23 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Response<ProductWrapper>> targetUserList(int productId, String sourceUid) {
+        return mFlioApi.targetUserList(productId, sourceUid);
+    }
+
+    @Override
+    public Single<Response<ProductWrapper>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
+        return mFlioApi.targetUserUpdate(productId, sourceUid, targetUid);
+    }
+
+    @Override
     public Single<Response<Void>> testImageUpload(MultipartBody.Part[] imgList, RequestBody boardKind, RequestBody boardTitle) {
         return mFlioApi.testImageUpload(imgList, boardKind, boardTitle);
+    }
+
+    @Override
+    public Single<Response<Void>> switchFavorite(String uid, int productId) {
+        return mFlioApi.switchFavorite(uid, productId);
     }
 
     @Override

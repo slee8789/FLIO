@@ -38,6 +38,12 @@ public class MainViewModel extends BaseViewModel {
         Logger.d("onBookmarkClick");
     }
 
+    public void onFavoriteToggle(View v, int productId) {
+        Logger.d("onFavoriteToggle");
+        getCompositeDisposable().add(getDataManager().switchFavorite(getDataManager().getUserId(), productId)
+                .subscribeOn(getSchedulerProvider().io())
+                .subscribe());
+    }
 
     @Override
     protected void onCleared() {

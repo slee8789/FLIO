@@ -31,6 +31,10 @@ public class ApiDefine {
         String PURPOSE_PRODUCT = "board/purposeProduct";
         String RECOMMAND_PRODUCT = "board/recommendProduct";
         String SEARCH_PRODUCT = "board/searchProduct";
+        String TARGET_USER_LIST = "board/targetUserList";
+        String TARGET_USER_UPDATE = "board/targetUserUpdate";
+
+        String SWITCH_FAVORITE = "favorite/switchFavorite";
 
     }
 

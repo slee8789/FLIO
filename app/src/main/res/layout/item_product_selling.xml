@@ -99,7 +99,7 @@
             android:gravity="center"
             android:text="@string/product_sell_change_close"
             android:textColor="@color/black3"
-            android:onClick="@{v -> viewModel.showSelectBuyer(v)}"
+            android:onClick="@{v -> viewModel.showBuyerGuide(v)}"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

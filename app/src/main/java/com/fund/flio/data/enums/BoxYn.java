@@ -1,8 +1,8 @@
 package com.fund.flio.data.enums;
 
 public enum BoxYn {
-    YES("예"),
-    NO("아니오");
+    Y("예"),
+    N("아니오");
     private String type;
 
     BoxYn(String type) {

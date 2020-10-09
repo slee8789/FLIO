@@ -11,6 +11,9 @@ public class AppConstant {
 
     public static final String NOTIFICATION_CHANNEL_ID_CHAT = "CHAT";
     public static final String NOTIFICATION_CHANNEL_NAME_CHAT = "CHAT";
+    public static final String NOTIFICATION_CHANNEL_ID_TRADE = "TRADE";
+    public static final String NOTIFICATION_CHANNEL_NAME_TRADE = "TRADE";
     public static final int NOTIFICATION_ID_CHAT = 30000;
+    public static final int NOTIFICATION_ID_TRADE = 30001;
 
 }

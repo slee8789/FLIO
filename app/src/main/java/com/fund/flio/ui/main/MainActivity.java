@@ -32,6 +32,7 @@ import com.fund.flio.data.enums.AuthenticationState;
 import com.fund.flio.databinding.ActivityMainBinding;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseActivity;
+import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -84,6 +85,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         return authViewModel;
     }
 
+    private ProductRegisterViewModel productRegisterViewModel;
+
+    public ProductRegisterViewModel getProductRegisterViewModel() {
+        return productRegisterViewModel;
+    }
+
     public NavController getNavController() {
         return mNavController;
     }
@@ -124,6 +131,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         Logger.d("setGoogleApiClient before " + googleApiClient);
         initViews();
         authViewModel = getViewModelProvider().get(AuthViewModel.class);
+        productRegisterViewModel = getViewModelProvider().get(ProductRegisterViewModel.class);
         authViewModel.setGoogleApiClient(googleApiClient);
         authViewModel.getAuthenticationState().observe(this, authenticationObserver);
     }
@@ -232,6 +240,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_profile:
             case R.id.nav_community_certificate_register:
             case R.id.nav_community_event_register:
+            case R.id.nav_buyer_guide:
+            case R.id.nav_buyer_list:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);

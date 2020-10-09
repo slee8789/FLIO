@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemProductHomeBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.MainViewModel;
 import com.fund.flio.ui.main.market.ItemProductViewModel;
 import com.orhanobut.logger.Logger;
 
@@ -24,6 +25,11 @@ public class ProductSmallAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private Context context;
     private List<Product> products;
+    private MainViewModel mainViewModel;
+
+    public void setMainViewModel(MainViewModel mainViewModel) {
+        this.mainViewModel = mainViewModel;
+    }
 
     public ProductSmallAdapter(List<Product> products) {
         this.products = products;
@@ -78,6 +84,7 @@ public class ProductSmallAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final Product product = products.get(position);
             ItemProductViewModel recommendViewModel = new ItemProductViewModel(itemView, binding, product);
             binding.setViewModel(recommendViewModel);
+            binding.setMainViewModel(mainViewModel);
         }
     }
 

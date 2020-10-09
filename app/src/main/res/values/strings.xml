@@ -109,6 +109,7 @@
 
     <string name="product_sell">거래중</string>
     <string name="product_sell_closed">거래완료</string>
+    <string name="product_sell_cancel">거래취소</string>
 
     <string name="product_sell_change_reserve">예약중으로 변경</string>
     <string name="product_sell_change_close">거래완료로 변경</string>
@@ -153,6 +154,7 @@
     <string name="title_sell_list">판매내역</string>
 
     <string name="product_status">+제품상태보기</string>
+    <string name="product_link"> 사이트이동</string>
     <string name="product_chat">1:1채팅하기</string>
 
     <string name="product_detail_title">제품 상태보기</string>
@@ -183,6 +185,8 @@
     <string name="product_register_way_delivery">택배거래</string>
     <string name="product_register_tag">태그 입력시 브랜드/모델명으로 입력 *(표기)</string>
     <string name="product_register_message_hint">게시글 내용을 작성해주세요.</string>
+
+    <string name="product_register_category_title">카테고리</string>
 
     <string name="product_register_detail_title">제품 상세 체크표</string>
     <string name="product_register_porpose_title">용도</string>

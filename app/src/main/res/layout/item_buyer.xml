@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="com.fund.flio.ui.main.message.chat.list.ItemChatListViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.message.chat.list.ChatListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:onClick="@{v -> viewModel.onItemClick(v, itemViewModel.mChatRoom)}">
+
+        <ImageView
+            android:id="@+id/image_user"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            app:imageUrlCircle="@{itemViewModel.imageUserUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="start"
+            android:text="@{itemViewModel.targetName}"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/chat"
+            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/chat"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="10dp"-->
+<!--            android:gravity="start"-->
+<!--            android:text="@{itemViewModel.chat}"-->
+<!--            android:textColor="@color/black3"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/date"-->
+<!--            app:layout_constraintStart_toEndOf="@id/image_user"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/writer" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:text="@{itemViewModel.time}"-->
+<!--            android:textColor="@color/black3"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@id/image_user"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/chat" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

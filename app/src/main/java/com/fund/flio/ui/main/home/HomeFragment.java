@@ -41,9 +41,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     DataManager dataManager;
 
     @Inject
-    BannerAdapter mBannerAdapter;
-
-    @Inject
     ProductSmallAdapter mProductSmallAdapter;
 
     @Inject
@@ -122,7 +119,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     }
 
     private void initViews() {
-
+        mProductSmallAdapter.setMainViewModel(getMainViewModel());
         getViewDataBinding().products.setAdapter(mProductSmallAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));

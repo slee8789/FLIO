@@ -78,18 +78,18 @@ public interface ApiHelper {
     @Multipart
     @POST(ApiDefine.Body.INSERT_PRODUCT)
     Single<Response<Void>> insertProduct(
-            @Part("productName") RequestBody productName,
             @Part("title") RequestBody title,
             @Part("content") RequestBody content,
-            @Part("status") RequestBody status,
+//            @Part("status") RequestBody status,
             @Part("saleYn") RequestBody saleYn,
-            @Part("classification") RequestBody classification,
             @Part("tag") RequestBody tag,
             @Part MultipartBody.Part[] imgList,
-            @Part("displayYn") RequestBody displayYn,
+//            @Part("displayYn") RequestBody displayYn,
             @Part("useDate") RequestBody useDate,
             @Part("purchaseKind") RequestBody purchaseKind,
-            @Part("purchasePrice") RequestBody purchasePrice,
+//            @Part("purchasePrice") RequestBody purchasePrice,
+            @Part("productPrice") RequestBody productPrice,
+            @Part("tradeKind") RequestBody tradeKind,
             @Part("boxYn") RequestBody boxYn,
             @Part("brand") RequestBody brand,
             @Part("purpose") RequestBody purpose,
@@ -134,4 +134,19 @@ public interface ApiHelper {
     @GET(ApiDefine.Body.SEARCH_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<ProductWrapper>> searchProduct(@Query("keyword") String keyword);
+
+    //장터 - 판매완료 선택 리스트
+    @GET(ApiDefine.Body.TARGET_USER_LIST)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> targetUserList(@Query("productId") int productId, @Query("sourceUid") String sourceUid);
+
+    //장터 - 판매완료 업데이트
+    @GET(ApiDefine.Body.TARGET_USER_UPDATE)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<ProductWrapper>> targetUserUpdate(@Query("productId") int productId, @Query("sourceUid") String sourceUid,  @Query("targetUid") String targetUid);
+
+    //
+    @POST(ApiDefine.Body.SWITCH_FAVORITE)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<Void>> switchFavorite(@Query("uid") String uid, @Query("productId") int productId);
 }

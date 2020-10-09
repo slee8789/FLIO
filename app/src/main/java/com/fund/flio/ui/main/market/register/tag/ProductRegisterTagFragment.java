@@ -5,19 +5,21 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
-import com.fund.flio.databinding.FragmentProductRegisterPurposeBinding;
 import com.fund.flio.databinding.FragmentProductRegisterTagBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
 import com.orhanobut.logger.Logger;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegisterTagBinding, ProductRegisterViewModel>{
+public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegisterTagBinding, ProductRegisterViewModel> {
+
 
     @Override
     public int getBindingVariable() {
@@ -31,7 +33,7 @@ public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegi
 
     @Override
     public ProductRegisterViewModel getViewModel() {
-        return getViewModelProvider().get(ProductRegisterViewModel.class);
+        return ((MainActivity) getBaseActivity()).getProductRegisterViewModel();
     }
 
     @Override
@@ -39,6 +41,7 @@ public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegi
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -65,7 +68,27 @@ public class ProductRegisterTagFragment extends BaseFragment<FragmentProductRegi
     }
 
     private void initViews() {
-
+        getViewModel().getInputTags().observe(getViewLifecycleOwner(), inputTagObserver);
     }
 
+    private int inputTagLength;
+
+    private final Observer<String> inputTagObserver = inputTags -> {
+        Logger.d("inputTagObserver " + inputTags);
+        Logger.d("inputTagObserver inputTagLength " + inputTagLength);
+        if (inputTagLength < inputTags.length()) {
+            if (inputTags.endsWith(" ")) {
+                if (inputTags.endsWith(" #")) {
+                    Logger.d("test 1");
+
+                } else {
+                    Logger.d("test 2");
+                    getViewDataBinding().input.setText(inputTags.trim() + " #");
+                    inputTagLength = getViewDataBinding().input.length();
+                    getViewDataBinding().input.setSelection(getViewDataBinding().input.getText().length());
+                }
+            }
+        }
+
+    };
 }

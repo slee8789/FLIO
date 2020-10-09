@@ -30,7 +30,10 @@ import com.fund.flio.ui.main.intro.IntroViewModel;
 import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.mypage.MyPageViewModel;
+import com.fund.flio.ui.main.mypage.buy.BuyListViewModel;
 import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
+import com.fund.flio.ui.main.mypage.sell.selling.buyer.guide.BuyerGuideViewModel;
+import com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListViewModel;
 import com.fund.flio.ui.main.mypage.setting.SettingViewModel;
 import com.fund.flio.ui.main.profile.ProfileViewModel;
 import com.fund.flio.ui.main.search.SearchViewModel;
@@ -114,6 +117,12 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new CertificateRegisterViewModel(context, dataManager, schedulerProvider, resourceProvider);
         } else if (ProfileViewModel.class.isAssignableFrom(modelClass)) {
             return new ProfileViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (BuyerGuideViewModel.class.isAssignableFrom(modelClass)) {
+            return new BuyerGuideViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (BuyerListViewModel.class.isAssignableFrom(modelClass)) {
+            return new BuyerListViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (BuyListViewModel.class.isAssignableFrom(modelClass)) {
+            return new BuyListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

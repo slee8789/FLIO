@@ -33,11 +33,14 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
 
 import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_ID_CHAT;
+import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_ID_TRADE;
 import static com.fund.flio.core.AppConstant.NOTIFICATION_ID_CHAT;
+import static com.fund.flio.core.AppConstant.NOTIFICATION_ID_TRADE;
 
 public class PushService extends FirebaseMessagingService {
 
@@ -48,9 +51,20 @@ public class PushService extends FirebaseMessagingService {
     NotificationManager notificationManager;
 
     @Inject
-    NotificationChannel notificationChannel;
+    @Named("CHAT")
+    NotificationChannel notificationChannelChat;
 
-    private void logoutMessage(RemoteMessage remoteMessage) {
+    @Inject
+    @Named("TRADE")
+    NotificationChannel notificationChannelTrade;
+
+    private void tradeMessage(RemoteMessage remoteMessage) {
+        Bundle chatBundle = new Bundle();
+        chatBundle.putInt("chatSeq", 1);
+        createNotification(NOTIFICATION_CHANNEL_ID_TRADE, NOTIFICATION_ID_TRADE, "거래가 완료되었습니다.", remoteMessage.getData().get("tradeTitle"), "http://flio.iptime.org:8080/image/" + remoteMessage.getData().get("tradeBaseUrl") + "/" + remoteMessage.getData().get("tradeImageUrl").split(",")[0], getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+    }
+
+    private void logoutMessage() {
         //todo 기능동작 안함
         if (Foreground.get().isBackground()) {
 
@@ -103,10 +117,12 @@ public class PushService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         Logger.d("PushService onMessageReceived remoteMessage " + remoteMessage.getData());
 
-        if (remoteMessage.getData().get("chatSourceMessage") != null || remoteMessage.getData().get("chatTargetMessage") != null) {
+        if (remoteMessage.getData().get("type").equals("chat")) {
             chatMessage(remoteMessage);
-        } else if (remoteMessage.getData().get("logoutForce") != null) {
-            logoutMessage(remoteMessage);
+        } else if (remoteMessage.getData().get("type").equals("logout")) {
+            logoutMessage();
+        } else if (remoteMessage.getData().get("type").equals("trade")) {
+            tradeMessage(remoteMessage);
         }
 
 
@@ -124,7 +140,8 @@ public class PushService extends FirebaseMessagingService {
         super.onCreate();
         AndroidInjection.inject(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(notificationChannel);
+            notificationManager.createNotificationChannel(notificationChannelChat);
+            notificationManager.createNotificationChannel(notificationChannelTrade);
         }
     }
 

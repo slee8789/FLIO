@@ -9,8 +9,24 @@
         <import type="android.view.View" />
 
         <variable
+            name="flioYn"
+            type="com.fund.flio.data.enums.FlioYn" />
+
+        <variable
+            name="faithYn"
+            type="com.fund.flio.data.enums.FaithYn" />
+
+        <variable
+            name="favoriteYn"
+            type="com.fund.flio.data.enums.FavoriteYn" />
+
+        <variable
             name="viewModel"
             type="com.fund.flio.ui.main.market.ItemProductViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="com.fund.flio.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +64,8 @@
             android:id="@+id/flio"
             android:layout_width="22dp"
             android:layout_height="26dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/btn_mark_flio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,21 +75,20 @@
             android:id="@+id/faith"
             android:layout_width="22dp"
             android:layout_height="26dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/btn_mark_faith"
+            android:src="@drawable/icon_faith_blue"
             app:layout_constraintStart_toEndOf="@id/flio"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="13dp"
-            android:src="@drawable/fab_like"
-            android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/comment"
+            android:onClick="@{v -> mainViewModel.onFavoriteToggle(v, viewModel.product.productId)}"
+            android:src="@drawable/icon_favorite"
+            app:layout_constraintBottom_toBottomOf="@id/card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card" />
 
@@ -81,7 +96,7 @@
             android:id="@+id/comment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="34dp"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"

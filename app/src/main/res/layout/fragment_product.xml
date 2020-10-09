@@ -203,6 +203,7 @@
                         android:text="평균시세 18,900원"
                         android:textSize="12sp"
                         android:textStyle="bold"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@id/price"
                         app:layout_constraintStart_toEndOf="@id/price" />
 
@@ -269,14 +270,35 @@
                     android:gravity="center"
                     android:lineHeight="24dp"
                     android:minHeight="26dp"
+                    android:onClick="@{v -> viewModel.showDetail(v)}"
                     android:paddingHorizontal="6dp"
                     android:text="@string/product_status"
-                    android:onClick="@{v -> viewModel.showDetail(v)}"
                     android:textColor="@color/gray9"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_status"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/content" />
+
+                <TextView
+                    android:id="@+id/link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_item_product_status"
+                    android:drawableStart="@drawable/icon_link_10"
+                    android:gravity="center"
+                    android:lineHeight="24dp"
+                    android:minHeight="26dp"
+                    android:onClick="@{v -> viewModel.showLink(v)}"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/product_link"
+                    android:textColor="@color/gray9"
+                    android:textSize="12sp"
+                    android:visibility="@{viewModel.linkVisible ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/status"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/status" />
 
                 <View
                     android:id="@+id/divider_status"
@@ -295,8 +317,8 @@
                     android:layout_height="66dp"
                     android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
-                    app:imageUrlCircle="@{viewModel.sellerImage}"
                     android:onClick="@{v -> viewModel.showProfile(v)}"
+                    app:imageUrlCircle="@{viewModel.sellerImage}"
                     app:layout_constraintBottom_toTopOf="@id/divider_seller"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_status" />
@@ -337,12 +359,12 @@
                     android:gravity="center"
                     android:lineHeight="24dp"
                     android:minHeight="26dp"
+                    android:onClick="@{v -> viewModel.goChat(v)}"
                     android:paddingHorizontal="6dp"
                     android:text="@string/product_chat"
-                    android:visibility="@{viewModel.isSeller ? View.GONE : View.VISIBLE}"
-                    android:onClick="@{v -> viewModel.goChat(v)}"
                     android:textColor="@color/gray9"
                     android:textSize="12sp"
+                    android:visibility="@{viewModel.isSeller ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@id/divider_seller"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_status" />
@@ -472,9 +494,9 @@
             android:backgroundTint="@color/purple"
             android:gravity="center"
             android:src="@drawable/fab_like"
+            android:visibility="@{viewModel.isSeller ? View.GONE : View.VISIBLE}"
             app:fabCustomSize="40dp"
             app:layout_anchor="@id/app_bar"
-            android:visibility="@{viewModel.isSeller ? View.GONE : View.VISIBLE}"
             app:layout_anchorGravity="bottom|right" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -62,14 +62,8 @@
 
     <style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar.FullWidth">
         <item name="android:textColor">@color/white</item>
-        <item name="android:layout_marginTop">30dp</item>
-        <item name="android:layout_marginLeft">30dp</item>
-        <item name="android:layout_marginRight">30dp</item>
-        <item name="android:layout_marginBottom">30dp</item>
         <item name="android:paddingEnd">30dp</item>
-        <item name="android:paddingStart">30dp</item>
-        <item name="android:paddingTop">30dp</item>
-        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingStart">30dp</item>em>
     </style>
 
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
@@ -77,14 +71,15 @@
     </style>
 
     <style name="Theme.Motion" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/navigationBarColor</item>
-<!--        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>-->
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/navigationBarColor
+        </item>
+        <!--        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorSecondary">@color/purple</item>
         <item name="colorOnSecondary">@android:color/white</item>
 
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/purple</item>
         <item name="snackbarStyle">@style/SnackBarStyle</item>

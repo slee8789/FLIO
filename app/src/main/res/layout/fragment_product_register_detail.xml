@@ -22,6 +22,10 @@
             type="com.fund.flio.data.enums.RepairYn" />
 
         <variable
+            name="flioYn"
+            type="com.fund.flio.data.enums.FlioYn" />
+
+        <variable
             name="viewModel"
             type="com.fund.flio.ui.main.market.register.ProductRegisterViewModel" />
     </data>
@@ -230,10 +234,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.boxYn == boxYn.YES}"
-                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.YES)}"
+                        android:checked="@{viewModel.boxYn == boxYn.Y}"
+                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.Y)}"
                         android:padding="8dp"
-                        android:text="@{boxYn.YES.type}"
+                        android:text="@{boxYn.Y.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -242,10 +246,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.boxYn == boxYn.NO}"
-                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.NO)}"
+                        android:checked="@{viewModel.boxYn == boxYn.N}"
+                        android:onClick="@{v -> viewModel.onBoxYnClick(boxYn.N)}"
                         android:padding="8dp"
-                        android:text="@{boxYn.NO.type}"
+                        android:text="@{boxYn.N.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -366,10 +370,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.repairYn == repairYn.YES}"
-                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.YES)}"
+                        android:checked="@{viewModel.repairYn == repairYn.Y}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.Y)}"
                         android:padding="8dp"
-                        android:text="@{repairYn.YES.type}"
+                        android:text="@{repairYn.Y.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -378,10 +382,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.repairYn == repairYn.NO}"
-                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.NO)}"
+                        android:checked="@{viewModel.repairYn == repairYn.N}"
+                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.N)}"
                         android:padding="8dp"
-                        android:text="@{repairYn.NO.type}"
+                        android:text="@{repairYn.N.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -434,10 +438,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.repairYn == repairYn.YES}"
-                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.YES)}"
+                        android:checked="@{viewModel.flioYn == flioYn.Y}"
+                        android:onClick="@{v -> viewModel.onFlioYnClick(flioYn.Y)}"
                         android:padding="8dp"
-                        android:text="@{repairYn.YES.type}"
+                        android:text="@{flioYn.Y.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -446,10 +450,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_purple"
-                        android:checked="@{viewModel.repairYn == repairYn.NO}"
-                        android:onClick="@{v -> viewModel.onRepairYnClick(repairYn.NO)}"
+                        android:checked="@{viewModel.flioYn == flioYn.N}"
+                        android:onClick="@{v -> viewModel.onFlioYnClick(flioYn.N)}"
                         android:padding="8dp"
-                        android:text="@{repairYn.NO.type}"
+                        android:text="@{flioYn.N.type}"
                         android:textColor="@color/gray9"
                         android:textSize="14sp" />
 
@@ -477,7 +481,10 @@
                     android:layout_marginHorizontal="20dp"
                     android:background="@null"
                     android:hint="@string/product_detail_url_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:maxLines="1"
+                    android:text="@={viewModel.productRelatedUrl}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
                     android:textSize="14sp"
@@ -502,7 +509,10 @@
                     android:layout_marginStart="20dp"
                     android:background="@null"
                     android:hint="@string/product_detail_brand_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:maxLines="1"
+                    android:text="@={viewModel.brand}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
                     android:textSize="14sp"
@@ -526,8 +536,12 @@
                     android:layout_marginEnd="20dp"
                     android:background="@null"
                     android:hint="@string/product_detail_model_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:paddingStart="20dp"
+
+                    android:text="@={viewModel.model}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
                     android:textSize="14sp"
@@ -552,7 +566,10 @@
                     android:layout_marginHorizontal="20dp"
                     android:background="@null"
                     android:hint="@string/product_detail_serial_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:maxLines="1"
+                    android:text="@={viewModel.serial}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
                     android:textSize="14sp"
@@ -569,13 +586,14 @@
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="36dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_product_detail_complement_btn"
             android:text="@string/product_detail_btn_complement"
+            android:onClick="@{v -> viewModel.setDetailState(v)}"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -35,24 +35,27 @@ import com.fund.flio.ui.main.market.product.ProductImageAdapter;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
-import com.fund.flio.ui.main.home.BannerAdapter;
 import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.fund.flio.ui.main.market.ProductAdapter;
 import com.fund.flio.ui.main.message.reply.list.ReplyListAdapter;
 import com.fund.flio.ui.main.mypage.sell.selled.ProductSelledAdapter;
 import com.fund.flio.ui.main.mypage.sell.selling.ProductSellingAdapter;
+import com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListAdapter;
 import com.fund.flio.ui.main.search.SearchRecentAdapter;
 
 
 import java.util.ArrayList;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_ID_CHAT;
+import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_ID_TRADE;
 import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_NAME_CHAT;
+import static com.fund.flio.core.AppConstant.NOTIFICATION_CHANNEL_NAME_TRADE;
 
 @Module
 public class AppModule {
@@ -123,6 +126,7 @@ public class AppModule {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Provides
+    @Named("CHAT")
     NotificationChannel provideNotificationChatChannel() {
         NotificationChannel chatChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_CHANNEL_NAME_CHAT, NotificationManager.IMPORTANCE_HIGH);
         chatChannel.enableVibration(true);
@@ -130,9 +134,14 @@ public class AppModule {
         return chatChannel;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Provides
-    BannerAdapter provideBannerAdapter() {
-        return new BannerAdapter(new ArrayList<>());
+    @Named("TRADE")
+    NotificationChannel provideNotificationTradeChannel() {
+        NotificationChannel tradeChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_TRADE, NOTIFICATION_CHANNEL_NAME_TRADE, NotificationManager.IMPORTANCE_HIGH);
+        tradeChannel.enableVibration(true);
+        tradeChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        return tradeChannel;
     }
 
     @Provides
@@ -213,6 +222,11 @@ public class AppModule {
     @Provides
     ProductImageAdapter provideProductImageAdapter() {
         return new ProductImageAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    BuyerListAdapter provideBuyerListAdapter() {
+        return new BuyerListAdapter(new ArrayList<>());
     }
 
 }

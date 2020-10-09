@@ -25,8 +25,11 @@ public class ChatRoom implements Cloneable, Serializable {
     private String chatLastMessage;
     private int productId;
     private String productName;
-    private String productTitle;
+    private String title;
     private int productPrice;
+    private String productBaseUrl;
+    private String productImageUrl;
+
 
     @NonNull
     @Override
@@ -45,7 +48,7 @@ public class ChatRoom implements Cloneable, Serializable {
         chatRoom.setChatLastMessage(chatLastMessage);
         chatRoom.setProductId(productId);
         chatRoom.setProductName(productName);
-        chatRoom.setProductTitle(productTitle);
+        chatRoom.setTitle(title);
         chatRoom.setProductPrice(productPrice);
         return chatRoom;
     }

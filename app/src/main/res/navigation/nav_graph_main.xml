@@ -24,6 +24,10 @@
         app:popUpToInclusive="true" />
 
     <action
+        android:id="@+id/action_global_to_buyer_guide"
+        app:destination="@id/nav_buyer_guide" />
+
+    <action
         android:id="@+id/action_global_to_nav_search"
         app:destination="@id/nav_search"
         app:enterAnim="@anim/slide_in_bottom"
@@ -225,6 +229,9 @@
         <action
             android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_tag"
             app:destination="@id/nav_market_product_register_tag" />
+        <action
+            android:id="@+id/action_nav_market_product_register_to_nav_market_product_register_category"
+            app:destination="@id/nav_market_product_register_category" />
     </fragment>
 
     <fragment
@@ -240,6 +247,14 @@
         tools:layout="@layout/fragment_product_register_detail">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product_register_category"
+        android:name="com.fund.flio.ui.main.market.register.category.ProductRegisterCategoryFragment"
+        tools:layout="@layout/fragment_product_register_category">
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_market_product_register_purpose"
@@ -268,6 +283,9 @@
         android:name="com.fund.flio.ui.main.mypage.sell.SellListFragment"
         tools:layout="@layout/fragment_sell_list">
 
+        <action
+            android:id="@+id/action_nav_sell_list_to_nav_buyer_guide"
+            app:destination="@id/nav_buyer_guide" />
     </fragment>
 
     <fragment
@@ -288,6 +306,23 @@
         android:id="@+id/nav_profile"
         android:name="com.fund.flio.ui.main.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_buyer_guide"
+        android:name="com.fund.flio.ui.main.mypage.sell.selling.buyer.guide.BuyerGuideFragment"
+        tools:layout="@layout/fragment_buyer_guide">
+
+        <action
+            android:id="@+id/action_nav_buyer_guide_to_nav_buyer_list"
+            app:destination="@id/nav_buyer_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_buyer_list"
+        android:name="com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListFragment"
+        tools:layout="@layout/fragment_buyer_list">
 
     </fragment>
 
