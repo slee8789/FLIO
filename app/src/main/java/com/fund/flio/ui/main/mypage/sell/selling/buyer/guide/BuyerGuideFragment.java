@@ -6,24 +6,16 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
-import androidx.viewpager.widget.ViewPager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentBuyerGuideBinding;
-import com.fund.flio.databinding.FragmentSellListBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.mypage.sell.SellListPagerAdapter;
-import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
-import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.logger.Logger;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-
 public class BuyerGuideFragment extends BaseFragment<FragmentBuyerGuideBinding, BuyerGuideViewModel> {
-
-
 
     @Override
     public int getBindingVariable() {

@@ -33,7 +33,6 @@ public class BuyerListFragment extends BaseFragment<FragmentBuyerListBinding, Bu
     @Inject
     BuyerListAdapter mBuyerListAdapter;
 
-
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -70,8 +69,8 @@ public class BuyerListFragment extends BaseFragment<FragmentBuyerListBinding, Bu
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_gray)));
         getViewDataBinding().buyers.addItemDecoration(dividerItemDecoration);
-//        mBuyerListAdapter.setChatListViewModel(getViewModel());
-//        getViewModel().getChatRooms().observe(getViewLifecycleOwner(), chatRoomObserver);
+        mBuyerListAdapter.setBuyerListViewModel(getViewModel());
+        getViewModel().getBuyers().observe(getViewLifecycleOwner(), buyers -> mBuyerListAdapter.setItems(buyers));
     }
 
     private void setupActionBar() {

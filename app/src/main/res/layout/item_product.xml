@@ -45,8 +45,8 @@
             android:layout_width="22dp"
             android:layout_height="26dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/btn_mark_faith"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/icon_faith_blue"
             app:layout_constraintStart_toEndOf="@id/flio"
             app:layout_constraintTop_toTopOf="parent" />
 

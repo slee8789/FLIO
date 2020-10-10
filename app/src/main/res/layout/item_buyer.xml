@@ -6,17 +6,17 @@
 
         <variable
             name="itemViewModel"
-            type="com.fund.flio.ui.main.message.chat.list.ItemChatListViewModel" />
+            type="com.fund.flio.ui.main.mypage.sell.selling.buyer.list.ItemBuyerViewModel" />
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.message.chat.list.ChatListViewModel" />
+            type="com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:onClick="@{v -> viewModel.onItemClick(v, itemViewModel.mChatRoom)}">
+        android:onClick="@{v -> viewModel.onItemClick(v, itemViewModel.mByuer)}">
 
         <ImageView
             android:id="@+id/image_user"
@@ -37,37 +37,10 @@
             android:textColor="@color/purple"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/chat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_user"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/chat"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="10dp"-->
-<!--            android:gravity="start"-->
-<!--            android:text="@{itemViewModel.chat}"-->
-<!--            android:textColor="@color/black3"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/date"-->
-<!--            app:layout_constraintStart_toEndOf="@id/image_user"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/writer" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/date"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:text="@{itemViewModel.time}"-->
-<!--            android:textColor="@color/black3"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/image_user"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/chat" />-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

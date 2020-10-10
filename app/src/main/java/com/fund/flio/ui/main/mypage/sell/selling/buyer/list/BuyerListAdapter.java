@@ -8,41 +8,39 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fund.flio.data.model.ChatRoom;
-import com.fund.flio.databinding.ItemChatBinding;
+import com.fund.flio.data.model.Buyer;
+import com.fund.flio.databinding.ItemBuyerBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
-import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
-import com.fund.flio.ui.main.message.chat.list.ItemChatListViewModel;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
 public class BuyerListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<ChatRoom> chatRooms;
-    private ChatListViewModel chatListViewModel;
+    private List<Buyer> buyers;
+    private BuyerListViewModel buyerListViewModel;
 
-    public void setChatListViewModel(ChatListViewModel chatListViewModel) {
-        this.chatListViewModel = chatListViewModel;
+    public void setBuyerListViewModel(BuyerListViewModel chatListViewModel) {
+        this.buyerListViewModel = chatListViewModel;
     }
 
-    public BuyerListAdapter(List<ChatRoom> chatRooms) {
-        this.chatRooms = chatRooms;
+    public BuyerListAdapter(List<Buyer> buyers) {
+        this.buyers = buyers;
     }
 
-    public void setItems(List<ChatRoom> chatRooms) {
-        final BuyerListAdapter.ChatRoomDiffCallback diffCallback = new BuyerListAdapter.ChatRoomDiffCallback(this.chatRooms, chatRooms);
+    public void setItems(List<Buyer> buyers) {
+        final BuyerDiffCallback diffCallback = new BuyerDiffCallback(this.buyers, buyers);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-        this.chatRooms.clear();
-        this.chatRooms.addAll(chatRooms);
+        this.buyers.clear();
+        this.buyers.addAll(buyers);
         diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemChatBinding itemChatBinding = ItemChatBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ChatRoomViewHolder(itemChatBinding);
+        ItemBuyerBinding buyerBinding = ItemBuyerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new BuyerViewHolder(buyerBinding);
     }
 
     @Override
@@ -52,58 +50,58 @@ public class BuyerListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return chatRooms.size();
+        return buyers.size();
     }
 
-    public class ChatRoomViewHolder extends BaseViewHolder {
+    public class BuyerViewHolder extends BaseViewHolder {
 
-        ItemChatBinding itemChatBinding;
+        ItemBuyerBinding itemBuyerBinding;
 
-        public ChatRoomViewHolder(ItemChatBinding binding) {
+        public BuyerViewHolder(ItemBuyerBinding binding) {
             super(binding.getRoot());
-            this.itemChatBinding = binding;
+            this.itemBuyerBinding = binding;
         }
 
 
         @Override
         public void onBind(int position) {
-            final ChatRoom chatRoom = chatRooms.get(position);
+            final Buyer chatRoom = buyers.get(position);
             Logger.d("onBind " + position + ", " + chatRoom);
-            ItemChatListViewModel itemChatViewModel = new ItemChatListViewModel(chatRoom);
-            itemChatBinding.setItemViewModel(itemChatViewModel);
-            itemChatBinding.setViewModel(chatListViewModel);
+            ItemBuyerViewModel itemBuyerViewModel = new ItemBuyerViewModel(chatRoom);
+            itemBuyerBinding.setItemViewModel(itemBuyerViewModel);
+            itemBuyerBinding.setViewModel(buyerListViewModel);
 
         }
     }
 
-    private static class ChatRoomDiffCallback extends DiffUtil.Callback {
-        private final List<ChatRoom> oldChatRooms;
-        private final List<ChatRoom> newChatRooms;
+    private static class BuyerDiffCallback extends DiffUtil.Callback {
+        private final List<Buyer> oldBuyers;
+        private final List<Buyer> newByuers;
 
-        public ChatRoomDiffCallback(List<ChatRoom> oldChatRooms, List<ChatRoom> newChatRooms) {
-            this.oldChatRooms = oldChatRooms;
-            this.newChatRooms = newChatRooms;
+        public BuyerDiffCallback(List<Buyer> oldBuyers, List<Buyer> newByuers) {
+            this.oldBuyers = oldBuyers;
+            this.newByuers = newByuers;
         }
 
         @Override
         public int getOldListSize() {
-            return oldChatRooms.size();
+            return oldBuyers.size();
         }
 
         @Override
         public int getNewListSize() {
-            return newChatRooms.size();
+            return newByuers.size();
         }
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldChatRooms.get(oldItemPosition).getChatSeq() == newChatRooms.get(newItemPosition).getChatSeq();
+            return oldBuyers.get(oldItemPosition).getTargetUid().equals(newByuers.get(newItemPosition).getTargetUid());
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            final ChatRoom oldChatRoom = oldChatRooms.get(oldItemPosition);
-            final ChatRoom newChatRoom = newChatRooms.get(newItemPosition);
+            final Buyer oldChatRoom = oldBuyers.get(oldItemPosition);
+            final Buyer newChatRoom = newByuers.get(newItemPosition);
             return oldChatRoom.equals(newChatRoom);
         }
 

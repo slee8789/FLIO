@@ -4,13 +4,11 @@ package com.fund.flio.data;
 
 import com.fund.flio.data.local.db.DbHelper;
 import com.fund.flio.data.local.prefs.PreferencesHelper;
-import com.fund.flio.data.model.ChatRoom;
+import com.fund.flio.data.model.BuyerWrapper;
 import com.fund.flio.data.model.ChatRoomWrapper;
-import com.fund.flio.data.model.Data;
 import com.fund.flio.data.model.InsertMyChatWrapper;
 import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
-import com.fund.flio.data.model.Product;
 import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
@@ -158,18 +156,13 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<ProductWrapper>> targetUserList(int productId, String sourceUid) {
+    public Single<Response<BuyerWrapper>> targetUserList(int productId, String sourceUid) {
         return mFlioApi.targetUserList(productId, sourceUid);
     }
 
     @Override
     public Single<Response<ProductWrapper>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
         return mFlioApi.targetUserUpdate(productId, sourceUid, targetUid);
-    }
-
-    @Override
-    public Single<Response<Void>> testImageUpload(MultipartBody.Part[] imgList, RequestBody boardKind, RequestBody boardTitle) {
-        return mFlioApi.testImageUpload(imgList, boardKind, boardTitle);
     }
 
     @Override

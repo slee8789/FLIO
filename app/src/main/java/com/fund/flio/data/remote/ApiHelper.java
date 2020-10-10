@@ -1,6 +1,7 @@
 package com.fund.flio.data.remote;
 
 
+import com.fund.flio.data.model.BuyerWrapper;
 import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.ChatRoomWrapper;
 import com.fund.flio.data.model.Data;
@@ -71,23 +72,15 @@ public interface ApiHelper {
 
     // 테스트 이미지 업로드
     @Multipart
-    @POST(ApiDefine.Body.TEST_IMAGE_UPLOAD)
-    Single<Response<Void>> testImageUpload(@Part MultipartBody.Part[] imgList, @Part("boardKind") RequestBody boardKind, @Part("boardTitle") RequestBody boardTitle);
-
-    // 테스트 이미지 업로드
-    @Multipart
     @POST(ApiDefine.Body.INSERT_PRODUCT)
     Single<Response<Void>> insertProduct(
             @Part("title") RequestBody title,
             @Part("content") RequestBody content,
-//            @Part("status") RequestBody status,
             @Part("saleYn") RequestBody saleYn,
             @Part("tag") RequestBody tag,
             @Part MultipartBody.Part[] imgList,
-//            @Part("displayYn") RequestBody displayYn,
             @Part("useDate") RequestBody useDate,
             @Part("purchaseKind") RequestBody purchaseKind,
-//            @Part("purchasePrice") RequestBody purchasePrice,
             @Part("productPrice") RequestBody productPrice,
             @Part("tradeKind") RequestBody tradeKind,
             @Part("boxYn") RequestBody boxYn,
@@ -138,7 +131,7 @@ public interface ApiHelper {
     //장터 - 판매완료 선택 리스트
     @GET(ApiDefine.Body.TARGET_USER_LIST)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductWrapper>> targetUserList(@Query("productId") int productId, @Query("sourceUid") String sourceUid);
+    Single<Response<BuyerWrapper>> targetUserList(@Query("productId") int productId, @Query("sourceUid") String sourceUid);
 
     //장터 - 판매완료 업데이트
     @GET(ApiDefine.Body.TARGET_USER_UPDATE)
