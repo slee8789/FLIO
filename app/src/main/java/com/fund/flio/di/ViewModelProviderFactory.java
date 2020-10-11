@@ -31,6 +31,10 @@ import com.fund.flio.ui.main.login.LoginViewModel;
 import com.fund.flio.ui.main.market.MarketViewModel;
 import com.fund.flio.ui.main.mypage.MyPageViewModel;
 import com.fund.flio.ui.main.mypage.buy.BuyListViewModel;
+import com.fund.flio.ui.main.mypage.favorite.FavoriteListViewModel;
+import com.fund.flio.ui.main.mypage.favorite.certificate.FavoriteCertificateViewModel;
+import com.fund.flio.ui.main.mypage.favorite.event.FavoriteEventViewModel;
+import com.fund.flio.ui.main.mypage.favorite.market.FavoriteProductViewModel;
 import com.fund.flio.ui.main.mypage.sell.SellListViewModel;
 import com.fund.flio.ui.main.mypage.sell.selling.buyer.guide.BuyerGuideViewModel;
 import com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListViewModel;
@@ -123,6 +127,14 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new BuyerListViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (BuyListViewModel.class.isAssignableFrom(modelClass)) {
             return new BuyListViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (FavoriteListViewModel.class.isAssignableFrom(modelClass)) {
+            return new FavoriteListViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (FavoriteProductViewModel.class.isAssignableFrom(modelClass)) {
+            return new FavoriteProductViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (FavoriteEventViewModel.class.isAssignableFrom(modelClass)) {
+            return new FavoriteEventViewModel(dataManager, schedulerProvider, resourceProvider);
+        } else if (FavoriteCertificateViewModel.class.isAssignableFrom(modelClass)) {
+            return new FavoriteCertificateViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }

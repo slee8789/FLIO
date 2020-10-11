@@ -33,9 +33,10 @@
             android:id="@+id/flio"
             android:layout_width="22dp"
             android:layout_height="26dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/btn_mark_flio"
+            android:visibility="@{viewModel.flioYn ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,9 +45,10 @@
             android:id="@+id/faith"
             android:layout_width="22dp"
             android:layout_height="26dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/icon_faith_blue"
+            android:visibility="@{viewModel.faithYn ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/flio"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,7 +87,7 @@
             android:layout_height="26dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/fab_like"
-            android:visibility="@{viewModel.isLike ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.favoriteYn ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image" />

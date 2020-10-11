@@ -39,6 +39,11 @@ public final class BindingUtils {
         viewGroup.setEnabled(enable);
     }
 
+    @BindingAdapter("selected")
+    public static void selected(ViewGroup viewGroup, boolean selected) {
+        viewGroup.setSelected(selected);
+    }
+
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext())

@@ -72,6 +72,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getViewDataBinding().setMainViewModel(getMainViewModel());
+        getViewModel().mainProduct();
         initViews();
         setupActionBar();
         getViewDataBinding().headerProducts.setOnClickListener(v -> {

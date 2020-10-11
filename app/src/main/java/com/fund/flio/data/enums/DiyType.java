@@ -1,5 +1,5 @@
 package com.fund.flio.data.enums;
 
 public enum DiyType {
-    INSTRUMENT, UNIT, TERMINAL
+    ENTIRE, INSTRUMENT, UNIT, TERMINAL
 }

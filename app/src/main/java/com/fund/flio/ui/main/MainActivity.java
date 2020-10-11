@@ -143,13 +143,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewDataBinding().navigationBottom.setOnNavigationItemReselectedListener(menuItem -> {
         });
         getViewDataBinding().navigationBottom.setItemIconTintList(null);
-
         getViewDataBinding().fabWrite.setOnClickListener(v -> mNavController.navigate(R.id.nav_bottom_sheet_write));
-//        Logger.d("test 1 " + getViewDataBinding().navigationBottom.getPaddingBottom());
-//        getViewDataBinding().navigationBottom.setPadding(0, 0, 0, getNavigationBarHeight(this));
-//        Logger.d("test 2 " + getViewDataBinding().navigationBottom.getPaddingBottom());
-
-
     }
 
 
@@ -163,7 +157,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                         break;
 
                 }
-
 
                 break;
             case UNAUTHENTICATED:
@@ -237,11 +230,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_market_product_register_detail:
             case R.id.nav_market_product_register_purpose:
             case R.id.nav_market_product_register_tag:
+            case R.id.nav_market_product_register_category:
             case R.id.nav_profile:
             case R.id.nav_community_certificate_register:
             case R.id.nav_community_event_register:
             case R.id.nav_buyer_guide:
             case R.id.nav_buyer_list:
+            case R.id.nav_buy_list:
+            case R.id.nav_review_write:
+            case R.id.nav_review:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);

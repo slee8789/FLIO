@@ -58,26 +58,11 @@
             app:tabTextColor="@color/gray9" />
 
         <TextView
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="14dp"
-            android:text="추천 매물"
-            android:textColor="@color/gray9"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/products"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/subTabs" />
-
-        <TextView
             android:id="@+id/filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="14dp"
             android:text="인기순"
             android:textColor="@color/gray9"
@@ -96,7 +81,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/filter"
             tools:listitem="@layout/item_product" />
 
 

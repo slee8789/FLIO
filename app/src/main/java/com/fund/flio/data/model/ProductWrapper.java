@@ -13,6 +13,5 @@ import lombok.Data;
 public class ProductWrapper implements Serializable {
 
     @SerializedName("data")
-    private List<Product> products;
-
+    private Product product;
 }

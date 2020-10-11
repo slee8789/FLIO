@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
@@ -20,31 +19,22 @@ import com.fund.flio.data.enums.AcousticType;
 import com.fund.flio.data.enums.AmpType;
 import com.fund.flio.data.enums.CableType;
 import com.fund.flio.data.enums.DiyType;
-import com.fund.flio.data.enums.EventType;
 import com.fund.flio.data.enums.HeadSetType;
-import com.fund.flio.data.enums.InstrumentType;
+import com.fund.flio.data.enums.RecordType;
 import com.fund.flio.data.enums.MikeType;
 import com.fund.flio.data.enums.ProductCategory;
 import com.fund.flio.data.enums.SourceType;
 import com.fund.flio.data.enums.SpeakerType;
-import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.market.product.ProductFragmentArgs;
 import com.fund.flio.utils.GridItemOffsetDecoration;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
 import com.orhanobut.logger.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
-import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketViewModel> implements OnFABMenuSelectedListener {
 
@@ -65,6 +55,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                 case 0:
                     productCategory = ProductCategory.ENTIRE;
                     mSubTabLayout.setVisibility(View.GONE);
+                    getViewModel().mainProduct();
                     break;
                 case 1:
                     productCategory = ProductCategory.SPEAKER;
@@ -126,7 +117,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                     productCategory = ProductCategory.RECORD;
                     mSubTabLayout.setVisibility(View.VISIBLE);
                     mSubTabLayout.removeAllTabs();
-                    for (String category : getResources().getStringArray(R.array.array_category_instrument)) {
+                    for (String category : getResources().getStringArray(R.array.array_category_record)) {
                         mSubTabLayout.addTab(mSubTabLayout.newTab().setText(category));
                     }
                     break;
@@ -149,7 +140,6 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                     break;
 
             }
-//            getViewModel().recommandProducts(productCategory.name(), SpeakerType.PRO.name());
         }
 
         @Override
@@ -169,9 +159,6 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         public void onTabSelected(TabLayout.Tab tab) {
             String secondCategory = null;
             switch (productCategory) {
-                case ENTIRE:
-                    secondCategory = SpeakerType.values()[tab.getPosition()].name();
-                    break;
                 case SPEAKER:
                     secondCategory = SpeakerType.values()[tab.getPosition()].name();
                     break;
@@ -194,7 +181,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                     secondCategory = AcousticType.values()[tab.getPosition()].name();
                     break;
                 case RECORD:
-                    secondCategory = InstrumentType.values()[tab.getPosition()].name();
+                    secondCategory = RecordType.values()[tab.getPosition()].name();
                     break;
                 case ACCESSORY:
                     secondCategory = AccessoryType.values()[tab.getPosition()].name();
@@ -204,7 +191,11 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
                     break;
 
             }
-            getViewModel().recommandProducts(productCategory.name(), secondCategory);
+            if (secondCategory.equals(ProductCategory.ENTIRE.name())) {
+                getViewModel().recommandProducts(productCategory.name(), null);
+            } else {
+                getViewModel().recommandProducts(productCategory.name(), secondCategory);
+            }
         }
 
         @Override

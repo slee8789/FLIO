@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="reviewType"
+            type="com.fund.flio.data.enums.ReviewType" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/bg_review">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/product_buy_review_write_title"
+                android:textColor="@color/black3"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/product_buy_review_write_message"
+                android:textColor="@color/black3"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <RadioGroup
+                android:id="@+id/radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
+                android:checkedButton="@id/a"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/confirm"
+                app:layout_constraintTop_toBottomOf="@id/message"
+                tools:mContext=".ui.setting.SettingActivity">
+
+                <RadioButton
+                    android:id="@+id/a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_purple"
+                    android:padding="8dp"
+                    android:text="@{reviewType.A.type}"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_purple"
+                    android:padding="8dp"
+                    android:text="@{reviewType.B.type}"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_purple"
+                    android:padding="8dp"
+                    android:text="@{reviewType.C.type}"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_purple"
+                    android:padding="8dp"
+                    android:text="@{reviewType.D.type}"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_purple"
+                    android:padding="8dp"
+                    android:text="@{reviewType.E.type}"
+                    android:textColor="@color/gray9"
+                    android:textSize="14sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_product_review_confirm"
+                android:gravity="center"
+                android:text="@string/product_buy_review_write_confirm"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radio" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

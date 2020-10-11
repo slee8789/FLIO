@@ -1,5 +1,5 @@
 package com.fund.flio.data.enums;
 
 public enum AccessoryType {
-    SPIKE, STAND, RACK, PLATE
+    ENTIRE, SPIKE, STAND, RACK, PLATE
 }

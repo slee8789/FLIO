@@ -139,7 +139,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
         Logger.d("test 1 " + ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId());
         Logger.d("test 2 " + requireContext().getResources().getString(R.string.transition_product_image, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId()));
         getViewModel().detailProduct(String.valueOf(ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId()));
-        getViewModel().purposeProduct(String.valueOf(ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPurpose()));
+        getViewModel().purposeProduct(ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId(), String.valueOf(ProductFragmentArgs.fromBundle(getArguments()).getProduct().getPurpose()));
         getViewDataBinding().image.setTransitionName(requireContext().getResources().getString(R.string.transition_product_image, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId()));
         getViewDataBinding().flio.setTransitionName(requireContext().getResources().getString(R.string.transition_product_flio, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId()));
         getViewDataBinding().faith.setTransitionName(requireContext().getResources().getString(R.string.transition_product_faith, ProductFragmentArgs.fromBundle(getArguments()).getProduct().getProductId()));

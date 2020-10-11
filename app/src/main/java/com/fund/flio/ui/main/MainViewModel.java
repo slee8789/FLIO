@@ -24,6 +24,7 @@ public class MainViewModel extends BaseViewModel {
     public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
         subscribeEvent();
+
     }
 
     private void subscribeEvent() {
@@ -42,7 +43,9 @@ public class MainViewModel extends BaseViewModel {
         Logger.d("onFavoriteToggle");
         getCompositeDisposable().add(getDataManager().switchFavorite(getDataManager().getUserId(), productId)
                 .subscribeOn(getSchedulerProvider().io())
-                .subscribe());
+                .subscribe(Void -> {
+                    v.setSelected(!v.isSelected());
+                }));
     }
 
     @Override

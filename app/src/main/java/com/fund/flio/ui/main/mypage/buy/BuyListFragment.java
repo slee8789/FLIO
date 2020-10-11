@@ -5,24 +5,33 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.SaleYn;
+import com.fund.flio.databinding.FragmentBuyListBinding;
 import com.fund.flio.databinding.FragmentSellListBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.mypage.sell.SellListPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.logger.Logger;
 
+import java.util.Objects;
+
+import javax.inject.Inject;
+
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 
-public class BuyListFragment extends BaseFragment<FragmentSellListBinding, BuyListViewModel> {
+public class BuyListFragment extends BaseFragment<FragmentBuyListBinding, BuyListViewModel> {
 
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+    @Inject
+    ProductBuyAdapter mProductBuyAdapter;
 
     @Override
     public int getBindingVariable() {
@@ -31,7 +40,7 @@ public class BuyListFragment extends BaseFragment<FragmentSellListBinding, BuyLi
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_sell_list;
+        return R.layout.fragment_buy_list;
     }
 
     @Override
@@ -55,29 +64,20 @@ public class BuyListFragment extends BaseFragment<FragmentSellListBinding, BuyLi
     }
 
     private void initViews() {
-        mTabLayout = getViewDataBinding().tabs;
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.product_sell)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.product_sell_closed)));
-        mViewPager = getViewDataBinding().pager;
-        final SellListPagerAdapter adapter = new SellListPagerAdapter(getChildFragmentManager(), mTabLayout.getTabCount());
-        mViewPager.setAdapter(adapter);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
+        Logger.d("initViews");
+        getViewDataBinding().buys.setAdapter(mProductBuyAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
+        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_8)));
+        getViewDataBinding().buys.addItemDecoration(dividerItemDecoration);
+        getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductBuyAdapter.setItems(products));
+        getViewModel().targetProduct();
+    }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        Logger.d("onResume");
 
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     private void setupActionBar() {

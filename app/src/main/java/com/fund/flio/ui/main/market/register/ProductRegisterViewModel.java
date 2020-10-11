@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -21,6 +22,7 @@ import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.enums.BoxYn;
 import com.fund.flio.data.enums.FlioYn;
+import com.fund.flio.data.enums.ProductCategory;
 import com.fund.flio.data.enums.PurchaseKind;
 import com.fund.flio.data.enums.Purpose;
 import com.fund.flio.data.enums.RepairYn;
@@ -31,6 +33,8 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.fund.flio.ui.main.MainActivity;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.logger.Logger;
 
@@ -43,19 +47,14 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
+import static com.fund.flio.data.enums.UseDate.A;
 import static com.fund.flio.utils.CommonUtils.getRealPathFromUri;
 
 public class ProductRegisterViewModel extends BaseViewModel {
 
     private Context mContext;
 
-    public MutableLiveData<List<Uri>> mThumbnailUris = new MutableLiveData<>();
-
-    public MutableLiveData<List<Uri>> getThumbnailUris() {
-        return mThumbnailUris;
-    }
-
-    public ObservableField<UseDate> useDate = new ObservableField<>(UseDate.A);
+    public ObservableField<UseDate> useDate = new ObservableField<>(A);
     public ObservableField<SaleYn> saleYn = new ObservableField<>(SaleYn.R);
     public ObservableField<BoxYn> boxYn = new ObservableField<>(BoxYn.Y);
     public ObservableField<PurchaseKind> purchaseKind = new ObservableField<>(PurchaseKind.Y);
@@ -69,15 +68,22 @@ public class ProductRegisterViewModel extends BaseViewModel {
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> productPrice = new ObservableField<>();
     public ObservableField<String> content = new ObservableField<>();
-
+    public ObservableField<String> categoryDepth1 = new ObservableField<>();
     public MutableLiveData<String> tag = new MutableLiveData<>();
     public ObservableField<String> tagCount = new ObservableField<>();
     public ObservableField<String> imageCount = new ObservableField<>(String.valueOf(0));
-
     public ObservableBoolean detailState = new ObservableBoolean(false);
     public MutableLiveData<String> inputTags = new MutableLiveData<>();
-
+    private MutableLiveData<String> categoryDepth2 = new MutableLiveData<>();
     private MutableLiveData<ArrayList<Purpose>> purposes = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<List<Uri>> mThumbnailUris = new MutableLiveData<>();
+
+    private RequestBody paramImgBody, paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
+    private MultipartBody.Part[] imgUrls;
+
+    public MutableLiveData<List<Uri>> getThumbnailUris() {
+        return mThumbnailUris;
+    }
 
     public MutableLiveData<ArrayList<Purpose>> getPurposes() {
         return purposes;
@@ -85,6 +91,40 @@ public class ProductRegisterViewModel extends BaseViewModel {
 
     public MutableLiveData<String> getInputTags() {
         return inputTags;
+    }
+
+    public MutableLiveData<String> getCategoryDepth2() {
+        return categoryDepth2;
+    }
+
+    public void setInitial() {
+        useDate.set(A);
+        saleYn.set(SaleYn.R);
+        boxYn.set(BoxYn.Y);
+        purchaseKind.set(PurchaseKind.Y);
+        tradeKind.set(TradeKind.DIRECT);
+        repairYn.set(RepairYn.Y);
+        flioYn.set(FlioYn.Y);
+        productRelatedUrl.set("");
+        model.set("");
+        serial.set("");
+        brand.set("");
+        title.set("");
+        productPrice.set("");
+        content.set("");
+        categoryDepth1.set("");
+        categoryDepth2.setValue("");
+        tag.setValue("");
+        imageCount.set("0");
+        if (mThumbnailUris.getValue() != null) {
+            mThumbnailUris.getValue().clear();
+        }
+        detailState.set(false);
+        inputTags.setValue("");
+        if (purposes.getValue() != null) {
+            purposes.getValue().clear();
+        }
+
     }
 
     public TextWatcher watcherInputTags = new TextWatcher() {
@@ -142,9 +182,6 @@ public class ProductRegisterViewModel extends BaseViewModel {
         }
     }
 
-    private RequestBody paramImgBody, paramTitle, paramContent, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
-    private MultipartBody.Part[] imgUrls;
-
     public void registerProduct(View view) {
 
         if (mThumbnailUris.getValue() != null) {
@@ -156,15 +193,14 @@ public class ProductRegisterViewModel extends BaseViewModel {
             }
         }
 
-
         paramTitle = RequestBody.create(MediaType.parse("text/plain"), title.get());
         paramContent = RequestBody.create(MediaType.parse("text/plain"), content.get());
+        paramCategoryDepth1 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth1.get());
+        paramCategoryDepth2 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth2.getValue());
         paramTradeKind = RequestBody.create(MediaType.parse("text/plain"), tradeKind.get().name());
-//        RequestBody status = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
         paramSaleYn = RequestBody.create(MediaType.parse("text/plain"), saleYn.get().name());
         paramTag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
 
-//        RequestBody displayYn = RequestBody.create(MediaType.parse("text/plain"), "Y");
         if (detailState.get()) {
             paramUseDate = RequestBody.create(MediaType.parse("text/plain"), useDate.get().name());
             paramBoxYn = RequestBody.create(MediaType.parse("text/plain"), boxYn.get().name());
@@ -184,8 +220,6 @@ public class ProductRegisterViewModel extends BaseViewModel {
             }
         }
 
-
-//        RequestBody purchasePrice = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
         if (productPrice.get() != null) {
             paramProductPrice = RequestBody.create(MediaType.parse("text/plain"), productPrice.get());
         }
@@ -196,9 +230,8 @@ public class ProductRegisterViewModel extends BaseViewModel {
 
         paramUid = RequestBody.create(MediaType.parse("text/plain"), getDataManager().getUserId());
 
-        //Todo : loading progress
         setIsLoading(true);
-        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle, paramContent,paramSaleYn, paramTag, imgUrls, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid)
+        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, imgUrls, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(Void -> {
@@ -206,12 +239,17 @@ public class ProductRegisterViewModel extends BaseViewModel {
                     setIsLoading(false);
                     if (Void.isSuccessful()) {
                         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigateUp();
+                        setInitial();
                     }
                 }, onError -> {
                     Logger.e("multipart error " + onError.getMessage());
                     setIsLoading(false);
                 }));
 
+    }
+
+    public void setCategory(View view) {
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigateUp();
     }
 
     public void onKeywordRegisterClick(View v) {
@@ -247,7 +285,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
     }
 
     public void showCategory(View view) {
-//        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterDetail());
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductRegisterFragmentDirections.actionNavMarketProductRegisterToNavMarketProductRegisterCategory());
     }
 
     public void showTagWrite(View view) {
@@ -305,8 +343,38 @@ public class ProductRegisterViewModel extends BaseViewModel {
         purposes.setValue(purposes.getValue());
     }
 
-    public void setDetailState(View v) {
+    public void setDetailState(View view) {
         detailState.set(true);
+        Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigateUp();
+    }
+
+    public void onCategoryClick(View v, String category) {
+        this.categoryDepth2.setValue(category);
+    }
+
+    public void setCategory(int position) {
+        switch (position) {
+            case 0:
+                this.categoryDepth1.set(ProductCategory.SPEAKER.name());
+            case 1:
+                this.categoryDepth1.set(ProductCategory.MIKE.name());
+            case 2:
+                this.categoryDepth1.set(ProductCategory.CABLE.name());
+            case 3:
+                this.categoryDepth1.set(ProductCategory.AMP.name());
+            case 4:
+                this.categoryDepth1.set(ProductCategory.SOURCE.name());
+            case 5:
+                this.categoryDepth1.set(ProductCategory.HEADSET.name());
+            case 6:
+                this.categoryDepth1.set(ProductCategory.ACOUSTIC.name());
+            case 7:
+                this.categoryDepth1.set(ProductCategory.RECORD.name());
+            case 8:
+                this.categoryDepth1.set(ProductCategory.ACCESSORY.name());
+            case 9:
+                this.categoryDepth1.set(ProductCategory.DIY.name());
+        }
     }
 
     @Override

@@ -250,7 +250,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:categoryIcon="@{@drawable/icon_speaker}"
-            app:categoryTitle="@{@string/my_page_review}"
+            app:categoryTitle="@{@string/my_page_board}"
             app:clickEvent="@{v -> viewModel.onSettingReviewClick(v)}"
             app:layout_constraintEnd_toEndOf="@id/product_sell"
             app:layout_constraintHorizontal_chainStyle="spread_inside"

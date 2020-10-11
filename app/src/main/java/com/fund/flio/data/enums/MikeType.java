@@ -1,5 +1,5 @@
 package com.fund.flio.data.enums;
 
 public enum MikeType {
-    WIRE, WIRELESS, PIN
+    ENTIRE, WIRE, WIRELESS, PIN
 }

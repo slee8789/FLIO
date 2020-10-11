@@ -23,6 +23,7 @@ import com.fund.flio.utils.CommonUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ChatDetailViewModel extends BaseViewModel {
     public boolean isSource;
     private ChatRoom mChatRoom;
     private SimpleDateFormat chatTimeFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-
+    private DecimalFormat formatter = new DecimalFormat("###,###");
     public ObservableField<String> inputMessage = new ObservableField<>();
     public ObservableField<String> remoteUserName = new ObservableField<>();
     public ObservableField<String> productTitle = new ObservableField<>();
@@ -48,7 +49,7 @@ public class ChatDetailViewModel extends BaseViewModel {
         isSource = FirebaseAuth.getInstance().getUid().equals(mChatRoom.getChatSourceUid());
         remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
         productTitle.set(mChatRoom.getTitle());
-        productPrice.set((mChatRoom.getProductPrice() + "원"));
+        productPrice.set((formatter.format(mChatRoom.getProductPrice()) + "원"));
         selectMyChatDetail(mChatRoom.getChatSeq());
     }
 

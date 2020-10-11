@@ -72,6 +72,7 @@ public class ProductRegisterFragment extends BaseFragment<FragmentProductRegiste
         switch (item.getItemId()) {
             case android.R.id.home:
                 Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
+                getViewModel().setInitial();
                 break;
         }
         return super.onOptionsItemSelected(item);

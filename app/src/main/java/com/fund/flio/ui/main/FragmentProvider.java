@@ -26,7 +26,13 @@ import com.fund.flio.ui.main.market.MarketFragment;
 import com.fund.flio.ui.main.mypage.MyPageFragment;
 import com.fund.flio.ui.main.community.CommunityFragment;
 import com.fund.flio.ui.main.mypage.buy.BuyListFragment;
+import com.fund.flio.ui.main.mypage.buy.review.ReviewWriteDialog;
+import com.fund.flio.ui.main.mypage.favorite.FavoriteListFragment;
+import com.fund.flio.ui.main.mypage.favorite.certificate.FavoriteCertificateFragment;
+import com.fund.flio.ui.main.mypage.favorite.event.FavoriteEventFragment;
+import com.fund.flio.ui.main.mypage.favorite.market.FavoriteProductFragment;
 import com.fund.flio.ui.main.mypage.sell.selled.SelledFragment;
+import com.fund.flio.ui.main.mypage.sell.selled.review.ReviewDialog;
 import com.fund.flio.ui.main.mypage.sell.selling.SellingFragment;
 import com.fund.flio.ui.main.mypage.sell.SellListFragment;
 import com.fund.flio.ui.main.market.product.ProductFragment;
@@ -157,5 +163,23 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract BuyListFragment provideBuyList();
+
+    @ContributesAndroidInjector
+    abstract ReviewDialog provideReview();
+
+    @ContributesAndroidInjector
+    abstract ReviewWriteDialog provideReviewWrite();
+
+    @ContributesAndroidInjector
+    abstract FavoriteListFragment provideFavoriteList();
+
+    @ContributesAndroidInjector
+    abstract FavoriteProductFragment provideFavoriteProduct();
+
+    @ContributesAndroidInjector
+    abstract FavoriteEventFragment provideFavoriteEvent();
+
+    @ContributesAndroidInjector
+    abstract FavoriteCertificateFragment provideFavoriteCertificate();
 
 }

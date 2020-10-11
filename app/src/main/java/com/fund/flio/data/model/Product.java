@@ -1,5 +1,7 @@
 package com.fund.flio.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
@@ -10,7 +12,7 @@ import lombok.Data;
 public class Product implements Serializable {
 
     private int productId;
-    private String productName;
+
     private String categoryDepth1;
     private String categoryDepth2;
     private String categoryOption;
@@ -39,6 +41,7 @@ public class Product implements Serializable {
     private String flioYn;
     private String faithYn;
     private String favoriteYn;
+    private String productReview;
 
     private int recommendCnt;
     private int selectCnt;

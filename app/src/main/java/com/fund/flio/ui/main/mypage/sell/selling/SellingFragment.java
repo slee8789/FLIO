@@ -5,11 +5,14 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.SaleYn;
+import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.FragmentSellingBinding;
 import com.fund.flio.ui.base.BaseFragment;
@@ -67,12 +70,12 @@ public class SellingFragment extends BaseFragment<FragmentSellingBinding, SellLi
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_8)));
         getViewDataBinding().sellings.addItemDecoration(dividerItemDecoration);
-        ArrayList<Product> testProducts = new Gson().fromJson(readAssetJson(getBaseActivity(), "products.json"), new TypeToken<List<Product>>() {
-        }.getType());
-//        getViewModel().getChatRooms().observe(getViewLifecycleOwner(), chatRoomObserver);
+        getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSellingAdapter.setItems(products));
+        getViewModel().myPageProduct(SaleYn.S);
 
-        mProductSellingAdapter.setItems(testProducts);
-//        getViewModel().getProducts().observe(getViewLifecycleOwner(), mProductSellAdapter.setItems(chatRooms));
     }
+
+
+    ;
 
 }

@@ -168,6 +168,12 @@
         <action
             android:id="@+id/action_nav_my_page_to_nav_setting"
             app:destination="@id/nav_setting" />
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_buy_list"
+            app:destination="@id/nav_buy_list" />
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_favorite_list"
+            app:destination="@id/nav_favorite_list" />
     </fragment>
 
     <fragment
@@ -286,6 +292,30 @@
         <action
             android:id="@+id/action_nav_sell_list_to_nav_buyer_guide"
             app:destination="@id/nav_buyer_guide" />
+        <action
+            android:id="@+id/action_nav_sell_list_to_nav_review"
+            app:destination="@id/nav_review" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_buy_list"
+        android:name="com.fund.flio.ui.main.mypage.buy.BuyListFragment"
+        tools:layout="@layout/fragment_buy_list">
+
+        <action
+            android:id="@+id/action_nav_buy_list_to_nav_review_write"
+            app:destination="@id/nav_review_write" />
+        <action
+            android:id="@+id/action_nav_buy_list_to_nav_review"
+            app:destination="@id/nav_review" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_favorite_list"
+        android:name="com.fund.flio.ui.main.mypage.favorite.FavoriteListFragment"
+        tools:layout="@layout/fragment_favorite_list">
+
     </fragment>
 
     <fragment
@@ -360,6 +390,31 @@
             app:destination="@id/nav_login"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_review"
+        android:name="com.fund.flio.ui.main.mypage.sell.selled.review.ReviewDialog"
+        tools:layout="@layout/dialog_review">
+
+        <argument
+            android:name="reviewType"
+            android:defaultValue="NO_REVIEW"
+            app:argType="com.fund.flio.data.enums.ReviewType"
+            app:nullable="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_review_write"
+        android:name="com.fund.flio.ui.main.mypage.buy.review.ReviewWriteDialog"
+        tools:layout="@layout/dialog_review_write">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+
     </dialog>
 
 </navigation>

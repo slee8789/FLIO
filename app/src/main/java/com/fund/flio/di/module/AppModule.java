@@ -33,11 +33,16 @@ import com.fund.flio.ui.main.community.news.NewsAdapter;
 import com.fund.flio.ui.main.home.CertificateSmallAdapter;
 import com.fund.flio.ui.main.market.product.ProductImageAdapter;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
+import com.fund.flio.ui.main.market.register.category.CategoryAdapter;
 import com.fund.flio.ui.main.message.chat.detail.ChatAdapter;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
 import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.fund.flio.ui.main.market.ProductAdapter;
 import com.fund.flio.ui.main.message.reply.list.ReplyListAdapter;
+import com.fund.flio.ui.main.mypage.buy.ProductBuyAdapter;
+import com.fund.flio.ui.main.mypage.favorite.certificate.FavoriteCertificateAdapter;
+import com.fund.flio.ui.main.mypage.favorite.event.FavoriteEventAdapter;
+import com.fund.flio.ui.main.mypage.favorite.market.FavoriteProductAdapter;
 import com.fund.flio.ui.main.mypage.sell.selled.ProductSelledAdapter;
 import com.fund.flio.ui.main.mypage.sell.selling.ProductSellingAdapter;
 import com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListAdapter;
@@ -227,6 +232,31 @@ public class AppModule {
     @Provides
     BuyerListAdapter provideBuyerListAdapter() {
         return new BuyerListAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    CategoryAdapter provideCategoryAdapter() {
+        return new CategoryAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    ProductBuyAdapter provideBuyAdapter() {
+        return new ProductBuyAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    FavoriteProductAdapter provideFavoriteProductAdapter() {
+        return new FavoriteProductAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    FavoriteEventAdapter provideFavoriteEventAdapter() {
+        return new FavoriteEventAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    FavoriteCertificateAdapter provideFavoriteCertificateAdapter() {
+        return new FavoriteCertificateAdapter(new ArrayList<>());
     }
 
 }

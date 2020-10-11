@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="com.fund.flio.ui.main.market.register.category.ItemCategoryViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.market.register.ProductRegisterViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.onCategoryClick(v, itemViewModel.category)}">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:text="@{itemViewModel.category}"
+            android:textColor="@color/black3"
+            android:textSize="14sp"
+            android:layout_marginVertical="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

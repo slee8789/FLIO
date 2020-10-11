@@ -36,7 +36,7 @@ public class HomeViewModel extends BaseViewModel {
         super(dataManager, schedulerProvider, resourceProvider);
         newsUrl.set("http://flio.iptime.org:8080/image/dummy/event/event_1.png");
         Logger.d("HomeViewModel creator");
-        mainProduct();
+//        mainProduct();
     }
 
     public void mainProduct() {

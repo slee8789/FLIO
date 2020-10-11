@@ -4,6 +4,7 @@ package com.fund.flio.ui.main.market.product;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.databinding.ObservableBoolean;
@@ -11,9 +12,14 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.enums.FaithYn;
+import com.fund.flio.data.enums.FavoriteYn;
+import com.fund.flio.data.enums.FlioYn;
+import com.fund.flio.data.enums.Purpose;
 import com.fund.flio.data.model.ChatRoom;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.data.model.body.InsertMyChatBody;
@@ -21,9 +27,9 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.fund.flio.ui.main.MainActivity;
-import com.fund.flio.ui.main.message.MessageFragmentDirections;
 import com.orhanobut.logger.Logger;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductViewModel extends BaseViewModel {
@@ -31,7 +37,7 @@ public class ProductViewModel extends BaseViewModel {
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> content = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
-    public ObservableField<String> productName = new ObservableField<>();
+    public ObservableField<String> modelNo = new ObservableField<>();
     public ObservableField<String> image = new ObservableField<>();
     public ObservableField<String> tag1 = new ObservableField<>();
     public ObservableField<String> tag2 = new ObservableField<>();
@@ -44,8 +50,11 @@ public class ProductViewModel extends BaseViewModel {
     public ObservableField<String> sellerName = new ObservableField<>();
     public ObservableField<String> rating = new ObservableField<>("0");
     public ObservableField<String> newsUrl = new ObservableField<>("http://flio.iptime.org:8080/image/dummy/event/event_1.png");
-    public ObservableBoolean isSeller = new ObservableBoolean();
+    public ObservableBoolean isSeller = new ObservableBoolean(false);
     public ObservableBoolean linkVisible = new ObservableBoolean();
+    public ObservableBoolean flioYn = new ObservableBoolean();
+    public ObservableBoolean faithYn = new ObservableBoolean();
+    public ObservableBoolean favoriteYn = new ObservableBoolean();
 
     private MutableLiveData<List<Product>> mProducts = new MutableLiveData<>();
     private MutableLiveData<List<String>> mProductImages = new MutableLiveData<>();
@@ -59,9 +68,15 @@ public class ProductViewModel extends BaseViewModel {
         return mProductImages;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     public ProductViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
     }
+
+    private DecimalFormat formatter = new DecimalFormat("###,###");
 
     public void detailProduct(String pid) {
         getCompositeDisposable().add(getDataManager().detailProduct(pid)
@@ -69,21 +84,23 @@ public class ProductViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(product -> {
                     if (product.isSuccessful()) {
-                        this.product = product.body().getProducts().get(0);
+                        this.product = product.body().getProduct();
                         Logger.d("detailProduct " + this.product);
                         title.set(this.product.getTitle());
                         content.set(this.product.getContent());
-                        price.set(this.product.getPurchasePrice());
-                        productName.set(this.product.getProductName());
-
+                        price.set(formatter.format(this.product.getProductPrice())+"원");
+                        modelNo.set(this.product.getModelNo());
                         setImage(this.product);
-                        purpose.set(this.product.getPurpose());
                         sellerImage.set(this.product.getUserImageUrl());
                         sellerName.set(this.product.getUserName());
                         rating.set("3.5");
-                        setTag(product.body().getProducts().get(0).getTag().split(","));
+                        purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
+                        setTag(product.body().getProduct().getTag().split(","));
                         isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                         linkVisible.set(this.product.getProductRelatedUrl() != null);
+                        favoriteYn.set(this.product.getFavoriteYn().equals(FavoriteYn.Y.name()));
+                        flioYn.set(this.product.getFlioYn().equals(FlioYn.Y.name()));
+                        faithYn.set(this.product.getFaithYn().equals(FaithYn.Y.name()));
                         Logger.d("detailProduct " + linkVisible.get() + ", " + (this.product.getProductRelatedUrl() != null) + ", " + this.product.getProductRelatedUrl());
                     }
 
@@ -91,8 +108,8 @@ public class ProductViewModel extends BaseViewModel {
                 }));
     }
 
-    public void purposeProduct(String purpose) {
-        getCompositeDisposable().add(getDataManager().purposeProduct(purpose)
+    public void purposeProduct(int productId, String purpose) {
+        getCompositeDisposable().add(getDataManager().purposeProduct(productId, purpose)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {
@@ -168,6 +185,16 @@ public class ProductViewModel extends BaseViewModel {
 
     public void showProfile(View v) {
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavProfile());
+    }
+
+    public void onFavoriteToggle(View v, int productId) {
+        Logger.d("onFavoriteToggle");
+        getCompositeDisposable().add(getDataManager().switchFavorite(getDataManager().getUserId(), productId)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(Void -> {
+                    v.setSelected(!v.isSelected());
+                }));
     }
 
 }

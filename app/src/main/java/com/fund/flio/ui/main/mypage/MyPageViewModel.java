@@ -99,11 +99,11 @@ public class MyPageViewModel extends BaseViewModel {
     }
 
     public void onProductBuyClick(View v) {
-
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_buy_list);
     }
 
     public void onProductFavoriteClick(View v) {
-
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_my_page_to_nav_favorite_list);
     }
 
     public void onSettingReviewClick(View v) {

@@ -10,6 +10,7 @@ import com.fund.flio.data.model.InsertMyChatWrapper;
 import com.fund.flio.data.model.Keyword;
 import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.ProductWrapper;
+import com.fund.flio.data.model.ProductsWrapper;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
@@ -116,12 +117,12 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> insertProduct(RequestBody title, RequestBody content, RequestBody saleYn, RequestBody tag, MultipartBody.Part[] imgList, RequestBody useDate, RequestBody purchaseKind, RequestBody productPrice, RequestBody tradeKind, RequestBody boxYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
-        return mFlioApi.insertProduct(title, content, saleYn, tag, imgList, useDate, purchaseKind, productPrice, tradeKind, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
+    public Single<Response<Void>> insertProduct(RequestBody title, RequestBody content, RequestBody categoryDepth1, RequestBody categoryDepth2, RequestBody saleYn, RequestBody tag, MultipartBody.Part[] imgList, RequestBody useDate, RequestBody purchaseKind, RequestBody productPrice, RequestBody tradeKind, RequestBody boxYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
+        return mFlioApi.insertProduct(title, content, categoryDepth1, categoryDepth2, saleYn, tag, imgList, useDate, purchaseKind, productPrice, tradeKind, boxYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
     }
 
     @Override
-    public Single<Response<ProductWrapper>> selectProduct(String uid) {
+    public Single<Response<ProductsWrapper>> selectProduct(String uid) {
         return mFlioApi.selectProduct(uid);
     }
 
@@ -131,27 +132,32 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<ProductWrapper>> mainProduct() {
+    public Single<Response<ProductsWrapper>> mainProduct() {
         return mFlioApi.mainProduct();
     }
 
     @Override
-    public Single<Response<ProductWrapper>> myPageProduct(String uid) {
+    public Single<Response<ProductsWrapper>> myPageProduct(String uid) {
         return mFlioApi.myPageProduct(uid);
     }
 
     @Override
-    public Single<Response<ProductWrapper>> purposeProduct(String purpose) {
-        return mFlioApi.purposeProduct(purpose);
+    public Single<Response<ProductsWrapper>> targetProduct(String uid) {
+        return mFlioApi.targetProduct(uid);
     }
 
     @Override
-    public Single<Response<ProductWrapper>> recommandProduct(String categoryDepth1, String categoryDepth2) {
+    public Single<Response<ProductsWrapper>> purposeProduct(int productId, String purpose) {
+        return mFlioApi.purposeProduct(productId, purpose);
+    }
+
+    @Override
+    public Single<Response<ProductsWrapper>> recommandProduct(String categoryDepth1, String categoryDepth2) {
         return mFlioApi.recommandProduct(categoryDepth1, categoryDepth2);
     }
 
     @Override
-    public Single<Response<ProductWrapper>> searchProduct(String keyword) {
+    public Single<Response<ProductsWrapper>> searchProduct(String keyword) {
         return mFlioApi.searchProduct(keyword);
     }
 
@@ -161,13 +167,23 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<ProductWrapper>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
+    public Single<Response<ProductsWrapper>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
         return mFlioApi.targetUserUpdate(productId, sourceUid, targetUid);
+    }
+
+    @Override
+    public Single<Response<Void>> targetUserReview(int productId, String targetUid, String review) {
+        return mFlioApi.targetUserReview(productId, targetUid, review);
     }
 
     @Override
     public Single<Response<Void>> switchFavorite(String uid, int productId) {
         return mFlioApi.switchFavorite(uid, productId);
+    }
+
+    @Override
+    public Single<Response<Void>> selectFavorite(String uid) {
+        return mFlioApi.selectFavorite(uid);
     }
 
     @Override

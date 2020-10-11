@@ -60,8 +60,8 @@
     <string name="category_acoustic_dac">DAC</string>
     <string name="category_acoustic_word_clock">워드클락</string>
 
-    <string name="category_instrument_lp">LP</string>
-    <string name="category_instrument_cd">CD</string>
+    <string name="category_record_lp">LP</string>
+    <string name="category_record_cd">CD</string>
 
     <string name="category_accessory_spike">스파이크</string>
     <string name="category_accessory_stand">스탠드</string>
@@ -72,7 +72,7 @@
     <string name="category_diy_unit">유닛</string>
     <string name="category_diy_terminal">단자</string>
 
-    <string name="category_news">플리오 뉴스</string>
+    <string name="category_news">플리오 컬럼</string>
     <string name="category_certificate">플리오 인증</string>
     <string name="category_event">홍보/행사</string>
 
@@ -104,7 +104,7 @@
     <string name="my_page_product_sell">판매내역</string>
     <string name="my_page_product_buy">구매내역</string>
     <string name="my_page_product_favorite">관심목록</string>
-    <string name="my_page_review">거래후기</string>
+    <string name="my_page_board">게시글</string>
     <string name="my_page_promotion">홍보인증</string>
 
     <string name="product_sell">거래중</string>
@@ -114,6 +114,13 @@
     <string name="product_sell_change_reserve">예약중으로 변경</string>
     <string name="product_sell_change_close">거래완료로 변경</string>
     <string name="product_sell_change_cancel">거래취소로 변경</string>
+    <string name="product_sell_view_review"> 구매자 후기 보기</string>
+
+    <string name="product_buy_review_write">후기 작성하기</string>
+    <string name="product_buy_review_write_title">구매자 후기 작성하기</string>
+    <string name="product_buy_review_write_message">%s님과의 거래가 어떠셨나요?</string>
+    <string name="product_buy_review_write_confirm">확인</string>
+
 
     <string name="search_popular">인기검색어</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
@@ -152,6 +159,7 @@
     <string name="message_already_registered">이미 추가된 키워드입니다.</string>
 
     <string name="title_sell_list">판매내역</string>
+    <string name="title_buy_list">구매내역</string>
 
     <string name="product_status">+제품상태보기</string>
     <string name="product_link"> 사이트이동</string>
@@ -210,5 +218,7 @@
     <string name="profile_product">판매중인 상품</string>
     <string name="profile_review">구매후기 보기</string>
     <string name="profile_board">게시글 보기</string>
+
+    <string name="buyer_guide_title">구매자 선택</string>
 
 </resources>
