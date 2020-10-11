@@ -37,7 +37,7 @@
             android:gravity="center_vertical"
             android:text="@{itemViewModel.title}"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/icon" />
 
         <ImageView

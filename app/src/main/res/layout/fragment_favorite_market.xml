@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.fund.flio.ui.main.mypage.favorite.market.FavoriteProductViewModel" />
@@ -14,55 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/title_buy_list"
-                android:textColor="@color/black0"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
             android:background="@color/grayE5"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/purple3"
-            app:tabIndicatorHeight="1dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/purple3"
-            app:tabTextColor="@color/gray9" />
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabs" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/buys"
@@ -73,8 +31,24 @@
             android:paddingTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            tools:listitem="@layout/item_product_buy" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_product_favorite" />
+
+        <Button
+            android:id="@+id/complement"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_product_detail_complement_btn"
+            android:onClick="@{v -> viewModel.goMarket(v)}"
+            android:text="@string/favorite_go_market"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="@{viewModel.products.size() == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

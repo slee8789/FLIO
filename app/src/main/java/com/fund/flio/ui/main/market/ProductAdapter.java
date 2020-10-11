@@ -20,7 +20,6 @@ public class ProductAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<Product> products;
 
-
     public ProductAdapter(ArrayList<Product> products) {
         this.products = products;
     }

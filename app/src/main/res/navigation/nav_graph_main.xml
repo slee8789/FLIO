@@ -316,6 +316,9 @@
         android:name="com.fund.flio.ui.main.mypage.favorite.FavoriteListFragment"
         tools:layout="@layout/fragment_favorite_list">
 
+        <action
+            android:id="@+id/action_nav_favorite_list_to_nav_market"
+            app:destination="@id/nav_market" />
     </fragment>
 
     <fragment

@@ -29,7 +29,7 @@
                 android:textColor="@color/purple5"
                 android:drawablePadding="6dp"
                 android:drawableStart="@drawable/check_purple_selected_22"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

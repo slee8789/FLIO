@@ -13,7 +13,7 @@
 
         <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.mypage.buy.BuyListViewModel" />
+            type="com.fund.flio.ui.main.mypage.favorite.market.FavoriteProductViewModel" />
 
     </data>
 
@@ -33,7 +33,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             app:imageUrlRoundCorner="@{itemViewModel.imageUrl}"
-            app:layout_constraintBottom_toTopOf="@id/review"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +48,7 @@
             android:maxLines="1"
             android:text="@{itemViewModel.title}"
             android:textColor="@color/black3"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/date"
             app:layout_constraintEnd_toStartOf="@id/flio"
             app:layout_constraintStart_toEndOf="@id/image"
@@ -61,7 +61,7 @@
             android:layout_marginStart="20dp"
             android:text="@{itemViewModel.date}"
             android:textColor="@color/gray9"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/price"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/title" />
@@ -73,9 +73,9 @@
             android:layout_marginStart="20dp"
             android:text="@{itemViewModel.price}"
             android:textColor="@color/black3"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/review"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/date" />
 
@@ -96,26 +96,22 @@
             android:layout_width="22dp"
             android:layout_height="26dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="22dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/icon_faith_blue"
             android:visibility="@{itemViewModel.faithYn ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/review"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="@drawable/border_login_button"
-            android:gravity="center"
-            android:text="@{itemViewModel.review}"
-            android:textColor="@color/black3"
-            android:textSize="14sp"
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:onClick="@{v -> viewModel.onFavoriteToggle(v, itemViewModel.product)}"
+            android:src="@drawable/icon_favorite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{v -> itemViewModel.showReviewWrite(v)}"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

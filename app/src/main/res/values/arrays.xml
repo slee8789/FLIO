@@ -11,8 +11,8 @@
         <item>@string/category_headset</item>
         <item>@string/category_acoustic</item>
         <item>@string/category_record</item>
-        <item>@string/category_accessory</item>
         <item>@string/category_diy</item>
+        <item>@string/category_accessory</item>
     </string-array>
 
     <string-array name="array_category_speaker">

@@ -56,7 +56,7 @@
             android:layout_marginTop="102dp"
             android:text="Pre-owned, Flio Market"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,7 +81,7 @@
             android:gravity="center_vertical"
             android:text="모든 사용자가 인증을 받는 것으로\n안심하게 중고 거래를 이용하는 플리오마켓"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/btn_kakao_custom" />
 
         <TextView
@@ -97,7 +97,7 @@
             android:paddingStart="38dp"
             android:text="카카오톡으로 시작하기"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/btn_naver_custom" />
 
         <TextView
@@ -113,7 +113,7 @@
             android:paddingStart="38dp"
             android:text="NAVER 시작하기"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/btn_google_custom" />
 
         <TextView
@@ -129,7 +129,7 @@
             android:paddingStart="38dp"
             android:text="GOOGLE 시작하기"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView

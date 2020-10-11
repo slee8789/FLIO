@@ -100,7 +100,7 @@
             android:onClick="@{v -> viewModel.setCategory(v)}"
             android:text="@string/product_detail_btn_complement"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

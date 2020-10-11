@@ -99,13 +99,6 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding, Co
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_search_bookmark, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-        Logger.d("onCreateOptionsMenu");
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Logger.d("onOptionsItemSelected " + item.getItemId());
         switch (item.getItemId()) {

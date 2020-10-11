@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="News"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

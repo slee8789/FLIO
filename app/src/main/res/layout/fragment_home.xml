@@ -42,7 +42,7 @@
                     layout="@layout/item_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="24dp"
                     app:categoryIcon="@{@drawable/icon_speaker}"
                     app:categoryTitle="@{@string/category_speaker}"
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="40dp"
                     app:categoryIcon="@{@drawable/icon_source}"
                     app:categoryTitle="@{@string/category_source}"
                     app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.SOURCE)}"
@@ -110,7 +110,7 @@
                     layout="@layout/item_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="16dp"
                     app:categoryIcon="@{@drawable/icon_headset}"
                     app:categoryTitle="@{@string/category_headset_home}"
@@ -142,21 +142,8 @@
                     app:categoryIcon="@{@drawable/icon_record}"
                     app:categoryTitle="@{@string/category_record}"
                     app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.RECORD)}"
-                    app:layout_constraintEnd_toStartOf="@id/category_accessory"
-                    app:layout_constraintStart_toEndOf="@id/category_acoustic"
-                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
-
-                <include
-                    android:id="@+id/category_accessory"
-                    layout="@layout/item_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:categoryIcon="@{@drawable/icon_accessory}"
-                    app:categoryTitle="@{@string/category_accessory}"
-                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACCESSORY)}"
                     app:layout_constraintEnd_toStartOf="@id/category_diy"
-                    app:layout_constraintStart_toEndOf="@id/category_record"
+                    app:layout_constraintStart_toEndOf="@id/category_acoustic"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <include
@@ -165,14 +152,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
                     app:categoryIcon="@{@drawable/icon_diy}"
                     app:categoryTitle="@{@string/category_diy}"
                     app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.DIY)}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/category_accessory"
+                    app:layout_constraintEnd_toStartOf="@id/category_accessory"
+                    app:layout_constraintStart_toEndOf="@id/category_record"
                     app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
+                <include
+                    android:id="@+id/category_accessory"
+                    layout="@layout/item_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="40dp"
+                    app:categoryIcon="@{@drawable/icon_accessory}"
+                    app:categoryTitle="@{@string/category_accessory}"
+                    app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACCESSORY)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/category_diy"
+                    app:layout_constraintTop_toBottomOf="@id/category_speaker" />
 
                 <TextView
                     android:id="@+id/header_products"
@@ -182,7 +181,7 @@
                     android:paddingStart="20dp"
                     android:text="@string/header_recommend_product"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/category_headset" />
@@ -201,7 +200,7 @@
                     android:id="@+id/products"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="12dp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
@@ -218,7 +217,7 @@
                     android:layout_marginTop="34dp"
                     android:text="@string/header_certificated"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/products" />
@@ -245,7 +244,7 @@
                     android:id="@+id/certificates"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="12dp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
@@ -262,7 +261,7 @@
                     android:layout_marginTop="32dp"
                     android:text="NEWS"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/certificates" />
@@ -318,7 +317,7 @@
                     android:minHeight="14dp"
                     android:text="10월 25일 공개믹싱"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/writer_news"
                     app:layout_constraintStart_toEndOf="@id/writer_news"
@@ -334,7 +333,7 @@
                     android:lineHeight="16dp"
                     android:text="2020년 하반기 오디오 시장의 활성화 위해 플리오에서는 다양한 방안을 만들고자..."
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/writer_news"
                     app:layout_constraintTop_toBottomOf="@id/writer_news" />

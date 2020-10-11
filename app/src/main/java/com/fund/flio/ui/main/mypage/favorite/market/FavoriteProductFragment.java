@@ -56,7 +56,6 @@ public class FavoriteProductFragment extends BaseFragment<FragmentFavoriteMarket
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
-        setupActionBar();
     }
 
     private void initViews() {
@@ -65,27 +64,7 @@ public class FavoriteProductFragment extends BaseFragment<FragmentFavoriteMarket
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_8)));
         getViewDataBinding().buys.addItemDecoration(dividerItemDecoration);
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mFavoriteProductAdapter.setItems(products));
-        getViewModel().targetProduct();
+        getViewModel().selectFavorite();
     }
-
-    private void setupActionBar() {
-        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
-        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.d("onOptionsItemSelected " + item.getItemId());
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Logger.d("onOptionsItemSelected home");
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }

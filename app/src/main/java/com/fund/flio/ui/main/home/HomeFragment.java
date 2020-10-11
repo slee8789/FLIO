@@ -92,12 +92,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         getBaseActivity().getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_search_bookmark, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-        Logger.d("onCreateOptionsMenu");
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu_search_bookmark, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//        Logger.d("onCreateOptionsMenu");
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

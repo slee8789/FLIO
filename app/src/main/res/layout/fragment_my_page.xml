@@ -59,7 +59,7 @@
             android:layout_marginStart="8dp"
             android:text="@{viewModel.name}"
             android:textColor="@color/purple"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/rating"
             app:layout_constraintStart_toEndOf="@id/image"
@@ -85,7 +85,7 @@
             android:layout_marginStart="8dp"
             android:text="@{viewModel.ratingPoint}"
             android:textColor="@color/gray9"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/rating"
             app:layout_constraintStart_toEndOf="@id/rating"
             app:layout_constraintTop_toTopOf="@id/rating" />
@@ -105,7 +105,7 @@
             android:layout_marginHorizontal="20dp"
             android:text="@string/my_page_label_keyword"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/divider_keyword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider_user_info" />
@@ -164,7 +164,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/setting_register_keyword_registered"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/tag_keyword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider_keyword" />
@@ -177,7 +177,7 @@
             android:layout_marginTop="16dp"
             android:text="@{viewModel.keywordCount}"
             android:textColor="@color/black3"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/tag_keyword"
             app:layout_constraintStart_toEndOf="@id/label_keyword_registered"
             app:layout_constraintTop_toBottomOf="@id/divider_keyword" />

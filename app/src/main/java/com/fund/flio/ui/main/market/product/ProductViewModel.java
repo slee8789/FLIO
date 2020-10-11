@@ -52,6 +52,7 @@ public class ProductViewModel extends BaseViewModel {
     public ObservableField<String> newsUrl = new ObservableField<>("http://flio.iptime.org:8080/image/dummy/event/event_1.png");
     public ObservableBoolean isSeller = new ObservableBoolean(false);
     public ObservableBoolean linkVisible = new ObservableBoolean();
+    public ObservableBoolean detailVisible = new ObservableBoolean();
     public ObservableBoolean flioYn = new ObservableBoolean();
     public ObservableBoolean faithYn = new ObservableBoolean();
     public ObservableBoolean favoriteYn = new ObservableBoolean();
@@ -98,6 +99,7 @@ public class ProductViewModel extends BaseViewModel {
                         setTag(product.body().getProduct().getTag().split(","));
                         isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                         linkVisible.set(this.product.getProductRelatedUrl() != null);
+                        detailVisible.set(this.product.getUseDate() != null);
                         favoriteYn.set(this.product.getFavoriteYn().equals(FavoriteYn.Y.name()));
                         flioYn.set(this.product.getFlioYn().equals(FlioYn.Y.name()));
                         faithYn.set(this.product.getFaithYn().equals(FaithYn.Y.name()));

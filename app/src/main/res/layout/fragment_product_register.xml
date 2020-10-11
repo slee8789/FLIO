@@ -82,7 +82,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="@{viewModel.imageCount}"
                     android:textColor="@color/purple"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@id/write_thumbnail_count_label"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintTop_toBottomOf="@id/add_image" />
@@ -94,7 +94,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/write_thumbnail_count_label"
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@id/thumbnails"
                     app:layout_constraintTop_toBottomOf="@id/add_image" />
 
@@ -133,7 +133,7 @@
                     android:text="@={viewModel.title}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_title"
                     app:layout_constraintTop_toBottomOf="@id/divider_thumbnail" />
 
@@ -157,7 +157,7 @@
                     android:onClick="@{v -> viewModel.showCategory(v)}"
                     android:text="@string/product_register_category"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_select" />
@@ -173,7 +173,7 @@
                     android:onClick="@{v -> viewModel.showPurpose(v)}"
                     android:text="@string/product_register_purpose"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_title"
                     app:layout_constraintStart_toEndOf="@id/category"
                     app:layout_constraintTop_toBottomOf="@id/divider_select" />
@@ -198,7 +198,7 @@
                     android:text="@={viewModel.productPrice}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_price"
                     app:layout_constraintEnd_toStartOf="@id/state"
                     app:layout_constraintStart_toStartOf="parent"
@@ -214,7 +214,7 @@
                     android:onClick="@{v -> viewModel.goDetail(v)}"
                     android:text="@string/product_register_state"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_select" />
@@ -234,7 +234,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:text="@string/product_register_way"
                     android:textColor="@color/black3"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@id/divider_way"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_price" />
@@ -354,7 +354,7 @@
                     android:text="@={viewModel.content}"
                     android:textColor="@color/black3"
                     android:textColorHint="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/divider_tag" />
 
 
@@ -384,7 +384,7 @@
             android:onClick="@{v -> viewModel.registerProduct(v)}"
             android:text="@string/product_detail_btn_complement"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

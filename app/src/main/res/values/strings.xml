@@ -181,6 +181,7 @@
     <string name="product_detail_url_hint">제품 상세 페이지 URL</string>
     <string name="product_detail_btn_register">입력</string>
     <string name="product_detail_btn_complement">확인</string>
+    <string name="favorite_go_market">장터 가기</string>
 
     <string name="product_register">장터글쓰기</string>
     <string name="product_register_title_hint">제목</string>

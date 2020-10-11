@@ -26,7 +26,7 @@ public class ProductDetailDialog extends BaseDialog {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DialogProductDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.dialog_product_detail, container, false);
         View view = binding.getRoot();
-
+        getDialog().setCanceledOnTouchOutside(true);
         binding.useDate.setText(UseDate.valueOf(ProductDetailDialogArgs.fromBundle(getArguments()).getProduct().getUseDate()).getType());
         binding.boxYn.setText(ProductDetailDialogArgs.fromBundle(getArguments()).getProduct().getBoxYn().equals("Y") ? "있음" : "없음");
         binding.purchaseKind.setText(PurchaseKind.valueOf(ProductDetailDialogArgs.fromBundle(getArguments()).getProduct().getPurchaseKind()).getType());

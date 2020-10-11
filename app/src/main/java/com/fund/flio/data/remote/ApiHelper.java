@@ -109,7 +109,7 @@ public interface ApiHelper {
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<ProductsWrapper>> myPageProduct(@Query("uid") String uid);
 
-    // 장터 - 마이페이지 - 구매내
+    // 장터 - 마이페이지 - 구매내역
     @GET(ApiDefine.Body.TARGET_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
     Single<Response<ProductsWrapper>> targetProduct(@Query("targetUid") String uid);

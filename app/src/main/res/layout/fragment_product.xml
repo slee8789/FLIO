@@ -47,20 +47,20 @@
                     app:layout_collapseMode="parallax"
                     app:layout_scrollFlags="scroll" />
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:background="#26000000" />
+
                 <LinearLayout
                     android:id="@+id/layoutDots"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"
-                    android:layout_margin="4dp"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/gradient_dim_bottom" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -168,7 +168,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="7dp"
                         android:text="@{viewModel.modelNo}"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tag1" />
 
@@ -207,7 +207,6 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gradient_dim_top"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="?attr/homeAsUpIndicator"
                     app:title="@{viewModel.title}">
@@ -236,7 +235,7 @@
                     android:layout_marginTop="40dp"
                     android:text="@{viewModel.title}"
                     android:textColor="@color/black3"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -248,7 +247,7 @@
                     android:lineHeight="24dp"
                     android:text="@{viewModel.content}"
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <TextView
@@ -267,6 +266,7 @@
                     android:text="@string/product_status"
                     android:textColor="@color/gray9"
                     android:textSize="12sp"
+                    android:visibility="@{viewModel.detailVisible ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/divider_status"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/content" />
@@ -322,7 +322,7 @@
                     android:layout_marginStart="8dp"
                     android:text="@{viewModel.sellerName}"
                     android:textColor="@color/purple"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/rating"
                     app:layout_constraintStart_toEndOf="@id/sellerImage"
@@ -380,7 +380,7 @@
                     android:layout_marginTop="34dp"
                     android:text="@string/header_recommend_product"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_seller" />
@@ -416,7 +416,7 @@
                     android:layout_marginTop="34dp"
                     android:text="@string/header_related_news"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recommends" />
@@ -459,7 +459,7 @@
                     android:layout_marginTop="10dp"
                     android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/date_news" />
 
                 <ImageView

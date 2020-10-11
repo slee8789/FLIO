@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.databinding.ItemProductFavoriteBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
+import com.fund.flio.ui.main.MainViewModel;
 import com.fund.flio.ui.main.market.ItemProductViewModel;
 
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ import java.util.List;
 public class FavoriteProductAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<Product> products;
-
 
     public FavoriteProductAdapter(ArrayList<Product> products) {
         this.products = products;

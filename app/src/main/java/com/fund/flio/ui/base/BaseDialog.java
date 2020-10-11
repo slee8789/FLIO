@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -29,6 +30,13 @@ public abstract class BaseDialog extends DialogFragment {
 
     private BaseActivity mActivity;
     private ViewModelProvider viewModelProvider;
+    private Dialog dialog;
+
+    @Nullable
+    @Override
+    public Dialog getDialog() {
+        return dialog;
+    }
 
     public ViewModelProvider getViewModelProvider() {
         return viewModelProvider;
@@ -52,7 +60,7 @@ public abstract class BaseDialog extends DialogFragment {
         root.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         // creating the fullscreen dialog
-        final Dialog dialog = new Dialog(getContext());
+        dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(root);
         if (dialog.getWindow() != null) {

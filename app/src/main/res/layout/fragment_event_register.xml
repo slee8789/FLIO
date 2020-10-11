@@ -131,7 +131,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="7dp"
                         android:text="SIROCO GS220"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tag1" />
 
@@ -196,7 +196,7 @@
                     android:layout_marginTop="40dp"
                     android:text="모던하고 깔끔한 투톤 스피커"
                     android:textColor="@color/black3"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -210,7 +210,7 @@
 스피커 우든 MDF 인클로저로 클래식한 멋스러움을
 자아내며, PC 스피커로의 활용은 물론, 카페 인테리어 아이템으로도 뛰어나게 연출됩니다."
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <TextView
@@ -233,7 +233,7 @@
                     android:layout_marginTop="34dp"
                     android:text="@string/header_recommend_product"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/status" />
@@ -269,7 +269,7 @@
                     android:layout_marginTop="34dp"
                     android:text="@string/header_related_news"
                     android:textColor="@color/black0"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recommends" />
@@ -312,7 +312,7 @@
                     android:layout_marginTop="10dp"
                     android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
                     android:textColor="@color/gray9"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/date_news" />
 
                 <ImageView
