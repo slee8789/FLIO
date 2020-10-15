@@ -36,6 +36,7 @@
             android:layout_gravity="start"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:src="@drawable/icon_menu_appbar"
             app:tint="@color/black3" />
 

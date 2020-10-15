@@ -6,6 +6,14 @@
     app:startDestination="@id/nav_home">
 
     <action
+        android:id="@+id/action_global_to_nav_category"
+        app:destination="@id/nav_category" />
+
+    <action
+        android:id="@+id/action_global_to_nav_buy_list"
+        app:destination="@id/nav_buy_list" />
+
+    <action
         android:id="@+id/action_global_to_nav_intro"
         app:destination="@id/nav_intro"
         app:popUpTo="@id/nav_home"
@@ -119,6 +127,19 @@
         android:id="@+id/nav_market"
         android:name="com.fund.flio.ui.main.market.MarketFragment"
         tools:layout="@layout/fragment_market">
+
+        <argument
+            android:name="productCategory"
+            android:defaultValue="ENTIRE"
+            app:argType="com.fund.flio.data.enums.ProductCategory"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.fund.flio.ui.main.category.CategoryFragment"
+        tools:layout="@layout/fragment_category">
 
         <argument
             android:name="productCategory"

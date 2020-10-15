@@ -39,7 +39,7 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void mainProduct() {
-        getCompositeDisposable().add(getDataManager().mainProduct()
+        getCompositeDisposable().add(getDataManager().mainProduct(getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(product -> {

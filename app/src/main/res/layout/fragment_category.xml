@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productCategory"
+            type="com.fund.flio.data.enums.ProductCategory" />
+
+        <variable
+            name="viewModel"
+            type="com.fund.flio.ui.main.category.CategoryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+<!--            <include-->
+<!--                android:id="@+id/category_speaker"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_speaker}"-->
+<!--                app:categoryTitle="@{@string/category_speaker}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v, productCategory.SPEAKER)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_mike"-->
+<!--                app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_mike"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_mike}"-->
+<!--                app:categoryTitle="@{@string/category_mike}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.MIKE)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_cable"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_speaker"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_cable"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_cable}"-->
+<!--                app:categoryTitle="@{@string/category_cable}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.CABLE)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_amp"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_mike"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_amp"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_amp}"-->
+<!--                app:categoryTitle="@{@string/category_amp}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.AMP)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_source"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_cable"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_source"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:layout_marginEnd="40dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_source}"-->
+<!--                app:categoryTitle="@{@string/category_source}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.SOURCE)}"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_amp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_headset"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_headset}"-->
+<!--                app:categoryTitle="@{@string/category_headset_home}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.HEADSET)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_acoustic"-->
+<!--                app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/category_speaker" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_acoustic"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_acoustic}"-->
+<!--                app:categoryTitle="@{@string/category_acoustic}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACOUSTIC)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_record"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_headset"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/category_speaker" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_record"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_record}"-->
+<!--                app:categoryTitle="@{@string/category_record}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.RECORD)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_diy"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_acoustic"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/category_speaker" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_diy"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_diy}"-->
+<!--                app:categoryTitle="@{@string/category_diy}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.DIY)}"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/category_accessory"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_record"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/category_speaker" />-->
+
+<!--            <include-->
+<!--                android:id="@+id/category_accessory"-->
+<!--                layout="@layout/item_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="40dp"-->
+<!--                app:categoryIcon="@{@drawable/icon_category_accessory}"-->
+<!--                app:categoryTitle="@{@string/category_accessory}"-->
+<!--                app:clickEvent="@{v -> viewModel.onCategoryClick(v,productCategory.ACCESSORY)}"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/category_diy"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/category_speaker" />-->
+
+
+        </GridView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

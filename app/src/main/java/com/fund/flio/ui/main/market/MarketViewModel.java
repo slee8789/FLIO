@@ -27,7 +27,7 @@ public class MarketViewModel extends BaseViewModel {
     }
 
     public void mainProduct() {
-        getCompositeDisposable().add(getDataManager().mainProduct()
+        getCompositeDisposable().add(getDataManager().mainProduct(getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(product -> {
@@ -39,7 +39,7 @@ public class MarketViewModel extends BaseViewModel {
     }
 
     public void recommandProducts(String productCategory, String secondCategory) {
-        getCompositeDisposable().add(getDataManager().recommandProduct(productCategory, secondCategory)
+        getCompositeDisposable().add(getDataManager().recommandProduct(productCategory, secondCategory, getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {

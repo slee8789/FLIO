@@ -19,9 +19,11 @@ import androidx.transition.TransitionManager;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.Search;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.databinding.FragmentSearchBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.community.news.NewsAdapter;
 import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
@@ -47,6 +49,9 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
 
     @Inject
     ProductSmallAdapter mProductSmallAdapter;
+
+    @Inject
+    NewsAdapter mNewsAdapter;
 
     @Inject
     SearchRecentAdapter mSearchRecentAdapter;
@@ -107,19 +112,15 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
             chip.setText(tag);
             chip.setChipDrawable(ChipDrawable.createFromResource(getContext(), R.xml.chip_action));
             chip.setTextAppearanceResource(R.style.ChipTextStyle);
-//            chipAction.setOnClickListener(v -> {
-//                getViewModel().setIsLoading(!getViewModel().getIsLoading().get());
-//            });
             getViewDataBinding().tagPopular.addView(chip);
         }
 
-        getViewDataBinding().recommends.setAdapter(mProductSmallAdapter);
+        getViewDataBinding().recommends.setAdapter(mNewsAdapter);
+        getViewDataBinding().recommends2.setAdapter(mProductSmallAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
         getViewDataBinding().recommends.addItemDecoration(dividerItemDecoration);
-//        ArrayList<Product> testRecommends = new Gson().fromJson(readAssetJson(getContext(), "products.json"), new TypeToken<List<Product>>() {
-//        }.getType());
-//        mProductSmallAdapter.addItems(testRecommends);
+        getViewDataBinding().recommends2.addItemDecoration(dividerItemDecoration);
 
         getViewDataBinding().recents.setAdapter(mSearchRecentAdapter);
         mSearchRecentAdapter.setSearchViewModel(getViewModel());
@@ -140,6 +141,8 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         });
 
         getViewModel().getSearchResults().observe(getViewLifecycleOwner(), searchResultObserver);
+        getViewModel().getSearchs().observe(getViewLifecycleOwner(), searchObserver);
+        getViewModel().getProducs().observe(getViewLifecycleOwner(), search2Observer);
 
     }
 
@@ -165,6 +168,17 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
     private final Observer<List<SearchResult>> searchResultObserver = searchResults -> {
         Logger.d("searchResultObserver " + searchResults);
         mSearchRecentAdapter.setItems(searchResults);
+    };
+
+    private final Observer<List<Search>> searchObserver = searchResults -> {
+        Logger.d("searchResultObserver " + searchResults);
+        mNewsAdapter.setItems(searchResults);
+    };
+
+    private final Observer<List<Product>> search2Observer = searchResults -> {
+        Logger.d("searchResultObserver " + searchResults);
+        mProductSmallAdapter.setItems(searchResults);
+        imm.hideSoftInputFromWindow(getViewDataBinding().search.getWindowToken(), 0);
     };
 
     @Override

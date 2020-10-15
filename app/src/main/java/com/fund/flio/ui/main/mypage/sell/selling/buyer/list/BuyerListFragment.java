@@ -61,7 +61,8 @@ public class BuyerListFragment extends BaseFragment<FragmentBuyerListBinding, Bu
         super.onViewCreated(view, savedInstanceState);
         initViews();
         setupActionBar();
-        getViewModel().targetList(19);
+
+        getViewModel().targetList(getViewModel().productId.get());
     }
 
     private void initViews() {

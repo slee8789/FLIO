@@ -12,6 +12,8 @@ import androidx.navigation.Navigation;
 
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.model.Product;
+import com.fund.flio.data.model.Search;
 import com.fund.flio.data.model.SearchResult;
 import com.fund.flio.data.model.body.SearchBody;
 import com.fund.flio.di.provider.ResourceProvider;
@@ -39,6 +41,17 @@ public class SearchViewModel extends BaseViewModel {
         return searchResults;
     }
 
+    private MutableLiveData<List<Search>> searchs = new MutableLiveData<>();
+    private MutableLiveData<List<Product>> producs = new MutableLiveData<>();
+
+    public MutableLiveData<List<Search>> getSearchs() {
+        return searchs;
+    }
+
+    public MutableLiveData<List<Product>> getProducs() {
+        return producs;
+    }
+
     public void setIsKeyboardShow(boolean isKeyboardShow) {
         this.isKeyboardShow.set(isKeyboardShow);
     }
@@ -63,7 +76,18 @@ public class SearchViewModel extends BaseViewModel {
         getCompositeDisposable().add(getDataManager().searchKeyword(new SearchBody(request))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe());
+                .subscribe(result -> {
+                    searchs.setValue(result.body().getSearchs());
+                }));
+
+        getCompositeDisposable().add(getDataManager().searchProduct(request, getDataManager().getUserId())
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(result -> {
+                    producs.setValue(result.body().getProducts());
+                }));
+
+
     }
 
     public void onDataInsert(String request) {
@@ -87,6 +111,11 @@ public class SearchViewModel extends BaseViewModel {
         getCompositeDisposable2().add(getDataManager().deleteAll()
                 .subscribeOn(getSchedulerProvider().io2())
                 .observeOn(getSchedulerProvider().ui2())
-                .subscribe());
+                .subscribe(result -> {
+                    searchs.getValue().clear();
+                    searchs.setValue(searchs.getValue());
+                    producs.getValue().clear();
+                    producs.setValue(producs.getValue());
+                }));
     }
 }

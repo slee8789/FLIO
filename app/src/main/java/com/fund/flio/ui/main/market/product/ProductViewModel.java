@@ -80,7 +80,7 @@ public class ProductViewModel extends BaseViewModel {
     private DecimalFormat formatter = new DecimalFormat("###,###");
 
     public void detailProduct(String pid) {
-        getCompositeDisposable().add(getDataManager().detailProduct(pid)
+        getCompositeDisposable().add(getDataManager().detailProduct(pid, getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(product -> {
@@ -98,7 +98,9 @@ public class ProductViewModel extends BaseViewModel {
                         if(this.product.getPurpose().length() != 0) {
                             purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
                         }
-                        setTag(product.body().getProduct().getTag().split(","));
+                        if(product.body().getProduct().getTag() != null) {
+                            setTag(product.body().getProduct().getTag().split(","));
+                        }
                         isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                         linkVisible.set(this.product.getProductRelatedUrl() != null);
                         detailVisible.set(this.product.getUseDate() != null);
@@ -119,7 +121,7 @@ public class ProductViewModel extends BaseViewModel {
     }
 
     public void purposeProduct(int productId, String purpose) {
-        getCompositeDisposable().add(getDataManager().purposeProduct(productId, purpose)
+        getCompositeDisposable().add(getDataManager().purposeProduct(productId, purpose, getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {

@@ -33,7 +33,7 @@ public class BuyListViewModel extends BaseViewModel {
 
 
     public void targetProduct() {
-        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId())
+        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId(), getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {

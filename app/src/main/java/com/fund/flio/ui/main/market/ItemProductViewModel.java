@@ -24,6 +24,7 @@ import com.fund.flio.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class ItemProductViewModel {
 
@@ -52,6 +53,7 @@ public class ItemProductViewModel {
         if (product.getImageUrl() != null) {
             String[] images = product.getImageUrl().split(",");
             imageUrl.set("http://flio.iptime.org:8080/image/" + product.getBaseUrl() + "/" + images[0]);
+            Logger.d("setImage " + imageUrl.get());
         } else {
             imageUrl.set(null);
         }
@@ -123,7 +125,7 @@ public class ItemProductViewModel {
         setImage(product);
         title.set(product.getTitle());
         date.set(product.getRegDate());
-        review.set(product.getProductReview().equals("") ? v.getContext().getResources().getString(R.string.product_buy_review_write) : v.getContext().getResources().getString(R.string.product_sell_view_review));
+        review.set(product.getProductReview() == null ? v.getContext().getResources().getString(R.string.product_buy_review_write) : v.getContext().getResources().getString(R.string.product_sell_view_review));
         flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
         faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
@@ -131,7 +133,7 @@ public class ItemProductViewModel {
     }
 
     public ItemProductViewModel(View v, ItemProductFavoriteBinding binding, Product product) {
-        Logger.d("itemProductBuyBinding  " + product);
+        Logger.d("ItemProductFavoriteBinding  " + product);
         this.itemProductFavoriteBinding = binding;
         mProduct = product;
         setImage(product);
@@ -175,19 +177,20 @@ public class ItemProductViewModel {
 
     public void showReview(View v) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("reviewType", mProduct.getProductReview().equals("") ? ReviewType.NO_REVIEW : ReviewType.valueOf(mProduct.getProductReview()));
+        bundle.putSerializable("reviewType", mProduct.getProductReview() == null ? ReviewType.NO_REVIEW : ReviewType.valueOf(mProduct.getProductReview()));
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_sell_list_to_nav_review, bundle);
     }
 
     public void showReviewWrite(View v) {
-        if (mProduct.getProductReview().equals("")) {
+
+        if (mProduct.getProductReview() == null) {
             Bundle bundle = new Bundle();
             bundle.putInt("productId", mProduct.getProductId());
             bundle.putString("userName", mProduct.getUserName());
             Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_buy_list_to_nav_review_write, bundle);
         } else {
             Bundle bundle = new Bundle();
-            bundle.putSerializable("reviewType", mProduct.getProductReview().equals("") ? ReviewType.NO_REVIEW : ReviewType.valueOf(mProduct.getProductReview()));
+            bundle.putSerializable("reviewType", mProduct.getProductReview() == null ? ReviewType.NO_REVIEW : ReviewType.valueOf(mProduct.getProductReview()));
             Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_buy_list_to_nav_review, bundle);
         }
 

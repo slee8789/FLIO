@@ -24,14 +24,14 @@ public class FavoriteCertificateViewModel extends BaseViewModel {
 
 
     public void targetProduct() {
-        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId())
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(products -> {
-                    if (products.isSuccessful()) {
-                        this.products.setValue(products.body().getProducts());
-                    }
-                }));
+//        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId())
+//                .subscribeOn(getSchedulerProvider().io())
+//                .observeOn(getSchedulerProvider().ui())
+//                .subscribe(products -> {
+//                    if (products.isSuccessful()) {
+//                        this.products.setValue(products.body().getProducts());
+//                    }
+//                }));
     }
 
 }

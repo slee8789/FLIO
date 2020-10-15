@@ -82,6 +82,7 @@ public interface ApiHelper {
             @Part("productPrice") RequestBody productPrice,
             @Part("tradeKind") RequestBody tradeKind,
             @Part("boxYn") RequestBody boxYn,
+            @Part("flioYn") RequestBody flioYn,
             @Part("brand") RequestBody brand,
             @Part("purpose") RequestBody purpose,
             @Part("modelNo") RequestBody modelNo,
@@ -99,12 +100,12 @@ public interface ApiHelper {
     // 장터 - 상세물품페이지
     @GET(ApiDefine.Body.DETAIL_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductWrapper>> detailProduct(@Query("productId") String productId);
+    Single<Response<ProductWrapper>> detailProduct(@Query("productId") String productId, @Query("uid") String uid);
 
     // 장터 - 메인페이지
     @GET(ApiDefine.Body.MAIN_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> mainProduct();
+    Single<Response<ProductsWrapper>> mainProduct(@Query("uid") String uid);
 
     // 장터 - 마이페이지 - 판매내역
     @GET(ApiDefine.Body.MY_PAGE_PRODUCT)
@@ -114,22 +115,22 @@ public interface ApiHelper {
     // 장터 - 마이페이지 - 구매내역
     @GET(ApiDefine.Body.TARGET_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> targetProduct(@Query("targetUid") String uid);
+    Single<Response<ProductsWrapper>> targetProduct(@Query("targetUid") String targetUid, @Query("uid") String uid);
 
     // 장터 - 상세물품페이지 - 관련매물
     @GET(ApiDefine.Body.PURPOSE_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> purposeProduct(@Query("productId") int productId, @Query("purpose") String purpose);
+    Single<Response<ProductsWrapper>> purposeProduct(@Query("productId") int productId, @Query("purpose") String purpose, @Query("uid") String uid);
 
     // 장터 - 추천매물
     @GET(ApiDefine.Body.RECOMMAND_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> recommandProduct(@Query("categoryDepth1") String categoryDepth1, @Query("categoryDepth2") String categoryDepth2);
+    Single<Response<ProductsWrapper>> recommandProduct(@Query("categoryDepth1") String categoryDepth1, @Query("categoryDepth2") String categoryDepth2, @Query("uid") String uid);
 
     // 장터태그, 장터내용 검색
     @GET(ApiDefine.Body.SEARCH_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<SearchWrapper>> searchProduct(@Query("keyword") String keyword);
+    Single<Response<ProductsWrapper>> searchProduct(@Query("keyword") String keyword, @Query("uid") String uid);
 
     //장터 - 판매완료 선택 리스트
     @GET(ApiDefine.Body.TARGET_USER_LIST)

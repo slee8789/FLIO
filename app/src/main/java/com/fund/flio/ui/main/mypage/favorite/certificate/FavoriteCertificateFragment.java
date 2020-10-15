@@ -64,7 +64,7 @@ public class FavoriteCertificateFragment extends BaseFragment<FragmentFavoriteCe
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_8)));
         getViewDataBinding().buys.addItemDecoration(dividerItemDecoration);
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mFavoriteCertificateAdapter.setItems(products));
-        getViewModel().targetProduct();
+//        getViewModel().targetProduct();
     }
 
 

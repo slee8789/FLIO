@@ -89,7 +89,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/btn_mark_flio"
-            android:visibility="@{itemViewModel.flioYn ? View.GONE : View.VISIBLE}"
+            android:visibility="@{itemViewModel.flioYn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toStartOf="@id/faith"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,7 +101,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/icon_faith_blue"
-            android:visibility="@{itemViewModel.faithYn ? View.GONE : View.VISIBLE}"
+            android:visibility="@{itemViewModel.faithYn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,7 +112,7 @@
             android:layout_marginBottom="20dp"
             android:onClick="@{v -> viewModel.onFavoriteToggle(v, itemViewModel.product)}"
             android:padding="10dp"
-            android:src="@drawable/icon_favorite"
+            android:src="@drawable/fab_like"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

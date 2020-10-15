@@ -29,7 +29,7 @@ public class ItemEventViewModel {
     }
 
     public void onItemClick(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_community_to_nav_event_detail);
+//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_community_to_nav_event_detail);
     }
 
 }

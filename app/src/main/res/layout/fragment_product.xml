@@ -73,7 +73,7 @@
                         android:layout_marginTop="?attr/actionBarSize"
                         android:layout_marginEnd="20dp"
                         android:src="@drawable/icon_flio"
-                        android:visibility="@{viewModel.flioYn ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{viewModel.flioYn ? View.VISIBLE : View.GONE}"
                         app:layout_constraintEnd_toStartOf="@id/faith"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,7 +85,7 @@
                         android:layout_marginTop="?attr/actionBarSize"
                         android:layout_marginEnd="20dp"
                         android:src="@drawable/icon_faith"
-                        android:visibility="@{viewModel.faithYn ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{viewModel.faithYn ? View.VISIBLE : View.GONE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

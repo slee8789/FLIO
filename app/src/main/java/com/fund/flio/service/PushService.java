@@ -60,8 +60,8 @@ public class PushService extends FirebaseMessagingService {
 
     private void tradeMessage(RemoteMessage remoteMessage) {
         Bundle chatBundle = new Bundle();
-        chatBundle.putInt("chatSeq", 1);
-        createNotification(NOTIFICATION_CHANNEL_ID_TRADE, NOTIFICATION_ID_TRADE, "거래가 완료되었습니다.", remoteMessage.getData().get("tradeTitle"), "http://flio.iptime.org:8080/image/" + remoteMessage.getData().get("tradeBaseUrl") + "/" + remoteMessage.getData().get("tradeImageUrl").split(",")[0], getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+//        chatBundle.putInt("chatSeq", 1);
+        createNotification(NOTIFICATION_CHANNEL_ID_TRADE, NOTIFICATION_ID_TRADE, "거래가 완료되었습니다.", remoteMessage.getData().get("tradeTitle"), "http://flio.iptime.org:8080/image/" + remoteMessage.getData().get("tradeBaseUrl") + "/" + remoteMessage.getData().get("tradeImageUrl").split(",")[0], getPendingIntent(chatBundle, R.id.nav_buy_list), null, Notification.CATEGORY_MESSAGE, null, null);
     }
 
     private void logoutMessage() {

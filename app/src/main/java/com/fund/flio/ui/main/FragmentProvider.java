@@ -1,5 +1,6 @@
 package com.fund.flio.ui.main;
 
+import com.fund.flio.ui.main.category.CategoryFragment;
 import com.fund.flio.ui.main.community.certificate.detail.CertificateDetailFragment;
 import com.fund.flio.ui.main.community.certificate.detail.reply.CertificateReplyFragment;
 import com.fund.flio.ui.main.community.certificate.register.CertificateRegisterFragment;
@@ -181,5 +182,8 @@ public abstract class FragmentProvider {
 
     @ContributesAndroidInjector
     abstract FavoriteCertificateFragment provideFavoriteCertificate();
+
+    @ContributesAndroidInjector
+    abstract CategoryFragment provideCategory();
 
 }

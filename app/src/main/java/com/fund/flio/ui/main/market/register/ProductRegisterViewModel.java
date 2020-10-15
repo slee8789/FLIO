@@ -91,7 +91,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
     private MutableLiveData<ArrayList<Purpose>> purposes = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<Uri>> mThumbnailUris = new MutableLiveData<>();
 
-    private RequestBody paramImgBody, paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
+    private RequestBody paramImgBody, paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramFlioYn,paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
     private MultipartBody.Part[] imgUrls;
 
     public MutableLiveData<List<Uri>> getThumbnailUris() {
@@ -216,11 +216,12 @@ public class ProductRegisterViewModel extends BaseViewModel {
         paramCategoryDepth2 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth2.get());
         paramTradeKind = RequestBody.create(MediaType.parse("text/plain"), tradeKind.get().name());
         paramSaleYn = RequestBody.create(MediaType.parse("text/plain"), saleYn.get().name());
-        paramTag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
+//        paramTag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
 
         if (detailState.get()) {
             paramUseDate = RequestBody.create(MediaType.parse("text/plain"), useDate.get().name());
             paramBoxYn = RequestBody.create(MediaType.parse("text/plain"), boxYn.get().name());
+            paramFlioYn = RequestBody.create(MediaType.parse("text/plain"), flioYn.get().name());
             paramPurchaseKind = RequestBody.create(MediaType.parse("text/plain"), purchaseKind.get().name());
             paramRepairYn = RequestBody.create(MediaType.parse("text/plain"), repairYn.get().name());
             if (brand.get() != null) {
@@ -248,7 +249,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
         paramUid = RequestBody.create(MediaType.parse("text/plain"), getDataManager().getUserId());
 
         setIsLoading(true);
-        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, imgUrls, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid)
+        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, null, imgUrls, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn,paramFlioYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(Void -> {

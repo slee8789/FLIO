@@ -11,6 +11,7 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.main.AuthViewModel;
 import com.fund.flio.ui.main.MainViewModel;
+import com.fund.flio.ui.main.category.CategoryViewModel;
 import com.fund.flio.ui.main.community.certificate.detail.CertificateDetailViewModel;
 import com.fund.flio.ui.main.community.certificate.list.CertificateListViewModel;
 import com.fund.flio.ui.main.community.certificate.register.CertificateRegisterViewModel;
@@ -135,6 +136,9 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new FavoriteEventViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (FavoriteCertificateViewModel.class.isAssignableFrom(modelClass)) {
             return new FavoriteCertificateViewModel(dataManager, schedulerProvider, resourceProvider);
+
+        } else if (CategoryViewModel.class.isAssignableFrom(modelClass)) {
+            return new CategoryViewModel(dataManager, schedulerProvider, resourceProvider);
         } else
             throw new IllegalArgumentException("Unknown class name " + modelClass.getName());
     }
