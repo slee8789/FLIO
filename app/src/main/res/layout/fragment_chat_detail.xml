@@ -49,7 +49,7 @@
             android:layout_height="56dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/sample1"
+            app:imageUrlRoundCorner="@{viewModel.imageUrl}"
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -95,7 +95,8 @@
             android:gravity="center"
             android:text="거래후기\n남기기"
             android:textColor="@color/purple"
-            android:textSize="18sp"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -168,7 +169,7 @@
                     android:text="@={viewModel.inputMessage}"
                     android:textColor="@color/black0"
                     android:textColorHint="@color/gray9"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <ImageView

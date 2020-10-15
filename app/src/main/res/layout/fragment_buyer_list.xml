@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="test"
+                android:text="최근 채팅한 사용자"
                 android:textColor="@color/black0"
                 android:textSize="20sp" />
 

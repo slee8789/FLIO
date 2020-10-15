@@ -27,6 +27,7 @@ import com.fund.flio.data.enums.SourceType;
 import com.fund.flio.data.enums.SpeakerType;
 import com.fund.flio.databinding.FragmentMarketBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.fund.flio.utils.GridItemOffsetDecoration;
 import com.google.android.material.tabs.TabLayout;
 import com.hlab.fabrevealmenu.helper.OnFABMenuSelectedListener;
@@ -269,28 +270,8 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
     private void setupActionBar() {
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar.toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getBaseActivity().getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.d("onOptionsItemSelected " + item.getItemId());
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Logger.d("onOptionsItemSelected home");
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-                break;
-
-            case R.id.menu_search:
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search);
-                break;
-
-            case R.id.menu_bookmark:
-//                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+        getViewDataBinding().toolbar.search.setOnClickListener(v -> Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search));
+        getViewDataBinding().toolbar.favorite.setOnClickListener(v -> Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_nav_favorite_list));
     }
 
     @Override

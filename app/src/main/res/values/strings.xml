@@ -184,20 +184,20 @@
     <string name="favorite_go_market">장터 가기</string>
 
     <string name="product_register">장터글쓰기</string>
-    <string name="product_register_title_hint">제목</string>
-    <string name="product_register_category">카테고리 분류</string>
+    <string name="product_register_title_hint">*제목</string>
+    <string name="product_register_category">*카테고리 분류</string>
     <string name="product_register_purpose">용도선택</string>
-    <string name="product_register_price">₩ 가격 입력(선택사항)</string>
-    <string name="product_register_state">상태 체크표</string>
+    <string name="product_register_price">*₩ 가격 입력(선택사항)</string>
+    <string name="product_register_state">상세 정보</string>
     <string name="product_register_way">거래방법</string>
     <string name="product_register_way_direct">직거래</string>
     <string name="product_register_way_delivery">택배거래</string>
-    <string name="product_register_tag">태그 입력시 브랜드/모델명으로 입력 *(표기)</string>
-    <string name="product_register_message_hint">게시글 내용을 작성해주세요.</string>
+    <string name="product_register_tag">*태그 입력시 브랜드/모델명으로 입력 *(표기)</string>
+    <string name="product_register_message_hint">*게시글 내용을 작성해주세요.</string>
 
     <string name="product_register_category_title">카테고리</string>
 
-    <string name="product_register_detail_title">제품 상세 체크표</string>
+    <string name="product_register_detail_title">제품 상세 정보</string>
     <string name="product_register_porpose_title">용도</string>
     <string name="product_register_porpose_description">주로 사용하는 용도 선택</string>
     <string name="product_register_porpose_description2">* 용도를 작성하면 검색어 노출에 유리합니다</string>

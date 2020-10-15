@@ -26,24 +26,41 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/menu"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_menu_appbar"
+            app:tint="@color/black3" />
+
+        <ImageView
             android:id="@+id/toolbar_title"
             android:layout_width="60dp"
             android:layout_height="27dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
             android:src="@drawable/icon_logo" />
 
         <ImageView
+            android:id="@+id/favorite"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_gravity="end"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/icon_favorite_appbar" />
+            android:src="@drawable/icon_favorite_appbar"
+            app:tint="@color/black3" />
 
         <ImageView
+            android:id="@+id/search"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_gravity="end"
-            android:src="@drawable/icon_search_appbar" />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_search_appbar"
+            app:tint="@color/black3" />
 
     </androidx.appcompat.widget.Toolbar>
 </layout>

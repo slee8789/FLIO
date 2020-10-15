@@ -8,9 +8,11 @@ import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.Product;
 import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.ProductsWrapper;
+import com.fund.flio.data.model.SearchWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.InsertMyChatBody;
+import com.fund.flio.data.model.body.SearchBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
@@ -127,7 +129,7 @@ public interface ApiHelper {
     // 장터태그, 장터내용 검색
     @GET(ApiDefine.Body.SEARCH_PRODUCT)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> searchProduct(@Query("keyword") String keyword);
+    Single<Response<SearchWrapper>> searchProduct(@Query("keyword") String keyword);
 
     //장터 - 판매완료 선택 리스트
     @GET(ApiDefine.Body.TARGET_USER_LIST)
@@ -137,7 +139,7 @@ public interface ApiHelper {
     //장터 - 판매완료 업데이트
     @GET(ApiDefine.Body.TARGET_USER_UPDATE)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<ProductsWrapper>> targetUserUpdate(@Query("productId") int productId, @Query("sourceUid") String sourceUid, @Query("targetUid") String targetUid);
+    Single<Response<Void>> targetUserUpdate(@Query("productId") int productId, @Query("sourceUid") String sourceUid, @Query("targetUid") String targetUid);
 
     //장터 - 구매자 후기 업데이트
     @GET(ApiDefine.Body.TARGET_USER_REVIEW)
@@ -150,7 +152,12 @@ public interface ApiHelper {
     Single<Response<Void>> switchFavorite(@Query("uid") String uid, @Query("productId") int productId);
 
     // 관심목록 리스트
-    @POST(ApiDefine.Body.SELECT_FAVORITE)
+    @GET(ApiDefine.Body.SELECT_FAVORITE)
     @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
-    Single<Response<Void>> selectFavorite(@Query("uid") String uid);
+    Single<Response<ProductsWrapper>> selectFavorite(@Query("uid") String uid);
+
+    // 검색
+    @POST(ApiDefine.Body.SEARCH_KEYWORD)
+    @Headers({ApiDefine.Header.CONTENT_TYPE_JSON})
+    Single<Response<SearchWrapper>> searchKeyword(@Body SearchBody searchBody);
 }

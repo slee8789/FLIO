@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{v -> viewModel.onCategoryClick(v, itemViewModel.category)}">
+        android:onClick="@{v -> viewModel.onCategoryClick(v, itemViewModel.position, itemViewModel.category)}">
 
         <TextView
             android:layout_width="match_parent"

@@ -80,4 +80,14 @@ public class AppPreferencesHelper implements PreferencesHelper {
     public void setAuthType(String authType) {
         mPrefs.edit().putString(context.getString(R.string.key_auth_type), authType).apply();
     }
+
+    @Override
+    public boolean notifyChat() {
+        return mPrefs.getBoolean(context.getString(R.string.key_notify_chat), true);
+    }
+
+    @Override
+    public void setNotifyChat(boolean chat) {
+        mPrefs.edit().putBoolean(context.getString(R.string.key_notify_chat), chat).apply();
+    }
 }

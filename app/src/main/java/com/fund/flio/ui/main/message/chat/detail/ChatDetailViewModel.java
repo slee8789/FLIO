@@ -41,6 +41,7 @@ public class ChatDetailViewModel extends BaseViewModel {
     public ObservableField<String> inputMessage = new ObservableField<>();
     public ObservableField<String> remoteUserName = new ObservableField<>();
     public ObservableField<String> productTitle = new ObservableField<>();
+    public ObservableField<String> imageUrl = new ObservableField<>();
     public ObservableField<String> productPrice = new ObservableField<>();
 
     public void setChatRoom(ChatRoom mChatRoom) {
@@ -50,6 +51,7 @@ public class ChatDetailViewModel extends BaseViewModel {
         remoteUserName.set(isSource ? mChatRoom.getChatTargetName() : mChatRoom.getChatSourceName());
         productTitle.set(mChatRoom.getTitle());
         productPrice.set((formatter.format(mChatRoom.getProductPrice()) + "원"));
+        imageUrl.set("http://flio.iptime.org:8080/image/" + mChatRoom.getProductBaseUrl() + "/" + mChatRoom.getProductImageUrl().split(",")[0]);
         selectMyChatDetail(mChatRoom.getChatSeq());
     }
 

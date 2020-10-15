@@ -16,16 +16,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.showLink(v)}"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/notosanskr_medium"
+            android:maxLines="1"
             android:text="@{viewModel.title}"
             android:textColor="@color/black3"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btn_move"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +41,7 @@
             android:layout_height="12dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/btn_more_item"
+
             app:layout_constraintBottom_toBottomOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/title" />
@@ -53,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="9.5dp"
+            android:fontFamily="@font/notosanskr_medium"
             android:text="@{viewModel.date}"
             android:textColor="@color/black3"
             android:textSize="12sp"
@@ -64,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/notosanskr_medium"
             android:lineHeight="26dp"
             android:text="@{viewModel.description}"
             android:textColor="@color/gray9"
@@ -76,7 +85,7 @@
             android:layout_height="160dp"
             android:layout_marginTop="4dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/sampleimage"
+            app:imageUrlRoundCorner="@{viewModel.imageUrl}"
             app:layout_constraintTop_toBottomOf="@id/description" />
 
 

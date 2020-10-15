@@ -42,4 +42,5 @@
 
     <color name="dot_light_screen4">@color/white</color>
     <color name="dot_dark_screen4">@color/purple</color>
+    <color name="bg_category">#F7F8FC</color>
 </resources>

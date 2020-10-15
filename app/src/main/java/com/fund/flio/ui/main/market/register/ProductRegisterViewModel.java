@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.ObservableBoolean;
@@ -20,13 +21,23 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.enums.AccessoryType;
+import com.fund.flio.data.enums.AcousticType;
+import com.fund.flio.data.enums.AmpType;
 import com.fund.flio.data.enums.BoxYn;
+import com.fund.flio.data.enums.CableType;
+import com.fund.flio.data.enums.DiyType;
 import com.fund.flio.data.enums.FlioYn;
+import com.fund.flio.data.enums.HeadSetType;
+import com.fund.flio.data.enums.MikeType;
 import com.fund.flio.data.enums.ProductCategory;
 import com.fund.flio.data.enums.PurchaseKind;
 import com.fund.flio.data.enums.Purpose;
+import com.fund.flio.data.enums.RecordType;
 import com.fund.flio.data.enums.RepairYn;
 import com.fund.flio.data.enums.SaleYn;
+import com.fund.flio.data.enums.SourceType;
+import com.fund.flio.data.enums.SpeakerType;
 import com.fund.flio.data.enums.TradeKind;
 import com.fund.flio.data.enums.UseDate;
 import com.fund.flio.di.provider.ResourceProvider;
@@ -39,6 +50,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,21 +72,22 @@ public class ProductRegisterViewModel extends BaseViewModel {
     public ObservableField<PurchaseKind> purchaseKind = new ObservableField<>(PurchaseKind.Y);
     public ObservableField<TradeKind> tradeKind = new ObservableField<>(TradeKind.DIRECT);
     public ObservableField<RepairYn> repairYn = new ObservableField<>(RepairYn.Y);
-    public ObservableField<FlioYn> flioYn = new ObservableField<>(FlioYn.Y);
+    public ObservableField<FlioYn> flioYn = new ObservableField<>(FlioYn.N);
     public ObservableField<String> productRelatedUrl = new ObservableField<>();
     public ObservableField<String> model = new ObservableField<>();
     public ObservableField<String> serial = new ObservableField<>();
     public ObservableField<String> brand = new ObservableField<>();
     public ObservableField<String> title = new ObservableField<>();
-    public ObservableField<String> productPrice = new ObservableField<>();
     public ObservableField<String> content = new ObservableField<>();
-    public ObservableField<String> categoryDepth1 = new ObservableField<>();
+    public ObservableField<String> categoryDepth1 = new ObservableField<>(ProductCategory.SPEAKER.name());
     public MutableLiveData<String> tag = new MutableLiveData<>();
     public ObservableField<String> tagCount = new ObservableField<>();
     public ObservableField<String> imageCount = new ObservableField<>(String.valueOf(0));
-    public ObservableBoolean detailState = new ObservableBoolean(false);
+    public ObservableField<Boolean> detailState = new ObservableField(false);
+    public MutableLiveData<String> productPrice = new MutableLiveData<>();
     public MutableLiveData<String> inputTags = new MutableLiveData<>();
-    private MutableLiveData<String> categoryDepth2 = new MutableLiveData<>();
+    public ObservableField<String> categoryDepth2 = new ObservableField<>();
+    private MutableLiveData<String> categoryDepth2String = new MutableLiveData<>();
     private MutableLiveData<ArrayList<Purpose>> purposes = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<Uri>> mThumbnailUris = new MutableLiveData<>();
 
@@ -93,8 +106,12 @@ public class ProductRegisterViewModel extends BaseViewModel {
         return inputTags;
     }
 
-    public MutableLiveData<String> getCategoryDepth2() {
-        return categoryDepth2;
+    public MutableLiveData<String> getProductPrice() {
+        return productPrice;
+    }
+
+    public MutableLiveData<String> getCategoryDepth2String() {
+        return categoryDepth2String;
     }
 
     public void setInitial() {
@@ -110,10 +127,10 @@ public class ProductRegisterViewModel extends BaseViewModel {
         serial.set("");
         brand.set("");
         title.set("");
-        productPrice.set("");
+        productPrice.setValue("");
         content.set("");
         categoryDepth1.set("");
-        categoryDepth2.setValue("");
+        categoryDepth2.set("");
         tag.setValue("");
         imageCount.set("0");
         if (mThumbnailUris.getValue() != null) {
@@ -196,7 +213,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
         paramTitle = RequestBody.create(MediaType.parse("text/plain"), title.get());
         paramContent = RequestBody.create(MediaType.parse("text/plain"), content.get());
         paramCategoryDepth1 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth1.get());
-        paramCategoryDepth2 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth2.getValue());
+        paramCategoryDepth2 = RequestBody.create(MediaType.parse("text/plain"), categoryDepth2.get());
         paramTradeKind = RequestBody.create(MediaType.parse("text/plain"), tradeKind.get().name());
         paramSaleYn = RequestBody.create(MediaType.parse("text/plain"), saleYn.get().name());
         paramTag = RequestBody.create(MediaType.parse("text/plain"), "COMMUNITY");
@@ -220,8 +237,8 @@ public class ProductRegisterViewModel extends BaseViewModel {
             }
         }
 
-        if (productPrice.get() != null) {
-            paramProductPrice = RequestBody.create(MediaType.parse("text/plain"), productPrice.get());
+        if (productPrice.getValue() != null) {
+            paramProductPrice = RequestBody.create(MediaType.parse("text/plain"), productPrice.getValue().replaceAll(",", ""));
         }
 
 
@@ -248,7 +265,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
 
     }
 
-    public void setCategory(View view) {
+    public void setCategoryOrPurpose(View view) {
         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigateUp();
     }
 
@@ -348,34 +365,105 @@ public class ProductRegisterViewModel extends BaseViewModel {
         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigateUp();
     }
 
-    public void onCategoryClick(View v, String category) {
-        this.categoryDepth2.setValue(category);
+    public void onCategoryClick(View v, int position, String category) {
+        Logger.i("onCategoryClick " + position + ", " + category + ", " + categoryDepth1.get() + ", " + categoryDepth2.get() + ", " + categoryDepth2String.getValue());
+        switch (ProductCategory.valueOf(categoryDepth1.get())) {
+            case SPEAKER:
+                this.categoryDepth2.set(SpeakerType.values()[position + 1].name());
+                break;
+            case MIKE:
+                this.categoryDepth2.set(MikeType.values()[position + 1].name());
+                break;
+            case CABLE:
+                this.categoryDepth2.set(CableType.values()[position + 1].name());
+                break;
+            case AMP:
+                this.categoryDepth2.set(AmpType.values()[position + 1].name());
+                break;
+            case SOURCE:
+                this.categoryDepth2.set(SourceType.values()[position + 1].name());
+                break;
+            case HEADSET:
+                this.categoryDepth2.set(HeadSetType.values()[position + 1].name());
+                break;
+            case ACOUSTIC:
+                this.categoryDepth2.set(AcousticType.values()[position + 1].name());
+                break;
+            case RECORD:
+                this.categoryDepth2.set(RecordType.values()[position + 1].name());
+                break;
+            case ACCESSORY:
+                this.categoryDepth2.set(AccessoryType.values()[position + 1].name());
+                break;
+            case DIY:
+                this.categoryDepth2.set(DiyType.values()[position + 1].name());
+                break;
+        }
+        categoryDepth2String.setValue(category);
     }
 
     public void setCategory(int position) {
         switch (position) {
             case 0:
                 this.categoryDepth1.set(ProductCategory.SPEAKER.name());
+                break;
             case 1:
                 this.categoryDepth1.set(ProductCategory.MIKE.name());
+                break;
             case 2:
                 this.categoryDepth1.set(ProductCategory.CABLE.name());
+                break;
             case 3:
                 this.categoryDepth1.set(ProductCategory.AMP.name());
+                break;
             case 4:
                 this.categoryDepth1.set(ProductCategory.SOURCE.name());
+                break;
             case 5:
                 this.categoryDepth1.set(ProductCategory.HEADSET.name());
+                break;
             case 6:
                 this.categoryDepth1.set(ProductCategory.ACOUSTIC.name());
+                break;
             case 7:
                 this.categoryDepth1.set(ProductCategory.RECORD.name());
+                break;
             case 8:
                 this.categoryDepth1.set(ProductCategory.ACCESSORY.name());
+                break;
             case 9:
                 this.categoryDepth1.set(ProductCategory.DIY.name());
+                break;
         }
     }
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private String result = "";
+
+    public TextWatcher watcherPrice = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            Logger.d("beforeTextChanged " + s);
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Logger.d("onTextChanged " + s);
+            if (!TextUtils.isEmpty(s.toString()) && !s.toString().equals(result)) {
+                result = decimalFormat.format(Double.parseDouble(s.toString().replaceAll(",", "")));
+                productPrice.setValue(result);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            Logger.d("afterTextChanged " + editable);
+
+
+        }
+    };
 
     @Override
     protected void onCleared() {

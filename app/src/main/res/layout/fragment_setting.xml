@@ -27,7 +27,8 @@
             android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="설정">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -93,10 +94,10 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="8dp"
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="20dp"
-            android:background="@color/grayDBCECE"
+            android:background="@color/grayF8"
             app:layout_constraintBottom_toBottomOf="@id/tabs" />
 
         <TextView

@@ -94,7 +94,9 @@ public class PushService extends FirebaseMessagingService {
         if (Foreground.get().isBackground()) {
             Bundle chatBundle = new Bundle();
             chatBundle.putInt("chatSeq", chatSeq);
-            createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+            if (dataManager.notifyChat()) {
+                createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+            }
         } else {
 //            Logger.d("flio app " + ((FlioApplication) getApplicationContext()).getCurrentChatSeq());
             if (((FlioApplication) getApplicationContext()).getCurrentDestinationId() == R.id.nav_chat_detail) {
@@ -106,7 +108,9 @@ public class PushService extends FirebaseMessagingService {
             } else {
                 Bundle chatBundle = new Bundle();
                 chatBundle.putInt("chatSeq", chatSeq);
-                createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+                if (dataManager.notifyChat()) {
+                    createNotification(NOTIFICATION_CHANNEL_ID_CHAT, NOTIFICATION_ID_CHAT, remoteName, chatMessage, remoteUserImageUrl, getPendingIntent(chatBundle, R.id.nav_chat_detail), null, Notification.CATEGORY_MESSAGE, null, null);
+                }
                 MessageBus.getInstance().sendMessage(new Chat(chatSeq, new Random().nextInt(), isSource, chatTimeFormat.format(System.currentTimeMillis()), chatMessage, remoteUserImageUrl, MessageType.REMOTE.ordinal()));
             }
         }
@@ -162,7 +166,6 @@ public class PushService extends FirebaseMessagingService {
 
     private void createNotification(String channelId, int notificationId, String title, String body, String remoteUserImageUrl, PendingIntent pendingIntent, PendingIntent deleteIntent, String category, Uri soundUri, Notification.Action action) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            //Todo 왜 아이콘이 안될까
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
 //                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.push_icon))
                     .setLargeIcon(getBitmapFromUrl(remoteUserImageUrl))

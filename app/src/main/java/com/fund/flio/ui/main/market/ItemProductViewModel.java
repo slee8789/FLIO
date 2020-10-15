@@ -8,7 +8,6 @@ import androidx.databinding.ObservableField;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
 
-import com.annimon.stream.Stream;
 import com.fund.flio.R;
 import com.fund.flio.data.enums.FaithYn;
 import com.fund.flio.data.enums.FavoriteYn;
@@ -31,14 +30,14 @@ public class ItemProductViewModel {
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> imageUrl = new ObservableField<>();
     public ObservableField<String> date = new ObservableField<>();
-    public ObservableBoolean flioYn = new ObservableBoolean();
-    public ObservableBoolean faithYn = new ObservableBoolean();
-    public ObservableBoolean favoriteYn = new ObservableBoolean();
+    public ObservableBoolean flioYn = new ObservableBoolean(false);
+    public ObservableBoolean faithYn = new ObservableBoolean(false);
+    public ObservableBoolean favoriteYn = new ObservableBoolean(false);
     public ObservableField<String> comment = new ObservableField<>();
     public ObservableField<String> review = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
     private ItemProductBinding itemProductBinding;
-    private ItemProductHomeBinding itemRecommendBinding;
+    private ItemProductHomeBinding itemProductHomeBinding;
     private ItemProductSellingBinding itemProductSellingBinding;
     private ItemProductSelledBinding itemProductSelledBinding;
     private ItemProductBuyBinding itemProductBuyBinding;
@@ -66,8 +65,8 @@ public class ItemProductViewModel {
         setImage(product);
         favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
         v.setSelected(favoriteYn.get());
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
         binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
@@ -76,14 +75,14 @@ public class ItemProductViewModel {
     }
 
     public ItemProductViewModel(View v, ItemProductHomeBinding binding, Product product) {
-        this.itemRecommendBinding = binding;
+        this.itemProductHomeBinding = binding;
         mProduct = product;
         setImage(product);
 
         favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
         v.setSelected(favoriteYn.get());
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
         binding.image.setTransitionName(v.getResources().getString(R.string.transition_product_image, product.getProductId()));
@@ -98,8 +97,8 @@ public class ItemProductViewModel {
         setImage(product);
         title.set(product.getTitle());
         date.set(product.getRegDate());
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
     }
@@ -111,8 +110,8 @@ public class ItemProductViewModel {
         setImage(product);
         title.set(product.getTitle());
         date.set(product.getRegDate());
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
     }
@@ -125,8 +124,8 @@ public class ItemProductViewModel {
         title.set(product.getTitle());
         date.set(product.getRegDate());
         review.set(product.getProductReview().equals("") ? v.getContext().getResources().getString(R.string.product_buy_review_write) : v.getContext().getResources().getString(R.string.product_sell_view_review));
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
     }
@@ -136,12 +135,14 @@ public class ItemProductViewModel {
         this.itemProductFavoriteBinding = binding;
         mProduct = product;
         setImage(product);
-        favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
+        if (product.getFavoriteYn() != null) {
+            favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
+        }
         v.setSelected(favoriteYn.get());
         title.set(product.getTitle());
         date.set(product.getRegDate());
-        flioYn.set(product.getFlioYn().equals(FlioYn.Y.name()));
-        faithYn.set(product.getFaithYn().equals(FaithYn.Y.name()));
+        flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));
+        faithYn.set(product.getFaithYn() != null && product.getFaithYn().equals(FaithYn.Y.name()));
         comment.set(product.getContent());
         price.set(formatter.format(product.getProductPrice()) + "원");
     }
@@ -150,9 +151,9 @@ public class ItemProductViewModel {
         FragmentNavigator.Extras extras = null;
         if (itemProductBinding == null) {
             extras = new FragmentNavigator.Extras.Builder()
-                    .addSharedElement(itemRecommendBinding.image, itemRecommendBinding.image.getTransitionName())
-                    .addSharedElement(itemRecommendBinding.flio, itemRecommendBinding.flio.getTransitionName())
-                    .addSharedElement(itemRecommendBinding.faith, itemRecommendBinding.faith.getTransitionName())
+                    .addSharedElement(itemProductHomeBinding.image, itemProductHomeBinding.image.getTransitionName())
+                    .addSharedElement(itemProductHomeBinding.flio, itemProductHomeBinding.flio.getTransitionName())
+                    .addSharedElement(itemProductHomeBinding.faith, itemProductHomeBinding.faith.getTransitionName())
                     .build();
         } else {
             extras = new FragmentNavigator.Extras.Builder()
@@ -165,7 +166,11 @@ public class ItemProductViewModel {
     }
 
     public void showBuyerGuide(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_buyer_guide);
+        Bundle bundle = new Bundle();
+        bundle.putInt("productId", mProduct.getProductId());
+        bundle.putString("productImage", imageUrl.get());
+        bundle.putString("title", mProduct.getTitle());
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_buyer_guide, bundle);
     }
 
     public void showReview(View v) {

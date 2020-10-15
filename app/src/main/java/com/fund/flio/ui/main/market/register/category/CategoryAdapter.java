@@ -68,7 +68,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             final String category = categories.get(position);
-            ItemCategoryViewModel categoryViewModel = new ItemCategoryViewModel(category);
+            ItemCategoryViewModel categoryViewModel = new ItemCategoryViewModel(position, category);
             categoryBinding.setItemViewModel(categoryViewModel);
             categoryBinding.setViewModel(productRegisterViewModel);
         }

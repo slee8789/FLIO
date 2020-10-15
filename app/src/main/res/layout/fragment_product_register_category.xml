@@ -97,7 +97,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_product_detail_complement_btn"
             android:enabled="@{viewModel.categoryDepth2.length() != 0}"
-            android:onClick="@{v -> viewModel.setCategory(v)}"
+            android:onClick="@{v -> viewModel.setCategoryOrPurpose(v)}"
             android:text="@string/product_detail_btn_complement"
             android:textColor="@color/white"
             android:textSize="18sp"

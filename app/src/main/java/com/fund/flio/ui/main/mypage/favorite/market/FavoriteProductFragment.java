@@ -60,6 +60,7 @@ public class FavoriteProductFragment extends BaseFragment<FragmentFavoriteMarket
 
     private void initViews() {
         getViewDataBinding().buys.setAdapter(mFavoriteProductAdapter);
+        mFavoriteProductAdapter.setFavoriteProductViewModel(getViewModel());
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_8)));
         getViewDataBinding().buys.addItemDecoration(dividerItemDecoration);

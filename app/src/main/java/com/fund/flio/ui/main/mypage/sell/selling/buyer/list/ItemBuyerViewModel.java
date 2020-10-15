@@ -20,7 +20,9 @@ public class ItemBuyerViewModel {
     public ItemBuyerViewModel(Buyer buyer) {
         Logger.d("ItemBuyerViewModel " + buyer);
 //        this.mChatRoom = chatRoom;
-//        targetName.set(FirebaseAuth.getInstance().getUid().equals(chatRoom.getChatSourceUid()) ? chatRoom.getChatTargetName() : chatRoom.getChatSourceName());
+        mByuer = buyer;
+        imageUserUrl.set(buyer.getTargetImageUrl());
+        targetName.set(buyer.getTargetName());
 //        this.chat.set(chatRoom.getChatLastMessage());
 //        this.time.set(chatRoom.getChatLastDate());
 //        imageUserUrl.set(FirebaseAuth.getInstance().getUid().equals(chatRoom.getChatSourceUid()) ? chatRoom.getChatTargetImageUrl() : chatRoom.getChatSourceImageUrl());

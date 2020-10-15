@@ -9,8 +9,10 @@ import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.enums.UseDate;
 import com.fund.flio.databinding.FragmentBuyerGuideBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.market.product.detail.ProductDetailDialogArgs;
 import com.orhanobut.logger.Logger;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
@@ -48,7 +50,10 @@ public class BuyerGuideFragment extends BaseFragment<FragmentBuyerGuideBinding, 
     }
 
     private void initViews() {
-
+        getViewModel().imageUrl.set(BuyerGuideFragmentArgs.fromBundle(getArguments()).getProductImage());
+        getViewModel().productName.set(BuyerGuideFragmentArgs.fromBundle(getArguments()).getTitle());
+        getViewModel().productId.set(BuyerGuideFragmentArgs.fromBundle(getArguments()).getProductId());
+//        binding.useDate.setText(UseDate.valueOf(ProductDetailDialogArgs.fromBundle(getArguments()).getProduct().getUseDate()).getType());
     }
 
     private void setupActionBar() {

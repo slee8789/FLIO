@@ -36,6 +36,14 @@
         app:popExitAnim="@anim/slide_out_bottom" />
 
     <action
+        android:id="@+id/action_global_to_nav_favorite_list"
+        app:destination="@id/nav_favorite_list"
+        app:enterAnim="@anim/slide_in_bottom"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out_bottom" />
+
+    <action
         android:id="@+id/action_global_to_nav_market_product"
         app:destination="@id/nav_market_product" />
 
@@ -350,13 +358,27 @@
         <action
             android:id="@+id/action_nav_buyer_guide_to_nav_buyer_list"
             app:destination="@id/nav_buyer_list" />
+
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+
+        <argument
+            android:name="productImage"
+            app:argType="string" />
+
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_buyer_list"
         android:name="com.fund.flio.ui.main.mypage.sell.selling.buyer.list.BuyerListFragment"
         tools:layout="@layout/fragment_buyer_list">
-
+        <argument
+            android:name="productId"
+            app:argType="integer" />
     </fragment>
 
 
@@ -380,8 +402,6 @@
             app:destination="@id/nav_community_event_register"
             app:popUpTo="@id/nav_bottom_sheet_write"
             app:popUpToInclusive="true" />
-
-
     </dialog>
 
     <dialog

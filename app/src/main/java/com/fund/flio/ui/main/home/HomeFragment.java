@@ -21,6 +21,7 @@ import com.fund.flio.data.model.Product;
 
 import com.fund.flio.databinding.FragmentHomeBinding;
 import com.fund.flio.ui.base.BaseFragment;
+import com.fund.flio.ui.main.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
@@ -88,36 +89,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     private void setupActionBar() {
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar.toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getBaseActivity().getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+        getViewDataBinding().toolbar.search.setOnClickListener(v -> Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search));
+        getViewDataBinding().toolbar.favorite.setOnClickListener(v -> Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_global_to_nav_favorite_list));
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_search_bookmark, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//        Logger.d("onCreateOptionsMenu");
-//    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.d("onOptionsItemSelected " + item.getItemId());
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Logger.d("onOptionsItemSelected home");
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-                break;
-
-            case R.id.menu_search:
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search);
-                break;
-
-            case R.id.menu_bookmark:
-//                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigate(R.id.action_global_to_nav_search);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void initViews() {
         mProductSmallAdapter.setMainViewModel(getMainViewModel());

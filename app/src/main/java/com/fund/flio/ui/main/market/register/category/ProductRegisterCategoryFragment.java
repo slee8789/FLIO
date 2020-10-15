@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -29,6 +30,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProductRegisterCategoryBinding, ProductRegisterViewModel> {
@@ -38,9 +40,12 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
     @Inject
     CategoryAdapter mCategoryAdapter;
 
+    private InputMethodManager imm;
+
     private TabLayout.OnTabSelectedListener mainCategory = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
+            getViewModel().setCategory(tab.getPosition());
             switch (tab.getPosition()) {
                 case 0:
                     List<String> speaker = Arrays.asList(getResources().getStringArray(R.array.array_category_register_speaker));
@@ -116,6 +121,7 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
         super.onCreate(savedInstanceState);
         Logger.i("onCreate");
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -123,6 +129,8 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
         super.onViewCreated(view, savedInstanceState);
         initViews();
         setupActionBar();
+        imm = (InputMethodManager) getBaseActivity().getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void setupActionBar() {
@@ -156,11 +164,14 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
 
         List<String> speaker = Arrays.asList(getResources().getStringArray(R.array.array_category_register_speaker));
         mCategoryAdapter.setItems(speaker);
-
-        getViewModel().getCategoryDepth2().observe(getViewLifecycleOwner(), category -> {
+        getViewModel().setCategory(0);
+        getViewModel().getCategoryDepth2String().observe(getViewLifecycleOwner(), category -> {
             setCategory(mTabLayout.getSelectedTabPosition(), category);
-            getViewModel().setCategory(mTabLayout.getSelectedTabPosition());
         });
+
+//        getViewModel().getCategoryDepth2().observe(getViewLifecycleOwner(), category -> {
+//            Logger.d("onCategoryClick observe " + category);
+//        });
     }
 
     public void setCategory(int position, String category) {
@@ -173,7 +184,8 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
         chip.setTextAppearanceResource(R.style.ChipTextStyle);
         chip.setCheckable(false);
         chip.setOnCloseIconClickListener(v -> {
-            getViewModel().getCategoryDepth2().setValue("");
+            getViewModel().categoryDepth2.set("");
+            getViewModel().getCategoryDepth2String().setValue("");
             getViewDataBinding().selected.removeAllViews();
         });
         getViewDataBinding().selected.addView(chip);
@@ -199,9 +211,9 @@ public class ProductRegisterCategoryFragment extends BaseFragment<FragmentProduc
             case 7:
                 return "음반 > " + category;
             case 8:
-                return "악세사리 > " + category;
-            case 9:
                 return "DIY > " + category;
+            case 9:
+                return "악세사리 > " + category;
         }
         return null;
     }

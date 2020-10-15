@@ -12,9 +12,11 @@ import com.fund.flio.data.model.MessageWrapper;
 import com.fund.flio.data.model.ProductWrapper;
 import com.fund.flio.data.model.ProductsWrapper;
 import com.fund.flio.data.model.SearchResult;
+import com.fund.flio.data.model.SearchWrapper;
 import com.fund.flio.data.model.User;
 import com.fund.flio.data.model.body.ChatDetailBody;
 import com.fund.flio.data.model.body.InsertMyChatBody;
+import com.fund.flio.data.model.body.SearchBody;
 import com.fund.flio.data.model.body.SendMessageBody;
 import com.fund.flio.data.model.body.ChatListBody;
 import com.fund.flio.data.model.body.TokenBody;
@@ -157,7 +159,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<ProductsWrapper>> searchProduct(String keyword) {
+    public Single<Response<SearchWrapper>> searchProduct(String keyword) {
         return mFlioApi.searchProduct(keyword);
     }
 
@@ -167,7 +169,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<ProductsWrapper>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
+    public Single<Response<Void>> targetUserUpdate(int productId, String sourceUid, String targetUid) {
         return mFlioApi.targetUserUpdate(productId, sourceUid, targetUid);
     }
 
@@ -182,8 +184,13 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> selectFavorite(String uid) {
+    public Single<Response<ProductsWrapper>> selectFavorite(String uid) {
         return mFlioApi.selectFavorite(uid);
+    }
+
+    @Override
+    public Single<Response<SearchWrapper>> searchKeyword(SearchBody searchBody) {
+        return mFlioApi.searchKeyword(searchBody);
     }
 
     @Override
@@ -214,6 +221,16 @@ public class AppDataManager implements DataManager {
     @Override
     public void setAuthType(String authType) {
         mPreferences.setAuthType(authType);
+    }
+
+    @Override
+    public boolean notifyChat() {
+        return mPreferences.notifyChat();
+    }
+
+    @Override
+    public void setNotifyChat(boolean chat) {
+        mPreferences.setNotifyChat(chat);
     }
 
     @Override

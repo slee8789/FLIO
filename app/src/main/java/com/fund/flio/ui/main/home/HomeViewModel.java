@@ -34,9 +34,8 @@ public class HomeViewModel extends BaseViewModel {
 
     public HomeViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
-        newsUrl.set("http://flio.iptime.org:8080/image/dummy/event/event_1.png");
+        newsUrl.set("http://flio.iptime.org:8080/image/dummy/hyoseong/news_sample_1.png");
         Logger.d("HomeViewModel creator");
-//        mainProduct();
     }
 
     public void mainProduct() {
@@ -52,7 +51,7 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void onCategoryClick(View v, ProductCategory productCategory) {
-
+        Logger.d("HomeViewModel onCategoryClick");
         bundle.putSerializable("productCategory", productCategory);
         Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_home_to_nav_market, bundle);
 

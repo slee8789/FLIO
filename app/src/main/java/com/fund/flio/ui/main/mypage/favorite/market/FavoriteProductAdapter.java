@@ -22,6 +22,12 @@ public class FavoriteProductAdapter extends RecyclerView.Adapter<BaseViewHolder>
 
     private ArrayList<Product> products;
 
+    private FavoriteProductViewModel favoriteProductViewModel;
+
+    public void setFavoriteProductViewModel(FavoriteProductViewModel favoriteProductViewModel) {
+        this.favoriteProductViewModel = favoriteProductViewModel;
+    }
+
     public FavoriteProductAdapter(ArrayList<Product> products) {
         this.products = products;
     }
@@ -66,6 +72,7 @@ public class FavoriteProductAdapter extends RecyclerView.Adapter<BaseViewHolder>
             final Product product = products.get(position);
             ItemProductViewModel productViewModel = new ItemProductViewModel(itemView, productBinding, product);
             productBinding.setItemViewModel(productViewModel);
+            productBinding.setViewModel(favoriteProductViewModel);
         }
 
     }

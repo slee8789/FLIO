@@ -71,6 +71,7 @@ public class BuyerListFragment extends BaseFragment<FragmentBuyerListBinding, Bu
         getViewDataBinding().buyers.addItemDecoration(dividerItemDecoration);
         mBuyerListAdapter.setBuyerListViewModel(getViewModel());
         getViewModel().getBuyers().observe(getViewLifecycleOwner(), buyers -> mBuyerListAdapter.setItems(buyers));
+        getViewModel().productId.set(BuyerListFragmentArgs.fromBundle(getArguments()).getProductId());
     }
 
     private void setupActionBar() {

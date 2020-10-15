@@ -1,6 +1,7 @@
 package com.fund.flio.ui.main.market.product;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.databinding.FragmentProductBinding;
+import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.home.ProductSmallAdapter;
 import com.google.android.material.internal.CollapsingTextHelper;
@@ -48,6 +50,11 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     @Inject
     ProductImageAdapter mProductImageAdapter;
 
+    @Inject
+    SchedulerProvider schedulerProvider;
+
+    private TextView[] dots;
+
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -76,15 +83,15 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        postponeEnterTransition();
-//        getViewDataBinding().flio.getViewTreeObserver().addOnPreDrawListener(() -> {
-//            startPostponedEnterTransition();
-//            return true;
-//        });
-//        getViewDataBinding().faith.getViewTreeObserver().addOnPreDrawListener(() -> {
-//            startPostponedEnterTransition();
-//            return true;
-//        });
+        postponeEnterTransition();
+        getViewDataBinding().flio.getViewTreeObserver().addOnPreDrawListener(() -> {
+            startPostponedEnterTransition();
+            return true;
+        });
+        getViewDataBinding().faith.getViewTreeObserver().addOnPreDrawListener(() -> {
+            startPostponedEnterTransition();
+            return true;
+        });
         initViews();
         setupActionBar();
 
@@ -102,19 +109,25 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
 
         getViewDataBinding().image.setAdapter(mProductImageAdapter);
-        imageSlideDisposable = Observable.interval(3, TimeUnit.SECONDS).subscribe(time -> {
-            if (imagePosition == mProductImageAdapter.getItemCount() - 1) {
-                getViewDataBinding().image.setCurrentItem(0, true);
-            } else {
-                getViewDataBinding().image.setCurrentItem(imagePosition + 1, true);
-            }
-        });
+        imageSlideDisposable = Observable.interval(3, TimeUnit.SECONDS)
+                .observeOn(schedulerProvider.ui())
+                .subscribe(time -> {
+                    if (imagePosition == mProductImageAdapter.getItemCount() - 1) {
+                        getViewDataBinding().image.setCurrentItem(0, true);
+                    } else {
+                        getViewDataBinding().image.setCurrentItem(imagePosition + 1, true);
+                    }
+//                    addBottomDots(imagePosition);
+                });
         getViewDataBinding().image.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 
             @Override
             public void onPageSelected(int position) {
                 Logger.d("onPageSelected " + position);
                 imagePosition = position;
+                new Handler().postDelayed(() -> {
+                    addBottomDots(imagePosition);
+                },0);
             }
 
 
@@ -149,14 +162,12 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
 
     }
 
-    private TextView[] dots;
-
     private void addBottomDots(int currentPage) {
         dots = new TextView[ProductFragmentArgs.fromBundle(getArguments()).getProduct().getImageUrl().split(",").length];
         Logger.d("addBottomDots " + dots.length);
         getViewDataBinding().layoutDots.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(getContext());
+            dots[i] = new TextView(getBaseActivity());
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
             dots[i].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_light_screen4));

@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.model.SearchResult;
+import com.fund.flio.data.model.body.SearchBody;
 import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
@@ -56,6 +57,13 @@ public class SearchViewModel extends BaseViewModel {
                 .subscribeOn(getSchedulerProvider().io2())
                 .observeOn(getSchedulerProvider().ui2())
                 .subscribe(result -> searchResults.setValue(result)));
+    }
+
+    public void searchKeyword(String request) {
+        getCompositeDisposable().add(getDataManager().searchKeyword(new SearchBody(request))
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe());
     }
 
     public void onDataInsert(String request) {

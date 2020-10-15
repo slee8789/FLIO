@@ -130,6 +130,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
                     Logger.d("ACTION SEARCH " + getViewDataBinding().search.getText().toString());
                     if (getViewDataBinding().search.getText().length() != 0) {
                         getViewModel().onDataInsert(getViewDataBinding().search.getText().toString());
+                        getViewModel().searchKeyword(getViewDataBinding().search.getText().toString());
                         getViewDataBinding().search.clearFocus();
                         imm.hideSoftInputFromWindow(getViewDataBinding().search.getWindowToken(), 0);
                     }
@@ -146,7 +147,6 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
         getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
         getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getBaseActivity().getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
     }
 
 

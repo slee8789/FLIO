@@ -166,7 +166,7 @@
     </string-array>
 
     <string-array name="array_community_news">
-        <item>@string/category_news_entire</item>
+<!--        <item>@string/category_news_entire</item>-->
         <item>@string/category_news_professional</item>
         <item>@string/category_news_hi_fi</item>
         <item>@string/category_news_head_fi</item>
@@ -198,8 +198,8 @@
         <item>@drawable/category_headset_normal</item>
         <item>@drawable/category_acoustic_normal</item>
         <item>@drawable/category_record_normal</item>
-        <item>@drawable/category_accessory_normal</item>
         <item>@drawable/category_diy_normal</item>
+        <item>@drawable/category_accessory_normal</item>
     </array>
 
 </resources>

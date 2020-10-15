@@ -17,7 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -33,6 +33,7 @@
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskr_medium"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/product_register_porpose_title"
@@ -52,6 +53,7 @@
             android:id="@+id/description1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_medium"
             android:layout_marginTop="48dp"
             android:text="@string/product_register_porpose_description"
             android:textColor="@color/black3"
@@ -67,6 +69,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/product_register_porpose_description2"
             android:textColor="@color/gray9"
+            android:fontFamily="@font/notosanskr_medium"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -226,6 +229,21 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/complement"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_product_detail_complement_btn"
+            android:enabled="@{viewModel.purposes.size() != 0}"
+            android:onClick="@{v -> viewModel.setCategoryOrPurpose(v)}"
+            android:text="@string/product_detail_btn_complement"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

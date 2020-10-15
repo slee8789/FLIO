@@ -95,14 +95,22 @@ public class ProductViewModel extends BaseViewModel {
                         sellerImage.set(this.product.getUserImageUrl());
                         sellerName.set(this.product.getUserName());
                         rating.set("3.5");
-                        purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
+                        if(this.product.getPurpose().length() != 0) {
+                            purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
+                        }
                         setTag(product.body().getProduct().getTag().split(","));
                         isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                         linkVisible.set(this.product.getProductRelatedUrl() != null);
                         detailVisible.set(this.product.getUseDate() != null);
                         favoriteYn.set(this.product.getFavoriteYn().equals(FavoriteYn.Y.name()));
-                        flioYn.set(this.product.getFlioYn().equals(FlioYn.Y.name()));
-                        faithYn.set(this.product.getFaithYn().equals(FaithYn.Y.name()));
+                        if(this.product.getFlioYn() != null) {
+                            flioYn.set(this.product.getFlioYn().equals(FlioYn.Y.name()));
+                        }
+
+                        if(this.product.getFaithYn() != null) {
+                            faithYn.set(this.product.getFaithYn().equals(FaithYn.Y.name()));
+                        }
+
                         Logger.d("detailProduct " + linkVisible.get() + ", " + (this.product.getProductRelatedUrl() != null) + ", " + this.product.getProductRelatedUrl());
                     }
 

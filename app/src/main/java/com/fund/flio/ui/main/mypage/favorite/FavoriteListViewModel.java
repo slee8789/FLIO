@@ -24,7 +24,7 @@ public class FavoriteListViewModel extends BaseViewModel {
 
 
     public void targetProduct() {
-        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId())
+        getCompositeDisposable().add(getDataManager().selectFavorite(getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {

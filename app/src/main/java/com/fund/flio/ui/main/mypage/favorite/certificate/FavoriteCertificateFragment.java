@@ -56,7 +56,6 @@ public class FavoriteCertificateFragment extends BaseFragment<FragmentFavoriteCe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
-        setupActionBar();
     }
 
     private void initViews() {
@@ -66,25 +65,6 @@ public class FavoriteCertificateFragment extends BaseFragment<FragmentFavoriteCe
         getViewDataBinding().buys.addItemDecoration(dividerItemDecoration);
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mFavoriteCertificateAdapter.setItems(products));
         getViewModel().targetProduct();
-    }
-
-    private void setupActionBar() {
-        getBaseActivity().setSupportActionBar(getViewDataBinding().toolbar);
-        getBaseActivity().getSupportActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.d("onOptionsItemSelected " + item.getItemId());
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Logger.d("onOptionsItemSelected home");
-                Navigation.findNavController(getBaseActivity(), R.id.fragment_container).navigateUp();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 

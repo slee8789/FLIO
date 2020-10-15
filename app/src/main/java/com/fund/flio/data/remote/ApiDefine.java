@@ -36,6 +36,8 @@ public class ApiDefine {
         String SWITCH_FAVORITE = "favorite/switchFavorite";
         String SELECT_FAVORITE = "favorite/selectFavorite";
 
+        String SEARCH_KEYWORD = "search/keyword";
+
     }
 
 

@@ -26,4 +26,8 @@ public interface PreferencesHelper {
 
     void setAuthType(String authType);
 
+    boolean notifyChat();
+
+    void setNotifyChat(boolean chat);
+
 }

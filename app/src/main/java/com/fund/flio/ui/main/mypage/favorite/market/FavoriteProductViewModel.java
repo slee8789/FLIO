@@ -32,7 +32,7 @@ public class FavoriteProductViewModel extends BaseViewModel {
 
 
     public void selectFavorite() {
-        getCompositeDisposable().add(getDataManager().targetProduct(getDataManager().getUserId())
+        getCompositeDisposable().add(getDataManager().selectFavorite(getDataManager().getUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(products -> {
@@ -50,6 +50,7 @@ public class FavoriteProductViewModel extends BaseViewModel {
                 .subscribe(Void -> {
                     v.setSelected(!v.isSelected());
                     this.products.getValue().remove(product);
+                    this.products.setValue(this.products.getValue());
                 }));
     }
 

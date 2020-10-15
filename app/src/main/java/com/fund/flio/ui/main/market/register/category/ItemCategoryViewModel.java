@@ -10,9 +10,12 @@ import com.orhanobut.logger.Logger;
 public class ItemCategoryViewModel {
 
     public ObservableField<String> category = new ObservableField<>();
+    public int position;
 
-    public ItemCategoryViewModel(String category) {
+    public ItemCategoryViewModel(int position, String category) {
         this.category.set(category);
+        this.position = position;
+
     }
 
 

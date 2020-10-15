@@ -32,6 +32,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/title_sell_list"
+                android:fontFamily="@font/notosanskr_medium"
                 android:textColor="@color/black0"
                 android:textSize="20sp" />
 

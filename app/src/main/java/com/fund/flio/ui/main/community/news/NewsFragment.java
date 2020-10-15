@@ -13,7 +13,6 @@ import com.fund.flio.R;
 import com.fund.flio.data.model.News;
 import com.fund.flio.databinding.FragmentNewsBinding;
 import com.fund.flio.ui.base.BaseFragment;
-import com.fund.flio.ui.main.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,6 +33,23 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
 
     @Inject
     NewsAdapter mNewsAdapter;
+
+    private TabLayout.OnTabSelectedListener newsCategory = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            getViewModel().searchKeyword(getResources().getStringArray(R.array.array_community_news)[tab.getPosition()]);
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
 
     @Override
     public int getBindingVariable() {
@@ -67,19 +83,21 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
 
     private void initViews() {
         mTabLayout = getViewDataBinding().tabs;
-
+        mTabLayout.addOnTabSelectedListener(newsCategory);
         for (String category : getResources().getStringArray(R.array.array_community_news)) {
             mTabLayout.addTab(mTabLayout.newTab().setText(category));
         }
 
+        getViewModel().getSearchs().observe(getViewLifecycleOwner(), products -> mNewsAdapter.setItems(products));
 
         getViewDataBinding().news.setAdapter(mNewsAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical)));
         getViewDataBinding().news.addItemDecoration(dividerItemDecoration);
-        ArrayList<News> dummyNewses = new Gson().fromJson(readAssetJson(getContext(), "news.json"), new TypeToken<List<News>>() {
-        }.getType());
-        mNewsAdapter.addItems(dummyNewses);
+//        ArrayList<News> dummyNewses = new Gson().fromJson(readAssetJson(getContext(), "news.json"), new TypeToken<List<News>>() {
+//        }.getType());
+//        mNewsAdapter.addItems(dummyNewses);
+        getViewModel().searchKeyword(getResources().getStringArray(R.array.array_community_news)[0]);
     }
 
 

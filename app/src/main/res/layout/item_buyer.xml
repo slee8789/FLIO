@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/notosanskr_medium"
             android:gravity="start"
             android:text="@{itemViewModel.targetName}"
             android:textColor="@color/purple"
