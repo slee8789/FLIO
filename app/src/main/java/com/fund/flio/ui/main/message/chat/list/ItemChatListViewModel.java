@@ -24,7 +24,6 @@ public class ItemChatListViewModel {
         this.time.set(chatRoom.getChatLastDate());
         imageUserUrl.set(FirebaseAuth.getInstance().getUid().equals(chatRoom.getChatSourceUid()) ? chatRoom.getChatTargetImageUrl() : chatRoom.getChatSourceImageUrl());
         imageProductUrl.set("http://flio.iptime.org:8080/image/" + chatRoom.getProductBaseUrl() + "/" + chatRoom.getProductImageUrl().split(",")[0]);
-//        imageProductUrl.set("https://picsum.photos/170/170");
     }
 
 

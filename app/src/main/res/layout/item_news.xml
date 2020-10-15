@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:onClick="@{v -> viewModel.showLink(v)}"
         android:padding="10dp">
 
@@ -59,11 +60,12 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9.5dp"
+            android:layout_marginVertical="10dp"
             android:fontFamily="@font/notosanskr_medium"
             android:text="@{viewModel.date}"
-            android:textColor="@color/black3"
+            android:textColor="@color/gray9"
             android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider_title" />
 
@@ -71,19 +73,21 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/notosanskr_medium"
             android:lineHeight="26dp"
+            android:maxLines="3"
             android:text="@{viewModel.description}"
             android:textColor="@color/gray9"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             app:imageUrlRoundCorner="@{viewModel.imageUrl}"
             app:layout_constraintTop_toBottomOf="@id/description" />

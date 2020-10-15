@@ -23,7 +23,7 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
     private Foreground() {
     }
 
-    private AppStatus mAppStatus;
+    private AppStatus mAppStatus = AppStatus.BACKGROUND;
 
     public AppStatus getAppStatus() {
         return mAppStatus;

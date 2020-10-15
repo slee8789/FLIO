@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="clickEvent"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="onSearchClick"
             type="android.view.View.OnClickListener" />
 
@@ -41,6 +45,7 @@
             android:layout_height="27dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
+            android:onClick="@{clickEvent}"
             android:src="@drawable/icon_logo" />
 
         <ImageView

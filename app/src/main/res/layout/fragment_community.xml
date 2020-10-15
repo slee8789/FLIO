@@ -19,7 +19,8 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar"
+            app:clickEvent="@{v -> mainViewModel.onLogoClick(v)}"/>
         
         <View
             android:layout_width="match_parent"

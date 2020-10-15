@@ -59,7 +59,7 @@ public class ItemCertificateViewModel {
     }
 
     public void onItemClick(View v) {
-        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_community_to_nav_certificate_detail);
+//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_community_to_nav_certificate_detail);
     }
 
 }

@@ -109,7 +109,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
 
         getViewDataBinding().image.setAdapter(mProductImageAdapter);
-        imageSlideDisposable = Observable.interval(3, TimeUnit.SECONDS)
+        imageSlideDisposable = Observable.interval(5, TimeUnit.SECONDS)
                 .observeOn(schedulerProvider.ui())
                 .subscribe(time -> {
                     if (imagePosition == mProductImageAdapter.getItemCount() - 1) {

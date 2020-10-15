@@ -100,8 +100,7 @@
             android:id="@+id/favorite_certificated"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="14dp"
             android:src="@drawable/favorite_certificated"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card" />
@@ -110,6 +109,7 @@
             android:id="@+id/favorite_certificated_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="99"
             android:textColor="@color/purple"
             android:textSize="12sp"
@@ -122,7 +122,7 @@
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="14dp"
             android:src="@drawable/comment_certificated"
             app:layout_constraintStart_toEndOf="@id/favorite_certificated_value"
             app:layout_constraintTop_toBottomOf="@id/card" />
@@ -130,6 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="111"
             android:textColor="@color/purple"
             android:textSize="12sp"
@@ -141,9 +142,10 @@
             android:id="@+id/title_certificated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="어제 도착했습니다..."
             android:textColor="@color/black0"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/favorite_certificated"
             app:layout_constraintEnd_toEndOf="@id/card"
             app:layout_constraintTop_toBottomOf="@id/card" />

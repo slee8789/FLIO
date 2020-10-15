@@ -50,7 +50,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    android:background="#26000000" />
+                    android:background="#48000000" />
 
                 <LinearLayout
                     android:id="@+id/layoutDots"
@@ -68,8 +68,8 @@
 
                     <ImageView
                         android:id="@+id/flio"
-                        android:layout_width="22dp"
-                        android:layout_height="26dp"
+                        android:layout_width="33dp"
+                        android:layout_height="39dp"
                         android:layout_marginTop="?attr/actionBarSize"
                         android:layout_marginEnd="20dp"
                         android:src="@drawable/icon_flio"
@@ -80,8 +80,8 @@
 
                     <ImageView
                         android:id="@+id/faith"
-                        android:layout_width="22dp"
-                        android:layout_height="26dp"
+                        android:layout_width="33dp"
+                        android:layout_height="39dp"
                         android:layout_marginTop="?attr/actionBarSize"
                         android:layout_marginEnd="20dp"
                         android:src="@drawable/icon_faith"
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="110dp"
+                        android:layout_marginBottom="120dp"
                         android:background="@drawable/bg_item_product_tag"
                         android:fontFamily="@font/notosanskr_bold"
                         android:gravity="center"
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginBottom="110dp"
+                        android:layout_marginBottom="120dp"
                         android:background="@drawable/bg_item_product_tag"
                         android:fontFamily="@font/notosanskr_bold"
                         android:gravity="center"
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginBottom="110dp"
+                        android:layout_marginBottom="120dp"
                         android:background="@drawable/bg_item_product_tag"
                         android:fontFamily="@font/notosanskr_bold"
                         android:gravity="center"
@@ -151,7 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginBottom="110dp"
+                        android:layout_marginBottom="120dp"
                         android:background="@drawable/bg_item_product_purpose"
                         android:fontFamily="@font/notosanskr_bold"
                         android:gravity="center"
@@ -171,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="30dp"
                         android:fontFamily="@font/notosanskr_medium"
                         android:text="@{viewModel.modelNo}"
                         android:textSize="18sp"
@@ -184,10 +184,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="6dp"
-                        android:layout_marginBottom="52dp"
+                        android:layout_marginBottom="46dp"
+                        android:fontFamily="@font/notosanskr_bold"
                         android:text="@{viewModel.price}"
                         android:textSize="24sp"
-                        android:fontFamily="@font/notosanskr_bold"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -240,9 +240,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="40dp"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:text="@{viewModel.title}"
                     android:textColor="@color/black3"
-                    android:fontFamily="@font/notosanskr_medium"
                     android:textSize="20sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -252,8 +252,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
-                    android:lineHeight="24dp"
                     android:fontFamily="@font/notosanskr_medium"
+                    android:lineHeight="30dp"
                     android:text="@{viewModel.content}"
                     android:textColor="@color/gray9"
                     android:textSize="18sp"
@@ -288,7 +288,6 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_item_product_status"
-                    android:drawableStart="@drawable/icon_link_10"
                     android:fontFamily="@font/notosanskr_medium"
                     android:gravity="center"
                     android:lineHeight="24dp"
@@ -331,15 +330,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/notosanskr_bold"
                     android:text="@{viewModel.sellerName}"
                     android:textColor="@color/purple"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/rating"
+                    app:layout_constraintBottom_toTopOf="@id/divider_seller"
                     app:layout_constraintStart_toEndOf="@id/sellerImage"
-                    app:layout_constraintTop_toBottomOf="@id/divider_status"
-                    app:layout_constraintVertical_chainStyle="spread" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_status" />
 
                 <RatingBar
                     android:id="@+id/rating"
@@ -347,10 +346,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:numStars="5"
                     android:progressTint="@color/purple"
                     android:rating="@{Float.parseFloat(viewModel.rating)}"
-                    app:layout_constraintBottom_toTopOf="@id/divider_seller"
                     app:layout_constraintStart_toEndOf="@id/sellerImage"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -460,7 +459,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
                     android:text="2020.08.04"
-                    android:textColor="@color/black3"
+                    android:textColor="@color/gray9"
                     android:textSize="12sp"
                     app:layout_constraintTop_toBottomOf="@id/divider_news" />
 
@@ -470,9 +469,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
+                    android:lineHeight="26dp"
+                    android:text="로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다.로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다.로맨스 명대사 챌린지는 오디오 클립 앱에서 참여한다."
                     android:textColor="@color/gray9"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/date_news" />
 
                 <ImageView
@@ -484,7 +484,7 @@
                     android:scaleType="centerCrop"
                     app:imageUrlRoundCorner="@{viewModel.newsUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="W,2:3"
+                    app:layout_constraintDimensionRatio="W,1.7:3"
                     app:layout_constraintTop_toBottomOf="@id/description_news" />
 
 
@@ -497,6 +497,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/fab_favorite"
+
             android:gravity="center"
             android:onClick="@{v -> viewModel.onFavoriteToggle(v, viewModel.product.productId)}"
             android:src="@drawable/icon_heart"

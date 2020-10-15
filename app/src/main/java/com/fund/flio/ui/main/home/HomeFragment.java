@@ -17,11 +17,14 @@ import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
 import com.fund.flio.data.model.Certificate;
+import com.fund.flio.data.model.Event;
 import com.fund.flio.data.model.Product;
 
 import com.fund.flio.databinding.FragmentHomeBinding;
+import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.MainActivity;
+import com.fund.flio.ui.main.community.event.list.EventAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
@@ -29,8 +32,12 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
@@ -42,10 +49,19 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     DataManager dataManager;
 
     @Inject
+    EventAdapter mEventAdapter;
+
+    @Inject
+    SchedulerProvider schedulerProvider;
+
+    @Inject
     ProductSmallAdapter mProductSmallAdapter;
 
     @Inject
     CertificateSmallAdapter mCertificateSmallAdapter;
+
+    private int imagePosition;
+    private Disposable imageSlideDisposable;
 
     @Override
     public int getBindingVariable() {
@@ -107,5 +123,20 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mCertificateSmallAdapter.addItems(certificates);
 
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
+
+//        getViewDataBinding().banner.setAdapter(mEventAdapter);
+//        ArrayList<Event> dummyEvents = new Gson().fromJson(readAssetJson(getContext(), "events.json"), new TypeToken<List<Event>>() {
+//        }.getType());
+//        mEventAdapter.addItems(dummyEvents);
+//        imageSlideDisposable = Observable.interval(3, TimeUnit.SECONDS)
+//                .observeOn(schedulerProvider.ui())
+//                .subscribe(time -> {
+//                    if (imagePosition == mEventAdapter.getItemCount() - 1) {
+//                        getViewDataBinding().banner.setCurrentItem(0, true);
+//                    } else {
+//                        getViewDataBinding().banner.setCurrentItem(imagePosition + 1, true);
+//                    }
+////                    addBottomDots(imagePosition);
+//                });
     }
 }

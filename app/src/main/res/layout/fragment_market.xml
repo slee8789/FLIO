@@ -21,7 +21,9 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar"
+            app:clickEvent="@{v -> mainViewModel.onLogoClick(v)}"
+            />
 
         <View
             android:layout_width="match_parent"
@@ -57,20 +59,6 @@
             app:tabSelectedTextColor="@color/black3"
             app:tabTextColor="@color/gray9" />
 
-        <TextView
-            android:id="@+id/filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="14dp"
-            android:text="인기순"
-            android:textColor="@color/gray9"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/products"
-            app:layout_constraintEnd_toEndOf="@id/products"
-            app:layout_constraintTop_toBottomOf="@id/subTabs" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/products"
@@ -81,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filter"
+            app:layout_constraintTop_toBottomOf="@id/subTabs"
             tools:listitem="@layout/item_product" />
 
 

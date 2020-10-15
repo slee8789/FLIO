@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flio</string>
+    <string name="app_name">플리오마켓</string>
     <string name="kakao_app_key">09b99188fe74123e3d34d124c992695c</string>
     <string name="nav_home">홈</string>
     <string name="nav_search">검색</string>
@@ -79,7 +79,7 @@
     <string name="category_news_entire">전체</string>
     <string name="category_news_professional">Professional</string>
     <string name="category_news_hi_fi">HiFi</string>
-    <string name="category_news_head_fi">HeadFi</string>
+    <string name="category_news_headphone">HeadPhone</string>
     <string name="category_news_ar_vr">AR/VR</string>
 
     <string name="category_certificate_entire">전체</string>

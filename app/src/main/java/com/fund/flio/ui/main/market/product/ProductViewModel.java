@@ -94,7 +94,7 @@ public class ProductViewModel extends BaseViewModel {
                         setImage(this.product);
                         sellerImage.set(this.product.getUserImageUrl());
                         sellerName.set(this.product.getUserName());
-                        rating.set("3.5");
+                        rating.set("5");
                         if(this.product.getPurpose().length() != 0) {
                             purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
                         }
@@ -165,6 +165,7 @@ public class ProductViewModel extends BaseViewModel {
                 .subscribe(chatRoom -> {
                     if (chatRoom.isSuccessful()) {
                         Logger.d("goChat " + chatRoom.body());
+                        Logger.d("goChat 2 " + product);
                         ChatRoom mChatRoom = new ChatRoom();
                         mChatRoom.setChatSeq(chatRoom.body().getChatRoom().getChatSeq());
                         mChatRoom.setChatSourceUid(product.getUid());
@@ -174,6 +175,8 @@ public class ProductViewModel extends BaseViewModel {
                         mChatRoom.setTitle(product.getTitle());
                         mChatRoom.setProductPrice(product.getProductPrice());
                         mChatRoom.setProductId(product.getProductId());
+                        mChatRoom.setProductBaseUrl(product.getBaseUrl());
+                        mChatRoom.setProductImageUrl(product.getImageUrl());
                         Navigation.findNavController((Activity) view.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavChatDetail(mChatRoom));
                     }
                 }));

@@ -271,7 +271,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_home:
                 showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
-                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
+//                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
                 break;
 

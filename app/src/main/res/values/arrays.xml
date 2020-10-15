@@ -169,7 +169,7 @@
 <!--        <item>@string/category_news_entire</item>-->
         <item>@string/category_news_professional</item>
         <item>@string/category_news_hi_fi</item>
-        <item>@string/category_news_head_fi</item>
+        <item>@string/category_news_headphone</item>
         <item>@string/category_news_ar_vr</item>
     </string-array>
 

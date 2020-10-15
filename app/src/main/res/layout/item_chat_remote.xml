@@ -39,7 +39,7 @@
             android:paddingVertical="4dp"
             android:text="@{viewModel.isSource ? itemViewModel.chatTargetMessage : itemViewModel.chatSourceMessage}"
             android:textColor="@color/black3"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/time"
             app:layout_constraintStart_toEndOf="@id/image" />

@@ -47,8 +47,8 @@ public class MyPageViewModel extends BaseViewModel {
         super(dataManager, schedulerProvider, resourceProvider);
         imageUrl.set(dataManager.getUserImageUrl());
         name.set(dataManager.getUserName());
-        rating.set("3.5");
-        ratingPoint.set("(3.5)");
+        rating.set("5");
+        ratingPoint.set("(5)");
         getCompositeDisposable2().add(dataManager.getKeywords()
                 .subscribeOn(getSchedulerProvider().io2())
                 .observeOn(getSchedulerProvider().ui2())

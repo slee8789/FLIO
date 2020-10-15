@@ -97,7 +97,7 @@
             android:paddingStart="38dp"
             android:text="카카오톡으로 시작하기"
             android:textColor="@color/black3"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_naver_custom" />
 
         <TextView
@@ -113,7 +113,7 @@
             android:paddingStart="38dp"
             android:text="NAVER 시작하기"
             android:textColor="@color/black3"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/btn_google_custom" />
 
         <TextView
@@ -129,7 +129,7 @@
             android:paddingStart="38dp"
             android:text="GOOGLE 시작하기"
             android:textColor="@color/black3"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView

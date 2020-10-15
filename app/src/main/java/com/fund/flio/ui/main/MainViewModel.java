@@ -48,6 +48,11 @@ public class MainViewModel extends BaseViewModel {
                 }));
     }
 
+    public void onLogoClick(View v) {
+        Logger.d("onLogoClick");
+        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigateUp();
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

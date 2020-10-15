@@ -71,7 +71,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
     public ObservableField<BoxYn> boxYn = new ObservableField<>(BoxYn.Y);
     public ObservableField<PurchaseKind> purchaseKind = new ObservableField<>(PurchaseKind.Y);
     public ObservableField<TradeKind> tradeKind = new ObservableField<>(TradeKind.DIRECT);
-    public ObservableField<RepairYn> repairYn = new ObservableField<>(RepairYn.Y);
+    public ObservableField<RepairYn> repairYn = new ObservableField<>(RepairYn.N);
     public ObservableField<FlioYn> flioYn = new ObservableField<>(FlioYn.N);
     public ObservableField<String> productRelatedUrl = new ObservableField<>();
     public ObservableField<String> model = new ObservableField<>();
