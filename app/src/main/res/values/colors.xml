@@ -20,6 +20,7 @@
     <color name="grayF8">#F8F8F8</color>
     <color name="gray6">#666666</color>
     <color name="gray9">#999999</color>
+    <color name="gray93">#939393</color>
     <color name="grayDBCECE">#DBCECE</color>
     <color name="black0">#000000</color>
     <color name="black3">#333333</color>
@@ -43,4 +44,6 @@
     <color name="dot_light_screen4">@color/white</color>
     <color name="dot_dark_screen4">@color/purple</color>
     <color name="bg_category">#F7F8FC</color>
+    <color name="blue">#403FFC</color>
+    <color name="blue2">#38569D</color>
 </resources>

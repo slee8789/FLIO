@@ -106,7 +106,6 @@ public final class BindingUtils {
 
     @BindingAdapter({"setBackground"})
     public static void setBackground(View view, String imageUrl) {
-
             Glide.with(view.getContext()).load(imageUrl)
                     .into(new SimpleTarget<Drawable>() {
                         @Override
@@ -114,7 +113,6 @@ public final class BindingUtils {
                             view.setBackground(resource);
                         }
                     });
-
     }
 
     @BindingAdapter("listData")

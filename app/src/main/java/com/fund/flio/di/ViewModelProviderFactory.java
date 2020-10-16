@@ -18,6 +18,7 @@ import com.fund.flio.ui.main.community.certificate.register.CertificateRegisterV
 import com.fund.flio.ui.main.community.event.detail.EventDetailViewModel;
 import com.fund.flio.ui.main.community.event.register.EventRegisterViewModel;
 import com.fund.flio.ui.main.market.product.ProductViewModel;
+import com.fund.flio.ui.main.market.product.fullscreen.ProductImageFullScreenViewModel;
 import com.fund.flio.ui.main.market.register.ProductRegisterViewModel;
 import com.fund.flio.ui.main.message.MessageViewModel;
 import com.fund.flio.ui.main.message.reply.list.ReplyListViewModel;
@@ -136,7 +137,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return new FavoriteEventViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (FavoriteCertificateViewModel.class.isAssignableFrom(modelClass)) {
             return new FavoriteCertificateViewModel(dataManager, schedulerProvider, resourceProvider);
-
+        } else if (ProductImageFullScreenViewModel.class.isAssignableFrom(modelClass)) {
+            return new ProductImageFullScreenViewModel(dataManager, schedulerProvider, resourceProvider);
         } else if (CategoryViewModel.class.isAssignableFrom(modelClass)) {
             return new CategoryViewModel(dataManager, schedulerProvider, resourceProvider);
         } else

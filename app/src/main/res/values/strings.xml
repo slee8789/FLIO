@@ -14,7 +14,7 @@
     <string name="category_amp">앰프</string>
     <string name="category_source">소스기기</string>
     <string name="category_headset">이어폰/헤드폰</string>
-    <string name="category_headset_home">이어폰\n헤드폰</string>
+    <string name="category_headset_home">헤드폰</string>
     <string name="category_acoustic">음향장비</string>
     <string name="category_record">음반</string>
     <string name="category_accessory">악세사리</string>
@@ -140,6 +140,7 @@
     <string name="setting_logout_message">로그아웃 하시겠습니까?</string>
     <string name="setting_sign_out">탈퇴하기</string>
     <string name="setting_notice">플리오 공지</string>
+    <string name="setting_privacy">개인정보 처리방침</string>
     <string name="setting_register_keyword">등록</string>
     <string name="setting_register_keyword_registered">등록된 키워드</string>
 
@@ -224,5 +225,10 @@
 
     <string name="intro_msg_denied">이 서비스를 사용하기 위해서 권한이 필요합니다.</string>
     <string name="intro_msg_goto_setting">설정하러 가기</string>
+
+    <string name="favorite_product_empty">관심있는 매물을 선별해주세요.</string>
+    <string name="ready">준비중입니다.</string>
+    <string name="market_product_empty">등록된 상품이 없습니다.</string>
+
 
 </resources>

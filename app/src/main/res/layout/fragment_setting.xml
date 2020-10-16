@@ -111,6 +111,7 @@
             android:gravity="center_vertical"
             android:text="@string/setting_delete_cache"
             android:textColor="@color/black3"
+            android:onClick="@{v -> viewModel.deleteCache(v)}"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -127,10 +128,67 @@
             android:layout_height="48dp"
             android:layout_marginHorizontal="20dp"
             android:gravity="center_vertical"
-            android:text="@string/setting_version_info"
+            android:onClick="@{v -> viewModel.privacy(v)}"
+            android:text="@string/setting_privacy"
             android:textColor="@color/black3"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/grayDBCECE"
+            app:layout_constraintBottom_toBottomOf="@id/tabs" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:text="@string/setting_notice"
+            android:onClick="@{v -> viewModel.notice(v)}"
+            android:textColor="@color/black3"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/grayDBCECE"
+            app:layout_constraintBottom_toBottomOf="@id/tabs" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/setting_version_info"
+                android:textColor="@color/black3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="@{viewModel.version}"
+                android:textColor="@color/black3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
@@ -164,25 +222,8 @@
             android:layout_height="48dp"
             android:layout_marginHorizontal="20dp"
             android:gravity="center_vertical"
+            android:onClick="@{v -> viewModel.signOut(v)}"
             android:text="@string/setting_sign_out"
-            android:textColor="@color/black3"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginHorizontal="20dp"
-            android:background="@color/grayDBCECE"
-            app:layout_constraintBottom_toBottomOf="@id/tabs" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="20dp"
-            android:gravity="center_vertical"
-            android:text="@string/setting_notice"
             android:textColor="@color/black3"
             android:textSize="18sp"
             android:textStyle="bold" />

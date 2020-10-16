@@ -28,6 +28,12 @@ public class ProductImageAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.products = products;
     }
 
+    private ProductViewModel productViewModel;
+
+    public void setProductViewModel(ProductViewModel productViewModel) {
+        this.productViewModel = productViewModel;
+    }
+
     public void addItems(List<String> banners) {
         this.products.addAll(banners);
         notifyDataSetChanged();
@@ -72,8 +78,9 @@ public class ProductImageAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             final String product = products.get(position);
-            ItemProductImageViewModel productViewModel = new ItemProductImageViewModel(product);
-            productBinding.setItemViewModel(productViewModel);
+            ItemProductImageViewModel itemProductImageViewModel = new ItemProductImageViewModel(product);
+            productBinding.setItemViewModel(itemProductImageViewModel);
+            productBinding.setViewModel(productViewModel);
         }
 
     }

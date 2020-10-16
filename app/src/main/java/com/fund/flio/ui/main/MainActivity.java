@@ -247,12 +247,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.nav_review:
             case R.id.nav_favorite_list:
             case R.id.nav_logout:
+            case R.id.nav_delete_cache:
             case R.id.nav_market_product_detail:
+            case R.id.nav_market_product_image:
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue2));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.blue2));
                 break;
 
             case R.id.nav_chat_detail:
@@ -265,8 +267,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue2));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.blue2));
                 break;
 
             case R.id.nav_market:
@@ -277,16 +279,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue2));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.blue2));
                 break;
             default:
                 showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue2));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.blue2));
                 break;
         }
     }

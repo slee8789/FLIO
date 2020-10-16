@@ -45,7 +45,8 @@
             app:layout_constraintBottom_toTopOf="@id/water"
             app:layout_constraintDimensionRatio="H,10:4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/blue" />
 
         <ImageView
             android:id="@+id/water"
@@ -117,9 +118,9 @@
             android:layout_height="4dp"
             android:max="@{viewModel.progressEnd}"
             android:progress="@{viewModel.progress}"
+            android:progressTint="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:mpb_progressStyle="horizontal"
-            android:progressTint="@color/purple"
             app:mpb_useIntrinsicPadding="false" />
 
 

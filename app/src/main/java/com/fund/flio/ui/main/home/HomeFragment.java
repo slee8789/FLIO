@@ -1,6 +1,7 @@
 package com.fund.flio.ui.main.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.transition.TransitionInflater;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
@@ -41,6 +43,9 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING;
+import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE;
+import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_SETTLING;
 import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
@@ -130,9 +135,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         ArrayList<Banner> banners = new Gson().fromJson(readAssetJson(getContext(), "banners.json"), new TypeToken<List<Banner>>() {
         }.getType());
         mBannerImageAdapter.addItems(banners);
-        imageSlideDisposable = Observable.interval(5, TimeUnit.SECONDS)
+        imageSlideDisposable = Observable.interval(8, TimeUnit.SECONDS)
                 .observeOn(schedulerProvider.ui())
                 .subscribe(time -> {
+                    Logger.d("banner index ");
                     if (imagePosition == mBannerImageAdapter.getItemCount() - 1) {
                         getViewDataBinding().banner.setCurrentItem(0, true);
                     } else {
@@ -140,5 +146,30 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                     }
 //                    addBottomDots(imagePosition);
                 });
+        getViewDataBinding().banner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+
+            @Override
+            public void onPageSelected(int position) {
+                Logger.d("onPageSelected " + position);
+                imagePosition = position;
+            }
+
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                Logger.d("onPageScrollStateChanged " + state);
+                switch (state) {
+                    case SCROLL_STATE_IDLE:
+                        break;
+
+                    case SCROLL_STATE_DRAGGING:
+                        break;
+
+                    case SCROLL_STATE_SETTLING:
+                        break;
+                }
+            }
+        });
     }
 }

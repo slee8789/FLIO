@@ -236,6 +236,20 @@
         <action
             android:id="@+id/action_nav_market_product_to_nav_profile"
             app:destination="@id/nav_profile" />
+        <action
+            android:id="@+id/action_nav_market_product_to_nav_market_product_image"
+            app:destination="@id/nav_market_product_image" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_market_product_image"
+        android:name="com.fund.flio.ui.main.market.product.fullscreen.ProductImageFullScreenFragment"
+        tools:layout="@layout/fragment_product_image">
+
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
 
     </fragment>
 
@@ -439,6 +453,13 @@
             app:destination="@id/nav_login"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_delete_cache"
+        android:name="com.fund.flio.ui.main.mypage.setting.logout.DeleteCacheDialog"
+        tools:layout="@layout/dialog_delete_cache">
+
     </dialog>
 
     <dialog

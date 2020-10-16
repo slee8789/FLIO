@@ -10,16 +10,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.model.Certificate;
 import com.fund.flio.data.model.ChatRoom;
+import com.fund.flio.data.model.Reply;
 import com.fund.flio.databinding.FragmentReplyListBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.message.chat.list.ChatListAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
+
+import static com.fund.flio.utils.ViewUtils.readAssetJson;
 
 
 public class ReplyListFragment extends BaseFragment<FragmentReplyListBinding, ReplyListViewModel> {
@@ -61,11 +68,9 @@ public class ReplyListFragment extends BaseFragment<FragmentReplyListBinding, Re
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_vertical_gray)));
         getViewDataBinding().replies.addItemDecoration(dividerItemDecoration);
-        ArrayList<ChatRoom> test = new ArrayList<>();
-        test.add(new ChatRoom());
-        test.add(new ChatRoom());
-        test.add(new ChatRoom());
-        mReplyListAdapter.setItems(test);
+        ArrayList<Reply> dummyCertificates = new Gson().fromJson(readAssetJson(getContext(), "replies.json"), new TypeToken<List<Reply>>() {
+        }.getType());
+        mReplyListAdapter.setItems(dummyCertificates);
 //        mReplyListAdapter.setChatListViewModel(getViewModel());
 //        getViewModel().getChatRooms().observe(getViewLifecycleOwner(), chatRoomObserver);
     }

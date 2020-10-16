@@ -4,24 +4,25 @@ package com.fund.flio.ui.main.message.reply.list;
 import androidx.databinding.ObservableField;
 
 import com.fund.flio.data.model.ChatRoom;
+import com.fund.flio.data.model.Reply;
 import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.logger.Logger;
 
 public class ItemReplyListViewModel {
 
-    public ObservableField<String> comment = new ObservableField<>();
-    public ObservableField<String> writer = new ObservableField<>();
-    public ObservableField<String> time = new ObservableField<>();
     public ObservableField<String> imageUserUrl = new ObservableField<>();
-    public ChatRoom mChatRoom;
+    public ObservableField<String> content = new ObservableField<>();
+    public ObservableField<String> name = new ObservableField<>();
+    public ObservableField<String> date = new ObservableField<>();
 
-    public ItemReplyListViewModel(ChatRoom chatRoom) {
+
+    public ItemReplyListViewModel(Reply chatRoom) {
         Logger.d("ItemChatViewModel " + chatRoom);
-        this.mChatRoom = chatRoom;
-        writer.set("홍길동");
-        this.comment.set("오 저도 기대되는 행사네요");
-        this.time.set("2019-01-01");
-        imageUserUrl.set("https://picsum.photos/170/170");
+        imageUserUrl.set(chatRoom.getImageUrl());
+        content.set(chatRoom.getContent());
+        name.set(chatRoom.getName());
+        date.set(chatRoom.getDate());
+
     }
 
 

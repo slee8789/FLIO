@@ -102,6 +102,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     private Disposable imageSlideDisposable;
 
     private void initViews() {
+        getViewModel().setProductFragment(this);
         getViewDataBinding().recommends.setAdapter(mProductSmallAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseActivity(), LinearLayoutManager.HORIZONTAL);
         dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseActivity(), R.drawable.recycler_divider_horizontal)));
@@ -109,6 +110,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
 
         getViewDataBinding().image.setAdapter(mProductImageAdapter);
+        mProductImageAdapter.setProductViewModel(getViewModel());
         imageSlideDisposable = Observable.interval(5, TimeUnit.SECONDS)
                 .observeOn(schedulerProvider.ui())
                 .subscribe(time -> {
@@ -127,7 +129,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
                 imagePosition = position;
                 new Handler().postDelayed(() -> {
                     addBottomDots(imagePosition);
-                },0);
+                }, 0);
             }
 
 
@@ -163,10 +165,11 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     }
 
     private void addBottomDots(int currentPage) {
+        getViewDataBinding().layoutDots.removeAllViews();
         dots = new TextView[ProductFragmentArgs.fromBundle(getArguments()).getProduct().getImageUrl().split(",").length];
         Logger.d("addBottomDots " + dots.length);
-        getViewDataBinding().layoutDots.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
+            Logger.d("addBottomDots test " + getBaseActivity() + ", " + dots[i]);
             dots[i] = new TextView(getBaseActivity());
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
@@ -176,6 +179,7 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
 
         if (dots.length > 0)
             dots[currentPage].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_dark_screen4));
+
     }
 
     private void setupActionBar() {

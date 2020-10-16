@@ -8,32 +8,27 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fund.flio.data.model.ChatRoom;
+import com.fund.flio.data.model.Reply;
 import com.fund.flio.databinding.ItemReplyBinding;
 import com.fund.flio.ui.base.BaseViewHolder;
-import com.fund.flio.ui.main.message.chat.list.ChatListViewModel;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
 public class ReplyListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<ChatRoom> chatRooms;
-    private ChatListViewModel chatListViewModel;
+    private List<Reply> replies;
 
-    public void setChatListViewModel(ChatListViewModel chatListViewModel) {
-        this.chatListViewModel = chatListViewModel;
+
+    public ReplyListAdapter(List<Reply> replies) {
+        this.replies = replies;
     }
 
-    public ReplyListAdapter(List<ChatRoom> chatRooms) {
-        this.chatRooms = chatRooms;
-    }
-
-    public void setItems(List<ChatRoom> chatRooms) {
-        final ReplyListAdapter.ChatRoomDiffCallback diffCallback = new ReplyListAdapter.ChatRoomDiffCallback(this.chatRooms, chatRooms);
+    public void setItems(List<Reply> chatRooms) {
+        final ReplyDiffCallback diffCallback = new ReplyDiffCallback(this.replies, chatRooms);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-        this.chatRooms.clear();
-        this.chatRooms.addAll(chatRooms);
+        this.replies.clear();
+        this.replies.addAll(chatRooms);
         diffResult.dispatchUpdatesTo(this);
     }
 
@@ -51,7 +46,7 @@ public class ReplyListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return chatRooms.size();
+        return replies.size();
     }
 
     public class ReplyViewHolder extends BaseViewHolder {
@@ -66,7 +61,7 @@ public class ReplyListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final ChatRoom chatRoom = chatRooms.get(position);
+            final Reply chatRoom = replies.get(position);
             Logger.d("onBind " + position + ", " + chatRoom);
             ItemReplyListViewModel itemChatViewModel = new ItemReplyListViewModel(chatRoom);
             itemReplyBinding.setItemViewModel(itemChatViewModel);
@@ -75,40 +70,34 @@ public class ReplyListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    private static class ChatRoomDiffCallback extends DiffUtil.Callback {
-        private final List<ChatRoom> oldChatRooms;
-        private final List<ChatRoom> newChatRooms;
+    private static class ReplyDiffCallback extends DiffUtil.Callback {
+        private final List<Reply> oldReplies;
+        private final List<Reply> newReplies;
 
-        public ChatRoomDiffCallback(List<ChatRoom> oldChatRooms, List<ChatRoom> newChatRooms) {
-            this.oldChatRooms = oldChatRooms;
-            this.newChatRooms = newChatRooms;
+        public ReplyDiffCallback(List<Reply> oldReplies, List<Reply> newReplies) {
+            this.oldReplies = oldReplies;
+            this.newReplies = newReplies;
         }
 
         @Override
         public int getOldListSize() {
-            return oldChatRooms.size();
+            return oldReplies.size();
         }
 
         @Override
         public int getNewListSize() {
-            return newChatRooms.size();
+            return newReplies.size();
         }
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldChatRooms.get(oldItemPosition).getChatSeq() == newChatRooms.get(newItemPosition).getChatSeq();
+            return oldReplies.get(oldItemPosition).getReplyId() == newReplies.get(newItemPosition).getReplyId();
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            final ChatRoom oldChatRoom = oldChatRooms.get(oldItemPosition);
-            final ChatRoom newChatRoom = newChatRooms.get(newItemPosition);
-            if(oldChatRoom.getChatSeq() == 6) {
-                Logger.d("areContentsTheSame " + oldChatRoom);
-                Logger.d("areContentsTheSame " + newChatRoom);
-                Logger.d("areContentsTheSame " + (oldChatRoom.equals(newChatRoom)));
-            }
-
+            final Reply oldChatRoom = oldReplies.get(oldItemPosition);
+            final Reply newChatRoom = newReplies.get(newItemPosition);
             return oldChatRoom.equals(newChatRoom);
         }
 

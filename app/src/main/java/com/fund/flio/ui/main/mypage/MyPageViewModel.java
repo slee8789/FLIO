@@ -107,7 +107,7 @@ public class MyPageViewModel extends BaseViewModel {
     }
 
     public void onSettingReviewClick(View v) {
-
+        Snackbar.make(((MainActivity) v.getContext()).getViewDataBinding().getRoot(), "준비중입니다.", Snackbar.LENGTH_SHORT).show();
     }
 
     public void onSettingPromotionClick(View v) {

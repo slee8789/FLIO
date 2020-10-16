@@ -27,6 +27,9 @@ public class ItemProductImageViewModel {
 
     }
 
+//    public void fullScreen(View v) {
+//        Navigation.findNavController((MainActivity) v.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavMarketProductImage(imageUrl.get()));
+//    }
 
     public void onItemClick(View v) {
 

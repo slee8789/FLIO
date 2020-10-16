@@ -62,7 +62,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/notosanskr_medium"
             android:maxLines="1"
-            android:text="@{viewModel.comment}"
+            android:text="@{viewModel.title}"
             android:textColor="@color/gray9"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@id/price"

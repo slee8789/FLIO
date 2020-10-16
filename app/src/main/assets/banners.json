@@ -6,5 +6,9 @@
   {
     "bannerId": 1,
     "imageUrl": "http://flio.iptime.org:8080/image/banner/banner_2.png"
+  },
+  {
+    "bannerId": 2,
+    "imageUrl": "http://flio.iptime.org:8080/image/banner/banner_3.png"
   }
 ]

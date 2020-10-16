@@ -5,31 +5,28 @@
     <data>
 
         <variable
-            name="itemViewModel"
-            type="com.fund.flio.ui.main.market.product.ItemProductImageViewModel" />
-
-        <variable
             name="viewModel"
-            type="com.fund.flio.ui.main.market.product.ProductViewModel" />
-
+            type="com.fund.flio.ui.main.market.product.fullscreen.ProductImageFullScreenViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@null"
-            android:transitionName="image"
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{v -> viewModel.fullScreen(v, itemViewModel.imageUrl)}"
             app:layout_constraintTop_toTopOf="parent"
-            app:thumbnailUri="@{itemViewModel.imageUrl}" />
+            app:setBackground="@{viewModel.image}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

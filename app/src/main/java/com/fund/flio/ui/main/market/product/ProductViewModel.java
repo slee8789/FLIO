@@ -2,6 +2,7 @@ package com.fund.flio.ui.main.market.product;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -73,11 +74,18 @@ public class ProductViewModel extends BaseViewModel {
         return product;
     }
 
+    private DecimalFormat formatter = new DecimalFormat("###,###");
+
+    private ProductFragment productFragment;
+
+    public void setProductFragment(ProductFragment productFragment) {
+        this.productFragment = productFragment;
+    }
+
     public ProductViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, ResourceProvider resourceProvider) {
         super(dataManager, schedulerProvider, resourceProvider);
     }
 
-    private DecimalFormat formatter = new DecimalFormat("###,###");
 
     public void detailProduct(String pid) {
         getCompositeDisposable().add(getDataManager().detailProduct(pid, getDataManager().getUserId())
@@ -89,27 +97,27 @@ public class ProductViewModel extends BaseViewModel {
                         Logger.d("detailProduct " + this.product);
                         title.set(this.product.getTitle());
                         content.set(this.product.getContent());
-                        price.set(formatter.format(this.product.getProductPrice())+"원");
+                        price.set(formatter.format(this.product.getProductPrice()) + "원");
                         modelNo.set(this.product.getModelNo());
                         setImage(this.product);
                         sellerImage.set(this.product.getUserImageUrl());
                         sellerName.set(this.product.getUserName());
                         rating.set("5");
-                        if(this.product.getPurpose().length() != 0) {
+                        if (this.product.getPurpose().length() != 0) {
                             purpose.set(TextUtils.join(",", Stream.of(this.product.getPurpose().split(",")).map(purposeStr -> Purpose.valueOf(purposeStr).getType()).collect(Collectors.toList())));
                         }
-                        if(product.body().getProduct().getTag() != null) {
+                        if (product.body().getProduct().getTag() != null) {
                             setTag(product.body().getProduct().getTag().split(","));
                         }
                         isSeller.set(getDataManager().getUserId().equals(this.product.getUid()));
                         linkVisible.set(this.product.getProductRelatedUrl() != null);
                         detailVisible.set(this.product.getUseDate() != null);
                         favoriteYn.set(this.product.getFavoriteYn().equals(FavoriteYn.Y.name()));
-                        if(this.product.getFlioYn() != null) {
+                        if (this.product.getFlioYn() != null) {
                             flioYn.set(this.product.getFlioYn().equals(FlioYn.Y.name()));
                         }
 
-                        if(this.product.getFaithYn() != null) {
+                        if (this.product.getFaithYn() != null) {
                             faithYn.set(this.product.getFaithYn().equals(FaithYn.Y.name()));
                         }
 
@@ -210,6 +218,14 @@ public class ProductViewModel extends BaseViewModel {
                 .subscribe(Void -> {
                     v.setSelected(!v.isSelected());
                 }));
+    }
+
+    public void fullScreen(View v, String imageUrl) {
+        Logger.d("fullScreen");
+        Navigation.findNavController((MainActivity) productFragment.getContext(), R.id.fragment_container).navigate(ProductFragmentDirections.actionNavMarketProductToNavMarketProductImage(imageUrl));
+//        Intent i = new Intent(Intent.ACTION_VIEW);
+//        i.setData(Uri.parse(imageUrl));
+//        (v.getContext()).startActivity(i);
     }
 
 }

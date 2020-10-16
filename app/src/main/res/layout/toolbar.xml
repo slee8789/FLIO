@@ -36,8 +36,8 @@
             android:layout_gravity="start"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
             android:src="@drawable/icon_menu_appbar"
+            android:visibility="gone"
             app:tint="@color/black3" />
 
         <ImageView
@@ -47,7 +47,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:onClick="@{clickEvent}"
-            android:src="@drawable/icon_logo" />
+            android:src="@drawable/icon_logo"
+            app:tint="@color/blue" />
 
         <ImageView
             android:id="@+id/favorite"
