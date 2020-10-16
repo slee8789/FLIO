@@ -234,6 +234,7 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
 
     }
 
+    private boolean argumentsRead;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -253,8 +254,12 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding, MarketVi
         mTabLayout.addOnTabSelectedListener(mainCategory);
         mSubTabLayout = getViewDataBinding().subTabs;
         mSubTabLayout.addOnTabSelectedListener(subCategory);
-        productCategory = MarketFragmentArgs.fromBundle(getArguments()).getProductCategory();
 
+        if (!argumentsRead) {
+            productCategory = MarketFragmentArgs.fromBundle(getArguments()).getProductCategory();
+            argumentsRead = true;
+        }
+        Logger.d("MarketFragment productCategory " + productCategory);
 
         new Handler().postDelayed(() -> {
             mTabLayout.getTabAt(productCategory.ordinal()).select();

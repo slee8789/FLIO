@@ -224,6 +224,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         ((FlioApplication) getApplication()).setCurrentDestinationId(destination.getId());
         switch (destination.getId()) {
             case R.id.nav_market_product:
+                getViewDataBinding().navigationBottom.setVisibility(View.GONE);
+                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
+                getViewDataBinding().fabWrite.setVisibility(View.GONE);
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                getWindow().setNavigationBarColor(Color.TRANSPARENT);
+                break;
             case R.id.nav_certificate_detail:
             case R.id.nav_event_detail:
             case R.id.nav_market_product_register:
@@ -245,6 +251,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 break;
 
             case R.id.nav_chat_detail:
@@ -257,30 +265,28 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 getViewDataBinding().navigationBottom.setVisibility(View.GONE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 break;
 
             case R.id.nav_market:
             case R.id.nav_community:
             case R.id.nav_my_page:
-                showSystemUI();
-                getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
-                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
-                getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
-                break;
-
             case R.id.nav_home:
                 showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
-//                getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_white);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.VISIBLE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 break;
-
             default:
                 showSystemUI();
                 getViewDataBinding().navigationBottom.setVisibility(View.VISIBLE);
                 getViewDataBinding().navigationBottom.setBackgroundResource(R.drawable.bottom_navigation_background_gray);
                 getViewDataBinding().fabWrite.setVisibility(View.GONE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+                getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 break;
         }
     }

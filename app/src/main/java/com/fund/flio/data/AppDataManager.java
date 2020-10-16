@@ -119,8 +119,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<Response<Void>> insertProduct(RequestBody title, RequestBody content, RequestBody categoryDepth1, RequestBody categoryDepth2, RequestBody saleYn, RequestBody tag, MultipartBody.Part[] imgList, RequestBody useDate, RequestBody purchaseKind, RequestBody productPrice, RequestBody tradeKind, RequestBody boxYn,RequestBody flioYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
-        return mFlioApi.insertProduct(title, content, categoryDepth1, categoryDepth2, saleYn, tag, imgList, useDate, purchaseKind, productPrice, tradeKind, boxYn,flioYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
+    public Single<Response<Void>> insertProduct(RequestBody title, RequestBody content, RequestBody categoryDepth1, RequestBody categoryDepth2, RequestBody saleYn, RequestBody tag, MultipartBody.Part[] imgList, RequestBody useDate, RequestBody purchaseKind, RequestBody productPrice, RequestBody tradeKind, RequestBody boxYn, RequestBody flioYn, RequestBody brand, RequestBody purpose, RequestBody modelNo, RequestBody serialNo, RequestBody repairYn, RequestBody productRelatedUrl, RequestBody uid) {
+        return mFlioApi.insertProduct(title, content, categoryDepth1, categoryDepth2, saleYn, tag, imgList, useDate, purchaseKind, productPrice, tradeKind, boxYn, flioYn, brand, purpose, modelNo, serialNo, repairYn, productRelatedUrl, uid);
     }
 
     @Override
@@ -231,6 +231,16 @@ public class AppDataManager implements DataManager {
     @Override
     public void setNotifyChat(boolean chat) {
         mPreferences.setNotifyChat(chat);
+    }
+
+    @Override
+    public boolean notifyEvery() {
+        return mPreferences.notifyEvery();
+    }
+
+    @Override
+    public void setNotifyEvery(boolean all) {
+        mPreferences.setNotifyEvery(all);
     }
 
     @Override

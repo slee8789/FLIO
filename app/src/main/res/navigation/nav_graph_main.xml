@@ -400,6 +400,11 @@
         <argument
             android:name="productId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_buyer_list_to_nav_sell_list"
+            app:destination="@id/nav_sell_list"
+            app:popUpTo="@id/nav_buyer_guide"
+            app:popUpToInclusive="true" />
     </fragment>
 
 

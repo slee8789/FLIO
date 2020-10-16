@@ -90,4 +90,14 @@ public class AppPreferencesHelper implements PreferencesHelper {
     public void setNotifyChat(boolean chat) {
         mPrefs.edit().putBoolean(context.getString(R.string.key_notify_chat), chat).apply();
     }
+
+    @Override
+    public boolean notifyEvery() {
+        return mPrefs.getBoolean(context.getString(R.string.key_notify_all), true);
+    }
+
+    @Override
+    public void setNotifyEvery(boolean all) {
+        mPrefs.edit().putBoolean(context.getString(R.string.key_notify_all), all).apply();
+    }
 }

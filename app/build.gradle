@@ -4,14 +4,14 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.fund.flio"
         minSdkVersion 23
         versionCode 1
         versionName "1.0"
-
+        targetSdkVersion 30
         testInstrumentationRunner "androidx.bg_item_chat_local.runner.AndroidJUnitRunner"
     }
 
@@ -28,6 +28,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "GOOGLE_SIGN_URL", "\"129807491057-eqdrpa9v6omspr8hdevohtstsdr0m5ei.apps.googleusercontent.com\"")
+            buildConfigField("String", "REST_BASE_URL", "\"http://flio.iptime.org:8080\"")
+            buildConfigField("String", "REST_AUTH_URL", "\"http://flio.iptime.org:8082\"")
+            buildConfigField("String", "NAVER_CLIENT_ID", "\"8f7rCaBdy7f_5008atny\"")
+            buildConfigField("String", "NAVER_CLIENT_SECRET", "\"HaBYxiuyO6\"")
+            buildConfigField("String", "NAVER_CLIENT_NAME", "\"네이버 아이디로 로그인\"")
         }
     }
 

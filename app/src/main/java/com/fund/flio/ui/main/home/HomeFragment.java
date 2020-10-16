@@ -16,6 +16,7 @@ import androidx.transition.TransitionInflater;
 import com.fund.flio.BR;
 import com.fund.flio.R;
 import com.fund.flio.data.DataManager;
+import com.fund.flio.data.model.Banner;
 import com.fund.flio.data.model.Certificate;
 import com.fund.flio.data.model.Event;
 import com.fund.flio.data.model.Product;
@@ -49,7 +50,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     DataManager dataManager;
 
     @Inject
-    EventAdapter mEventAdapter;
+    BannerImageAdapter mBannerImageAdapter;
 
     @Inject
     SchedulerProvider schedulerProvider;
@@ -125,19 +126,19 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
         getViewModel().getProducts().observe(getViewLifecycleOwner(), products -> mProductSmallAdapter.setItems(products));
 
-//        getViewDataBinding().banner.setAdapter(mEventAdapter);
-//        ArrayList<Event> dummyEvents = new Gson().fromJson(readAssetJson(getContext(), "events.json"), new TypeToken<List<Event>>() {
-//        }.getType());
-//        mEventAdapter.addItems(dummyEvents);
-//        imageSlideDisposable = Observable.interval(3, TimeUnit.SECONDS)
-//                .observeOn(schedulerProvider.ui())
-//                .subscribe(time -> {
-//                    if (imagePosition == mEventAdapter.getItemCount() - 1) {
-//                        getViewDataBinding().banner.setCurrentItem(0, true);
-//                    } else {
-//                        getViewDataBinding().banner.setCurrentItem(imagePosition + 1, true);
-//                    }
-////                    addBottomDots(imagePosition);
-//                });
+        getViewDataBinding().banner.setAdapter(mBannerImageAdapter);
+        ArrayList<Banner> banners = new Gson().fromJson(readAssetJson(getContext(), "banners.json"), new TypeToken<List<Banner>>() {
+        }.getType());
+        mBannerImageAdapter.addItems(banners);
+        imageSlideDisposable = Observable.interval(5, TimeUnit.SECONDS)
+                .observeOn(schedulerProvider.ui())
+                .subscribe(time -> {
+                    if (imagePosition == mBannerImageAdapter.getItemCount() - 1) {
+                        getViewDataBinding().banner.setCurrentItem(0, true);
+                    } else {
+                        getViewDataBinding().banner.setCurrentItem(imagePosition + 1, true);
+                    }
+//                    addBottomDots(imagePosition);
+                });
     }
 }

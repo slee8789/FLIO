@@ -3,7 +3,12 @@ package com.fund.flio.utils;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
+
+import com.fund.flio.R;
+import com.gun0912.tedpermission.TedPermissionResult;
+import com.tedpark.tedpermission.rx2.TedRx2Permission;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,10 +16,39 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import io.reactivex.Single;
+
+import static android.Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.RECORD_AUDIO;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public final class CommonUtils {
 
     private CommonUtils() {
         // This utility class is not publicly instantiable
+    }
+
+    public static Single<TedPermissionResult> permissionCheck(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return TedRx2Permission.with(context)
+                    .setPermissions(READ_EXTERNAL_STORAGE)
+                    .setDeniedMessage(context.getResources().getString(R.string.intro_msg_denied))
+                    .setGotoSettingButton(true)
+                    .setGotoSettingButtonText(context.getResources().getString(R.string.intro_msg_goto_setting))
+                    .request();
+        } else {
+            return TedRx2Permission.with(context)
+                    .setPermissions(READ_EXTERNAL_STORAGE)
+                    .setDeniedMessage(context.getResources().getString(R.string.intro_msg_denied))
+                    .setGotoSettingButton(true)
+                    .setGotoSettingButtonText(context.getResources().getString(R.string.intro_msg_goto_setting))
+                    .request();
+        }
     }
 
     public static String getChatTime(String dateString) {

@@ -30,4 +30,8 @@ public interface PreferencesHelper {
 
     void setNotifyChat(boolean chat);
 
+    boolean notifyEvery();
+
+    void setNotifyEvery(boolean all);
+
 }

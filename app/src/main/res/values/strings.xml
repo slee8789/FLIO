@@ -222,4 +222,7 @@
 
     <string name="buyer_guide_title">구매자 선택</string>
 
+    <string name="intro_msg_denied">이 서비스를 사용하기 위해서 권한이 필요합니다.</string>
+    <string name="intro_msg_goto_setting">설정하러 가기</string>
+
 </resources>

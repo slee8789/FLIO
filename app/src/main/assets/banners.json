@@ -1,0 +1,10 @@
+[
+  {
+    "bannerId": 0,
+    "imageUrl": "http://flio.iptime.org:8080/image/banner/banner_1.png"
+  },
+  {
+    "bannerId": 1,
+    "imageUrl": "http://flio.iptime.org:8080/image/banner/banner_2.png"
+  }
+]

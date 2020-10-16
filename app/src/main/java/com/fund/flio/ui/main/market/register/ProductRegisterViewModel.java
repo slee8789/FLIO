@@ -44,6 +44,7 @@ import com.fund.flio.di.provider.ResourceProvider;
 import com.fund.flio.di.provider.SchedulerProvider;
 import com.fund.flio.ui.base.BaseViewModel;
 import com.fund.flio.ui.main.MainActivity;
+import com.fund.flio.utils.CommonUtils;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.snackbar.Snackbar;
@@ -91,7 +92,7 @@ public class ProductRegisterViewModel extends BaseViewModel {
     private MutableLiveData<ArrayList<Purpose>> purposes = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<Uri>> mThumbnailUris = new MutableLiveData<>();
 
-    private RequestBody paramImgBody, paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramFlioYn,paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
+    private RequestBody paramImgBody, paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, paramTag, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn, paramFlioYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid;
     private MultipartBody.Part[] imgUrls;
 
     public MutableLiveData<List<Uri>> getThumbnailUris() {
@@ -172,17 +173,27 @@ public class ProductRegisterViewModel extends BaseViewModel {
     }
 
     public void addImage(View v) {
-        getCompositeDisposable2().add(TedRxImagePicker
-                .with(v.getContext())
-                .max(10, getResourceProvider().getString(R.string.message_max_count))
-                .showCameraTile(true)
-                .startMultiImage()
-                .subscribe(uriList -> {
-                    imageCount.set(String.valueOf(uriList.size()));
-                    mThumbnailUris.setValue(uriList);
+        getCompositeDisposable2().add(CommonUtils.permissionCheck(v.getContext())
+                .subscribe(permissionResult -> {
+                    Logger.d("permissionResult " + permissionResult.isGranted());
+                    if (permissionResult.isGranted()) {
+                        getCompositeDisposable2().add(TedRxImagePicker
+                                .with(v.getContext())
+                                .max(10, getResourceProvider().getString(R.string.message_max_count))
+                                .showCameraTile(true)
+                                .startMultiImage()
+                                .subscribe(uriList -> {
+                                    imageCount.set(String.valueOf(uriList.size()));
+                                    mThumbnailUris.setValue(uriList);
+                                }));
+                    } else {
+
+                    }
                 }));
 
+
     }
+
 
     public ObservableBoolean wayDelivery = new ObservableBoolean(true);
 
@@ -249,7 +260,26 @@ public class ProductRegisterViewModel extends BaseViewModel {
         paramUid = RequestBody.create(MediaType.parse("text/plain"), getDataManager().getUserId());
 
         setIsLoading(true);
-        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle, paramContent, paramCategoryDepth1, paramCategoryDepth2, paramSaleYn, null, imgUrls, paramUseDate, paramPurchaseKind, paramProductPrice, paramTradeKind, paramBoxYn,paramFlioYn, paramBrand, paramPurpose, paramModelNo, paramSerialNo, paramRepairYn, paramProductRelatedUrl, paramUid)
+        getCompositeDisposable().add(getDataManager().insertProduct(paramTitle,
+                paramContent,
+                paramCategoryDepth1,
+                paramCategoryDepth2,
+                paramSaleYn,
+                null,
+                imgUrls,
+                paramUseDate,
+                paramPurchaseKind,
+                paramProductPrice,
+                paramTradeKind,
+                paramBoxYn,
+                paramFlioYn,
+                paramBrand,
+                paramPurpose,
+                paramModelNo,
+                paramSerialNo,
+                paramRepairYn,
+                paramProductRelatedUrl,
+                paramUid)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(Void -> {

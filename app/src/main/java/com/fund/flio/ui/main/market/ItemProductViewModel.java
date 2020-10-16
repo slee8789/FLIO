@@ -64,6 +64,7 @@ public class ItemProductViewModel {
     public ItemProductViewModel(View v, ItemProductBinding binding, Product product) {
         this.itemProductBinding = binding;
         mProduct = product;
+        title.set(product.getTitle());
         setImage(product);
         favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
         v.setSelected(favoriteYn.get());
@@ -80,7 +81,7 @@ public class ItemProductViewModel {
         this.itemProductHomeBinding = binding;
         mProduct = product;
         setImage(product);
-
+        title.set(product.getTitle());
         favoriteYn.set(product.getFavoriteYn().equals(FavoriteYn.Y.name()));
         v.setSelected(favoriteYn.get());
         flioYn.set(product.getFlioYn() != null && product.getFlioYn().equals(FlioYn.Y.name()));

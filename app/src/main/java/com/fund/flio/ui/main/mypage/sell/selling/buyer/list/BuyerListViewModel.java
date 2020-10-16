@@ -48,7 +48,7 @@ public class BuyerListViewModel extends BaseViewModel {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribeOn(getSchedulerProvider().io())
 //                .subscribe(result -> Snackbar.make(((MainActivity) getBaseActivity()).getViewDataBinding().getRoot(), "준비중입니다.", Snackbar.LENGTH_SHORT).show();));
-                .subscribe(result -> Navigation.findNavController((Activity) v.getContext(), R.id.fragment_container).navigateUp()));
+                .subscribe(result -> Navigation.findNavController((Activity) v.getContext(), R.id.fragment_container).navigate(R.id.action_nav_buyer_list_to_nav_sell_list)));
     }
 
 

@@ -37,22 +37,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!--                <androidx.viewpager2.widget.ViewPager2-->
-                <!--                    android:id="@+id/banner"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="165dp"-->
-                <!--                    android:orientation="horizontal"-->
-                <!--                    android:scaleType="centerCrop"-->
-                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-                <ImageView
+                <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
                     android:layout_height="165dp"
-                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/banner_sample_1"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/banner"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="165dp"-->
+                <!--                    android:layout_marginTop="16dp"-->
+                <!--                    android:scaleType="centerCrop"-->
+                <!--                    android:src="@drawable/banner_sample_1"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <include
                     android:id="@+id/category_speaker"

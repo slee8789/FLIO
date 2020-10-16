@@ -30,6 +30,7 @@ import com.fund.flio.ui.main.community.certificate.register.CertificateThumbnail
 import com.fund.flio.ui.main.community.event.list.EventAdapter;
 import com.fund.flio.ui.main.community.event.register.EventThumbnailAdapter;
 import com.fund.flio.ui.main.community.news.NewsAdapter;
+import com.fund.flio.ui.main.home.BannerImageAdapter;
 import com.fund.flio.ui.main.home.CertificateSmallAdapter;
 import com.fund.flio.ui.main.market.product.ProductImageAdapter;
 import com.fund.flio.ui.main.market.register.ProductThumbnailAdapter;
@@ -227,6 +228,11 @@ public class AppModule {
     @Provides
     ProductImageAdapter provideProductImageAdapter() {
         return new ProductImageAdapter(new ArrayList<>());
+    }
+
+    @Provides
+    BannerImageAdapter provideBannerImageAdapter() {
+        return new BannerImageAdapter(new ArrayList<>());
     }
 
     @Provides

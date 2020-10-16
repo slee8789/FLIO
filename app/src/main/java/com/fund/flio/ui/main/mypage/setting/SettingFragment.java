@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,17 +13,23 @@ import androidx.navigation.Navigation;
 
 import com.fund.flio.BR;
 import com.fund.flio.R;
+import com.fund.flio.data.DataManager;
 import com.fund.flio.databinding.FragmentMyPageBinding;
 import com.fund.flio.databinding.FragmentSettingBinding;
 import com.fund.flio.ui.base.BaseFragment;
 import com.fund.flio.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
+import javax.inject.Inject;
+
 import static androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 import static com.fund.flio.utils.ViewUtils.getStatusBarHeight;
 
 
 public class SettingFragment extends BaseFragment<FragmentSettingBinding, SettingViewModel> {
+
+    @Inject
+    DataManager dataManager;
 
     @Override
     public int getBindingVariable() {
@@ -50,6 +57,17 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupActionBar();
+        getViewDataBinding().switchAll.setChecked(dataManager.notifyEvery());
+        getViewDataBinding().switchChat.setChecked(dataManager.notifyChat());
+        getViewDataBinding().switchAll.setOnCheckedChangeListener((compoundButton, b) -> {
+            Logger.d("switchAll " + b);
+            dataManager.setNotifyChat(b);
+            getViewDataBinding().switchChat.setChecked(b);
+        });
+        getViewDataBinding().switchChat.setOnCheckedChangeListener((compoundButton, b) -> {
+            Logger.d("switchChat " + b);
+            dataManager.setNotifyChat(b);
+        });
     }
 
     private void setupActionBar() {
