@@ -119,7 +119,6 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
                     } else {
                         getViewDataBinding().image.setCurrentItem(imagePosition + 1, true);
                     }
-//                    addBottomDots(imagePosition);
                 });
         getViewDataBinding().image.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 
@@ -165,20 +164,22 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding, Produc
     }
 
     private void addBottomDots(int currentPage) {
-        getViewDataBinding().layoutDots.removeAllViews();
-        dots = new TextView[ProductFragmentArgs.fromBundle(getArguments()).getProduct().getImageUrl().split(",").length];
-        Logger.d("addBottomDots " + dots.length);
-        for (int i = 0; i < dots.length; i++) {
-            Logger.d("addBottomDots test " + getBaseActivity() + ", " + dots[i]);
-            dots[i] = new TextView(getBaseActivity());
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_light_screen4));
-            getViewDataBinding().layoutDots.addView(dots[i]);
-        }
+//        getViewDataBinding().layoutDots.removeAllViews();
+//        dots = new TextView[ProductFragmentArgs.fromBundle(getArguments()).getProduct().getImageUrl().split(",").length];
+//        Logger.d("addBottomDots " + dots.length);
+//        for (int i = 0; i < dots.length; i++) {
+//            Logger.d("addBottomDots test " + getBaseActivity() + ", " + dots[i]);
+//            dots[i] = new TextView(getBaseActivity());
+//            dots[i].setText(Html.fromHtml("&#8226;"));
+//            dots[i].setTextSize(35);
+//            dots[i].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_light_screen4));
+//            getViewDataBinding().layoutDots.addView(dots[i]);
+//        }
+//
+//        if (dots.length > 0)
+//            dots[currentPage].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_dark_screen4));
 
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(ContextCompat.getColor(getContext(), R.color.dot_dark_screen4));
+        getViewDataBinding().indicator.setText((currentPage + 1) + "/" + ProductFragmentArgs.fromBundle(getArguments()).getProduct().getImageUrl().split(",").length);
 
     }
 
