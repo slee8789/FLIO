@@ -89,6 +89,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
             getDataManager().setUserToken(userToken);
             getDataManager().setUserId(mFirebaseAuth.getUid());
             getDataManager().setUserName(mFirebaseAuth.getCurrentUser().getDisplayName());
+            getDataManager().setUserEmail(mFirebaseAuth.getCurrentUser().getEmail());
             getDataManager().setUserImageUrl(mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
             authenticationState.setValue(AuthenticationState.AUTHENTICATED);
         });
@@ -138,6 +139,7 @@ public class AuthViewModel extends BaseViewModel implements ISessionCallback {
                                     getDataManager().setUserToken(acct.getIdToken());
                                     getDataManager().setUserId(mFirebaseAuth.getUid());
                                     getDataManager().setUserName(acct.getDisplayName());
+                                    getDataManager().setUserName(acct.getEmail());
                                     getDataManager().setUserImageUrl(acct.getPhotoUrl().toString());
                                     authenticationState.setValue(AuthenticationState.AUTHENTICATED);
                                 }));

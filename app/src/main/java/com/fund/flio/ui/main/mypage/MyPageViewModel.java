@@ -28,6 +28,7 @@ public class MyPageViewModel extends BaseViewModel {
 
     public ObservableField<String> imageUrl = new ObservableField<>();
     public ObservableField<String> name = new ObservableField<>();
+    public ObservableField<String> email = new ObservableField<>();
     public ObservableField<String> rating = new ObservableField<>();
     public ObservableField<String> ratingPoint = new ObservableField<>();
     public ObservableField<String> keywordCount = new ObservableField<>();
@@ -47,6 +48,7 @@ public class MyPageViewModel extends BaseViewModel {
         super(dataManager, schedulerProvider, resourceProvider);
         imageUrl.set(dataManager.getUserImageUrl());
         name.set(dataManager.getUserName());
+        email.set(dataManager.getUserEmail());
         rating.set("5");
         ratingPoint.set("(5)");
         getCompositeDisposable2().add(dataManager.getKeywords()

@@ -74,6 +74,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public String getUserEmail() {
+        return mPreferences.getUserEmail();
+    }
+
+    @Override
+    public void setUserEmail(String userEmail) {
+        mPreferences.setUserEmail(userEmail);
+    }
+
+    @Override
     public String getUserImageUrl() {
         return mPreferences.getUserImageUrl();
     }

@@ -42,6 +42,16 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
+    public String getUserEmail() {
+        return mPrefs.getString(context.getString(R.string.key_user_email), null);
+    }
+
+    @Override
+    public void setUserEmail(String userEmail) {
+        mPrefs.edit().putString(context.getString(R.string.key_user_email), userEmail).apply();
+    }
+
+    @Override
     public String getUserImageUrl() {
         return mPrefs.getString(context.getString(R.string.key_user_image_url), null);
     }

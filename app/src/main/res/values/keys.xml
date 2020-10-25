@@ -5,6 +5,7 @@
     <string name="key_message_token">key_message_token</string>
     <string name="key_user_id">key_user_id</string>
     <string name="key_user_name">key_user_name</string>
+    <string name="key_user_email">key_user_email</string>
     <string name="key_user_image_url">key_user_image_url</string>
     <string name="key_notify_chat">key_notify_chat</string>
     <string name="key_notify_all">key_notify_all</string>

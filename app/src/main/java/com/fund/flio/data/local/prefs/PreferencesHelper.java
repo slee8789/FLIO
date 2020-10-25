@@ -10,6 +10,10 @@ public interface PreferencesHelper {
 
     void setUserName(String userName);
 
+    String getUserEmail();
+
+    void setUserEmail(String userEmail);
+
     String getUserImageUrl();
 
     void setUserImageUrl(String userImageUrl);
