@@ -9,8 +9,8 @@ android {
     defaultConfig {
         applicationId "com.fund.flio"
         minSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         targetSdkVersion 30
         testInstrumentationRunner "androidx.bg_item_chat_local.runner.AndroidJUnitRunner"
     }
