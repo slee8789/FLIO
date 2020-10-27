@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "129807491057",
+    "firebase_url": "https://flio-firebase.firebaseio.com",
+    "project_id": "flio-firebase",
+    "storage_bucket": "flio-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129807491057:android:f34858ee941cef1d93ee50",
+        "android_client_info": {
+          "package_name": "com.fund.flio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129807491057-reanoaouu952ffrna6f27ocmoqerppd0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fund.flio",
+            "certificate_hash": "bbbfb906a8e8f3126c67e5c60a1896bb7630abad"
+          }
+        },
+        {
+          "client_id": "129807491057-3q4surpkphnq7sa183kn977f8nunqrh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fund.flio",
+            "certificate_hash": "48aa1de42ea1c5ae570de0046e1bf2b3429e56bf"
+          }
+        },
+        {
+          "client_id": "129807491057-eqdrpa9v6omspr8hdevohtstsdr0m5ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl-1f4U9w68IiptDYz0MDrGNiAqORl368"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129807491057-eqdrpa9v6omspr8hdevohtstsdr0m5ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
