@@ -16,3 +16,9 @@ FLIO Project 오디오 중고마켓
 - Firebase(Authentication, Crashlytics, Analytics, Cloud Messaging)
 - RxJava(version 3), RxAndroid
 - Dagger2, Retrofit2, Glide, TedPermission, DiffUtil, MotionLayout, CoordinatorLayout
+
+## ScreenShot
+
+<div>
+  <img width="200" src="https://user-images.githubusercontent.com/11331651/103643632-600cb180-4f98-11eb-84c1-7e54dc1d2390.jpg">
+</div>
